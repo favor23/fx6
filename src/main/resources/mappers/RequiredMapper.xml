@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 
+	<mapper namespace="RequiredMapper">
+
+	<sql id="search">
+  		<trim prefix="where" prefixOverrides="and || or">
+  		<if test="search == 'title'">
+  			title like '%' || #{find} || '%'
+  		</if>
+  		<if test="search == 'writer'">
+  			writer like '%' || #{find} || '%'
+  		</if>
+  		<if test="search == 'contents'">
+  			contents like '%' || #{find} || '%'
+  		</if>
+  		</trim>  	
+  	</sql>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo" >
+  		select nvl(count(num), 0) from required
+  		<include refid="search"></include>
+  	</select>
+  	
+  	<select id="list" parameterType="com.choa.util.ListInfo" resultType="RequiredDTO">
+  		select * from
+  		(select rownum R, N.* from
+  		(select * from required
+  		<include refid="search"></include>
+  			order by num desc) N)
+  			where R between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<select id="view" resultType="RequiredDTO" parameterType="java.lang.Integer">
+  		select * from required where num=#{num}
+  	</select>
+  	
+  	<insert id="write" parameterType="RequiredDTO">
+  		insert into required values(required_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0, required_seq.currval, 0, 0) 	
+  	</insert>
+  	
+  	<delete id="delete" parameterType="java.lang.Integer">
+  		delete required where num=#{num}
+  	</delete>
+  	
+  	<update id="update" parameterType="RequiredDTO">
+  		update required set title=#{title}, contents=#{contents} where num=#{num}
+  	</update>
+  	
+  	<update id="hit">
+  		update required set hit=hit+1 where num=#{num}
+  	</update> 
+   
+  </mapper>

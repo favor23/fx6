@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="AdminMapper"> 
+ <resultMap type="com.choa.admin.AdminDTO" id="AdminDTO"></resultMap>
+ 
+
+ 	<select id="login" statementType="CALLABLE" parameterType="java.util.Map"> 
+ 	{ call admin_login(#{adminDTO.id, mode=IN},#{adminDTO.pw, mode=IN},#{admin, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
+ 	</select>
+ 	
+ </mapper> 

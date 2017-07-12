@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="PaymentSupportMapper"> 
+ 	<insert id="insert" statementType="CALLABLE" parameterType="java.util.Map">
+ 		{ call paysupport_insert(#{dto.id, mode=IN}, #{dto.money, mode=IN}, #{dto.type, mode=IN}, #{dto.present, mode=IN}, #{dto.address, mode=IN}, #{dto.project_num, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER})  }
+ 	</insert> 
+ </mapper> 

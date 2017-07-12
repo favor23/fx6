@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+a{
+	cursor: pointer;
+}
+li {
+	list-style-type: none;	
+}
+
+header {
+    position: fixed;
+    height: 50px;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 1000;
+}
+
+#header_bar {
+	height: 50px;
+	width: 960px;
+	margin: 0 auto;
+}
+
+.header_li {
+	height: 49px;
+	width: 107px;
+	cursor: pointer;
+}
+
+#bar_logo {
+	height: 49px;
+	width: 160px;
+}
+
+#bar_login {
+	height: 49px;
+	width: 157px;
+	cursor: pointer;
+}
+
+#header_bar li {
+	line-height: 49px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+	float: left;
+	font-weight: bold;
+}
