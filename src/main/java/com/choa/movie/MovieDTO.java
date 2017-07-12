@@ -13,7 +13,14 @@ public class MovieDTO {
 	private int running_time;
 	private String genre;
 	private String poster_img;
+	private Date release_end;
 	
+	public Date getRelease_end() {
+		return release_end;
+	}
+	public void setRelease_end(Date release_end) {
+		this.release_end = release_end;
+	}
 	public int getMovie_num() {
 		return movie_num;
 	}
