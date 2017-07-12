@@ -6,12 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<c:import url="../temp/bootStrap.jsp" />
 <script type="text/javascript">
 	$(function() {
 		var count = 0;

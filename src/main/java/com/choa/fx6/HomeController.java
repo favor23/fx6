@@ -47,7 +47,7 @@ public class HomeController {
 	}
 	//인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!
 	@RequestMapping(value="/index")
-	public void index(){	
+	public void index(){		
 	}
 	
 	@RequestMapping(value="/temp/header")
