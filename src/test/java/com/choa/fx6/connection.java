@@ -2,9 +2,14 @@ package com.choa.fx6;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.choa.member.MemberDTO;
 
 public class connection extends MyAbstractTestUnit{
 	@Autowired
@@ -14,5 +19,7 @@ public class connection extends MyAbstractTestUnit{
 	public void test() {
 		assertNotNull(sqlSession);
 	}
+	
+	
 
 }

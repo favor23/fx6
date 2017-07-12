@@ -153,7 +153,7 @@ color: red;
 				</tr>
 				<tr>
 					<td class="jf1">비밀번호 확인</td>
-					<td class="jf2"><input type="password" name="pwc" id="pwc" class="text" onblur="pwc_chk()"></td>
+					<td class="jf2"><input type="password" id="pwc" class="text" onblur="pwc_chk()"></td>
 					<td class="jf3" id="text_pw2"><label class="sText3">비밀번호가 일치하지 않습니다.</label></td>
 				</tr>
 				<tr>
@@ -197,25 +197,12 @@ color: red;
 
 				<tr>
 					<td class="jf1">직업</td>
-					<td colspan="2" id="radio">
-					<span class="span">학생 : <input type="radio" name="r" value="student"></span> 
-					<span class="span">자영업 : <input type="radio" name="r" value="ceo"></span> 
-					<span class="span">회사원 : <input type="radio" name="r" value="sal"></span> 
-					<span class="span">무직 : <input type="radio" name="r" value="none"></span>
-					<p class="p_tag">
-						<span class="span">기타 : <input type="radio" name="r" value="etc">
-						<input type="text" id="etc" class="text"></span>
-					</p>
-					</td>
+					<td  class="jf2" colspan="2">
+					<span class="span">감독 : <input type="radio" name="job" class="g" value="director"></span>
+					<span class="span">작가 : <input type="radio" name="job" class="g" value="writer"></span>
+					<span class="span">유저 : <input type="radio" name="job" class="g" value="user"></span></td>
 				</tr>
 
-				<tr>
-					<td class="jf1">분류</td>
-					<td  class="jf2" colspan="2">
-					<span class="span">감독 : <input type="radio" name="grade" class="g" value="director"></span>
-					<span class="span">작가 : <input type="radio" name="grade" class="g" value="writer"></span>
-					<span class="span">유저 : <input type="radio" name="grade" class="g" value="user"></span></td>
-				</tr>
 				<tr>
 				<td class="jf1">선호하는 장르</td>
 					<td colspan="2"  class="jf2">
@@ -239,8 +226,8 @@ color: red;
 			<!-- email -->
 			<input type="hidden" name="birth" id="birth">
 			<input type="hidden" value="" id="age" name="age">
-			<input type="hidden" value="" id="email" name="email"> <input
-				type="hidden" value="" id="job" name="job" value="">
+			<input type="hidden" value="" id="email" name="email">
+			<input type="hidden" value="customer" id="grade" name="grade">
 			<input type="button" id="joinBtn" value="다음">
 		</form>
 	</div>
@@ -302,21 +289,16 @@ color: red;
 		var id_checker = "";
 		var pw_checker = "";
 		$("#joinBtn").click(function() {
-			var job = $('input:radio[name="r"]:checked').val();
-			if (job == 'etc') {
-				$("#job").val($("#etc").val());
-			} else {
-				$("#job").val(job);
-			}
+			
 			$("#email").val($("#e1").val() + "@" + $("#e3").val());
 			
 			//이거 다시 설정 날짜 다시 받아야함..
-			var myYear = $("#date").val(); //생년 월일 저장
+			var myYear = $("#myYear").val(); //생년 월일 저장
 			var myYear2 = new Date(myYear).getFullYear(); //연도만 따로 추출
 			var age = year-myYear; //나이 구하기
 			$("#age").val(age);
 			var text = $("#myYear").val()+'-'+$("#myMonth").val()+'-'+$("#myDay").val();
-			$("#date").val(text);
+			$("#birth").val(text);
 			
 			if(id_checker==""&&pw_checker!=""){
 				$("#join_frm").submit();			
