@@ -307,6 +307,11 @@
 	        margin: 10px auto;
 	    }
 	}
+	
+	#myCarousel {
+		height: 600px;
+		overflow: hidden;
+	}
 </style>
 </head>
 <body>
