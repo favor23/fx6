@@ -15,12 +15,19 @@ public class CustomerDTO extends MemberDTO {
 	private String playView;
 	private String reView;
 	private String birth;
+	private String taste;
 	
 	
 	
 	
 	
 	
+	public String getTaste() {
+		return taste;
+	}
+	public void setTaste(String taste) {
+		this.taste = taste;
+	}
 	public String getBirth() {
 		return birth;
 	}

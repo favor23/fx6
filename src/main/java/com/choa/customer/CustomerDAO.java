@@ -27,6 +27,7 @@ public class CustomerDAO implements MemberDAO{
 	public int join(MemberDTO memberDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("customerDTO", memberDTO);
+		System.out.println(memberDTO.getId());
 		sqlSession.insert(NAMESPACE+"join", map);
 		int result=(Integer)map.get("result");
 		return result;
