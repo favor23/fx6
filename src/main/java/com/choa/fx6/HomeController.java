@@ -45,7 +45,7 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	//인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!
 	@RequestMapping(value="/index")
 	public void index(){	
 	}
@@ -63,9 +63,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/index_movielist/m1")
-	public void m1(Model model){
+	public void m1(Model model,int num){
 		List<MovieDTO> list=movieController.movieList(1);
 		model.addAttribute("list", list);
+		model.addAttribute("num",num);
+		
 	}
 	@RequestMapping(value="/index_movielist/m2")
 	public void m2(){}
@@ -75,5 +77,15 @@ public class HomeController {
 	
 	@RequestMapping(value="/index_movielist/m4")
 	public void m4(){}
+	
+	@RequestMapping(value="/index_movielist/modal_ticket")
+	public void modal_ticket(int num){		
+		System.out.println("예매하기 :"+num);
+	}
+	
+	@RequestMapping(value="/index_movielist/modal_view")
+	public void modal_view(int num){		
+		System.out.println("상영정보 :"+num);
+	}
 	
 }
