@@ -100,7 +100,7 @@
 					</ul>
 				</div>
 
-				<!-- Left and right controls -->
+				<!-- Left and right controls --> 
 				<a class="left carousel-control" href="#myCarousel2"
 					data-slide="prev" style="width: 0; margin-left: 50px;"> <span
 					class="glyphicon glyphicon-chevron-left"></span> <span
