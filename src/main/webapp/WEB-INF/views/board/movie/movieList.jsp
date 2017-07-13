@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../temp/bootStrap.jsp" />
+<c:import url="../../temp/bootStrap.jsp" />
 <script type="text/javascript">
 	$(function() {
 		var count = 0;
