@@ -23,7 +23,7 @@
 					
 					getList(curPage);
 					
-					count = count + 4;
+					count = count + 10;
 				}
 			}
 		});
@@ -302,10 +302,19 @@
 	        margin: 10px auto;
 	    }
 	}
+	
+	#myCarousel {
+		height: 600px;
+		overflow: hidden;
+	}
+	
+	.carousel-caption {
+		padding-bottom: 20%;
+	}
 </style>
 </head>
 <body>
-	<c:import url="../temp/header.jsp"/>
+	<c:import url="../../temp/header.jsp"/>
 	
 	<section id="main_section">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -361,6 +370,6 @@
 	  </article>
 	</section>
 	
-	<c:import url="../temp/footer.jsp"/>
+	<c:import url="../../temp/footer.jsp"/>
 </body>
 </html>

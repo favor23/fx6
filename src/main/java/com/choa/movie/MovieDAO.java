@@ -21,4 +21,8 @@ public class MovieDAO {
 	public int movieCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "movieCount");
 	}
+	
+	public MovieDTO movieView(int movie_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "movieView", movie_num);
+	}
 }

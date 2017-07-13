@@ -24,4 +24,8 @@ public class MovieService {
 	public int movieCount() throws Exception {
 		return movieDAO.movieCount();
 	}
+	
+	public MovieDTO movieView(int movie_num) throws Exception {
+		return movieDAO.movieView(movie_num);
+	}
 }

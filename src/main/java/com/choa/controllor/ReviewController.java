@@ -13,7 +13,7 @@ import com.choa.review.ReviewService;
 import com.choa.util.ListInfo;
 
 @Controller
-@RequestMapping(value="/review/**")
+@RequestMapping(value="/board/review/**")
 public class ReviewController {
 	
 	
@@ -36,7 +36,7 @@ public class ReviewController {
 			}
 	
 		
-		return "review/reviewList";
+		return "board/review/reviewList";
 	}
 	
 	
@@ -46,7 +46,7 @@ public class ReviewController {
 	public String reviewWrite(Model model){
 		model.addAttribute("path", "Write");
 		
-		return "review/reviewWrite";
+		return "board/review/reviewWrite";
 		
 	}
 	
@@ -92,7 +92,7 @@ public class ReviewController {
 		
 		model.addAttribute("view", reviewDTO);
 	
-		return "review/reviewView";
+		return "board/review/reviewView";
 	}
 	
 	
@@ -138,7 +138,7 @@ public class ReviewController {
 		model.addAttribute("path", "Update");
 		model.addAttribute("dto", reviewDTO);
 		
-		return "review/reviewWrite";
+		return "board/review/reviewWrite";
 		
 		
 	}

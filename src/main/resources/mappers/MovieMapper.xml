@@ -12,4 +12,7 @@
 	<select id="movieCount" resultType="java.lang.Integer">
 		select nvl(count(movie_num), 0) from movie
 	</select>
+	<select id="movieView" resultType="com.choa.movie.MovieDTO" parameterType="java.lang.Integer">
+		select * from movie where movie_num=#{movie_num}
+	</select>
 </mapper>
