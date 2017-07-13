@@ -66,7 +66,6 @@
 }
 
 .div2_mvlist li {
-	font-weight: bold;
 	width: 230px;
 	height: 456px;
 	margin: 7px 7px 7px 7px;
@@ -450,3 +449,17 @@
 	        margin: 10px auto;
 	    }
 	}
+	
+#con {
+	color: white;
+	margin-top: 70px;
+}
+
+#con p {
+	width: 100%;
+	text-align: left;
+}
+
+#mf {
+	
+}

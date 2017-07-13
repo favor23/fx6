@@ -204,13 +204,13 @@
 
 		/* 상영정보 */
 		$("#main_div2").on("mouseenter",".modal_crate1",function(){
-			var num = $(this).attr("accesskey");			
-			modal_view_crate(num);
+			var movie_num = $(this).attr("accesskey");			
+			modal_view_crate(movie_num);
 		})
 		
-		function modal_view_crate(num) {
+		function modal_view_crate(movie_num) {
 			$.ajax({
-				url : "./index_movielist/modal_view?num="+num,
+				url : "./board/movie/movieView?movie_num="+movie_num,
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);

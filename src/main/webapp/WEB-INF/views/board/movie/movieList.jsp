@@ -6,12 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<c:import url="../../temp/bootStrap.jsp"></c:import>
 <script type="text/javascript">
 	$(function() {
 		var count = 0;
@@ -32,7 +27,26 @@
 				}
 			}
 		});
+		
+		$(document).on("click", ".modal_crate1", function() {		
+			alert('wow');
+		});
+		
+		$("#modal_div2").on("mouseenter",".modal_crate1",function(){
+			var movie_num = $(this).attr("accesskey");			
+			modal_view_crate(movie_num);
+		});
 	});
+	
+	function modal_view_crate(movie_num) {
+		$.ajax({
+			url : "movieView?movie_num="+movie_num,
+			type : "GET",
+			success : function(data) {
+				$("#modal_div2").html(data);
+			}
+		});
+	}
 	
 	function getList(curPage) {
 		$.ajax({
@@ -43,21 +57,7 @@
 			},
 			success:function(data) {
 				if(data!="") {
-					$(data).each(function() {
-						var str = "";
-						
-					 	str = str + '<div class="ct"><section class="wrapper cl"><div class="pic pic-3d"><img src="<c:url value="/' + this.poster_img + '"/>" class="pic-image" alt="Pic"><span class="pic-caption open-right">';
-						str = str + '<h1 class="pic-title">' + this.movie_title + '</h1><hr>';
-						str = str + '<p>감독 : ' + this.director + '</p>';
-						str = str + '<p>출연 : ' + this.actor + '</p>';
-						str = str + '<p>등급 : ' + this.restricted + '세</p>';
-						str = str + '<p>개봉 : ' + this.release_date + '</p>';
-						str = str + '<p>장르 : ' + this.genre + '</p>';
-						str = str + '<p>러닝타임 : ' + this.running_time + '분</p>';
-						str = str + "</span></div></section></div>"; 
-						
-						$(".art").append(str);
-					});
+					$(".art").append(data.trim());
 				}
 			}
 		});
@@ -211,7 +211,7 @@
 	    position: absolute;
 	    width: 100%;
 	    height: 100%;
-	    background: rgba(44, 62, 80, 0.92);
+	    background: rgba(44, 62, 80, 0.5);
 	    padding: 10px;
 	    text-align: center;
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=($opacity * 100))";
@@ -373,6 +373,7 @@
 	  <article class="art">
 	  
 	  </article>
+	  <div id="modal_div2"></div>
 	</section>
 	
 	<c:import url="../../temp/footer.jsp"/>

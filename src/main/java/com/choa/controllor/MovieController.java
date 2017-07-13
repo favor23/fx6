@@ -36,8 +36,7 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "getMovieList", method = RequestMethod.GET)
-	@ResponseBody
-	public List<MovieDTO> movieList(Integer curPage) {
+	public void movieList(Integer curPage, Model model) {
 		List<MovieDTO> list = null;
 		ListInfo listInfo = new ListInfo();
 		
@@ -50,7 +49,7 @@ public class MovieController {
 			e.printStackTrace();
 		}
 		
-		return list;
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)
