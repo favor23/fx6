@@ -67,9 +67,9 @@ background-color: white;
 <a href="paySystem/aaa">aaa</a>
 <a href="paySystem/pay24">pay24</a>
 <a href="index">index</a>
-<a href="movie/movieList">movieList</a>
-<a href="review/reviewList">reviewList</a>
-<a href="required/requiredList">requiredList</a>
+<a href="board/movie/movieList">movieList</a>
+<a href="board/review/reviewList">reviewList</a>
+<a href="board/required/requiredList">requiredList</a>
 <a href="chatting/chat">chat</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>

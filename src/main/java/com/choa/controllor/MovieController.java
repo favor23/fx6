@@ -16,7 +16,7 @@ import com.choa.movie.MovieService;
 import com.choa.util.ListInfo;
 
 @Controller
-@RequestMapping(value = "/movie/**")
+@RequestMapping(value = "/board/movie/**")
 public class MovieController {
 	@Autowired
 	private MovieService movieService;
@@ -51,5 +51,19 @@ public class MovieController {
 		}
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "movieView", method = RequestMethod.GET)
+	public void movieView(Integer movie_num, Model model) {
+		MovieDTO movieDTO = null;
+		
+		try {
+			movieDTO = movieService.movieView(movie_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("dto", movieDTO);
 	}
 }

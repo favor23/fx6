@@ -89,27 +89,70 @@
 		<section id="main_div2">
 		
 		</section>
+		
+		
+		
+			<section id="main_div3">
+			<div id="div3_d1">
+				<div id="div3_title">
+					<h3>새로운 펀딩 정보</h3>
+				</div>
+				<div id="div3_d2">
+					<div class="div3_d2list">
+						<div id="myCarousel3" class="carousel slide" data-ride="carousel">
+							<!-- Indicators -->
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<ul class="div2_mvlist" style="padding-left: 150px;">
+										1
+										<%-- <c:forEach begin="1" end="4" var="i">
+									<li>
+										<div class="list_img">
+											<span class="boxoffice n${i}">0${i}</span> <img
+												src="<c:url value="/img/index/list스파이더맨.jpg"/>">
+										</div>
+										<div class="list_div">
+											<div class="list_div_name">
+												<img src=""><a href="#">스파이더맨</a>
+											</div>
+											<button class="btn-info list_a">상세보기</button>
+											<button class="btn-info list_a">예매하기</button>
+										</div>
+									</li>
+								</c:forEach> --%>
+									</ul>
+								</div>
+								<c:forEach begin="2" end="5" var="i">
+									<div class="item">
+										<ul class="div2_mvlist" style="padding-left: 150px;">
+											${i}
 
-		<!-- Modal 상세정보 -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">상세정보</h4>
+										</ul>
+									</div>
+								</c:forEach>
+								<!-- Left and right controls -->
+								<a class="left carousel-control" href="#myCarousel3"
+									data-slide="prev" style="width: 0; margin-left: 50px;"> <span
+									class="glyphicon glyphicon-chevron-left"></span> <span
+									class="sr-only">Previous</span>
+								</a> <a class="right carousel-control" href="#myCarousel3"
+									data-slide="next" style="width: 0; margin-right: 50px;"> <span
+									class="glyphicon glyphicon-chevron-right"></span> <span
+									class="sr-only">Next</span>
+								</a>
+							</div>
+						</div>
 					</div>
-					<div class="modal-body">
-						<div class="modal-div2"></div>
-						<div class="modal-div2"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<div class="div3_d2list">
+						<div class="div3_d2list_2"></div>
+						<div class="div3_d2list_2"></div>
 					</div>
 				</div>
-
+				<div id="div3_d3"></div>
 			</div>
-		</div>
+		</section>
+		<div id="modal_div2"></div>		
 	</section>
 	<!-- main end -->
 	<!-- footer start -->
@@ -120,7 +163,7 @@
 	<script type="text/javascript">
 			
 		$.ajax({
-			url : "./index_movielist/m1",
+			url : "./index_movielist/m1?num=1",
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);
@@ -130,7 +173,7 @@
 		$("#main_div2").on("click", ".mouse_action", function() {
 			var num = $(this).attr("accesskey");
 			$.ajax({
-				url : "./index_movielist/m" + num,
+				url : "./index_movielist/m1?num="+num,
 				type : "GET",
 				success : function(data) {
 					$("#main_div2").html(data);
@@ -144,14 +187,38 @@
 		$("#main_div2").on("mouseleave", ".mouse_action", function() {
 			$(this).attr("class", "mouse_action");
 		});
+		
+		/* 예매하기 */
+		$("#main_div2").on("mouseenter",".modal_crate2",function(){
+			var num = $(this).attr("accesskey");			
+			modal_ticket_crate(num);
+		})
+		
+		function modal_ticket_crate(num) {
+			$.ajax({
+				url : "./index_movielist/modal_ticket?num="+num,
+				type : "GET",
+				success : function(data) {
+					$("#modal_div2").html(data);
+				}
+			})	
+		}
 
-		/* $("#main_div2").on("mousemove", ".list_img", function() {
-			$(this).attr("class", "list_img list_img_action_on");
-			class="pic-caption open-right"
-		});
-		$("#main_div2").on("mouseleave", ".list_img", function() {
-			$(this).attr("class", "list_img");
-		});  */
+		/* 상영정보 */
+		$("#main_div2").on("mouseenter",".modal_crate1",function(){
+			var num = $(this).attr("accesskey");			
+			modal_view_crate(num);
+		})
+		
+		function modal_view_crate(num) {
+			$.ajax({
+				url : "./index_movielist/modal_view?num="+num,
+				type : "GET",
+				success : function(data) {
+					$("#modal_div2").html(data);
+				}
+			})	
+		}
 		</script>
 </body>
 </html>

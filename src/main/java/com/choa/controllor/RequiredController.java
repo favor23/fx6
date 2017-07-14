@@ -13,7 +13,7 @@ import com.choa.required.RequiredService;
 import com.choa.util.ListInfo;
 
 @Controller
-@RequestMapping(value="/required/**")
+@RequestMapping(value="/board/required/**")
 public class RequiredController {
 
 	
@@ -38,7 +38,7 @@ public class RequiredController {
 			e.printStackTrace();
 		}
 		
-		return "required/requiredList";
+		return "board/required/requiredList";
 		
 	}
 	
@@ -48,7 +48,7 @@ public class RequiredController {
 	public String requiredWrite(Model model){
 		model.addAttribute("path", "Write");
 		
-		return "required/requiredWrite";
+		return "board/required/requiredWrite";
 	}
 	
 	
@@ -93,7 +93,7 @@ public class RequiredController {
 		
 		model.addAttribute("view", requiredDTO);
 		
-		return "required/requiredView";
+		return "board/required/requiredView";
 		
 	}
 	
@@ -140,7 +140,7 @@ public class RequiredController {
 		model.addAttribute("path", "Update");
 		model.addAttribute("dto", requiredDTO);
 		
-		return "required/requiredWrite";
+		return "board/required/requiredWrite";
 		
 	}
 	
