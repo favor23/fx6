@@ -6,7 +6,7 @@
 		<section class="wrapper cl">
 			<div class="pic pic-3d">
 				<img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic">
-				<span class="pic-caption open-right modal-crate1" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">
+				<span class="pic-caption open-right" accesskey="${dto.movie_num}">
 					<h1 class="pic-title">${dto.movie_title}</h1>
 					<hr>
 					<p>감독 : ${dto.director}</p>

@@ -14,6 +14,7 @@ import com.choa.movie.MovieDAO;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieService;
 import com.choa.util.ListInfo;
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
 
 @Controller
 @RequestMapping(value = "/board/movie/**")
@@ -54,6 +55,20 @@ public class MovieController {
 	
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)
 	public void movieView(Integer movie_num, Model model) {
+		MovieDTO movieDTO = null;
+		
+		try {
+			movieDTO = movieService.movieView(movie_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("dto", movieDTO);
+	}
+	
+	@RequestMapping(value = "movieDetail", method = RequestMethod.GET)
+	public void movieDetail(Integer movie_num, Model model) {
 		MovieDTO movieDTO = null;
 		
 		try {

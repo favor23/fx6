@@ -28,25 +28,10 @@
 			}
 		});
 		
-		$(document).on("click", ".modal_crate1", function() {		
-			alert('wow');
-		});
-		
-		$("#modal_div2").on("mouseenter",".modal_crate1",function(){
-			var movie_num = $(this).attr("accesskey");			
-			modal_view_crate(movie_num);
+		$(document).on("click", ".pic-caption", function() {
+			location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
 		});
 	});
-	
-	function modal_view_crate(movie_num) {
-		$.ajax({
-			url : "movieView?movie_num="+movie_num,
-			type : "GET",
-			success : function(data) {
-				$("#modal_div2").html(data);
-			}
-		});
-	}
 	
 	function getList(curPage) {
 		$.ajax({
