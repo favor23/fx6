@@ -8,7 +8,7 @@
  
 
  	<select id="login" statementType="CALLABLE" parameterType="java.util.Map"> 
- 	{ call admin_login(#{adminDTO.id, mode=IN},#{adminDTO.pw, mode=IN},#{admin, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
+ 	{ call admin_login(#{adminDTO.id, mode=IN},#{adminDTO.pw, mode=IN},#{admin, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=AdminDTO}) }
  	</select>
  	
  </mapper> 

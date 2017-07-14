@@ -41,10 +41,10 @@
 
 					<ul class="div2_mvlist" style="padding-left: 150px;">
 					<%-- 	<c:forEach items="${list}" var="dto"> --%>
-						<c:forEach items="${list}" begin="1" end="4" var="dto" varStatus="status">
+						<c:forEach items="${list}" begin="0" end="3" var="dto" varStatus="status">
 								<li>
 								<div class="list_img pic pic-3d" >
-									<span class="boxoffice n${status.begin+status.count-1}">0${status.begin+status.count-1}</span> 
+									<span class="boxoffice n${status.begin+status.count}">0${status.begin+status.count}</span> 
 									<img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic">
 									<span class="pic-caption open-right modal_crate1" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">
 									<p class="pic-title">${dto.movie_title}</p><hr>
@@ -72,10 +72,10 @@
 				<div class="item">
 					<ul class="div2_mvlist" style="padding-left: 150px;">
 					<%-- 	<c:forEach items="${list}" var="dto"> --%>
-						<c:forEach items="${list}" begin="5" end="8" var="dto" varStatus="status">
+						<c:forEach items="${list}" begin="4" end="7" var="dto" varStatus="status">
 							<li>
 								<div class="list_img pic pic-3d" >
-									<span class="boxoffice n${status.begin+status.count-1}">0${status.begin+status.count-1}</span> 
+									<span class="boxoffice n${status.begin+status.count}">0${status.begin+status.count}</span> 
 									<img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic">
 									<span class="pic-caption open-right modal_crate1" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">
 									<p class="pic-title">${dto.movie_title}</p><hr>

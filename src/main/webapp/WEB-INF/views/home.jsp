@@ -33,7 +33,6 @@ background-color: white;
 
 	<P>The time on the server is ${serverTime}.</P>
 
-
 	<c:if test="${member == null }">
 		<button id="join">회원가입</button>
 		<button id="login">로그인</button>
@@ -43,6 +42,11 @@ background-color: white;
 		<button id="logOut">로그아웃</button>
 		
 	</c:if>
+	<c:if test="${member.id!=null }">
+	접속자 아이디 : ${member.id } 
+	접속자 정보1 : ${member.position }
+	</c:if>
+	
 
 	<script type="text/javascript">
 		$("#join").click(function() {
@@ -63,9 +67,9 @@ background-color: white;
 <a href="paySystem/aaa">aaa</a>
 <a href="paySystem/pay24">pay24</a>
 <a href="index">index</a>
-<a href="board/movie/movieList">movieList</a>
-<a href="board/review/reviewList">reviewList</a>
-<a href="board/required/requiredList">requiredList</a>
+<a href="movie/movieList">movieList</a>
+<a href="review/reviewList">reviewList</a>
+<a href="required/requiredList">requiredList</a>
 <a href="chatting/chat">chat</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>

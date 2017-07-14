@@ -6,7 +6,12 @@ a{
 li {
 	list-style-type: none;	
 }
-
+.dropdown-menu{
+	background-color: inherit;
+	border: none;
+	left:inherit;
+	right: 0; 		
+}
 header {
     position: fixed;
     height: 50px;
@@ -16,10 +21,15 @@ header {
     border-bottom: 1px solid #e5e5e5;
     z-index: 1000;
 }
+header img{
+	height: 50px;	
+	width: auto;
+	opacity: 0.85;
+}
 
 #header_bar {
 	height: 50px;
-	width: 960px;
+	width: 1010px;
 	margin: 0 auto;
 }
 
@@ -31,7 +41,7 @@ header {
 
 #bar_logo {
 	height: 49px;
-	width: 160px;
+	width: 210px;
 }
 
 #bar_login {
@@ -40,10 +50,14 @@ header {
 	cursor: pointer;
 }
 
-#header_bar li {
+.header_li, #bar_logo, #bar_login {
 	line-height: 49px;
 	text-align: center;
 	border-right: 1px solid #e5e5e5;
 	float: left;
 	font-weight: bold;
+}
+.admin_li{	
+	float: right;
+	margin-right: 10px;
 }

@@ -1,72 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 #memberBox {
- border: 1px solid black;
- width: 70%;
- margin-left: 15%;
- padding : 15px;
-
-}    
-p {
+	border: 1px solid black;
+	width: 70%;
 	margin-left: 15%;
+	padding: 15px;
 }
+
 
 #title {
-margin-top:50px;
-width:180px;
-	font-weight:bold;
-	font-size:large;
+	margin-left: 15%;
+	margin-top: 50px;
+	width: 180px;
+	font-weight: bold;
+	font-size: large;
 	border-bottom: 2px solid green;
 }
+
 #updateBtn {
-	margin-top:20px;
+	margin-top: 20px;
 	width: 100%;
 	height: 35px;
-	border : 1px solid gray;
-	border-radius : 5px;
+	border: 1px solid gray;
+	border-radius: 5px;
 	background-color: #004d00;
 	font-weight: bold;
 	font-size: medium;
-	color : white;
+	color: white;
 }
 
-#updateBtn:HOVER{
-background-color: #009900;
-color: black;
+#updateBtn:HOVER {
+	background-color: #009900;
+	color: black;
 }
-
 
 .jf1 {
 	text-align: right;
 	font-weight: bold;
+	width: 120px;
 }
+
 .red {
-	color:red;
+	color: red;
 }
+
 .input {
-	border:0.5px solid gray;
-	border-radius:5px;
+	border: 0.5px solid gray;
+	border-radius: 5px;
 	padding-left: 5px;
-
 }
 
-input[type="radio"] { 
-width:20px;
-height:20px;
-position:relative; 
-top:-1px; 
-vertical-align:middle; 
+.g {
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: -1px;
+	vertical-align: middle;
 }
-    .address {
-    	width: 90%;
-    
-    }
-    
+
+.address {
+	width: 90%;
+}
+
+.sText1 {
+font-size: small;
+
+}
+.sText2 {
+display: none;
+color: red;
+}
+
+.sText3 {
+	display:none;
+	color : red;
+}
+
+.currect {
+	display: none;
+	color: green;
+}
+.jf2 {
+width: 250px;
+
+}
+.p_tag {
+	margin-top: 10px;
+	height: 30px;
+}
+.span input {
+	vertical-align: middle;
+	width: 20px;
+	margin-top: 0;
+	height: 20px;
+}
+
 </style>
 <p id="title">회원정보수정</p>
 <div id="memberBox">
@@ -78,13 +108,15 @@ vertical-align:middle;
 			</tr>
 			<tr>
 				<td class="jf1">비밀번호</td>
-				<td><input type="password" name="pw" id="pw" class="input"></td>
-				<td id="pwc1" class="red"></td>
+				<td class="jf2"><input type="password" name="pw" id="pw" class="input" onblur="pw_chk()" onfocus="focus1()"></td>
+				<td id="pwc1" class="red"><label class="sText1">8~20자의 영문과 1개 이상의 숫자,특수문자만 가능.</label> 
+					<label class="sText2">비밀번호 양식과 맞지않습니다.</label>
+					<label class="currect">멋진 비밀번호네요!</label></td>
 			</tr>
 			<tr>
 				<td class="jf1">비밀번호 확인</td>
-				<td><input type="password" name="pwc" id="pwc" class="input"></td>
-				<td id="pwc2" class="red"></td>
+				<td class="jf2"><input type="password" name="pwc" id="pwc" class="input" onblur="pwc_chk()"></td>
+				<td id="pwc2" class="red"><label class="sText3">비밀번호가 일치하지 않습니다.</label></td>
 			</tr> 
 			<tr>
 				<td class="jf1">이름</td>
@@ -117,29 +149,37 @@ vertical-align:middle;
 			<tr>
 				<td class="jf1">직업</td>
 				<td colspan="2">
-					<p>
-						학생 <input type="radio" name="r" value="student" class="student">&nbsp;&nbsp;&nbsp;
-						자영업 <input type="radio" name="r" value="ceo" class="ceo">&nbsp;&nbsp;&nbsp;
-						회사원 <input type="radio" name="r" value="sal" class="sal">&nbsp;&nbsp;&nbsp;
-						무직 <input type="radio" name="r" value="none" class="none">&nbsp;&nbsp;&nbsp;
-					</p>
-					<p>
-						기타 <input type="radio" name="r" value="etc">
-						<input type="text" id="etc" class="input">
-					</p>
-				</td>
+					<span class="span">감독 : <input type="radio" name="job" class="g" value="director"></span>
+					<span class="span">작가 : <input type="radio" name="job" class="g" value="writer"></span>
+					<span class="span">유저 : <input type="radio" name="job" class="g" value="user"></span></td>
+			</tr>
+			<tr>
+				<td class="jf1">선호하는 장르</td>
+				<td colspan="2"  class="jf2">
+						<p class="p_tag">
+						<span class="span">공포 : <input type="checkbox" name="taste" value="horror">&nbsp;&nbsp;</span>
+						<span class="span">추리 : <input type="checkbox" name="taste" value="reasoning">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="thrill">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic">&nbsp;&nbsp;</span>
+						<span class="span">로멘스 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
+						<span class="span">액션 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
+						<span class="span">성인 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						</p>
+					</td>
 			</tr>
 		</table>
 	<!-- email -->
 	<input type="hidden" value="${member.id }" name="id">
 	<input type="hidden" value="" id="email" name="email">
-	<input type="hidden" value="" id="job" name="job">
 	</form>
 	
 
 	<button id="updateBtn">완료</button>
 </div>
 	<script type="text/javascript">
+	var pw_checker = "";
 	var test = '${member.email}';
 	test = test.split("@");
 	var a = test[0];
@@ -154,10 +194,6 @@ vertical-align:middle;
 		$("."+ck).attr("checked","checked");		
 	}
 	
-	
-	
-		var year = new Date().getFullYear();
-
 		$("#updateBtn").click(function() {
 			var job = $('input:radio[name="r"]:checked').val();
 			var pw = $("#pw").val();
@@ -200,13 +236,37 @@ vertical-align:middle;
 
 		}
 		
-		$().click(function(){
-			
-			
-			
-			
-		});
+		function pw_chk() {
+			var pw = $("#pw").val();
+			var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+			var ck = pwc.test(pw);
+			if (ck) {
+				pw_checker = "ok";
+				$(".sText1").css("display","none");
+				$(".sText2").css("display","none");
+				$(".currect").css("display","inherit");
+			} else {
+				$(".sText1").css("display","none");
+				$(".sText2").css("display","inherit");
+				pw_checker = "";
+			}
+		}
 		
+		
+		function focus1(){
+			$(".sText1").css("display","inherit");
+			$(".sText2").css("display","none");
+		}
+		
+		function pwc_chk(){
+			var pw = $("#pw").val();
+			var pwc = $("#pwc").val();
+			if(pw!=pwc&&pw!=""){
+				$(".sText3").css("display","inherit");
+			}else {
+				$(".sText3").css("display","none");
+			}			
+		}
 		
 		
 		

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +17,19 @@
 	padding-bottom: 8px;
 	padding-left: 8px;
 	vertical-align: middle;
-	border: 0.5px solid #f2f2f2;
+	border-top: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+}
+#join_box input[type="radio"],#join_box input[type="checkbox"]{
+	margin-top: 0;
+
 }
 
 #join_box .text {
 	border: 0.5px solid black;
 	border-radius: 5px;
 	padding-left: 4px;
-	height: 100%;
+	height: 30px;
 }
 
 #join_box select {
@@ -35,14 +41,15 @@
 .jf1 {
 	text-align: center;
 	width: 150px;
+	font-weight: bold;
 }
 
 .jf2 {
-	width: 200px;
+	width: 230px;
 }
 
 #join_box {
-	border: 1px solid black;
+	margin-top: 50px;
 	width: 40%;
 	min-width: 800px;
 	height: 800px;
@@ -50,8 +57,7 @@
 }
 
 #join_box #join_frm {
-	width: 90%;
-	margin-left: 5%;
+	width: 100%;
 }
 
 #join_frm table {
@@ -61,7 +67,7 @@
 .span input {
 	vertical-align: middle;
 	width: 20px;
-	margin-top: 0;
+	
 	height: 20px;
 }
 
@@ -79,7 +85,7 @@
 }
 
 #joinBtn {
-	margin-top:50px;
+	margin-top: 50px;
 	min-width: 250px;
 	width: 20%;
 	height: 40px;
@@ -88,59 +94,124 @@
 	font-size: large;
 	font-weight: bold;
 	border-radius: 5px;
-	border: 1px solid gray; 
+	border: 1px solid gray;
 }
-#joinBtn:hover {
 
+#joinBtn:hover {
 	background-color: #2eb82e;
 }
 
 #join_frm #id_check {
 	border: 1px solid gray;
-	border-radius:5px;
+	border-radius: 5px;
 	background-color: #003300;
-	color: white; 
+	color: white;
 	width: 100px;
 	height: 30px;
 }
-#id_check:hover {
-	background-color:#006600;
-}
-.sText1 {
-font-size: small;
 
+#id_check:hover {
+	background-color: #006600;
 }
+
+.sText1 {
+	font-size: small;
+}
+
 .sText2 {
-display: none;
-color: red;
+	display: none;
+	color: red;
 }
 
 .sText3 {
-	display:none;
-	color : red;
+	display: none;
+	color: red;
 }
 
 .currect {
 	display: none;
 	color: green;
 }
+
 .birthBox {
 	display: inline-block;
+}
+
+#head_label {
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	line-height: 3;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: xx-large;
+	border-bottom: 2px solid black;
+	margin-top: 50px;
+}
+
+#join_frm #art {
+	font-weight: bold;
+}
+
+#join_frm #mans {
+	text-align: center;
+	font-size: small;
+}
+
+#join_frm #mode1 {
+	cursor: pointer;
+}
+
+.jf2 #cancel {
+	padding: 5px;
+	width: 80px;
+	height: 20px;
+	margin-left: 50px;
+	border: 0.5px solid red;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.fontConfig {
+	width:80px;
+	height:15px;
+	text-align: justify;
+}
+.ic {
+	display: none;
+}
+.none_pass{
+	color:red;
+}
+.pass {
+	color : green;
+}
+.info_box {
+	font-size: small;
+	margin-top: 5px;
 
 }
 </style>
 </head>
 <body>
+<c:import url="../temp/bootStrap.jsp" />
+<c:import url="../temp/header.jsp" />
 	<!-- 아이디 비번 폰 이메일 주소 성별 직업 이름 나이 grade result -->
+	<label id="head_label">회원가입</label>
 	<div id="join_box">
-		<h3>* 표시된 항복은 통계를 위해 사용되며 외부에 노출되지않습니다.</h3>
-
+<!-- String regex = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$";
+    예) 시작은 영문으로만, '_'를 제외한 특수문자 안되며 영문, 숫자, '_'으로만 이루어진 5 ~ 12자 이하 -->
 		<form action="customerJoin" id="join_frm" method="post">
 			<table>
 				<tr>
 					<td class="jf1">아이디</td>
-					<td class="jf2"><input type="text" name="id" id="id" class="text"></td>
-					<td class="jf3"><input type="button" id="id_check" value="중복체크"></td>
+					<td class="jf2" colspan="2"><br><input type="text" name="id" id="id" class="text">
+					<span><input type="button" id="id_check" value="중복체크">
+					<label class="none_pass ic">사용중인 아이디 입니다.</label>
+					<label class="pass ic">사용 가능한 아이디입니다.</label>
+					</span>
+					<div class="info_box">영문, 숫자, '_' 으로만 이루어진 6~12글자로 지어주세요.</div>
+					</td>
 				</tr>
 				<tr>
 					<td class="jf1">비밀번호</td>
@@ -170,7 +241,7 @@ color: red;
 				</tr>
 				<tr>
 					<td class="jf1">휴대전화</td>
-					<td class="jf2"><input type="text" name="phone" class="text"></td>
+					<td class="jf2"><input type="text" name="phone" maxlength="11" class="text" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'></td>
 					<td class="jf3">하이픈('-') 없이 입력해주세요</td>
 				</tr>
 				<tr>
@@ -190,165 +261,272 @@ color: red;
 				<tr>
 					<td class="jf1">성별</td>
 					<td class="jf2"><span class="span">남 : <input type="radio"
-							name="sung" value="m"></span></td>
+							name="sung" value="m" checked="checked"></span></td>
 					<td class="jf3"><span class="span">여 : <input type="radio"
 							name="sung" value="f"></span></td>
 				</tr>
 
-				<tr>
+				<!-- <tr>
 					<td class="jf1">직업</td>
 					<td  class="jf2" colspan="2">
-					<span class="span">감독 : <input type="radio" name="job" class="g" value="director"></span>
-					<span class="span">작가 : <input type="radio" name="job" class="g" value="writer"></span>
-					<span class="span">유저 : <input type="radio" name="job" class="g" value="user"></span></td>
-				</tr>
+						<span class="jobSpan span">학생 : <input type="radio" name="jobRadio" value="student" onchange="test(1)"></span>&nbsp; &nbsp; &nbsp;
+						<span class="jobSpan span">직접입력 : <input type="radio" name="jobRadio" value="etc" checked="checked" onchange="test(2)"></span>
+						<label id="hiddenLabel"><input type="text" id="etc" class="text"></label>
+					</td>
+				</tr> -->
 
 				<tr>
 				<td class="jf1">선호하는 장르</td>
 					<td colspan="2"  class="jf2">
 						<p class="p_tag">
-						<span class="span">공포 : <input type="checkbox" name="taste" value="horror">&nbsp;&nbsp;</span>
-						<span class="span">추리 : <input type="checkbox" name="taste" value="reasoning">&nbsp;&nbsp;</span>
-						<span class="span">스릴러 : <input type="checkbox" name="taste" value="thrill">&nbsp;&nbsp;</span>
+						<!-- 뮤지컬, 미스터리, 로맨스(멜로), 공상 과학, 스포츠, 스릴러, 전쟁, 서부극 -->
+						<span class="span">액션 : <input type="checkbox" name="taste" value="horror">&nbsp;&nbsp;</span>
+						<span class="span">모험 : <input type="checkbox" name="taste" value="reasoning">&nbsp;&nbsp;</span>
+						<span class="span">범죄 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
+						<span class="span">전쟁 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
+						<span class="span">역사 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">다큐 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
+						<span class="span">공포 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">가족 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">판타지 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
+						<span class="span">누와르 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
 						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic">&nbsp;&nbsp;</span>
-						<span class="span">로멘스 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">액션 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
-						<span class="span">성인 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">드라마 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
+						<span class="span">스포츠 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
+						<span class="span">로맨스 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">미스터리 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
+						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="thrill">&nbsp;&nbsp;</span>
+						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
 						</p>
 					</td>
-				
+				</tr>
+				<tr>
+					<td class="jf1">영화인</td>
+					<td class="jf2" colspan="2" id="mans">
+					<label id="mode1" onclick="display()">본인이 <span id="art">감독, 작가, 배우, 스탭</span> 중 하나라도 해당된다면 이곳을 눌러주세요</label>
+					</td>
 				</tr>
 				
-				
 			</table>
-			<!-- email -->
+			<!-- hidden 영역 -->
+			<input type="hidden" name="grade" id="grade" value="normal">
 			<input type="hidden" name="birth" id="birth">
 			<input type="hidden" value="" id="age" name="age">
 			<input type="hidden" value="" id="email" name="email">
-			<input type="hidden" value="customer" id="grade" name="grade">
 			<input type="button" id="joinBtn" value="다음">
 		</form>
 	</div>
 
-	<script type="text/javascript">
+<c:import url="../temp/footer.jsp" />
+
+
+<script type="text/javascript">
+var year = new Date().getFullYear(); //올해 년도 구함.
+var id_checker = "";
+var pw_checker = "";
 		/* <select name="user_birth_year">
 		<option value="2000" selected>2000</option> */
-		var birthYear = '<select id="myYear">';
-		for(var i=1960;i<=2000;i++){
-			birthYear=birthYear+'<option value="'+i+'" selected>'+i+'</option>';
-		}
-		birthYear=birthYear+'</select>년';
-		$("#yearBox").html(birthYear);
 		
-		var birthMonth = '<select id="myMonth" onblur="day()">';
-		for(var i=1;i<=12;i++){
-			birthMonth=birthMonth+'<option value="'+i+'" selected>'+i+'</option>';
-		}
-		birthMonth=birthMonth+'</select>월';
-		$("#monthBox").html(birthMonth);
-		
-		var birthDay = '<select id="myDay">';
-		for(var i=1;i<=31;i++){
-			birthDay=birthDay+'<option value="'+i+'" selected>'+i+'</option>';
-		}
-		birthDay=birthDay+'</select>월';
-		$("#dayBox").html(birthDay);
-		
-		function day(){
-			var m = $("#myMonth").val();
-			if(m=='2'){
-				var birthDay = '<select id="myDay">';
-				for(var i=1;i<=29;i++){
-					birthDay=birthDay+'<option value="'+i+'" selected>'+i+'</option>';
+		$("#id_check").click(function(){
+			var vid=$("#id").val();
+			//아이디 생성 조건 작성.
+			$.post("idCheck",{
+				id:vid,
+			},function(data){
+				data=data.trim();
+				if(data!=""){
+					$(".pass").css("display","none");
+					$(".none_pass").css("display","inherit");
+					id_checker="";
+				}else {
+					$(".none_pass").css("display","none");
+					$(".pass").css("display","inherit");
+					id_checker="ok";
 				}
-				birthDay=birthDay+'</select>월';
-				$("#dayBox").html(birthDay);
-			}else if(m%2==0){
-				var birthDay = '<select id="myDay">';
-				for(var i=1;i<=30;i++){
-					birthDay=birthDay+'<option value="'+i+'" selected>'+i+'</option>';
-				}
-				birthDay=birthDay+'</select>월';
-				$("#dayBox").html(birthDay);
-			}else {
-				var birthDay = '<select id="myDay">';
-				for(var i=1;i<=31;i++){
-					birthDay=birthDay+'<option value="'+i+'" selected>'+i+'</option>';
-				}
-				birthDay=birthDay+'</select>월';
-				$("#dayBox").html(birthDay);				
-			}
-		}
-		
-		
-		
-		
-		var year = new Date().getFullYear();
-		var id_checker = "";
-		var pw_checker = "";
-		$("#joinBtn").click(function() {
-			
-			$("#email").val($("#e1").val() + "@" + $("#e3").val());
-			
-			//이거 다시 설정 날짜 다시 받아야함..
-			var myYear = $("#myYear").val(); //생년 월일 저장
-			var myYear2 = new Date(myYear).getFullYear(); //연도만 따로 추출
-			var age = year-myYear; //나이 구하기
-			$("#age").val(age);
-			var text = $("#myYear").val()+'-'+$("#myMonth").val()+'-'+$("#myDay").val();
-			$("#birth").val(text);
-			
-			if(id_checker==""&&pw_checker!=""){
-				$("#join_frm").submit();			
-			}else {
-				alert("다시 확인하세요");
-			}
-			
+			})
 		});
 		
-		function pw_chk() {
-			var pw = $("#pw").val();
-			var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-			var ck = pwc.test(pw);
-			if (ck) {
-				pw_checker = "ok";
-				$(".sText1").css("display","none");
-				$(".sText2").css("display","none");
-				$(".currect").css("display","inherit");
+		//모든 자동완성 off
+		$("#join_box input").attr("autocomplete","off");
+		
+		
+		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+		
+		function test(num) {
+			if (num == 1) {
+				$("#etc").attr("readonly","readonly");
 			} else {
-				$(".sText1").css("display","none");
-				$(".sText2").css("display","inherit");
-				pw_checker = "";
+				$("#etc").removeAttr("readonly");
 			}
-		}
-		
-		
-		function focus1(){
-			$(".sText1").css("display","inherit");
-			$(".sText2").css("display","none");
-		}
-		
-		function pwc_chk(){
-			var pw = $("#pw").val();
-			var pwc = $("#pwc").val();
-			if(pw!=pwc&&pw!=""){
-				$(".sText3").css("display","inherit");
-			}else {
-				$(".sText3").css("display","none");
-			}			
 		}
 
-		function mailing() {
-			var e2 = $("#e2").val();
-			if (e2 == 'self') {
-				$("#e3").val('');
+		function display() {
+			var dialog = prompt("본인이 해당되는 것을 적어주세요 [감독,작가,배우,스탭]");
+			if (dialog != "" && dialog != null) {
+				$("#grade").val(dialog);
+				$("#mans")
+						.html('<label id="mode2"><span id="art">'
+										+ dialog
+										+ '</span><span id="cancel" onclick="cancel()">취소</span></label>');
 			} else {
-				$("#e3").val(e2);
+				alert("입력값이 없습니다.");
+				$("#grade").val("normal");
 			}
 		}
+
+		function cancel() {
+			$("#mans").html('<label id="mode1" onclick="display()">본인이 <span id="art">감독, 작가, 배우, 스탭</span> 중 하나라도 해당된다면 이곳을 눌러주세요</label>');
+			$("#grade").val("normal");
+		}
+
 		
-	</script>
+		//페이지 호출하는 순간 생성 됨.
+		//1960~2000까지 연도 생성.(2017년 기준)
+		var minYear = year-60; //최소 년도 구하기
+		var maxYear = year-17; //최대 년도 구하기
+		var birthYear = '<select id="myYear">';
+		for (var i = minYear; i <= maxYear; i++) {
+			birthYear = birthYear + '<option value="'+i+'" selected>' + i
+					+ '</option>';
+		}
+		birthYear = birthYear + '</select>년';
+		$("#yearBox").html(birthYear);
+	
+		
+		//1~12월까지 월 생성
+		var birthMonth = '<select id="myMonth" onblur="day()">';
+		for (var i = 1; i <= 12; i++) {
+			birthMonth = birthMonth + '<option value="'+i+'" selected>' + i
+					+ '</option>';
+		}
+		birthMonth = birthMonth + '</select>월';
+		$("#monthBox").html(birthMonth);
+		
+		//1~29,30,31 날짜 생성
+		var birthDay = '<select id="myDay">';
+		for (var i = 1; i <= 31; i++) {
+			birthDay = birthDay + '<option value="'+i+'" selected>' + i
+					+ '</option>';
+		}
+		birthDay = birthDay + '</select>월';
+		$("#dayBox").html(birthDay);
+
+		
+		//선택한 달에 따라 최대 일 수를 29일 30일 31일로 바꿔주는 스크립트
+		function day() {
+			var m = $("#myMonth").val();
+			if (m == '2') {
+				var birthDay = '<select id="myDay">';
+				for (var i = 1; i <= 29; i++) {
+					birthDay = birthDay + '<option value="'+i+'" selected>' + i
+							+ '</option>';
+				}
+				birthDay = birthDay + '</select>월';
+				$("#dayBox").html(birthDay);
+			} else if (m % 2 == 0) {
+				var birthDay = '<select id="myDay">';
+				for (var i = 1; i <= 30; i++) {
+					birthDay = birthDay + '<option value="'+i+'" selected>' + i
+							+ '</option>';
+				}
+				birthDay = birthDay + '</select>월';
+				$("#dayBox").html(birthDay);
+			} else {
+				var birthDay = '<select id="myDay">';
+				for (var i = 1; i <= 31; i++) {
+					birthDay = birthDay + '<option value="'+i+'" selected>' + i
+							+ '</option>';
+				}
+				birthDay = birthDay + '</select>월';
+				$("#dayBox").html(birthDay);
+			}
+		}
+
+	//가입하기 버튼을 눌렀을때 작동하는 스크립트
+			$("#joinBtn").click(function(){
+
+				$("#email").val($("#e1").val() + "@" + $("#e3").val());
+				var myYear = $("#myYear").val(); //내가 태어난 년도
+				var age = year - myYear; //나이 구하기
+				$("#age").val(age);  //나이 저장
+				var text = $("#myYear").val() + '-' + $("#myMonth").val() + '-'
+						+ $("#myDay").val();
+				$("#birth").val(text);//생년 월일 저장
+				//중복체크를 했는지, 패스워드가 조건에 맞는지, 패스워드와 패스워드 확인과 일치하는지 확인해줌.
+				if (id_checker != "" && pw_checker != "") {
+					$("#join_frm").submit();
+				} else {
+					alert("다시 확인하세요");
+				}
+
+			});
+
+	
+	//비밀번호 정규식
+	function pw_chk() {
+		var pw = $("#pw").val();
+		var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+		var ck = pwc.test(pw);
+		if (ck) {
+			pw_checker = "ok";
+			$(".sText1").css("display", "none");
+			$(".sText2").css("display", "none");
+			$(".currect").css("display", "inherit");
+		} else {
+			$(".sText1").css("display", "none");
+			$(".sText2").css("display", "inherit");
+			pw_checker = "";
+		}
+	}
+
+	function focus1() {
+		$(".sText1").css("display", "inherit");
+		$(".sText2").css("display", "none");
+	}
+
+	function pwc_chk() {
+		var pw = $("#pw").val();
+		var pwc = $("#pwc").val();
+		if (pw != pwc && pw != "") {
+			$(".sText3").css("display", "inherit");
+		} else {
+			$(".sText3").css("display", "none");
+		}
+	}
+
+	function mailing() {
+		var e2 = $("#e2").val();
+		if (e2 == 'self') {
+			$("#e3").val('');
+		} else {
+			$("#e3").val(e2);
+		}
+	}
+</script>
 </body>
 </html>

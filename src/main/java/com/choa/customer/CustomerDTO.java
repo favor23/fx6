@@ -10,11 +10,10 @@ public class CustomerDTO extends MemberDTO {
 	private String email;
 	private String address;
 	private String sung;
-	private String job;
 	private String ticket;
 	private String playView;
 	private String reView;
-	private String birth;
+	private Date birth;
 	private String taste;
 	
 	
@@ -28,10 +27,10 @@ public class CustomerDTO extends MemberDTO {
 	public void setTaste(String taste) {
 		this.taste = taste;
 	}
-	public String getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
-	public void setBirth(String birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 	public String getId() {
@@ -64,12 +63,7 @@ public class CustomerDTO extends MemberDTO {
 	public void setSung(String sung) {
 		this.sung = sung;
 	}
-	public String getJob() {
-		return job;
-	}
-	public void setJob(String job) {
-		this.job = job;
-	}
+	
 	public String getTicket() {
 		return ticket;
 	}
