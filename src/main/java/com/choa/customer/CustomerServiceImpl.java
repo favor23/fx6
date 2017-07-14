@@ -46,6 +46,8 @@ public class CustomerServiceImpl implements MemberService{
 		return customerDAO.update(memberDTO);
 	}
 	
-	
+	public CustomerDTO idCheck(CustomerDTO customerDTO)throws Exception{
+		return customerDAO.idCheck(customerDTO);
+	}
 	
 }

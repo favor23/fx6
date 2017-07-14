@@ -19,6 +19,16 @@ public class MemberController {
 	@Autowired
 	private CustomerServiceImpl customerService;
 
+	@RequestMapping(value="member/idCheck")
+	public ModelAndView idCheck(CustomerDTO customerDTO)throws Exception{
+		customerDTO = customerService.idCheck(customerDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("customerDTO", customerDTO);
+		mv.setViewName("commons/idCheckResult");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value="member/list")
 	public String test1()throws Exception{
 		return "/member/list";
@@ -57,6 +67,11 @@ public class MemberController {
 	@RequestMapping(value="member/myMovie")
 	public String myMovie()throws Exception{
 		return "member/myMovie";
+	}
+	
+	@RequestMapping(value="member/memberInfo")
+	public String memberInfo()throws Exception{
+		return "member/memberInfo";
 	}
 	
 
