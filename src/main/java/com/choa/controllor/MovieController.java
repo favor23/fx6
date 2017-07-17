@@ -52,7 +52,7 @@ public class MovieController {
 		
 		model.addAttribute("list", list);
 	}
-	
+		
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)
 	public void movieView(Integer movie_num, Model model) {
 		MovieDTO movieDTO = null;

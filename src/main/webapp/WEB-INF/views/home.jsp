@@ -76,7 +76,7 @@ background-color: white;
 <a href="chatting/chat3">chat3</a>
 <a href="chatting/chat4">chat4</a>
 <a href="chatting/chat5">chat5</a>
->>>>>>> 인트라넷
+
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

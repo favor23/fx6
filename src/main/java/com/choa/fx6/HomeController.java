@@ -64,8 +64,9 @@ public class HomeController {
 	
 	@RequestMapping(value="/index_movielist/m1")
 	public void m1(Model model,int num){
-		List<MovieDTO> list=movieController.movieList(1);
-		model.addAttribute("list", list);
+		//List<MovieDTO> list=movieController.movieList(1);
+		movieController.movieList(1,model);
+		//model.addAttribute("list", list);
 		model.addAttribute("num",num);
 		
 	}
