@@ -67,10 +67,16 @@ background-color: white;
 <a href="paySystem/aaa">aaa</a>
 <a href="paySystem/pay24">pay24</a>
 <a href="index">index</a>
-<a href="movie/movieList">movieList</a>
-<a href="review/reviewList">reviewList</a>
-<a href="required/requiredList">requiredList</a>
-<a href="chatting/chat">chat</a>
+
+<a href="board/movie/movieList">movieList</a>
+<a href="board/review/reviewList">reviewList</a>
+<a href="board/required/requiredList">requiredList</a>
+<a href="chatting/chat1">chat1</a>
+<a href="chatting/chat2">chat2</a>
+<a href="chatting/chat3">chat3</a>
+<a href="chatting/chat4">chat4</a>
+<a href="chatting/chat5">chat5</a>
+>>>>>>> 인트라넷
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
