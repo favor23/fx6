@@ -45,7 +45,7 @@ public class MovieController {
 		
 		try {
 			list = movieService.movieList(listInfo);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

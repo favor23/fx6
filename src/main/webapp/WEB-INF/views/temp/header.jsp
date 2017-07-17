@@ -10,7 +10,7 @@
 		<li class="header_li">큐레이션</li>
 		<li class="header_li">영화관</li>
 		<li class="header_li">특별관</li>
-		<li class="header_li">스토어</li> 
+		<li class="header_li">스토어</li>   
 		<li class="header_li">이벤트</li>
 		<c:if test="${empty member}">
 				<li id="bar_login">로그인</li>
