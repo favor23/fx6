@@ -1,0 +1,30 @@
+package com.choa.room.roomuser;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import com.choa.customer.CustomerDTO;
+import com.choa.movie.MovieDTO;
+import com.choa.util.ListInfo;
+
+@Service
+public class RoomUserService {
+
+	@Inject
+	private RoomUserDAO roomUserDAO;
+	
+	public List<RoomUserDTO> selectList() throws Exception {			
+		return roomUserDAO.selectList();
+	}
+	
+	public int count() throws Exception{
+		return roomUserDAO.count();
+	}
+	
+	public int update(CustomerDTO customerDTO){
+		return roomUserDAO.update(customerDTO);		
+	}
+}

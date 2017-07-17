@@ -24,6 +24,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.choa.member.MemberDTO;
+import com.choa.room.roomuser.RoomUserDTO;
 
 @Repository
 public class EchoHandler extends TextWebSocketHandler{
@@ -33,23 +34,25 @@ public class EchoHandler extends TextWebSocketHandler{
 	//    private Map<String, WebSocketSession> sessions = new HashMap<String, WebSocketSession>();
 
 	//방법 2 : 전체 채팅
-	private List<WebSocketSession> sessionList1 = new ArrayList<WebSocketSession>();
-	private List<WebSocketSession> sessionList2 = new ArrayList<WebSocketSession>();
-	private List<WebSocketSession> sessionList3 = new ArrayList<WebSocketSession>();
-	private List<WebSocketSession> sessionList4 = new ArrayList<WebSocketSession>();
-	private List<WebSocketSession> sessionList5 = new ArrayList<WebSocketSession>();
-	
+	private List<List<WebSocketSession>> sessionList;	
+	private List<RoomUserDTO> roomUserlist;
 	private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
-	private String id=null;
-	private String room_num="0";
-
-
+	private String id;
+		
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public void setRoom_num(String room_num) {
-		this.room_num = room_num;
+	//user room세팅
+	public void setRoomUserDTO(List<RoomUserDTO> list){
+		this.roomUserlist=list;
+	}
+	
+	public void setRoomCount(int count){
+		for(int i=0;i<count;i++){
+			List<WebSocketSession> sessionroom = new ArrayList<WebSocketSession>();
+			sessionList.add(sessionroom);
+		}
 	}
 
 
@@ -59,35 +62,20 @@ public class EchoHandler extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session)
-			throws Exception {		
+			throws Exception {
 		//맵을 쓸때 방법
 		//        sessions.put(session.getId(), session);
 		//List쓸때 방법
-		if(this.room_num.equals("1")){
-		sessionList1.add(session);
-		//0번째 중괄호에 session.getId()을 넣으라는뜻		
-		logger.info("{} 연결됨1", session.getId()); 
+		for(int i=0;i<sessionList.size();i++){
+			String str[]=roomUserlist.get(i).getUser_array().split("/");
+			for(int j=0;j<str.length;j++){
+				if(this.id.equals(str[j])){
+				sessionList.get(i).add(session);
+				//0번째 중괄호에 session.getId()을 넣으라는뜻		
+				logger.info("{} 연결됨1", session.getId()); 
+				}
+			}	
 		}
-		else if(this.room_num.equals("2")){
-			sessionList2.add(session);
-			//0번째 중괄호에 session.getId()을 넣으라는뜻		
-			logger.info("{} 연결됨2", session.getId()); 
-			}
-		else if(this.room_num.equals("3")){
-			sessionList3.add(session);
-			//0번째 중괄호에 session.getId()을 넣으라는뜻		
-			logger.info("{} 연결됨3", session.getId()); 
-			}
-		else if(this.room_num.equals("4")){
-			sessionList4.add(session);
-			//0번째 중괄호에 session.getId()을 넣으라는뜻		
-			logger.info("{} 연결됨4", session.getId()); 
-			}
-		else if(this.room_num.equals("5")){
-			sessionList5.add(session);
-			//0번째 중괄호에 session.getId()을 넣으라는뜻		
-			logger.info("{} 연결됨5", session.getId()); 
-			}
 	}
 	/**
 	 * 클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행되는 메소드
@@ -103,48 +91,7 @@ public class EchoHandler extends TextWebSocketHandler{
 		//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
 		for(WebSocketSession sess : sessionList1){
 			sess.sendMessage(new TextMessage(session.getId()+" : " + message.getPayload()));
-		}
-		}
-		else if(this.room_num.equals("2")){
-			//0번째에 session.getId() 1번째에 message.getPayload() 넣음
-			logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-			//    logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-
-			//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
-			for(WebSocketSession sess : sessionList2){
-				sess.sendMessage(new TextMessage(session.getId()+" : " + message.getPayload()));
-			}
-		}
-		else if(this.room_num.equals("3")){
-			//0번째에 session.getId() 1번째에 message.getPayload() 넣음
-			logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-			//    logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-
-			//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
-			for(WebSocketSession sess : sessionList3){
-				sess.sendMessage(new TextMessage(session.getId()+" : " + message.getPayload()));
-			}
-		}
-		else if(this.room_num.equals("4")){
-			//0번째에 session.getId() 1번째에 message.getPayload() 넣음
-			logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-			//    logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-
-			//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
-			for(WebSocketSession sess : sessionList4){
-				sess.sendMessage(new TextMessage(session.getId()+" : " + message.getPayload()));
-			}
-		}
-		else if(this.room_num.equals("5")){
-			//0번째에 session.getId() 1번째에 message.getPayload() 넣음
-			logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-			//    logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-
-			//연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
-			for(WebSocketSession sess : sessionList5){
-				sess.sendMessage(new TextMessage(session.getId()+" : " + message.getPayload()));
-			}
-		}
+		}		
 
 		// 맵 방법.
 		/*Iterator<String> sessionIds = sessions.ketSet().iterator();
@@ -173,42 +120,6 @@ public class EchoHandler extends TextWebSocketHandler{
 
 		logger.info("{} 연결 끊김.", session.getId());
 		}
-		else if(this.room_num.equals("2")){
-			//List 삭제
-			sessionList2.remove(session);
-
-			//Map 삭제
-			//sessions.remove(session.getId());
-
-			logger.info("{} 연결 끊김.", session.getId());
-		}
-		else if(this.room_num.equals("3")){
-			//List 삭제
-			sessionList3.remove(session);
-
-			//Map 삭제
-			//sessions.remove(session.getId());
-
-			logger.info("{} 연결 끊김.", session.getId());
-		}
-		else if(this.room_num.equals("4")){
-			//List 삭제
-			sessionList4.remove(session);
-
-			//Map 삭제
-			//sessions.remove(session.getId());
-
-			logger.info("{} 연결 끊김.", session.getId());
-		}
-		else if(this.room_num.equals("5")){
-			//List 삭제
-			sessionList5.remove(session);
-
-			//Map 삭제
-			//sessions.remove(session.getId());
-
-			logger.info("{} 연결 끊김.", session.getId());
-		}		
 	}	
 }
 

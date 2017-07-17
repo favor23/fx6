@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="RoomUserMapper"> 
+ 	<select id="roomUserList" resultType="com.choa.room.roomuser.RoomUserDTO">
+		select * from Room_User order by num asc
+		
+	</select>
+	<select id="roomUserCount" resultType="java.lang.Integer">
+		select nvl(count(num), 0) from Room_User
+	</select>
+	
+	<select id="update" resultType="java.lang.Integer" parameterType="com.choa.customer.CustomerDTO">
+		update room_user set user_array=#{id} where num=#{palyview}
+		
+	</select>
+ </mapper> 
