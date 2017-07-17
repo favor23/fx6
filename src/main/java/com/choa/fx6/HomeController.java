@@ -83,9 +83,4 @@ public class HomeController {
 		System.out.println("예매하기 :"+num);
 	}
 	
-	@RequestMapping(value="/index_movielist/modal_view")
-	public void modal_view(int num){		
-		System.out.println("상영정보 :"+num);
-	}
-	
 }

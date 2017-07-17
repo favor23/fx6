@@ -20,10 +20,12 @@
  	</delete>
  	
  	<update id="update" statementType="CALLABLE" parameterType="java.util.Map">
- 	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.job, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+ 	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.job, mode=IN},#{dto.taste, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</update>
  	
- 	
+ 	<select id="idCheck" statementType="CALLABLE" parameterType="java.util.Map">
+ 	{ call id_check(#{customerDTO.id, mode=IN},#{check, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
+ 	</select>
  	
  	
  	

@@ -23,11 +23,27 @@ public class CustomerDAO implements MemberDAO{
 	private final String NAMESPACE="CustomerMapper.";
 	
 	
+	
+	public CustomerDTO idCheck(CustomerDTO customerDTO)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("customerDTO", customerDTO);
+		sqlSession.selectOne(NAMESPACE+"idCheck", map);
+		List<CustomerDTO> list =(List<CustomerDTO>)map.get("check");
+		System.out.println("@@@@@@@@");
+		if(list.isEmpty()){
+			return null;				
+		}else {
+			return list.get(0);
+		}
+		
+	}
+	
+	
+	
 	@Override
 	public int join(MemberDTO memberDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("customerDTO", memberDTO);
-		System.out.println(memberDTO.getId());
 		sqlSession.insert(NAMESPACE+"join", map);
 		int result=(Integer)map.get("result");
 		return result;

@@ -49,11 +49,11 @@
 									<span class="pic-caption open-right modal_crate1" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">
 									<p class="pic-title">${dto.movie_title}</p><hr>
 									<p>감독 : ${dto.director}</p>
-									<p>감독 : ${dto.actor}</p>
-									<p>감독 : ${dto.restricted} 세</p>
-									<p>감독 : ${dto.release_date}</p>
-									<p>감독 : ${dto.genre}</p>
-									<p>감독 : ${dto.running_time} 분</p>
+									<p>배우 : ${dto.actor}</p>
+									<p>등급 : ${dto.restricted} 세</p>
+									<p>개봉 : ${dto.release_date}</p>
+									<p>장르 : ${dto.genre}</p>
+									<p>러닝타임 : ${dto.running_time} 분</p>
 									</span>
 								</div>
 								<div class="list_div">
