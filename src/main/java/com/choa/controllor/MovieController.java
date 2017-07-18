@@ -71,13 +71,38 @@ public class MovieController {
 	public void movieDetail(Integer movie_num, Model model) {
 		MovieDTO movieDTO = null;
 		
+		Double stars_avg = 0.0;
+		int totalCount = 0;
+		
 		try {
+			totalCount = movieService.movieCount();
 			movieDTO = movieService.movieView(movie_num);
+			stars_avg = movieService.movieStars(movie_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("dto", movieDTO);
+		model.addAttribute("stars", stars_avg);
+		model.addAttribute("totalCount", totalCount);
+	}
+	
+	@RequestMapping(value = "getDetailList/{curPage}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<MovieDTO> detailList(@PathVariable("curPage") Integer curPage) {
+		List<MovieDTO> list = null;
+		ListInfo listInfo = new ListInfo();
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			list = movieService.movieList(listInfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }
