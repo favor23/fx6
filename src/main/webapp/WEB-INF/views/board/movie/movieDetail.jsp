@@ -50,9 +50,9 @@
 	
 	.main_top {
 		width: 100%;
-		height: 150px;
+		height: 160px;
 		margin: 0 auto;
-		margin-top: 50px;
+		margin-top: 80px;
 	}
 	
 	.film_rate {
@@ -103,16 +103,12 @@
 	}
 	/* The controlsy */
 	.carousel-control {
-		left: -12px;
 	    height: 40px;
 		width: 40px;
 	    background: none repeat scroll 0 0 #222222;
 	    border: 4px solid #FFFFFF;
 	    border-radius: 23px 23px 23px 23px;
 	    margin-top: 45px;
-	}
-	.carousel-control.right {
-		right: -12px;
 	}
 	
 	.row {
@@ -122,34 +118,87 @@
 <script type="text/javascript">
 	$(function() {
 		var curPage = 1;
+		var count = 10;
 		
 		$(".carousel").carousel({ interval:false });
 		
 		getList(curPage);
+		
+		$(".left").click(function() {
+			curPage--;
+			count -= 10;
+			
+			if(curPage==1) {
+				$(".left").attr("style", "display: none;");
+			}
+			if(count<'${totalCount}'||count!='${totalCount}') {
+				$(".right").removeAttr("style");
+			}
+			
+			getList(curPage);
+		});
+		
+		$(".right").click(function() {
+			curPage++;
+			count += 10;
+
+			if(curPage==2) {
+				$(".left").removeAttr("style");				
+			}
+			if(count>'${totalCount}'||count=='${totalCount}') {
+				$(".right").attr("style", "display: none;");
+			}
+			
+			getList(curPage);
+		});
+		
+		$(".modal_crate2").on("mouseenter",function(){
+			var num = $(this).attr("accesskey");			
+			modal_ticket_crate(num);
+		});
+		
+		$(document).on("click", ".pic", function() {
+			location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
+		});
 	});
 	
 	function getList(curPage) {
 		$.ajax({
 			url:"getDetailList/" + curPage,
 			type:"GET",
-			data:{
-				curPage:curPage
-			},
 			success:function(data) {
 				var result = "";
-				var count = 0;
+				var num = 0;
 				
 				$(data).each(function() {
-					count++;
+					num++;
 					
-					if(count<11) {
-						result = result + '<div class="col-md-1"><a href="#" class="thumbnail">';
-						result = result + '<img src="<c:url value="/' + this.poster_img + '" />" alt="Image" style="max-width:100%;">';
-						result = result + '</a></div>';						
-					}
+					result = result + '<div class="col-md-1"><a href="#" class="thumbnail">';
+					result = result + '<img src="<c:url value="/' + this.poster_img + '" />" alt="Image" style="max-width:100%;" class="pic" accesskey="' + this.movie_num + '">';
+					result = result + '</a></div>';
 				});
 				
-				$("#result").html(result);
+				if(num%10!=0) {
+					for(var i=0; i<10-num; i++) {
+						result = result + '<div class="col-md-1"></div>';				
+					}
+				}
+				
+				if(curPage%2==1) {
+					$("#result1").html(result);					
+				} else {
+					$("#result2").html(result);
+				}
+			}
+		});
+	}
+	
+	function modal_ticket_crate(num) {
+		$.ajax({
+			url : "../../index_movielist/modal_ticket?num="+num,
+			type : "GET",
+			success : function(data) {
+				$("#modal_div2").html(data);
 			}
 		});
 	}
@@ -163,29 +212,27 @@
 			
 		</nav>
 		<article class="main_top">
-			                <div id="Carousel" class="carousel slide">
+			<div id="Carousel" class="carousel slide">
 			                 
-			                <!-- Carousel items -->
-			                <div class="carousel-inner">
+			    <!-- Carousel items -->
+			    <div class="carousel-inner">
 			                    
-			                <div class="item active">
-			                	<div class="row">
-			                		<div id="result"></div>
-			                	</div><!--.row-->
-			                </div><!--.item-->
-			                 
-			                <div class="item">
-			                	<div class="row">
-			                		<c:forEach begin="1" end="10">
-			                	    	<div class="col-md-1"><a href="#" class="thumbnail"><img src="<c:url value="/img/movie-img/5.jpg" />" alt="Image" style="max-width:100%;"></a></div>
-			                	    </c:forEach>
-			                	</div><!--.row-->
-			                </div><!--.item-->
-			                 
-			                </div><!--.carousel-inner-->
-			                  <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
-			                  <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
-			                </div><!--.Carousel-->
+			      <div class="item active">
+			         <div class="row">
+			            <div id="result1"></div>
+			         </div><!--.row-->
+			      </div><!--.item-->
+			                
+			      <div class="item">
+			         <div class="row">
+			            <div id="result2"></div>
+			         </div>
+			      </div>
+			                
+				</div><!--.carousel-inner-->
+			    <a data-slide="prev" href="#Carousel" class="left carousel-control" style="display: none;">‹</a>
+			    <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+			</div><!--.Carousel-->
 			                 
 		</article>
 		<article class="main_art1">
@@ -202,26 +249,30 @@
 					<hr>
 					<p>
 						리뷰어별점 : ${stars}
+						<c:if test="${stars eq null}">
+							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
+						</c:if>
 						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0}">
-							<img src="<c:url value="/img/reviewimg/star1.JPG"/>">
+							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
 						</c:if>
 						<c:if test="${stars>1.0 and stars<2.0 or stars==1.0}">
-							<img src="<c:url value="/img/reviewimg/star2.JPG"/>">			
+							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
 						</c:if>
 						<c:if test="${stars>2.0 and stars<3.0 or stars==2.0}">
-							<img src="<c:url value="/img/reviewimg/star3.JPG"/>">			
+							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
 						</c:if>
 						<c:if test="${stars>3.0 and stars<4.0 or stars==3.0}">
-							<img src="<c:url value="/img/reviewimg/star4.JPG"/>">			
+							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
 						</c:if>
 						<c:if test="${stars>4.0 and stars<5.0 or stars==4.0}">
-							<img src="<c:url value="/img/reviewimg/star5.JPG"/>">			
+							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
 						</c:if>
 					</p>
 					<p>
 						한줄평별점 : 
 					</p>
-					<input type="button" value="예매하기" class="btn btn-primary">
+					<button type="button" class="btn btn-primary list_a modal_crate2"
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
 					<input type="button" value="보고싶어요" class="btn btn-info">
 				</div>
 			</div>
@@ -269,6 +320,7 @@
 		<nav class="nav_right">
 			
 		</nav>
+		<div id="modal_div2"></div>
 	</section>
 	
 	<c:import url="../../temp/footer.jsp"></c:import>

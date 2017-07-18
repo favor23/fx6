@@ -71,9 +71,11 @@ public class MovieController {
 	public void movieDetail(Integer movie_num, Model model) {
 		MovieDTO movieDTO = null;
 		
-		double stars_avg = 0;
+		Double stars_avg = 0.0;
+		int totalCount = 0;
 		
 		try {
+			totalCount = movieService.movieCount();
 			movieDTO = movieService.movieView(movie_num);
 			stars_avg = movieService.movieStars(movie_num);
 		} catch (Exception e) {
@@ -83,6 +85,7 @@ public class MovieController {
 		
 		model.addAttribute("dto", movieDTO);
 		model.addAttribute("stars", stars_avg);
+		model.addAttribute("totalCount", totalCount);
 	}
 	
 	@RequestMapping(value = "getDetailList/{curPage}", method = RequestMethod.GET)

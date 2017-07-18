@@ -26,7 +26,7 @@ public class MovieDAO {
 		return sqlSession.selectOne(NAMESPACE + "movieView", movie_num);
 	}
 	
-	public double movieStars(int movie_num) throws Exception {
+	public Double movieStars(int movie_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "movieStars", movie_num);
 	}
 }

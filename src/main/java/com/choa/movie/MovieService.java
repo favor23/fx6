@@ -29,7 +29,7 @@ public class MovieService {
 		return movieDAO.movieView(movie_num);
 	}
 	
-	public double movieStars(int movie_num) throws Exception {
+	public Double movieStars(int movie_num) throws Exception {
 		return movieDAO.movieStars(movie_num);
 	}
 }

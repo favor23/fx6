@@ -168,7 +168,7 @@
 			success : function(data) {
 				$("#main_div2").html(data);
 			}
-		})
+		});
 	
 		$("#main_div2").on("click", ".mouse_action", function() {
 			var num = $(this).attr("accesskey");
@@ -178,7 +178,7 @@
 				success : function(data) {
 					$("#main_div2").html(data);
 				}
-			})
+			});
 
 		});
 		$("#main_div2").on("mousemove", ".mouse_action", function() {
@@ -192,7 +192,7 @@
 		$("#main_div2").on("mouseenter",".modal_crate2",function(){
 			var num = $(this).attr("accesskey");			
 			modal_ticket_crate(num);
-		})
+		});
 		
 		function modal_ticket_crate(num) {
 			$.ajax({
@@ -201,14 +201,14 @@
 				success : function(data) {
 					$("#modal_div2").html(data);
 				}
-			})	
+			});
 		}
 
 		/* 상영정보 */
 		$("#main_div2").on("mouseenter",".modal_crate1",function(){
 			var movie_num = $(this).attr("accesskey");			
 			modal_view_crate(movie_num);
-		})
+		});
 		
 		function modal_view_crate(movie_num) {
 			$.ajax({
@@ -217,7 +217,7 @@
 				success : function(data) {
 					$("#modal_div2").html(data);
 				}
-			})	
+			});
 		}
 		</script>
 </body>
