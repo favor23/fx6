@@ -32,4 +32,8 @@ public class MovieService {
 	public Double movieStars(int movie_num) throws Exception {
 		return movieDAO.movieStars(movie_num);
 	}
+	
+	public int movieWrite(MovieDTO movieDTO) throws Exception {
+		return movieDAO.movieWrite(movieDTO);
+	}
 }

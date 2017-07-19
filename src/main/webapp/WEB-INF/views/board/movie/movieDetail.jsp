@@ -94,6 +94,7 @@
 		width: 100%; 
 		height: 430px;
 		padding: 20px;
+		position: relative;
 	}
 	
 	.carousel {
@@ -113,6 +114,16 @@
 	
 	.row {
 		margin-right: -280px;
+	}
+	
+	.btn {
+		position: absolute;
+		bottom: 20px;
+		right: 0px;
+	}
+	
+	.btn1 {
+		right: 100px;
 	}
 </style>
 <script type="text/javascript">
@@ -271,9 +282,9 @@
 					<p>
 						한줄평별점 : 
 					</p>
-					<button type="button" class="btn btn-primary list_a modal_crate2"
+					<button type="button" class="btn btn-primary list_a modal_crate2 btn1"
 													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
-					<input type="button" value="보고싶어요" class="btn btn-info">
+					<input type="button" value="보고싶어요" class="btn btn-info btn2">
 				</div>
 			</div>
 			<div class="art1_div2">
