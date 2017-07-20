@@ -111,8 +111,20 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "movieWriteForm", method = RequestMethod.GET)
-	public void movieWrite() {
-		
+	public void movieWrite(String path, Integer movie_num, Model model) {
+		if(movie_num!=null) {
+			MovieDTO movieDTO = null;
+			
+			try {
+				movieDTO = movieService.movieView(movie_num);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("dto", movieDTO);
+		}
+		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value = "movieWrite", method = RequestMethod.POST)
@@ -144,6 +156,57 @@ public class MovieController {
 		
 		if(result>0) {
 			message = "추가 성공! 리스트에서 확인하세요.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("path", "../movie/movieList");
+		
+		return "commons/result";
+	}
+	
+	@RequestMapping(value = "movieUpdate", method = RequestMethod.POST)
+	public String movieUpdate(MovieDTO movieDTO, @RequestParam List<String> genre, Model model) {
+		int result = 0;
+		String message = "수정 실패! 자세한 사항은 담당자에게 문의하세요.";
+		String temp = "";
+		
+		for(String g: genre) {
+			temp += g + "/";
+		}
+		
+		movieDTO.setGenre(temp);
+		
+		try {
+			result = movieService.movieUpdate(movieDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			message = "수정 성공! 리스트에서 확인하세요.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("path", "../movie/movieList");
+		
+		return "commons/result";
+	}
+	
+	@RequestMapping(value = "movieDelete", method = RequestMethod.GET)
+	public String movieDelete(Integer movie_num, Model model) {
+		int result = 0;
+		String message = "삭제 실패! 자세한 사항은 담당자에게 문의하세요.";
+		
+		try {
+			result = movieService.movieDelete(movie_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			message = "삭제 성공!";
 		}
 		
 		model.addAttribute("message", message);

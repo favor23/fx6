@@ -33,4 +33,12 @@ public class MovieDAO {
 	public int movieWrite(MovieDTO movieDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "movieWrite", movieDTO);
 	}
+	
+	public int movieUpdate(MovieDTO movieDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "movieUpdate", movieDTO);
+	}
+	
+	public int movieDelete(int movie_num) throws Exception {
+		return sqlSession.delete(NAMESPACE + "movieDelete", movie_num);
+	}
 }
