@@ -301,6 +301,66 @@
 	.carousel-caption {
 		padding-bottom: 20%;
 	}
+	
+	.art2 {
+		width: 100%;
+		height: 80px;
+	}
+	
+	.sub_wrap {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	
+	.sub1 {
+		width: 60%;
+		height: 50px;
+		position: absolute;
+		bottom: 0px;
+		background-color: #e6ccff;
+		font-weight: bold;
+		font-size: 1.1em;
+	}
+	
+	.sub2 {
+		width: 40%;
+		height: 50px;
+		position: absolute;
+		bottom: 0px;
+		left: 60%;
+		background-color: #e6ccff;
+		font-size: 0.9em;
+	}
+	
+	.sub1_con {
+		width: 72%;
+		height: 100%;
+		position: absolute;
+		bottom: 0px;
+		left: 28%;
+	}
+	
+	.sub2_con {
+		width: 58%;
+		height: 100%;
+		position: absolute;
+		bottom: 0px;
+	}
+	
+	.sub1_con ul li {
+		position: relative;
+		float: left;
+		margin-right: 10%;
+		line-height: 50px;
+	}
+	
+	.sub2_con ul li {
+		position: relative;
+		float: right;
+		margin-left: 10%;
+		line-height: 50px;
+	}
 </style>
 </head>
 <body>
@@ -354,7 +414,40 @@
 	      <span class="sr-only">Next</span>
 	    </a>
 	  </div>
-	  
+	  <article class="art2">
+	  	<div class="sub_wrap">
+	  		<div class="sub1">
+	  			<div class="sub1_con">
+		  			<ul class="sub1_ul">
+		  				<li>
+		  					<a href="#">현재상영작</a>
+		  				</li>
+		  				<li>
+		  					<a href="#">개봉예정작</a>
+		  				</li>
+		  				<li>
+		  					<a href="#">보고싶어요</a>
+		  				</li>
+		  			</ul>
+		  		</div>
+	  		</div>
+	  		<div class="sub2">
+	  			<div class="sub2_con">
+	  				<ul class="sub2_ul">
+	  					<li>
+	  						<a href="#">삭제</a>
+	  					</li>
+	  					<li>
+	  						<a href="#">수정</a>
+	  					</li>
+	  					<li>
+	  						<a href="movieWriteForm">추가</a>
+	  					</li>
+	  				</ul>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </article>
 	  <article class="art">
 	  
 	  </article>

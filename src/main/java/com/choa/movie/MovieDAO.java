@@ -29,4 +29,8 @@ public class MovieDAO {
 	public Double movieStars(int movie_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "movieStars", movie_num);
 	}
+	
+	public int movieWrite(MovieDTO movieDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "movieWrite", movieDTO);
+	}
 }
