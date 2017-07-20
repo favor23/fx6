@@ -83,6 +83,9 @@
 			</a>
 		</section>
 
+		<c:import url="temp/header_plus.jsp" />
+	
+
 		<section id="main_div2">
 		
 		</section>
@@ -166,7 +169,8 @@
 				$("#main_div2").html(data);
 			}
 		});
-	
+		
+		
 		$("#main_div2").on("click", ".mouse_action", function() {
 			var num = $(this).attr("accesskey");
 			$.ajax({
