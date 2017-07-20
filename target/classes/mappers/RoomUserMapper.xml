@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="RoomUserMapper"> 
+ 	<select id="roomUserList" resultType="com.choa.room.roomuser.RoomUserDTO">
+		select * from Room_User order by num asc
+		
+	</select>
+	<select id="roomUserCount" resultType="java.lang.Integer">
+		select nvl(count(num), 0) from Room_User
+	</select>
+	
+	<select id="update" resultType="java.lang.Integer" parameterType="com.choa.room.roomuser.RoomUserDTO">
+		update room_user set user_array=#{user_array} where num=#{num}
+		<!-- sql 더하기 또는 값을 주는것 찾아보기 -->		
+	</select>
+	
+	<select id="selectone" resultType="com.choa.room.roomuser.RoomUserDTO" parameterType="java.lang.Integer">
+		select * from room_user where num=#{num}
+	</select>
+ </mapper> 

@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value="/paySystem")
-public class paySystemController {
-	
-	@RequestMapping(value="aaa")
-	public void aaa(){		
-	}
+public class paySystemController {	
+
 	
 	@RequestMapping(value="pay24")
 	public void pay24(){		
