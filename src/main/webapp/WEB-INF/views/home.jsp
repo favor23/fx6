@@ -44,7 +44,6 @@ background-color: white;
 	</c:if>
 	<c:if test="${member.id!=null }">
 	접속자 아이디 : ${member.id } 
-	접속자 정보1 : ${member.position }
 	</c:if>
 	
 
@@ -64,7 +63,8 @@ background-color: white;
 		
 	</script>
 
-<a href="paySystem/aaa">aaa</a>
+<a href="chatting/aaa">aaa</a>
+<a href="paySystem/aaa1">aaa1</a>
 <a href="paySystem/pay24">pay24</a>
 <a href="index">index</a>
 

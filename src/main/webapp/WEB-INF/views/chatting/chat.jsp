@@ -38,7 +38,7 @@
         /* sock.close(); */
     }
     
-    function onClose(evt){
+   function onClose(evt){
         $("#data").append("연결 끊김");
     }
     

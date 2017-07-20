@@ -16,7 +16,8 @@ public class RoomUserService {
 	@Inject
 	private RoomUserDAO roomUserDAO;
 	
-	public List<RoomUserDTO> selectList() throws Exception {			
+	public List<RoomUserDTO> selectList() throws Exception {	
+		System.out.println("서비스실행");
 		return roomUserDAO.selectList();
 	}
 	
@@ -24,7 +25,11 @@ public class RoomUserService {
 		return roomUserDAO.count();
 	}
 	
-	public int update(CustomerDTO customerDTO){
-		return roomUserDAO.update(customerDTO);		
+	public int update(RoomUserDTO rDto){
+		return roomUserDAO.update(rDto);		
+	}
+	
+	public RoomUserDTO selectone(int num){
+		return roomUserDAO.selectone(num);
 	}
 }

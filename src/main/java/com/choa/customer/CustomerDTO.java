@@ -15,24 +15,6 @@ public class CustomerDTO extends MemberDTO {
 	private String reView;
 	private Date birth;
 	private String taste;
-	
-	
-	
-	
-	
-	
-	public String getTaste() {
-		return taste;
-	}
-	public void setTaste(String taste) {
-		this.taste = taste;
-	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
 	public String getId() {
 		return id;
 	}
@@ -63,7 +45,6 @@ public class CustomerDTO extends MemberDTO {
 	public void setSung(String sung) {
 		this.sung = sung;
 	}
-	
 	public String getTicket() {
 		return ticket;
 	}
@@ -82,6 +63,23 @@ public class CustomerDTO extends MemberDTO {
 	public void setReView(String reView) {
 		this.reView = reView;
 	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	public String getTaste() {
+		return taste;
+	}
+	public void setTaste(String taste) {
+		this.taste = taste;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

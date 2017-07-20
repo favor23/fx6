@@ -14,10 +14,11 @@ public class RoomUserDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="RoomUserMapper.";
+	private static final String NAMESPACE="RoomUserMapper.";
 	
 	//전체리스트
 	public List<RoomUserDTO> selectList(){
+		System.out.println("DAO실행");
 		return sqlSession.selectList(NAMESPACE + "roomUserList");
 	}
 	
@@ -28,9 +29,13 @@ public class RoomUserDAO {
 	}
 	
 	//입력
-	public int update(CustomerDTO customerDTO){
+	public int update(RoomUserDTO rDto){
 		
-		return sqlSession.insert(NAMESPACE + "update", customerDTO);
+		return sqlSession.insert(NAMESPACE + "update", rDto);
+	}
+	
+	public RoomUserDTO selectone(int num){
+		return sqlSession.selectOne(NAMESPACE+"selectone", num);
 	}
 	
 	
