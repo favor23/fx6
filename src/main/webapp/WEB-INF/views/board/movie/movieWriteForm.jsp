@@ -132,12 +132,14 @@
 					        <td>감독</td>
 					        <td>
 					        	<input type="text" name="director" value="${dto.director}">
+					        	<span>여러명일 경우 "/"로 구분해주세요.(ex. 홍길동/아무개/이순신)</span>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>배우</td>
 					        <td>
 					        	<input type="text" name="actor" value="${dto.actor}">
+					        	<span>여러명일 경우 "/"로 구분해주세요.(ex. 홍길동/아무개/이순신)</span>
 					        </td>
 					      </tr>
 					      <tr>
@@ -173,6 +175,7 @@
 					        <td>상영시간</td>
 					        <td>
 					        	<input type="number" name="running_time" value="${dto.running_time}">
+					        	<span>분단위로 숫자만 입력해주세요.</span>
 					        </td>
 					      </tr>
 					      <tr>
