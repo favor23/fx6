@@ -31,6 +31,48 @@
 		$(document).on("click", ".pic-caption", function() {
 			location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
 		});
+		
+		$(document).on("click", "#mod", function() {
+			$("body").attr("style", "background-color: #595959;");
+			$("#modli").html('<a href="#" id="mod_cancel" onclick="return false;">수정취소</a>');
+			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
+			
+			$(document).on("click", ".pic-caption", function() {
+				location.href = "movieWriteForm?path=Update&movie_num=" + $(this).attr("accesskey");
+			});
+		});
+		
+		$(document).on("click" ,"#mod_cancel", function() {
+			$("body").removeAttr("style");
+			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
+			
+			$(document).on("click", ".pic-caption", function() {
+				location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
+			});
+		});
+		
+		$(document).on("click", "#del", function() {
+			$("body").attr("style", "background-color: #595959;");
+			$("#delli").html('<a href="#" id="del_cancel" onclick="return false;">삭제취소</a>');
+			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
+			
+			$(document).on("click", ".pic-caption", function() {
+				if(confirm('정말 삭제하시겠습니까?')) {
+					location.href = "movieDelete?movie_num=" + $(this).attr("accesskey");					
+				} else {
+					location.href = "movieList";
+				}
+			});
+		});
+		
+		$(document).on("click", "#del_cancel", function() {
+			$("body").removeAttr("style");
+			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
+			
+			$(document).on("click", ".pic-caption", function() {
+				location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
+			});
+		});
 	});
 	
 	function getList(curPage) {
@@ -434,14 +476,14 @@
 	  		<div class="sub2">
 	  			<div class="sub2_con">
 	  				<ul class="sub2_ul">
-	  					<li>
-	  						<a href="#">삭제</a>
+	  					<li id="delli">
+	  						<a href="#" id="del" onclick="return false;">삭제</a>
+	  					</li>
+	  					<li id="modli">
+	  						<a href="#" id="mod" onclick="return false;">수정</a>
 	  					</li>
 	  					<li>
-	  						<a href="#">수정</a>
-	  					</li>
-	  					<li>
-	  						<a href="movieWriteForm">추가</a>
+	  						<a href="movieWriteForm?path=Write">추가</a>
 	  					</li>
 	  				</ul>
 	  			</div>
