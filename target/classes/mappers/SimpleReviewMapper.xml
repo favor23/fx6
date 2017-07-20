@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SimpleReviewMapper">
-	<select id="srList" resultType="com.choa.sr.SimpleReviewDTO" parameterType="com.choa.util.ListInfo">
+	<!-- <select id="srList" resultType="com.choa.sr.SimpleReviewDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, s.* from 
 		(select * from simple_review order by num asc) s)
@@ -12,4 +12,5 @@
 	<select id="srCount" resultType="java.lang.Integer" parameterType="">
 		select nvl(count(num), 0) from simple_review
 	</select>
+	 -->
 </mapper>
