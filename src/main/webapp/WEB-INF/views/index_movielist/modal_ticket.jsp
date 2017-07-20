@@ -23,13 +23,14 @@
 							<nav class="navbar navbar-inverse">
 									<div class="container-fluid">
 										<div class="navbar-header">
-											<a class="navbar-brand">${list[1].movie_title}</a>
+											<a class="navbar-brand">${dto.movie_title}</a>
 										</div>
 										<img style="width: auto; height: 300px; float: right; margin: 10px 10px 0 0;"
 								src="<c:url value="${dto.poster_img}"/>">
 										<ul class="nav navbar-nav">
 											<li class="active"><a>설명</a></li>
-											<li><a>${dto.genre} ${dto.restricted} 세 ${dto.running_time} 분</a></li>											
+											<li><a>${dto.genre} ${dto.restricted} 세 ${dto.running_time} 분</a></li>	
+											<li><a>${dto.synopsis}</a></li>											
 										</ul>
 									</div>
 								</nav>
@@ -40,7 +41,7 @@
 								<nav class="navbar navbar-inverse">
 									<div class="container-fluid">
 										<div class="navbar-header">
-											<a class="navbar-brand" href="#">상영기간	[${dto.release_date} ~ 17.08.14]</a>
+											<a class="navbar-brand" href="#">상영기간	[${dto.release_date} ~ ${dto.release_end}]</a>
 										</div>
 										<ul class="nav navbar-nav">
 											<li class="active"><a href="#">일</a></li>
@@ -98,7 +99,7 @@
 					</div>
 					<form action="paySystem/pay24" method="get">
 							<input type="hidden" name="num" value="152">
-							<a href="paySystem/pay24">aaaa</a>
+							<a href="paySystem/pay24">  ____</a>
 							<button id="pay_btn" class="btn btn-warning">예매하기 [무료]</button>
 					</form>
 

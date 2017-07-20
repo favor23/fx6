@@ -81,10 +81,7 @@
 			</a> <a class="right carousel-control" href="#myCarousel"
 				data-slide="next">
 			</a>
-		</section>
-
-		<c:import url="temp/header_plus.jsp" />
-	
+		</section>	
 
 		<section id="main_div2">
 		
@@ -191,13 +188,13 @@
 		
 		/* 예매하기 */
 		$("#main_div2").on("mouseenter",".modal_crate2",function(){
-			var num = $(this).attr("accesskey");			
-			modal_ticket_crate(num);
+			var movie_num = $(this).attr("accesskey");			
+			modal_ticket_crate(movie_num);
 		});
 		
-		function modal_ticket_crate(num) {
+		function modal_ticket_crate(movie_num) {
 			$.ajax({
-				url : "./index_movielist/modal_ticket?num="+num,
+				url : "./index_movielist/modal_ticket?movie_num="+movie_num,
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);

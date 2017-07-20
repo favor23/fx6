@@ -26,7 +26,7 @@ header_plus.jsp
 =header_plus_board.jsp, header_plus_mypage.jsp
 바꿔서 저장해 아래 목록만들어서 사용하기바람
 
-			<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_li">
+			<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
 				영화
 				</li> 
 				id값에 보내고 싶은곳 경로 쓰면됌

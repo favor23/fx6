@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.choa.controllor.MovieController;
 import com.choa.movie.MovieDTO;
+import com.choa.movie.MovieService;
 
 /**
  * Handles requests for the application home page.
@@ -26,7 +27,6 @@ public class HomeController {
 	
 	@Inject
 	private MovieController movieController;
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -80,8 +80,8 @@ public class HomeController {
 	public void m4(){}
 	
 	@RequestMapping(value="/index_movielist/modal_ticket")
-	public void modal_ticket(int num){		
-		System.out.println("예매하기 :"+num);
+	public void modal_ticket(int movie_num,Model model){
+		movieController.movieView(movie_num, model);
 	}
 	
 }
