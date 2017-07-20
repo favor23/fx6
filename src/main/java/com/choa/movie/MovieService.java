@@ -36,4 +36,12 @@ public class MovieService {
 	public int movieWrite(MovieDTO movieDTO) throws Exception {
 		return movieDAO.movieWrite(movieDTO);
 	}
+	
+	public int movieUpdate(MovieDTO movieDTO) throws Exception {
+		return movieDAO.movieUpdate(movieDTO);
+	}
+	
+	public int movieDelete(int movie_num) throws Exception {
+		return movieDAO.movieDelete(movie_num);
+	}
 }

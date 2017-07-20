@@ -9,6 +9,27 @@
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <script type="text/javascript">
 	$(function() {
+		var genre = '${dto.genre}';
+		var slice = genre.split("/");
+		
+		if('${dto.restricted}'=="") {
+			$(".all").prop("selected", "selected");
+		} else if('${dto.restricted}'=='12') {
+			$(".12").prop("selected", "selected");
+		} else if('${dto.restricted}'=='15') {
+			$(".15").prop("selected", "selected");
+		} else {
+			$(".19").prop("selected", "selected");
+		}
+		
+		$("input[name=genre]").each(function() {
+			 for(var j=0; j<slice.length; j++) {
+				if($(this).val()==slice[j]) {
+					$(this).prop("checked", "checked");
+				}
+			}
+		});
+		
 		$(".btn").click(function() {
 			$("#frm").submit();
 		});
@@ -94,61 +115,67 @@
 	
 	<section id="main_section">
 		<label id="head_label">영화추가</label>
-		<form action="movieWrite" id="frm" method="post" enctype="multipart/form-data">
+		<form action="movie${path}" id="frm" method="post" enctype="multipart/form-data">
+			<c:if test="${path eq 'Update'}">
+				<input type="hidden" name="movie_num" value="${dto.movie_num}">
+			</c:if>
 			<article class="main_art1">
 				<div class="main_wrap">       
 					  <table class="table">
 					      <tr>
 					        <td>영화제목</td>
 					        <td>
-								<input type="text" name="movie_title">
+								<input type="text" name="movie_title" value="${dto.movie_title}">
 							</td>
 					      </tr>
 					      <tr>
 					        <td>감독</td>
 					        <td>
-					        	<input type="text" name="director">
+					        	<input type="text" name="director" value="${dto.director}">
+					        	<span>여러명일 경우 "/"로 구분해주세요.(ex. 홍길동/아무개/이순신)</span>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>배우</td>
 					        <td>
-					        	<input type="text" name="actor">
+					        	<input type="text" name="actor" value="${dto.actor}">
+					        	<span>여러명일 경우 "/"로 구분해주세요.(ex. 홍길동/아무개/이순신)</span>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>줄거리</td>
 					        <td>
-					        	<textarea rows="8" cols="80" name="synopsis"></textarea>
+					        	<textarea rows="8" cols="80" name="synopsis">${dto.synopsis}</textarea>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>개봉일</td>
 					        <td>
-					        	<input type="date" name="release_date">
+					        	<input type="date" name="release_date" value="${dto.release_date}">
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>상영종료일</td>
 					        <td>
-					        	<input type="date" name="release_end">
+					        	<input type="date" name="release_end" value="${dto.release_end}">
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>제한등급</td>
 					        <td>
 					        	<select name="restricted">
-					        		<option value="">전체</option>
-					        		<option value="12">12세 관람가</option>
-					        		<option value="15">15세 관람가</option>
-					        		<option value="19">19세 관람가</option>
+					        		<option class="all" value="">전체</option>
+					        		<option class="12" value="12">12세 관람가</option>
+					        		<option class="15" value="15">15세 관람가</option>
+					        		<option class="19" value="19">19세 관람가</option>
 					        	</select>
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>상영시간</td>
 					        <td>
-					        	<input type="number" name="running_time">
+					        	<input type="number" name="running_time" value="${dto.running_time}">
+					        	<span>분단위로 숫자만 입력해주세요.</span>
 					        </td>
 					      </tr>
 					      <tr>
@@ -186,12 +213,14 @@
 					        	</ul>
 					        </td>
 					      </tr>
-					      <tr>
-					        <td>포스터이미지</td>
-					        <td>
-					        	<input type="file" name="f1">
-					        </td>
-					      </tr>
+					      <c:if test="${path eq 'Write'}">
+						      <tr>
+						        <td>포스터이미지</td>
+						        <td>
+						        	<input type="file" name="f1">
+						        </td>
+						      </tr>
+					      </c:if>
 					  </table>
 				</div>
 			</article>
