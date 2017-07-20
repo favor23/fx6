@@ -441,7 +441,7 @@
 	  						<a href="#">수정</a>
 	  					</li>
 	  					<li>
-	  						<a href="#">추가</a>
+	  						<a href="movieWriteForm">추가</a>
 	  					</li>
 	  				</ul>
 	  			</div>

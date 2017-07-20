@@ -19,6 +19,6 @@
 		select round(avg(stars), 1) from review where movie_num=#{movie_num}
 	</select>
 	<insert id="movieWrite" parameterType="com.choa.movie.MovieDTO">
-		insert into movie values(movie_seq.nextval, #{movie_title}, #{synopsis}, #{director}, #{actor}, #{release_date}, #{restricted}, #{running_time}, #{genre}, null, #{release_end})
+		insert into movie values(movie_seq.nextval, #{movie_title}, #{synopsis}, #{director}, #{actor}, #{release_date}, #{restricted}, #{running_time}, #{genre}, #{poster_img}, #{release_end})
 	</insert>
 </mapper>

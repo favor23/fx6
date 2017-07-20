@@ -17,7 +17,7 @@ public class FileService {
 		if(seDTO.getFiledata()!=null && seDTO.getFiledata().getOriginalFilename()!=null && !seDTO.getFiledata().getOriginalFilename().equals("")) {
 			FileSaver fileSaver = new FileSaver();
 			
-			String realPath = session.getServletContext().getRealPath("resources/upload");
+			String realPath = session.getServletContext().getRealPath("resources/img/movie-img");
 			
 			String fileName = fileSaver.fileSave(realPath, seDTO.getFiledata());
 			
@@ -32,13 +32,13 @@ public class FileService {
 	public String fileSave(MultipartFile multipartFile, HttpSession session) throws Exception {
 		FileSaver fileSaver = new FileSaver();
 		
-		String fileName = fileSaver.fileSave(session.getServletContext().getRealPath("resources/upload"), multipartFile);
+		String fileName = fileSaver.fileSave(session.getServletContext().getRealPath("resources/img/movie-img"), multipartFile);
 		
 		return fileName;
 	}
 	
 	public boolean fileDelete(String fileName, HttpSession session) throws Exception {
-		String realPath = session.getServletContext().getRealPath("resources/upload");
+		String realPath = session.getServletContext().getRealPath("resources/img/movie-img");
 		
 		File file = new File(realPath, fileName);
 		

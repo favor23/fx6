@@ -2,6 +2,8 @@ package com.choa.controllor;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.choa.file.FileService;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieService;
 import com.choa.util.ListInfo;
@@ -111,10 +116,14 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "movieWrite", method = RequestMethod.POST)
-	public String movieWrite(MovieDTO movieDTO, @RequestParam List<String> genre, Model model) {
+	public String movieWrite(MovieDTO movieDTO, @RequestParam List<String> genre, @RequestParam("f1") MultipartFile f1, HttpSession session, Model model) {
 		int result = 0;
 		String message = "추가 실패! 자세한 사항은 담당자에게 문의하세요.";
 		String temp = "";
+		
+		FileService fileService = new FileService();
+		
+		String fileName = "";
 		
 		for(String g: genre) {
 			temp += g + "/";
@@ -123,6 +132,10 @@ public class MovieController {
 		movieDTO.setGenre(temp);
 		
 		try {
+			fileName = fileService.fileSave(f1, session);
+			
+			movieDTO.setPoster_img("/img/movie-img/" + fileName);
+			
 			result = movieService.movieWrite(movieDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

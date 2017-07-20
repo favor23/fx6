@@ -186,12 +186,12 @@
 					        	</ul>
 					        </td>
 					      </tr>
-					      <!-- <tr>
+					      <tr>
 					        <td>포스터이미지</td>
 					        <td>
-					        	<input type="file" name="poster_img">
+					        	<input type="file" name="f1">
 					        </td>
-					      </tr> -->
+					      </tr>
 					  </table>
 				</div>
 			</article>
