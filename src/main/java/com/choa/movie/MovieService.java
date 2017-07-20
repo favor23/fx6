@@ -28,4 +28,8 @@ public class MovieService {
 	public MovieDTO movieView(int movie_num) throws Exception {
 		return movieDAO.movieView(movie_num);
 	}
+	
+	public Double movieStars(int movie_num) throws Exception {
+		return movieDAO.movieStars(movie_num);
+	}
 }

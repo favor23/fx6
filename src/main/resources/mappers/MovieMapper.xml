@@ -15,4 +15,7 @@
 	<select id="movieView" resultType="com.choa.movie.MovieDTO" parameterType="java.lang.Integer">
 		select * from movie where movie_num=#{movie_num}
 	</select>
+	<select id="movieStars" resultType="java.lang.Double" parameterType="java.lang.Integer">
+		select round(avg(stars), 1) from review where movie_num=#{movie_num}
+	</select>
 </mapper>
