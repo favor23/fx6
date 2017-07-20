@@ -9,7 +9,7 @@
 		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_li">영화</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">상영관</li>
 		<div class="dropdown">
-			<li class="header_li dropdown-toggle" data-toggle="dropdown">
+			<li class="header_li_board dropdown-toggle" data-toggle="dropdown">
 			게시판</li>
 			<ul id="header_board" class="dropdown-menu">
 				<li><a href="board/required/requiredList">요청게시판</a></li>
