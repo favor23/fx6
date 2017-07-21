@@ -1,13 +1,13 @@
 package com.choa.sr;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class SimpleReviewDTO {
 	private int num;
-	private int movie_num;
+	private Integer movie_num;
 	private String writer;
 	private String contents;
-	private Date reg_date;
+	private Timestamp reg_date;
 	private int good;
 	private int bad;
 	private int sr_stars;
@@ -36,10 +36,10 @@ public class SimpleReviewDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public Date getReg_date() {
+	public Timestamp getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
 	public int getGood() {

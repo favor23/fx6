@@ -20,4 +20,8 @@ public class SimpleReviewService {
 		
 		return simpleReviewDAO.srList(listInfo);
 	}
+	
+	public int srWrite(SimpleReviewDTO simpleReviewDTO) throws Exception {
+		return simpleReviewDAO.srWrite(simpleReviewDTO);
+	}
 }

@@ -194,11 +194,19 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "movieDelete", method = RequestMethod.GET)
-	public String movieDelete(Integer movie_num, Model model) {
+	public String movieDelete(Integer movie_num, Model model, HttpSession session) {
+		FileService fileService = new FileService();
+		MovieDTO movieDTO = null;
+		
 		int result = 0;
 		String message = "삭제 실패! 자세한 사항은 담당자에게 문의하세요.";
 		
 		try {
+			movieDTO = movieService.movieView(movie_num);
+			
+			String[] ar = movieDTO.getPoster_img().split("/");
+					
+			fileService.fileDelete(ar[ar.length-1], session);
 			result = movieService.movieDelete(movie_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -19,10 +19,10 @@
 		select round(avg(stars), 1) from review where movie_num=#{movie_num}
 	</select>
 	<insert id="movieWrite" parameterType="com.choa.movie.MovieDTO">
-		insert into movie values(movie_seq.nextval, #{movie_title}, #{synopsis}, #{director}, #{actor}, #{release_date}, #{restricted}, #{running_time}, #{genre}, #{poster_img}, #{release_end})
+		insert into movie values(movie_seq.nextval, #{movie_title}, #{synopsis}, #{director}, #{actor}, #{release_date}, #{restricted}, #{running_time}, #{genre}, #{poster_img}, #{release_end}, #{movie_price})
 	</insert>
 	<update id="movieUpdate" parameterType="com.choa.movie.MovieDTO">
-		update movie set movie_title=#{movie_title}, synopsis=#{synopsis}, director=#{director}, actor=#{actor}, release_date=#{release_date}, restricted=#{restricted}, running_time=#{running_time}, genre=#{genre}, release_end=#{release_end} 
+		update movie set movie_title=#{movie_title}, synopsis=#{synopsis}, director=#{director}, actor=#{actor}, release_date=#{release_date}, restricted=#{restricted}, running_time=#{running_time}, genre=#{genre}, release_end=#{release_end}, movie_price=#{movie_price}  
 		where movie_num=#{movie_num}
 	</update>
 	<delete id="movieDelete" parameterType="java.lang.Integer">

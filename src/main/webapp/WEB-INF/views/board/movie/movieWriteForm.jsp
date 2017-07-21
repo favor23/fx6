@@ -221,6 +221,13 @@
 						        </td>
 						      </tr>
 					      </c:if>
+					      <tr>
+					      	<td>가격</td>
+					      	<td>
+					      		<input type="number" name="movie_price" value="${dto.movie_price}">
+					      		<span>원단위로 숫자만 입력해주세요.</span>
+					      	</td>
+					      </tr>
 					  </table>
 				</div>
 			</article>

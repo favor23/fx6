@@ -21,4 +21,8 @@ public class SimpleReviewDAO {
 	public int srCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "srCount");
 	}
+	
+	public int srWrite(SimpleReviewDTO simpleReviewDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "srWrite", simpleReviewDTO);
+	}
 }

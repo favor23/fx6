@@ -125,6 +125,76 @@
 	.btn1 {
 		right: 100px;
 	}
+	
+	.menu3_con,
+	.menu3_wrap {
+		width: 100%;
+	}
+	
+	.menu3_con {
+		margin-bottom: 50px;
+	}
+	
+	.sr_write {
+		width: 100%;
+		height: 80px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	
+	.sr_list {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.write_left,
+	.write_middle,
+	.write_right {
+		height: 100%;
+		float: left;
+	}
+	
+	.write_left {
+		width: 20%;
+	}
+	
+	.write_middle {
+		width: 70%;
+	}
+	
+	.write_right {
+		width: 10%;
+		position: relative;
+	}
+	
+	.write_right input {
+		width: 100%;
+		height: 100%;
+		bottom: 0px;
+	}
+	
+	.list {
+		width: 100%;
+		display: inline-flex;
+		margin-top: 20px;
+		background-color: yellow;
+	}
+	
+	.list_left,
+	.list_right {
+		float: left;
+	}
+	
+	.list_left {
+		width: 20%;
+		background-color: gray;
+	}
+	
+	.list_right {
+		width: 80%;
+		background-color: green;
+		position: relative;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -171,6 +241,14 @@
 		$(document).on("click", ".pic", function() {
 			location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
 		});
+		
+		$(".sr_btn").click(function() {
+			$("#frm").submit();
+		});
+		
+		$("#sr").click(function() {
+			getSrList(1, $(".btn1").attr("accesskey"));
+		});
 	});
 	
 	function getList(curPage) {
@@ -210,6 +288,16 @@
 			type : "GET",
 			success : function(data) {
 				$("#modal_div2").html(data);
+			}
+		});
+	}
+	
+	function getSrList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/srList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".sr_list").html(data.trim());
 			}
 		});
 	}
@@ -296,7 +384,7 @@
 			    <li class="active"><a data-toggle="tab" href="#home">주요정보</a></li>
 			    <li><a data-toggle="tab" href="#menu1">포토</a></li>
 			    <li><a data-toggle="tab" href="#menu2">동영상</a></li>
-			    <li><a data-toggle="tab" href="#menu3">한줄평</a></li>
+			    <li><a data-toggle="tab" href="#menu3" id="sr">한줄평</a></li>
 			    <li><a data-toggle="tab" href="#menu4">리뷰</a></li>
 			    <li><a data-toggle="tab" href="#menu5">연관영화</a></li>
 			  </ul>
@@ -315,8 +403,31 @@
 			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 			    </div>
 			    <div id="menu3" class="tab-pane fade">
-			      <h3>Menu 3</h3>
-			      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			      <form action="../simple_review/srWrite" id="frm" method="post">
+			      	<input type="hidden" name="movie_num" value="${dto.movie_num}">
+			      	
+			      	<!-- 나중에 세션의 member에서 id를 작성자로 보내시오. -->
+			      	<input type="hidden" name="writer" value="test">
+			      	
+			      	<div class="menu3_con">
+			      		<div class="menu3_wrap">
+			      			<div class="sr_write">
+			      				<div class="write_left">
+			      					<input type="number" name="sr_stars" placeholder="별점(1~5)" min="1" max="5" step="1" style="width: 99%; height: 20px;">
+			      				</div>
+			      				<div class="write_middle">
+			      					<textarea rows="" cols="" name="contents" placeholder="스포일러성 한줄평은 삭제될 수 있습니다." style="width: 100%; height: 100%;"></textarea>
+			      				</div>
+			      				<div class="write_right">
+			      					<input type="button" class="btn btn-danger sr_btn" value="등록">
+			      				</div>
+			      			</div>
+			      			<div class="sr_list">
+			      				
+			      			</div>
+			      		</div>
+			      	</div>
+			      </form>
 			    </div>
 			    <div id="menu4" class="tab-pane fade">
 			      <h3>Menu 4</h3>

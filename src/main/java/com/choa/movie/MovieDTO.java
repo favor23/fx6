@@ -14,7 +14,14 @@ public class MovieDTO {
 	private String genre;
 	private String poster_img;
 	private Date release_end;
+	private int movie_price;
 	
+	public int getMovie_price() {
+		return movie_price;
+	}
+	public void setMovie_price(int movie_price) {
+		this.movie_price = movie_price;
+	}
 	public Date getRelease_end() {
 		return release_end;
 	}
