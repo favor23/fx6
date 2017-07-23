@@ -1,7 +1,5 @@
 package com.choa.controllor;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.choa.movie.MovieDTO;
-import com.choa.movie.MovieService;
 import com.choa.sr.SimpleReviewDTO;
 import com.choa.sr.SimpleReviewService;
 import com.choa.util.ListInfo;
@@ -60,5 +56,47 @@ public class SimpleReviewController {
 		model.addAttribute("path", "../movie/movieDetail?movie_num=" + simpleReviewDTO.getMovie_num());
 		
 		return "commons/result";
+	}
+	
+	@RequestMapping(value = "srGood", method = RequestMethod.GET)
+	public String srGood(Integer num, Model model) {
+		int result = 0;
+		String message = "error!";
+		
+		try {
+			result = simpleReviewService.srGood(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			message = "한줄평에 공감 하셨습니다.";
+		}
+		
+		model.addAttribute("message", message);
+		
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "srBad", method = RequestMethod.GET)
+	public String srBad(Integer num, Model model) {
+		int result = 0;
+		String message = "error!";
+		
+		try {
+			result = simpleReviewService.srBad(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(result>0) {
+			message = "한줄평에 비공감 하셨습니다.";
+		}
+		
+		model.addAttribute("message", message);
+		
+		return "commons/ajaxResult";
 	}
 }

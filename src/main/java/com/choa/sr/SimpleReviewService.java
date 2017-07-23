@@ -24,4 +24,12 @@ public class SimpleReviewService {
 	public int srWrite(SimpleReviewDTO simpleReviewDTO) throws Exception {
 		return simpleReviewDAO.srWrite(simpleReviewDTO);
 	}
+	
+	public int srGood(int num) throws Exception {
+		return simpleReviewDAO.srGood(num);
+	}
+	
+	public int srBad(int num) throws Exception {
+		return simpleReviewDAO.srBad(num);
+	}
 }

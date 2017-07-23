@@ -15,4 +15,10 @@
 	<insert id="srWrite" parameterType="com.choa.sr.SimpleReviewDTO">
 		insert into simple_review values(simple_review_seq.nextval, #{movie_num}, #{writer}, #{contents}, sysdate, 0, 0, #{sr_stars})
 	</insert>
+	<update id="srGood" parameterType="java.lang.Integer">
+		update simple_review set good=good+1 where num=#{num}
+	</update>
+	<update id="srBad" parameterType="java.lang.Integer">
+		update simple_review set bad=bad+1 where num=#{num}
+	</update>
 </mapper>

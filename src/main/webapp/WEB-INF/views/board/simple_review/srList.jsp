@@ -10,12 +10,14 @@
 		<p>${srList.contents}</p>
 		<table>
 			<tr>
-				<td>${srList.writer}</td>
+				<td>${srList.writer}/</td>
 				<td>${srList.reg_date}</td>
 			</tr>
 		</table>
-		<button class="good good${srList.num}">공감</button>${srList.good}
-		<button class="bad bad${srList.num}">비공감</button>${srList.bad}
+		<div class="btns">
+			<span><input type="button" class="good" value="공감" accesskey="${srList.num}">${srList.good}</span>
+			<span><input type="button" class="bad" value="비공감" accesskey="${srList.num}">${srList.bad}</span>
+		</div>
 	</div>
 </div>
 </c:forEach>

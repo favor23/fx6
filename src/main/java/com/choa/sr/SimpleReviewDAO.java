@@ -25,4 +25,12 @@ public class SimpleReviewDAO {
 	public int srWrite(SimpleReviewDTO simpleReviewDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "srWrite", simpleReviewDTO);
 	}
+	
+	public int srGood(int num) throws Exception {
+		return sqlSession.update(NAMESPACE + "srGood", num);
+	}
+	
+	public int srBad(int num) throws Exception {
+		return sqlSession.update(NAMESPACE + "srBad", num);
+	}
 }

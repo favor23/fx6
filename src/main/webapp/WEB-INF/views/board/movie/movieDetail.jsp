@@ -177,7 +177,6 @@
 		width: 100%;
 		display: inline-flex;
 		margin-top: 20px;
-		background-color: yellow;
 	}
 	
 	.list_left,
@@ -187,13 +186,21 @@
 	
 	.list_left {
 		width: 20%;
-		background-color: gray;
 	}
 	
 	.list_right {
 		width: 80%;
-		background-color: green;
 		position: relative;
+	}
+	
+	.btns span:last-child {
+		position: absolute;
+		right: 0px;
+	}
+	
+	.btns span:first-child {
+		position: absolute;
+		right: 80px;
 	}
 </style>
 <script type="text/javascript">
@@ -249,6 +256,14 @@
 		$("#sr").click(function() {
 			getSrList(1, $(".btn1").attr("accesskey"));
 		});
+		
+		$(document).on("click", ".good", function() {
+			srGood($(this).attr("accesskey"));
+		});
+		
+		$(document).on("click", ".bad", function() {
+			srBad($(this).attr("accesskey"));
+		});
 	});
 	
 	function getList(curPage) {
@@ -298,6 +313,28 @@
 			type : "GET",
 			success : function(data) {
 				$(".sr_list").html(data.trim());
+			}
+		});
+	}
+	
+	function srGood(num) {
+		$.ajax({
+			url : "../simple_review/srGood?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function srBad(num) {
+		$.ajax({
+			url : "../simple_review/srBad?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
 			}
 		});
 	}
@@ -407,7 +444,7 @@
 			      	<input type="hidden" name="movie_num" value="${dto.movie_num}">
 			      	
 			      	<!-- 나중에 세션의 member에서 id를 작성자로 보내시오. -->
-			      	<input type="hidden" name="writer" value="test">
+			      	<input type="hidden" name="writer" value="${member.id}">
 			      	
 			      	<div class="menu3_con">
 			      		<div class="menu3_wrap">
