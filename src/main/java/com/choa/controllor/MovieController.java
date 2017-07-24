@@ -76,12 +76,14 @@ public class MovieController {
 		MovieDTO movieDTO = null;
 		
 		Double stars_avg = 0.0;
+		Double srStars_avg = 0.0;
 		int totalCount = 0;
 		
 		try {
 			totalCount = movieService.movieCount();
 			movieDTO = movieService.movieView(movie_num);
 			stars_avg = movieService.movieStars(movie_num);
+			srStars_avg = movieService.movieSrStars(movie_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,6 +91,7 @@ public class MovieController {
 		
 		model.addAttribute("dto", movieDTO);
 		model.addAttribute("stars", stars_avg);
+		model.addAttribute("srStars", srStars_avg);
 		model.addAttribute("totalCount", totalCount);
 	}
 	

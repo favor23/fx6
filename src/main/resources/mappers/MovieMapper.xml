@@ -28,4 +28,7 @@
 	<delete id="movieDelete" parameterType="java.lang.Integer">
 		delete movie where movie_num=#{movie_num}
 	</delete>
+	<select id="movieSrStars" resultType="java.lang.Double" parameterType="java.lang.Integer">
+		select round(avg(sr_stars), 1) from simple_review where movie_num=#{movie_num}
+	</select>
 </mapper>

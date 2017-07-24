@@ -202,6 +202,12 @@
 		position: absolute;
 		right: 80px;
 	}
+	
+	.menu4_con {
+		width: 100%;
+		height: 500px;
+		background-color: lime;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -388,27 +394,45 @@
 						<c:if test="${stars eq null}">
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
-						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0}">
+						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0 or stars==1.0}">
 							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
 						</c:if>
-						<c:if test="${stars>1.0 and stars<2.0 or stars==1.0}">
+						<c:if test="${stars>1.0 and stars<2.0 or stars==2.0}">
 							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>2.0 and stars<3.0 or stars==2.0}">
+						<c:if test="${stars>2.0 and stars<3.0 or stars==3.0}">
 							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>3.0 and stars<4.0 or stars==3.0}">
+						<c:if test="${stars>3.0 and stars<4.0 or stars==4.0}">
 							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>4.0 and stars<5.0 or stars==4.0}">
+						<c:if test="${stars>4.0 and stars<5.0 or stars==5.0}">
 							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
 						</c:if>
 					</p>
 					<p>
-						한줄평별점 : 
+						한줄평별점 : ${srStars}
+						<c:if test="${srStars eq null}">
+							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
+						</c:if>
+						<c:if test="${srStars>0.0 and srStars<1.0 or srStars==0.0 or srStars==1.0}">
+							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
+						</c:if>
+						<c:if test="${srStars>1.0 and srStars<2.0 or srStars==2.0}">
+							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>2.0 and srStars<3.0 or srStars==3.0}">
+							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>3.0 and srStars<4.0 or srStars==4.0}">
+							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>4.0 and srStars<5.0 or srStars==5.0}">
+							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
+						</c:if>
 					</p>
-					<button type="button" class="btn btn-primary list_a modal_crate2 btn1"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
+					<input type="button" class="btn btn-primary list_a modal_crate2 btn1" value="예매하기"
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">
 					<input type="button" value="보고싶어요" class="btn btn-info btn2">
 				</div>
 			</div>
@@ -419,8 +443,6 @@
 		<article class="main_art2">
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#home">주요정보</a></li>
-			    <li><a data-toggle="tab" href="#menu1">포토</a></li>
-			    <li><a data-toggle="tab" href="#menu2">동영상</a></li>
 			    <li><a data-toggle="tab" href="#menu3" id="sr">한줄평</a></li>
 			    <li><a data-toggle="tab" href="#menu4">리뷰</a></li>
 			    <li><a data-toggle="tab" href="#menu5">연관영화</a></li>
@@ -430,14 +452,6 @@
 			    <div id="home" class="tab-pane fade in active">
 			      <h3>줄거리</h3>
 			      <p>${dto.synopsis}</p>
-			    </div>
-			    <div id="menu1" class="tab-pane fade">
-			      <h3>Menu 1</h3>
-			      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			    </div>
-			    <div id="menu2" class="tab-pane fade">
-			      <h3>Menu 2</h3>
-			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
 			    </div>
 			    <div id="menu3" class="tab-pane fade">
 			      <form action="../simple_review/srWrite" id="frm" method="post">
@@ -467,8 +481,9 @@
 			      </form>
 			    </div>
 			    <div id="menu4" class="tab-pane fade">
-			      <h3>Menu 4</h3>
-			      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			      <div class="menu4_con">
+			      	
+			      </div>
 			    </div>
 			    <div id="menu5" class="tab-pane fade">
 			      <h3>Menu 5</h3>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.choa.util.ListInfo;
 
+import oracle.net.aso.d;
+
 @Service
 public class MovieService {
 	@Autowired
@@ -43,5 +45,9 @@ public class MovieService {
 	
 	public int movieDelete(int movie_num) throws Exception {
 		return movieDAO.movieDelete(movie_num);
+	}
+	
+	public Double movieSrStars(int movie_num) throws Exception {
+		return movieDAO.movieSrStars(movie_num);
 	}
 }
