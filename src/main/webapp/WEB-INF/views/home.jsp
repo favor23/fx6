@@ -77,6 +77,7 @@ background-color: white;
 <a href="chatting/chat4">chat4</a>
 <a href="chatting/chat5">chat5</a>
 
+<a href="crowd_funding/campaign/campaignCreate">campaignCreate</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
