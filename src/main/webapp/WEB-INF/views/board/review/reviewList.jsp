@@ -159,7 +159,7 @@
 					<tr class="boardtitle" id="${dto.num}" style="cursor:hand;">
 						<td>${dto.num}</td>
 						<td>${dto.writer}</td>
-						<td><div class="boardtitle2">${dto.title}</div></td>
+						<td><div class="boardtitle2">${dto.title}</div></td> 
 						<td><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
 						<td>${dto.hit}</td>
 						<td>${dto.thumbs_up}</td>

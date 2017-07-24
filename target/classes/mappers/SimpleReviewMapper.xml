@@ -21,4 +21,25 @@
 	<update id="srBad" parameterType="java.lang.Integer">
 		update simple_review set bad=bad+1 where num=#{num}
 	</update>
+	<update id="srUpdate" parameterType="com.choa.sr.SimpleReviewDTO">
+		update simple_review set contents
+	</update>
+	<delete id="srDelete" parameterType="java.lang.Integer">
+		delete simple_review where num=#{num}
+	</delete>
+	<select id="rList" resultType="com.choa.review.ReviewDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, v.* from
+		(select * from review where movie_num=#{movie_num} order by hit desc) v)
+		where r between #{startRow} and #{lastRow}
+	</select>
+	<select id="rCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select nvl(count(num), 0) from review where movie_num=#{movie_num}
+	</select>
+	<select id="rUpList" resultType="com.choa.review.ReviewDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, v.* from
+		(select * from review where movie_num=#{movie_num} order by thumbs_up desc) v)
+		where r between #{startRow} and #{lastRow}
+	</select>
 </mapper>

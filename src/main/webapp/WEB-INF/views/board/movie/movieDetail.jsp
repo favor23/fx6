@@ -116,14 +116,11 @@
 		margin-right: -280px;
 	}
 	
-	.btn {
+	.btn1 {
 		position: absolute;
 		bottom: 20px;
 		right: 0px;
-	}
-	
-	.btn1 {
-		right: 100px;
+		right: 0px;
 	}
 	
 	.menu3_con,
@@ -205,8 +202,11 @@
 	
 	.menu4_con {
 		width: 100%;
-		height: 500px;
-		background-color: lime;
+	}
+	
+	.btns2 span:first-child {
+		position: absolute;
+		left: 0px;
 	}
 </style>
 <script type="text/javascript">
@@ -269,6 +269,22 @@
 		
 		$(document).on("click", ".bad", function() {
 			srBad($(this).attr("accesskey"));
+		});
+		
+		$(document).on("click", ".srDel", function() {
+			srDelete($(this).attr("accesskey"));
+		});
+		
+		$("#review").click(function() {
+			getRList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(document).on("click", ".rotation1", function() {
+			getUpList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(document).on("click", ".rotation2", function() {
+			getRList(1, $(".btn1").attr("accesskey"));
 		});
 	});
 	
@@ -341,6 +357,37 @@
 			success : function(data) {
 				alert(data.trim());
 				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function srDelete(num) {
+		$.ajax({
+			url : "../simple_review/srDelete?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function getRList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/rList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".r_list").html(data.trim());
+			}
+		});
+	}
+	
+	function getUpList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/rUpList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".r_list").html(data.trim());
 			}
 		});
 	}
@@ -431,9 +478,8 @@
 							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
 						</c:if>
 					</p>
-					<input type="button" class="btn btn-primary list_a modal_crate2 btn1" value="예매하기"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">
-					<input type="button" value="보고싶어요" class="btn btn-info btn2">
+					<button type="button" class="btn btn-primary list_a modal_crate2 btn1" 
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
 				</div>
 			</div>
 			<div class="art1_div2">
@@ -444,7 +490,7 @@
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#home">주요정보</a></li>
 			    <li><a data-toggle="tab" href="#menu3" id="sr">한줄평</a></li>
-			    <li><a data-toggle="tab" href="#menu4">리뷰</a></li>
+			    <li><a data-toggle="tab" href="#menu4" id="review">리뷰</a></li>
 			    <li><a data-toggle="tab" href="#menu5">연관영화</a></li>
 			  </ul>
 			
@@ -482,7 +528,9 @@
 			    </div>
 			    <div id="menu4" class="tab-pane fade">
 			      <div class="menu4_con">
+			      	<div class="r_list">
 			      	
+			      	</div>
 			      </div>
 			    </div>
 			    <div id="menu5" class="tab-pane fade">

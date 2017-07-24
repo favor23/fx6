@@ -8,12 +8,16 @@
 	</div>
 	<div class="list_right">
 		<p>${srList.contents}</p>
-		<table>
-			<tr>
-				<td>${srList.writer}/</td>
-				<td>${srList.reg_date}</td>
-			</tr>
-		</table>
+		<span style="margin-right: 15px;">${srList.writer}</span>
+		<span style="margin-right: 15px;">${srList.reg_date}</span>
+		<div class="btns btns2">
+		<!-- 
+			<c:if test="${srList.writer eq member.id or member.grade eq 'admin'}">
+				<span><a href="#" onclick="return false;" class="srDel" accesskey="${srList.num}">삭제</a></span>
+			</c:if>
+		 -->
+			<span><a href="#" onclick="return false;" class="srDel" accesskey="${srList.num}">삭제</a></span>
+		</div>
 		<div class="btns">
 			<span><input type="button" class="good" value="공감" accesskey="${srList.num}">${srList.good}</span>
 			<span><input type="button" class="bad" value="비공감" accesskey="${srList.num}">${srList.bad}</span>
