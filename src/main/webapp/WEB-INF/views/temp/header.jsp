@@ -55,10 +55,10 @@
 						<li class="admin_li"><img
 							src="<c:url value="/img/index/쪽지.PNG"/>"></li>
 					</c:if> --%>
-					<c:if test="${!empty member.ticket}">	
+					<%-- <c:if test="${!empty member.ticket}">	
 						<li class="admin_li"><img
 							src="<c:url value="/img/index/영화가곧시작됩니다.PNG"/>"></li>
-					</c:if>
+					</c:if> --%>
 				</ul>
 			</div>
 		</c:if> </ui>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header_plus start -->
-<div class="header_plus">
+<div class="header_plus" >
 	<div class="plus_d1"></div>
 	<div class="plus_d2">
 		<div class="plus_d2_list">
