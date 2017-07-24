@@ -160,7 +160,7 @@
 	<script type="text/javascript">
 			
 		$.ajax({
-			url : "./index_movielist/m1?num=1",
+			url : "${pageContext.request.contextPath}/index_movielist/m1?num=1",
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);
@@ -171,7 +171,7 @@
 		$("#main_div2").on("click", ".mouse_action", function() {
 			var num = $(this).attr("accesskey");
 			$.ajax({
-				url : "./index_movielist/m1?num="+num,
+				url : "${pageContext.request.contextPath}/index_movielist/m1?num="+num,
 				type : "GET",
 				success : function(data) {
 					$("#main_div2").html(data);
@@ -194,7 +194,7 @@
 		
 		function modal_ticket_crate(movie_num) {
 			$.ajax({
-				url : "./index_movielist/modal_ticket?movie_num="+movie_num,
+				url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+movie_num,
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);
@@ -210,7 +210,7 @@
 		
 		function modal_view_crate(movie_num) {
 			$.ajax({
-				url : "./board/movie/movieView?movie_num="+movie_num,
+				url : "${pageContext.request.contextPath}/board/movie/movieView?movie_num="+movie_num,
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);

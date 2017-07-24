@@ -40,11 +40,17 @@
 			<div class="dropdown" style="height: 50px; width: 150px; float: right;">
 				<li id="bar_login" class="dropdown-toggle" type="button"
 					data-toggle="dropdown">${member.name}님반갑습니다.</li> 			
-				<ul class="dropdown-menu" style="margin-top: 0px;    padding-top: 0px;">
+				<ul class="dropdown-menu" style="margin-top: 0px;    padding-top: 0px;      -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.0); 
+    box-shadow: 0 0px 0px rgba(0,0,0,.0); ">
 					<li id="${pageContext.request.contextPath}/member/logOut" class="admin_li">
 					<img	id="${pageContext.request.contextPath}/member/logOut" class="admin_li"	src="<c:url value="/img/index/로그아웃.PNG"/>"></li>
 					<li id="${pageContext.request.contextPath}/member/myPage" class="admin_li">
+					<c:if test="${member.grade eq 'admin'}">
+					<img	id="${pageContext.request.contextPath}/admin/adminPage" class="admin_li"	src="<c:url value="/img/index/마이페이지.PNG"/>"></li>
+					</c:if>
+					<c:if test="${!member.grade eq 'admin'}">
 					<img	id="${pageContext.request.contextPath}/member/logOut" class="admin_li"	src="<c:url value="/img/index/마이페이지.PNG"/>"></li>
+					</c:if>
 					<%-- <c:if test="${!empty member}">
 						<li class="admin_li"><img
 							src="<c:url value="/img/index/쪽지.PNG"/>"></li>

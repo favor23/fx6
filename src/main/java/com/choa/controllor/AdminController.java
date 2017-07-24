@@ -19,21 +19,17 @@ public class AdminController {
 
 	//loginProccess
 		@RequestMapping(value="member/adminLogin", method=RequestMethod.POST)
-		public ModelAndView login(MemberDTO memberDTO,HttpSession session)throws Exception{
-			memberDTO = adminService.login(memberDTO);
-			String message = "Fail";
+		public String login(MemberDTO memberDTO,HttpSession session)throws Exception{
+			memberDTO = adminService.login(memberDTO);			
 			if(memberDTO != null){
-				session.setAttribute("member",memberDTO);
-				message = "success";
+				session.setAttribute("member",memberDTO);				
 			}
-			String path="../";
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("path", path);
-			mv.addObject("message", message);
-
-			mv.setViewName("commons/result");
-
-			return mv;
+			return "/index";
+		}
+		
+		@RequestMapping(value="admin/adminPage", method=RequestMethod.GET)
+		public void adminPage(){
+			
 		}
 	
 	
