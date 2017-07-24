@@ -22,11 +22,16 @@ public class PaymentMovieController {
 	@Inject
 	private PaymentMovieServiceImpl paymentMovieServiceImpl;
 	@Inject
-	private MovieController movieController;	
+	private MovieController movieController;
 	
 	@RequestMapping(value="/paySystem/pay24", method=RequestMethod.POST)
-	public void pay24(MovieDTO movieDTO, HttpSession session, Model model) throws Exception{//가격
-		movieDTO=movieController.movieViewdto(movieDTO.getMovie_num(), model);
+	public void pay24(MovieDTO movieDTO, HttpSession session, Model model){//가격
+		try {
+			movieDTO=movieController.movieViewdto(movieDTO.getMovie_num(), model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<MovieDTO> list=new ArrayList<MovieDTO>();		
 		list.add(movieDTO);
 		session.setAttribute("list", list);
