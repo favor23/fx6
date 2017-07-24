@@ -10,7 +10,7 @@
 		<ul class="nav navbar-nav">
 			<li><a href="#">선택</a></li>
 			<li class="active"><a id="g1">Card</a></li>
-			<li><a id="g2">무통장 입금</a></li>
+			<!-- <li><a id="g2">무통장 입금</a></li> -->
 		</ul>
 	</div>
 </nav>
@@ -45,7 +45,7 @@
 		</tr>		
 		<tr>
 			<td><label for="usr">결제안내</label></td>
-			<td colspan="3"><img src="<c:url value="/img/jsimg/결제안내.PNG"/>"></td>
+			<td colspan="3"><img src="<c:url value="/img/jsimg/결제안내.PNG"/>" style="width: 500px"></td>
 		</tr>		
 	</table>
 	

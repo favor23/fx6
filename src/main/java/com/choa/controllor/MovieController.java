@@ -71,6 +71,12 @@ public class MovieController {
 		model.addAttribute("dto", movieDTO);
 	}
 	
+	public MovieDTO movieViewdto(Integer movie_num, Model model) throws Exception {
+		MovieDTO movieDTO = null;
+		movieDTO = movieService.movieView(movie_num);
+		return movieDTO;		
+	}
+	
 	@RequestMapping(value = "movieDetail", method = RequestMethod.GET)
 	public void movieDetail(Integer movie_num, Model model) {
 		MovieDTO movieDTO = null;
