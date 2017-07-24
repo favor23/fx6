@@ -16,4 +16,7 @@
     </c:forEach>
     </tbody>
 </table>
+<c:if test="${empty list}">
+	<h1>등록된 리뷰가 없습니다.</h1>
+</c:if>
 <a href="#" onclick="return false;" class="rotation1">추천순으로 보기</a>
