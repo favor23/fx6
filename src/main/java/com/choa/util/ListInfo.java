@@ -19,7 +19,16 @@ public class ListInfo {
 	private int startNum; //화면블럭의 첫번째페이지 번호
 	private int lastNum; //화면블럭의 마지막페이지 번호
 	
+	//신경쓰지 마세요 -기원
+	private int movie_num;
 	
+	public int getMovie_num() {
+		return movie_num;
+	}
+	public void setMovie_num(int movie_num) {
+		this.movie_num = movie_num;
+	}
+
 	//page
 	public void makePage(int totalCount){
 		

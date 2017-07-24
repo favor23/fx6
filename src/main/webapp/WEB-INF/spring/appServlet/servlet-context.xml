@@ -25,6 +25,7 @@
 	<context:component-scan base-package="com.choa.fx6" />
 
 	<context:component-scan base-package="com.choa.movie" />
+	<context:component-scan base-package="com.choa.sr" />
 	<context:component-scan base-package="com.choa.room.roomuser" />
 	<context:component-scan base-package="com.choa.paySystem" />
 	<context:component-scan base-package="com.choa.payment"/>

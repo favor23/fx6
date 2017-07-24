@@ -41,4 +41,8 @@ public class MovieDAO {
 	public int movieDelete(int movie_num) throws Exception {
 		return sqlSession.delete(NAMESPACE + "movieDelete", movie_num);
 	}
+	
+	public Double movieSrStars(int movie_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "movieSrStars", movie_num);
+	}
 }

@@ -116,14 +116,97 @@
 		margin-right: -280px;
 	}
 	
-	.btn {
+	.btn1 {
 		position: absolute;
 		bottom: 20px;
 		right: 0px;
+		right: 0px;
 	}
 	
-	.btn1 {
-		right: 100px;
+	.menu3_con,
+	.menu3_wrap {
+		width: 100%;
+	}
+	
+	.menu3_con {
+		margin-bottom: 50px;
+	}
+	
+	.sr_write {
+		width: 100%;
+		height: 80px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	
+	.sr_list {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.write_left,
+	.write_middle,
+	.write_right {
+		height: 100%;
+		float: left;
+	}
+	
+	.write_left {
+		width: 20%;
+	}
+	
+	.write_middle {
+		width: 70%;
+	}
+	
+	.write_right {
+		width: 10%;
+		position: relative;
+	}
+	
+	.write_right input {
+		width: 100%;
+		height: 100%;
+		bottom: 0px;
+	}
+	
+	.list {
+		width: 100%;
+		display: inline-flex;
+		margin-top: 20px;
+	}
+	
+	.list_left,
+	.list_right {
+		float: left;
+	}
+	
+	.list_left {
+		width: 20%;
+	}
+	
+	.list_right {
+		width: 80%;
+		position: relative;
+	}
+	
+	.btns span:last-child {
+		position: absolute;
+		right: 0px;
+	}
+	
+	.btns span:first-child {
+		position: absolute;
+		right: 80px;
+	}
+	
+	.menu4_con {
+		width: 100%;
+	}
+	
+	.btns2 span:first-child {
+		position: absolute;
+		left: 0px;
 	}
 </style>
 <script type="text/javascript">
@@ -171,6 +254,38 @@
 		$(document).on("click", ".pic", function() {
 			location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
 		});
+		
+		$(".sr_btn").click(function() {
+			$("#frm").submit();
+		});
+		
+		$("#sr").click(function() {
+			getSrList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(document).on("click", ".good", function() {
+			srGood($(this).attr("accesskey"));
+		});
+		
+		$(document).on("click", ".bad", function() {
+			srBad($(this).attr("accesskey"));
+		});
+		
+		$(document).on("click", ".srDel", function() {
+			srDelete($(this).attr("accesskey"));
+		});
+		
+		$("#review").click(function() {
+			getRList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(document).on("click", ".rotation1", function() {
+			getUpList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(document).on("click", ".rotation2", function() {
+			getRList(1, $(".btn1").attr("accesskey"));
+		});
 	});
 	
 	function getList(curPage) {
@@ -210,6 +325,69 @@
 			type : "GET",
 			success : function(data) {
 				$("#modal_div2").html(data);
+			}
+		});
+	}
+	
+	function getSrList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/srList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".sr_list").html(data.trim());
+			}
+		});
+	}
+	
+	function srGood(num) {
+		$.ajax({
+			url : "../simple_review/srGood?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function srBad(num) {
+		$.ajax({
+			url : "../simple_review/srBad?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function srDelete(num) {
+		$.ajax({
+			url : "../simple_review/srDelete?num=" + num,
+			type : "GET",
+			success : function(data) {
+				alert(data.trim());
+				getSrList(1, $(".btn1").attr("accesskey"));
+			}
+		});
+	}
+	
+	function getRList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/rList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".r_list").html(data.trim());
+			}
+		});
+	}
+	
+	function getUpList(curPage, movie_num) {
+		$.ajax({
+			url : "../simple_review/rUpList?curPage=" + curPage + "&movie_num=" + movie_num,
+			type : "GET",
+			success : function(data) {
+				$(".r_list").html(data.trim());
 			}
 		});
 	}
@@ -263,28 +441,45 @@
 						<c:if test="${stars eq null}">
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
-						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0}">
+						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0 or stars==1.0}">
 							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
 						</c:if>
-						<c:if test="${stars>1.0 and stars<2.0 or stars==1.0}">
+						<c:if test="${stars>1.0 and stars<2.0 or stars==2.0}">
 							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>2.0 and stars<3.0 or stars==2.0}">
+						<c:if test="${stars>2.0 and stars<3.0 or stars==3.0}">
 							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>3.0 and stars<4.0 or stars==3.0}">
+						<c:if test="${stars>3.0 and stars<4.0 or stars==4.0}">
 							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
 						</c:if>
-						<c:if test="${stars>4.0 and stars<5.0 or stars==4.0}">
+						<c:if test="${stars>4.0 and stars<5.0 or stars==5.0}">
 							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
 						</c:if>
 					</p>
 					<p>
-						한줄평별점 : 
+						한줄평별점 : ${srStars}
+						<c:if test="${srStars eq null}">
+							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
+						</c:if>
+						<c:if test="${srStars>0.0 and srStars<1.0 or srStars==0.0 or srStars==1.0}">
+							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
+						</c:if>
+						<c:if test="${srStars>1.0 and srStars<2.0 or srStars==2.0}">
+							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>2.0 and srStars<3.0 or srStars==3.0}">
+							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>3.0 and srStars<4.0 or srStars==4.0}">
+							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
+						</c:if>
+						<c:if test="${srStars>4.0 and srStars<5.0 or srStars==5.0}">
+							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
+						</c:if>
 					</p>
-					<button type="button" class="btn btn-primary list_a modal_crate2 btn1"
+					<button type="button" class="btn btn-primary list_a modal_crate2 btn1" 
 													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
-					<input type="button" value="보고싶어요" class="btn btn-info btn2">
 				</div>
 			</div>
 			<div class="art1_div2">
@@ -294,10 +489,8 @@
 		<article class="main_art2">
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a data-toggle="tab" href="#home">주요정보</a></li>
-			    <li><a data-toggle="tab" href="#menu1">포토</a></li>
-			    <li><a data-toggle="tab" href="#menu2">동영상</a></li>
-			    <li><a data-toggle="tab" href="#menu3">한줄평</a></li>
-			    <li><a data-toggle="tab" href="#menu4">리뷰</a></li>
+			    <li><a data-toggle="tab" href="#menu3" id="sr">한줄평</a></li>
+			    <li><a data-toggle="tab" href="#menu4" id="review">리뷰</a></li>
 			    <li><a data-toggle="tab" href="#menu5">연관영화</a></li>
 			  </ul>
 			
@@ -306,21 +499,39 @@
 			      <h3>줄거리</h3>
 			      <p>${dto.synopsis}</p>
 			    </div>
-			    <div id="menu1" class="tab-pane fade">
-			      <h3>Menu 1</h3>
-			      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			    </div>
-			    <div id="menu2" class="tab-pane fade">
-			      <h3>Menu 2</h3>
-			      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			    </div>
 			    <div id="menu3" class="tab-pane fade">
-			      <h3>Menu 3</h3>
-			      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			      <form action="../simple_review/srWrite" id="frm" method="post">
+			      	<input type="hidden" name="movie_num" value="${dto.movie_num}">
+			      	
+			      	<!-- 나중에 세션의 member에서 id를 작성자로 보내시오. -->
+			      	<input type="hidden" name="writer" value="${member.id}">
+			      	
+			      	<div class="menu3_con">
+			      		<div class="menu3_wrap">
+			      			<div class="sr_write">
+			      				<div class="write_left">
+			      					<input type="number" name="sr_stars" placeholder="별점(1~5)" min="1" max="5" step="1" style="width: 99%; height: 20px;">
+			      				</div>
+			      				<div class="write_middle">
+			      					<textarea rows="" cols="" name="contents" placeholder="스포일러성 한줄평은 삭제될 수 있습니다." style="width: 100%; height: 100%;"></textarea>
+			      				</div>
+			      				<div class="write_right">
+			      					<input type="button" class="btn btn-danger sr_btn" value="등록">
+			      				</div>
+			      			</div>
+			      			<div class="sr_list">
+			      				
+			      			</div>
+			      		</div>
+			      	</div>
+			      </form>
 			    </div>
 			    <div id="menu4" class="tab-pane fade">
-			      <h3>Menu 4</h3>
-			      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+			      <div class="menu4_con">
+			      	<div class="r_list">
+			      	
+			      	</div>
+			      </div>
 			    </div>
 			    <div id="menu5" class="tab-pane fade">
 			      <h3>Menu 5</h3>
