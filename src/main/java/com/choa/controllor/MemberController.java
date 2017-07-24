@@ -4,10 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.choa.customer.CustomerDTO;
 import com.choa.customer.CustomerServiceImpl;
 import com.choa.member.MemberDTO;
@@ -92,24 +92,20 @@ public class MemberController {
 
 	//loginProccess
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO,HttpSession session)throws Exception{
-		ModelAndView mv = new ModelAndView();
+	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{	
+		System.out.println("pw : "+memberDTO.getPw());
 		memberDTO = customerService.login(memberDTO);
 		String message = "일치하는 아이디와 패스워드가 없습니다.";
 		String path="member/login";//로그인 실패시 경로.
 		if(memberDTO != null){
 			session.setAttribute("member",memberDTO);
 			message = "success";
-			path="../";
-			mv.setViewName("commons/result");
-			mv.addObject("path", path);
-		}else {
-			mv.setViewName(path);			
+			path="/index";
 		}
-		mv.addObject("message", message);
+		model.addAttribute("message", message);
+		
 
-
-		return mv;
+		return path;
 	}
 	
 	@RequestMapping(value="member/delete",method=RequestMethod.POST)

@@ -9,9 +9,20 @@
 		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_li">영화</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">상영관</li>
 		<div class="dropdown">
-			<li class="header_li_board dropdown-toggle" data-toggle="dropdown">
+			<li id="header_board" class="dropdown-toggle" data-toggle="dropdown" style="line-height: 49px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+	float: left;
+	font-weight: bold;
+	height: 49px;
+	width: 107px;
+	cursor: pointer;
+			">
 			게시판</li>
-			<ul id="header_board" class="dropdown-menu">
+			<ul class="dropdown-menu" style="    position: absolute;
+    top: 48px;
+    right: 430px;
+    background-color: white;">
 				<li><a href="board/required/requiredList">요청게시판</a></li>
 				<li><a href="board/review/reviewList">리뷰게시판</a></li>
 				<li><a href="#">매칭게시판</a></li>
@@ -19,7 +30,7 @@
 		</div>
 		</li>		
 		<li id="${pageContext.request.contextPath}/" class="header_li">펀딩</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">이벤트</li>
+		<li id="${pageContext.request.contextPath}/" class="header_li">매칭시스템</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">시나리오</li>
 		<c:if test="${empty member}">
 			<li id="bar_login"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
@@ -50,7 +61,6 @@
 <!-- header end -->
 <script>
 $("#bar_logo").click(function() {
-	alert($(this).attr("class"));
 	location.href=$(this).attr("class");
 })
 $(".admin_li").click(function() {

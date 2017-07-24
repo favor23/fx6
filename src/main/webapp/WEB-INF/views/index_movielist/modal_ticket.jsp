@@ -23,7 +23,7 @@
 							<nav class="navbar navbar-inverse">
 									<div class="container-fluid">
 										<div class="navbar-header">
-											<a class="navbar-brand">${dto.movie_title}</a>
+											<a class="navbar-brand" style="    position: absolute;">${dto.movie_title}</a>
 										</div>
 										<img style="width: auto; height: 300px; float: right; margin: 10px 10px 0 0;"
 								src="<c:url value="${dto.poster_img}"/>">
@@ -97,10 +97,9 @@
 							</div>														
 						</div>
 					</div>
-					<form action="paySystem/pay24" method="get">
-							<input type="hidden" name="num" value="152">
-							<a href="paySystem/pay24">  ____</a>
-							<button id="pay_btn" class="btn btn-warning">예매하기 [무료]</button>
+					<form action="paySystem/pay24" method="post" style=" margin-bottom: 10px;">
+							<input type="hidden" name="movie_num" value="${dto.movie_num}">
+							<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">예매하기 [<%-- ${dto.movie_price} --%>]</button>
 					</form>
 
 

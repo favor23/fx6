@@ -41,11 +41,6 @@ header img{
 	width: 107px;
 	cursor: pointer;
 }
-.header_li_board {
-	height: 49px;
-	width: 107px;
-	cursor: pointer;
-}
 
 #bar_logo {
 	height: 49px;
@@ -57,8 +52,14 @@ header img{
 	width: 157px;
 	cursor: pointer;
 }
-
-.header_li, #bar_logo, #bar_login,.header_li_board {
+#header_board {
+	line-height: 49px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+	float: left;
+	font-weight: bold;
+}
+.header_li, #bar_logo, #bar_login{
 	line-height: 49px;
 	text-align: center;
 	border-right: 1px solid #e5e5e5;
