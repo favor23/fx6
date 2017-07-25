@@ -77,12 +77,16 @@ public class PaymentMovieController {
 	}
 	
 	@RequestMapping(value="/paySystem/movie_bank_0", method=RequestMethod.POST)
-	public String bank(PaymentDTO paymentDTO, Model model, HttpServletRequest request) throws Exception{		
-		 CustomerDTO customerDTO=(CustomerDTO)request.getAttribute("member");
+	public String bank(PaymentMovieDTO paymentMovieDTO, Model model, HttpServletRequest request) throws Exception{
 		 int result=0;
-		 result=paymentMovieServiceImpl.insert(paymentDTO);
-		
-		model.addAttribute("message", "성공");
+		 paymentMovieDTO.setCard_num("0");
+		 result=paymentMovieServiceImpl.insert(paymentMovieDTO);
+		 if(result>0){
+			 model.addAttribute("message", "결제성공");							
+			}
+			else{
+				model.addAttribute("message", "결제실패");				
+			}
 		return "/paySystem/pay_result";		 
 	}
 }

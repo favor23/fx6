@@ -38,7 +38,15 @@
 결제수단에 따른 개인정보 수집.이용 항목이 상이할 수 있음</div>
 		<input type="hidden" name="select2" value="g1">
 		<c:if test="${totalpay == 0}">
+		<form id="frm4" action="" method="post">
+		<c:forEach items="${sessionScope.list}" var="dto">
+					<input type="hidden" name="id" value="${member.id}">
+					<input type="hidden" name="type" value="movie">
+					<input type="hidden" name="movie_num" value="${dto.movie_num}">
+					<input type="hidden" name="money" value="${totalpay}">					
+					</c:forEach>		
 		<input type="button" id="btn_pay2" class="btn-danger dtn_go_size" value="결제하기">
+		</form>
 		</c:if>
 		<c:if test="${totalpay != 0}">
 		<input type="button" id="btn_pay" class="btn-danger dtn_go_size" data-toggle="modal" value="결제하기">
@@ -169,8 +177,8 @@ $("#pay_go").click(function(){
 });		
 
 $("#btn_pay2").click(function () {
-	$("#frm3").attr("action","movie_bank_0");
-	$("#frm3").submit();	
+	$("#frm4").attr("action","movie_bank_0");
+	$("#frm4").submit();	
 })
 </script>
 	
