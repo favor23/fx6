@@ -7,9 +7,16 @@ public class PaymentDTO {
 	private int money;
 	private String type;
 	private int refund;
+	private String card_num;
 	
 	
 	
+	public String getCard_num() {
+		return card_num;
+	}
+	public void setCard_num(String card_num) {
+		this.card_num = card_num;
+	}
 	public int getNum() {
 		return num;
 	}

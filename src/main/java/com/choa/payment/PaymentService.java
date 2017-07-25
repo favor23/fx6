@@ -10,5 +10,7 @@ public interface PaymentService {
 	
 	//환불 refund 0=>1
 	public int refundUpdate(int num)throws Exception;
+
+	
 	
 }

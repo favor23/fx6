@@ -21,13 +21,14 @@ public class PaymentMovieDAOImpl implements PaymentDAO{
 	
 	@Override
 	public int pay_start(PaymentDTO paymentDTO) throws Exception {
+		System.out.println("DAO");
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("dto", paymentDTO);
 		sqlSession.insert(NAMESPACE+"insert", map);
 		int result=(Integer)map.get("result");
 		return result;
 	}
-
+	
 	@Override
 	public PaymentDTO pay(String id) throws Exception {
 		// TODO Auto-generated method stub

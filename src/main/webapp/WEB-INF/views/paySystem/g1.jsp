@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<nav class="navbar navbar-default">
+<c:if test="${totalpay != 0}">
+<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">결제 정보 입력</a>
@@ -14,8 +14,12 @@
 		</ul>
 	</div>
 </nav>
+</c:if>
+<c:if test="${totalpay != 0}">
 <h2>카드 결제</h2>
+</c:if>
 <div>
+<c:if test="${totalpay != 0}">
 	<table class="table">
 		<tr>
 			<td><label for="usr">카트선택</label></td>
@@ -48,8 +52,10 @@
 			<td colspan="3"><img src="<c:url value="/img/jsimg/결제안내.PNG"/>" style="width: 500px"></td>
 		</tr>		
 	</table>
+	</c:if>
 	
 	<div id="div_good"><input id="card_go" type="button" class="btn-danger" value="결제동의"></div>
-
+<c:if test="${totalpay != 0}">
 	<img src="<c:url value="/img/jsimg/bank.PNG"/>">
+	</c:if>
 </div>

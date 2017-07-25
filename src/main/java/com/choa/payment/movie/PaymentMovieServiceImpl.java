@@ -16,9 +16,10 @@ public class PaymentMovieServiceImpl implements PaymentService {
 	
 	@Override
 	public int insert(PaymentDTO paymentDTO) throws Exception {
+		System.out.println("서비스");
 		return paymentMovieDAOImpl.pay_start(paymentDTO);				
 	}
-
+	
 	@Override
 	public PaymentDTO selectone(String id) throws Exception {
 		
