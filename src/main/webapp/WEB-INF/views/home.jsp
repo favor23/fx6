@@ -67,7 +67,7 @@ background-color: white;
 <a href="paySystem/aaa1">aaa1</a>
 <a href="paySystem/pay24">pay24</a>
 <a href="index">index</a>
-
+<a href="defaultPage">defaultPage</a>
 <a href="board/movie/movieList">movieList</a>
 <a href="board/review/reviewList">reviewList</a>
 <a href="board/required/requiredList">requiredList</a>
@@ -77,6 +77,8 @@ background-color: white;
 <a href="chatting/chat4">chat4</a>
 <a href="chatting/chat5">chat5</a>
 <a href="admin/adminPage">adminPage</a>
+<a href="board/cinema/cinema_list">cinema_list</a>
+<a href="board/cinema/cinema_my">cinema_my</a>
 <a href="crowd_funding/campaign/campaignCreate">campaignCreate</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>

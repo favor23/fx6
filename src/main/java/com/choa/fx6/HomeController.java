@@ -49,7 +49,9 @@ public class HomeController {
 	@RequestMapping(value="/index")
 	public void index(){		
 	}
-	
+	@RequestMapping(value="/defaultPage")
+	public void defaultPage(){		
+	}
 	@RequestMapping(value="/temp/header")
 	public void header(){	
 	}
