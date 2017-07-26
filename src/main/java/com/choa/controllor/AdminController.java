@@ -31,6 +31,26 @@ public class AdminController {
 		public void adminPage(){
 			
 		}
+		
+		@RequestMapping(value="admin/adminBusiness", method=RequestMethod.GET)
+		public void adminBusiness(){
+			
+		}
+		
+		@RequestMapping(value="admin/adminSchedule", method=RequestMethod.GET)
+		public void adminSchedule(){
+			
+		}
+		
+		@RequestMapping(value="admin/adminRequest", method=RequestMethod.GET)
+		public void adminRequest(){
+			
+		}
+		
+		@RequestMapping(value="admin/adminManager", method=RequestMethod.GET)
+		public void adminManager(){
+			
+		}
 	
 	
 }
