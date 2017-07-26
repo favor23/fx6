@@ -9,7 +9,10 @@ public class CinemaController {
 	public void cinema_list(){
 		
 	}
-	
+	@RequestMapping(value="/board/cinema/cinema_time")
+	public void cinema_time(){
+		
+	}
 	@RequestMapping(value="/board/cinema/cinema_my")
 	public void cinema_my(){
 		

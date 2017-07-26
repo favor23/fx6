@@ -79,6 +79,7 @@ background-color: white;
 <a href="admin/adminPage">adminPage</a>
 <a href="board/cinema/cinema_list">cinema_list</a>
 <a href="board/cinema/cinema_my">cinema_my</a>
+<a href="board/cinema/cinema_time">cinema_time</a>
 <a href="crowd_funding/campaign/campaignCreate">campaignCreate</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>
