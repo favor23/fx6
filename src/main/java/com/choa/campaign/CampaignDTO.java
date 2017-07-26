@@ -7,7 +7,7 @@ public class CampaignDTO {
 	private String id;
 	private String campaign_title;
 	private int goal_price;
-	private Date campaign_start;
+	private int period;
 	private Date campaign_end;
 	private String campaign_img;
 	private String simple_story;
@@ -42,11 +42,11 @@ public class CampaignDTO {
 	public void setGoal_price(int goal_price) {
 		this.goal_price = goal_price;
 	}
-	public Date getCampaign_start() {
-		return campaign_start;
+	public int getPeriod() {
+		return period;
 	}
-	public void setCampaign_start(Date campaign_start) {
-		this.campaign_start = campaign_start;
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 	public Date getCampaign_end() {
 		return campaign_end;
