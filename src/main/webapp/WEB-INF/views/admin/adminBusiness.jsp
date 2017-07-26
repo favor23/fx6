@@ -33,55 +33,56 @@
 			"rows" : [ {
 				"id" : 1,
 				"name" : "All Tasks",
-				"begin" : "3/4/2010",
-				"end" : "3/20/2010",
+				"begin" : "3/4/2017",
+				"end" : "3/20/2017",
+				"persons" : "유재석 외 6명",
 				"progress" : 60,
 				"iconCls" : "icon-ok"
 			}, {
 				"id" : 2,
 				"name" : "Designing",
-				"begin" : "3/4/2010",
-				"end" : "3/10/2010",
+				"begin" : "3/4/2017",
+				"end" : "3/10/2017",
 				"progress" : 100,
 				"_parentId" : 1,
 				"state" : "closed"
 			}, {
 				"id" : 21,
 				"name" : "Database",
-				"persons" : 2,
-				"begin" : "3/4/2010",
-				"end" : "3/6/2010",
+				"persons" : "파이팅/화이팅/열심히",
+				"begin" : "3/4/2017",
+				"end" : "3/6/2017",
 				"progress" : 100,
 				"_parentId" : 2
 			}, {
 				"id" : 22,
 				"name" : "UML",
-				"persons" : 1,
-				"begin" : "3/7/2010",
-				"end" : "3/8/2010",
+				"persons" : "열공",
+				"begin" : "3/7/2017",
+				"end" : "3/8/2017",
 				"progress" : 100,
 				"_parentId" : 2
 			}, {
 				"id" : 23,
 				"name" : "Export Document",
-				"persons" : 1,
-				"begin" : "3/9/2010",
-				"end" : "3/10/2010",
+				"persons" : "머있나",
+				"begin" : "3/9/2017",
+				"end" : "3/10/2017",
 				"progress" : 100,
 				"_parentId" : 2
 			}, {
 				"id" : 3,
 				"name" : "Coding",
-				"persons" : 2,
-				"begin" : "3/11/2010",
-				"end" : "3/18/2010",
+				"persons" : "아이유",
+				"begin" : "3/11/2017",
+				"end" : "3/18/2017",
 				"progress" : 80
 			}, {
 				"id" : 4,
 				"name" : "Testing",
-				"persons" : 1,
-				"begin" : "3/19/2010",
-				"end" : "3/20/2010",
+				"persons" : "김지수",
+				"begin" : "3/19/2017",
+				"end" : "3/20/2017",
 				"progress" : 20
 			} ],
 			"footer" : [ {
@@ -149,16 +150,19 @@
 		var d2 = new Date();
 		d2.setMonth(d2.getMonth() + 1);
 		var node = $('#tg').treegrid('getSelected');
-		$('#tg').treegrid('append', {
-			parent : node.id,
-			data : [ {
-				id : idIndex,
-				name : 'New Task' + idIndex,
-				persons : parseInt(Math.random() * 10),
-				begin : $.fn.datebox.defaults.formatter(d1),
-				end : $.fn.datebox.defaults.formatter(d2),
-				progress : parseInt(Math.random() * 100)
-			} ]
+		  var parentid = null;
+          var node = $('#tg').treegrid('getSelected');
+          if (node) parentid=node.id;
+          $('#tg').treegrid('append',{
+              parent: parentid,
+              data: [{
+                  id: idIndex,
+                  name: 'New Task'+idIndex,
+                  persons: parseInt(Math.random()*10),
+                  begin: $.fn.datebox.defaults.formatter(d1),
+                  end: $.fn.datebox.defaults.formatter(d2),
+                  progress: parseInt(Math.random()*100)
+              }]
 		})
 	}
 	function removeIt() {
@@ -166,13 +170,7 @@
 		if (node) {
 			$('#tg').treegrid('remove', node.id);
 		}
-	}
-	$('#tg').treegrid({
-        data: dataSet,
-        onDblClickCell : function(field, row) {
-                edit();
-        }                    
-    });
+	}	
 
 </script>
 <style type="text/css">
@@ -190,15 +188,8 @@
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
 	<div id="Manager_table">
-	<h2>Editable TreeGrid</h2>
-	<p>Select one node and click edit button to perform editing.</p>
-	<div style="margin: 20px 0;">
-		<a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a> 
-		<a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="save()">저장</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a> 
-	</div>	
+	<h2>@@부서 사원만 사용가능</h2>
+	<p>자신의 업무를 퍼센트를 작성할수있슴</p>	
 	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:900px"
 			data-options="
 				iconCls: 'icon-ok',
