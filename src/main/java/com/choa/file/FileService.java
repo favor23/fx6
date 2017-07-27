@@ -37,6 +37,14 @@ public class FileService {
 		return fileName;
 	}
 	
+	public String fileSave2(MultipartFile multipartFile, HttpSession session) throws Exception {
+		FileSaver fileSaver = new FileSaver();
+		
+		String fileName = fileSaver.fileSave(session.getServletContext().getRealPath("resources/img/campaign"), multipartFile);
+		
+		return fileName;
+	}
+	
 	public boolean fileDelete(String fileName, HttpSession session) throws Exception {
 		String realPath = session.getServletContext().getRealPath("resources/img/movie-img");
 		
