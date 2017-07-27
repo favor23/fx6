@@ -18,9 +18,9 @@
 	.nav_left,
 	.nav_right {
 		width: 20%;
-		height: 930px;
+		height: 700px;
 		float: left;
-		background-color: gray;
+		background-color: #f5f5f0;
 	}
 	
 	.nav_left {
@@ -33,9 +33,9 @@
 	
 	.main_art {
 		width: 60%;
-		height: 930px;
+		height: 700px;
 		float: left;
-		background-color: lime;
+		background-color: #f5f5f0;
 	}
 	
 	footer {
@@ -72,23 +72,63 @@
 	.top2_wrap img:hover {
 		opacity: 1;
 	}
+	
+	.main_name {
+		font-size: 1.5em;
+		text-align: center;
+		margin-top: 50px;
+	}
+	
+	.main_con {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+		display: block;
+		background-color: white;
+		box-shadow: 1px 1px 5px #adad85;
+		padding: 100px;
+	}
+	
+	.table {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+		display: block;
+	}
+	
+	tr td:first-child {
+		width: 240px;
+	}
+	
+	.main_btns input {
+		width: 150px; 
+		height: 40px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+		display: block;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
 		$(".top1_img").click(function() {
-			location.href = "campaignCreateForm";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm";				
+			}
 		});
 		
 		$(".top2_img").click(function() {
-			location.href = "campaignCreateForm2";
-		});
-		
-		$(".top3_img").click(function() {
-			location.href = "campaignCreateForm3";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm2";				
+			}
 		});
 		
 		$(".top4_img").click(function() {
-			location.href = "campaignCreateForm4";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm4";				
+			}
 		});
 	});
 </script>
@@ -116,7 +156,51 @@
 			</div>
 		</article>
 		<article class="main_art">
-		
+			<div class="main_name">
+				혜택
+			</div>
+			<div class="main_con">
+				<form action="campaignCreateForm3" id="frm" method="post" enctype="multipart/form-data">
+					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
+					<table class="table">
+						<tr>
+							<td>옵션 메세지</td>
+							<td>
+								<input type="text" class="option_msg" name="option_msg" placeholder="혜택에 선택 사항이 있을 경우 기재해주세요." style="width: 450px; height: 40px; border-radius: 4px; border: 1px solid #b8b894;">
+								<p>후원자들이 반드시 입력해야 하는 옵션 메세지를 안내해주세요.</p>
+							</td>
+						</tr>
+						<tr>
+							<td><span style="color: red;">*</span>캠페인 혜택</td>
+							<td>
+								<input type="button" class="btn btn-info" style="float: right;" value="등록하기"  data-toggle="modal" data-target="#myModal">
+								<p>혜택은 금액별, 혜택 내용별 최대 10개까지 등록할 수 있습니다.</p>
+							</td>
+						</tr>
+					</table>
+					<div class="main_btns">
+						<input type="button" class="btn btn-warning" value="다음 단계로">
+					</div>
+				</form>
+			</div>
+			<div class="modal_div">
+				<div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog modal-lg">
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">혜택 등록하기</h4>
+				        </div>
+				        <div class="modal-body">
+				          <p>This is a large modal.</p>
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+			</div>
 		</article>
 		
 		<nav class="nav_right">

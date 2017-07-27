@@ -12,7 +12,7 @@ public class CampaignDTO {
 	private String campaign_img;
 	private String simple_story;
 	private String story;
-	private String main_img;
+	private String main_video;
 	private String option_msg;
 	private int benefit_num;
 	private String bank;
@@ -72,11 +72,11 @@ public class CampaignDTO {
 	public void setStory(String story) {
 		this.story = story;
 	}
-	public String getMain_img() {
-		return main_img;
+	public String getMain_video() {
+		return main_video;
 	}
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setMain_video(String main_video) {
+		this.main_video = main_video;
 	}
 	public String getOption_msg() {
 		return option_msg;

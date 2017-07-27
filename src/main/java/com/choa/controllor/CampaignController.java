@@ -27,13 +27,8 @@ public class CampaignController {
 		
 	}
 	
-	@RequestMapping(value = "campaignCreateForm", method = RequestMethod.GET)
-	public void campaignCreateForm() {
-		
-	}
-	
 	@RequestMapping(value = "campaignCreateForm", method = RequestMethod.POST)
-	public String calpaignCreateForm(String campaign_title, Integer goal_price, @RequestParam("campaign_end") String campaign_end, @RequestParam("campaign_img") MultipartFile campaign_img, HttpSession session, Model model) {
+	public String calpaignCreateForm(String campaign_title, Integer goal_price, Integer period, @RequestParam("campaign_end") String campaign_end, @RequestParam("campaign_img") MultipartFile campaign_img, HttpSession session, Model model) {
 		FileService fileService = new FileService();
 		CampaignDTO campaignDTO = new CampaignDTO();
 		
@@ -41,6 +36,7 @@ public class CampaignController {
 		
 		campaignDTO.setCampaign_title(campaign_title);
 		campaignDTO.setGoal_price(goal_price);
+		campaignDTO.setPeriod(period);
 		campaignDTO.setCampaign_end(Date.valueOf(campaign_end));
 		
 		try {
@@ -57,9 +53,11 @@ public class CampaignController {
 		return "crowd_funding/campaign/campaignCreateForm2";
 	}
 	
-	@RequestMapping(value = "campaignCreateForm2", method = RequestMethod.GET)
-	public void campaignCreateForm2() {
+	@RequestMapping(value = "campaignCreateForm2", method = RequestMethod.POST)
+	public String campaignCreateForm2(CampaignDTO campaignDTO, Model model) {		
+		model.addAttribute("dto", campaignDTO);
 		
+		return "crowd_funding/campaign/campaignCreateForm3";
 	}
 	
 	@RequestMapping(value = "campaignCreateForm3", method = RequestMethod.GET)

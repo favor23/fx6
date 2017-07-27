@@ -84,7 +84,6 @@
 	
 	.main_con {
 		width: 90%;
-		height: 650px;
 		margin-left: auto;
 		margin-right: auto;
 		margin-top: 20px;
@@ -100,7 +99,6 @@
 		margin-right: auto;
 		margin-top: 20px;
 		display: block;
-		
 	}
 	
 	.datepicker {
@@ -122,20 +120,22 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".top1_img").click(function() {
-			location.href = "campaignCreateForm";
-		});
-		
 		$(".top2_img").click(function() {
-			location.href = "campaignCreateForm2";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm2";				
+			}
 		});
 		
 		$(".top3_img").click(function() {
-			location.href = "campaignCreateForm3";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm3";				
+			}
 		});
 		
 		$(".top4_img").click(function() {
-			location.href = "campaignCreateForm4";
+			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
+				location.href = "campaignCreateForm4";				
+			}
 		});
 		
 		$('.input-group.date').datepicker({
@@ -146,8 +146,38 @@
             language: "kr"
         });
 		
+		$(".period").keyup(function() {
+			var period = $(this).val() * (1000*60*60*24);
+			var today = new Date();
+			var end = today.getTime() + period;
+			var endDate = new Date(end);
+			var month = endDate.getMonth() + 1;
+			
+			$(".form-control").val(endDate.getFullYear() + "-" + month + "-" + endDate.getDate());
+		});
+		
 		$(".btn").click(function() {
-			$("#frm").submit();
+			if($(".campaign_title").val()!=null&&$(".campaign_title").val()!="") {
+				if($(".goal_price").val()!=null&&$(".goal_price").val()!="") {
+					if($(".goal_price").val()>100000||$(".goal_price").val()==100000) {
+						if($(".period").val()!=null&&$(".period").val()!="") {
+							if($(".period").val()==1||$(".period").val()==60||$(".period").val()>1&&$(".period").val()<60) {
+								$("#frm").submit();							
+							} else {
+								alert("캠페인 기간은 최소 1일 이상, 최대 60일 이하로 입력해주세요.")
+							}
+						} else {
+							alert("캠페인 기간을 입력해주세요.");
+						}
+					} else {
+						alert("캠페인 목표 금액은 10만원 이상으로 입력해주세요.")
+					}
+				} else {
+					alert("캠페인 목표 금액을 입력해주세요.");
+				}
+			} else {
+				alert("캠페인 제목을 입력해주세요.");
+			}
 		});
 	});
 </script>
@@ -180,26 +210,27 @@
 			</div>
 			<div class="main_con">
 				<form action="campaignCreateForm" id="frm" method="post" enctype="multipart/form-data">
+					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
 					<table class="table">
 						<tr>
 							<td><span style="color: red;">*</span>캠페인 제목</td>
 							<td>
-								<input type="text" name="campaign_title" placeholder="캠페인 제목을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894;">
+								<input type="text" class="campaign_title" name="campaign_title" placeholder="캠페인 제목을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894;">
 							</td>
 						</tr>
 						<tr>
 							<td><span style="color: red;">*</span>캠페인 목표 금액</td>
 							<td>
-								<input type="number" name="goal_price" min="100000" placeholder="캠페인 목표 금액을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894; margin-right: 10px;">원
+								<input type="number" class="goal_price" name="goal_price" min="100000" placeholder="캠페인 목표 금액을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894; margin-right: 10px;">원
 								<p>최소 캠페인 목표 금액은 10만원이며, 최대 금액은 제한이 없습니다.</p>
 							</td>
 						</tr>
 						<tr>
 							<td><span style="color: red;">*</span>캠페인 기간</td>
 							<td>
-						        <input type="number" name="period" placeholder="캠페인 기간을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894; margin-right: 10px; margin-bottom: 15px;">일
+						        <input type="number" class="period" name="period" min="1" max="60" placeholder="캠페인 기간을 입력해주세요." style="width: 400px; height: 40px; border-radius: 4px; border: 1px solid #b8b894; margin-right: 10px; margin-bottom: 15px;">일
 						        <div class="input-group date">
-						            <input type="text" class="form-control" placeholder="캠페인 기간에 따른 종료 예정일" style="width: 400px; border: 1px solid #b8b894" name="campaign_end">
+						            <input type="text" class="form-control" placeholder="캠페인 기간에 따른 종료 예정일" style="width: 400px; border: 1px solid #b8b894" name="campaign_end" readonly="readonly">
 						            <span class="input-group-addon">
 						            	<i class="glyphicon glyphicon-calendar"></i>
 						            </span>
