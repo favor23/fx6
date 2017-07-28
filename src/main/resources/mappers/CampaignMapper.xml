@@ -3,5 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="CampaignMapper">
-
+	<insert id="campaignWrite">
+		insert into campaign(campaign_num) values(campaign_seq.nextval)
+	</insert>
+	<select id="numSelect" resultType="java.lang.Integer">
+		select last_number from user_sequences where sequence_name=upper('campaign_seq')
+	</select>
 </mapper>

@@ -14,7 +14,6 @@ public class CampaignDTO {
 	private String story;
 	private String main_video;
 	private String option_msg;
-	private int benefit_num;
 	private String bank;
 	private String bank_account;
 	
@@ -83,12 +82,6 @@ public class CampaignDTO {
 	}
 	public void setOption_msg(String option_msg) {
 		this.option_msg = option_msg;
-	}
-	public int getBenefit_num() {
-		return benefit_num;
-	}
-	public void setBenefit_num(int benefit_num) {
-		this.benefit_num = benefit_num;
 	}
 	public String getBank() {
 		return bank;
