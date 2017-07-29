@@ -27,7 +27,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/admin_m/jquery.easyui.min.js"></script>
 <script type="text/javascript">
+	
 	$(function() {
+		list();
 		var dataSet = {
 			"total" : 7,
 			"rows" : [ {
@@ -84,17 +86,24 @@
 				"begin" : "3/19/2017",
 				"end" : "3/20/2017",
 				"progress" : 20
-			} ],
-			"footer" : [ {
-				"name" : "Total Persons:",
-				"persons" : 7,
-				"iconCls" : "icon-sum"
 			} ]
 		}
 		$('#tg').treegrid({
 			data : dataSet
 		});
 	});
+	//list가져오기
+	function list(){
+		$.post("./work_list",function(data){
+			alert("data :"+JSON.stringify(data));
+			//data=JSON.parse(data);
+			alert("data[0] :"+data.worklist[0].num);
+			
+			
+		})
+		
+	}	
+	
 	function formatProgress(value) {
 		if (value) {
 			var s = '<div style="width:100%;border:1px solid #ccc">'
@@ -150,19 +159,20 @@
 		var d2 = new Date();
 		d2.setMonth(d2.getMonth() + 1);
 		var node = $('#tg').treegrid('getSelected');
-		  var parentid = null;
-          var node = $('#tg').treegrid('getSelected');
-          if (node) parentid=node.id;
-          $('#tg').treegrid('append',{
-              parent: parentid,
-              data: [{
-                  id: idIndex,
-                  name: 'New Task'+idIndex,
-                  persons: parseInt(Math.random()*10),
-                  begin: $.fn.datebox.defaults.formatter(d1),
-                  end: $.fn.datebox.defaults.formatter(d2),
-                  progress: parseInt(Math.random()*100)
-              }]
+		var parentid = null;
+		var node = $('#tg').treegrid('getSelected');
+		if (node)
+			parentid = node.id;
+		$('#tg').treegrid('append', {
+			parent : parentid,
+			data : [ {
+				id : idIndex,
+				name : 'New Task' + idIndex,
+				persons : parseInt(Math.random() * 10),
+				begin : $.fn.datebox.defaults.formatter(d1),
+				end : $.fn.datebox.defaults.formatter(d2),
+				progress : parseInt(Math.random() * 100)
+			} ]
 		})
 	}
 	function removeIt() {
@@ -170,8 +180,7 @@
 		if (node) {
 			$('#tg').treegrid('remove', node.id);
 		}
-	}	
-
+	}
 </script>
 <style type="text/css">
 .datagrid .panel-body{
@@ -187,7 +196,7 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
-	<div id="Manager_table">
+	<div id="Manager_table">	
 	<h2>@@부서 팀장만 사용가능</h2>
 	<p>부서내 사원들에게 업무 부여가능</p>
 	<div style="margin: 20px 0;">
