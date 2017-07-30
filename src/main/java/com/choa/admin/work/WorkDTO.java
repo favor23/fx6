@@ -3,26 +3,23 @@ package com.choa.admin.work;
 import java.sql.Date;
 
 public class WorkDTO {
-	private int num,
+	private int id,
 				progress;
 	
-	private String id, 
+	private String  
 	name,
 	persons,
-	iconcls,
-	offer_id,
-	department,
-	position;
+	iconcls;
 	
 	private Date begin,
 	end;
 
-	public int getNum() {
-		return num;
+	public int getId() {
+		return id;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getProgress() {
@@ -33,13 +30,7 @@ public class WorkDTO {
 		this.progress = progress;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -65,29 +56,6 @@ public class WorkDTO {
 		this.iconcls = iconcls;
 	}
 
-	public String getOffer_id() {
-		return offer_id;
-	}
-
-	public void setOffer_id(String offer_id) {
-		this.offer_id = offer_id;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
 
 	public Date getBegin() {
 		return begin;

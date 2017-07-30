@@ -6,27 +6,31 @@
  	<select id="selectList" resultType="com.choa.admin.work.WorkDTO">
 		select * from 
 		(select rownum r, m.* from 
-		(select * from work order by num desc) m)
+		(select * from works order by id desc) m)
 	</select>
 	
 	<select id="selectOne" resultType="com.choa.admin.work.WorkDTO" parameterType="com.choa.admin.work.WorkDTO">
-		select * from work where num=#{num}
+		select * from works where id=#{id}
 	</select>
 	
 	<insert id="insert" parameterType="com.choa.admin.work.WorkDTO">
-		 insert into work values(work_seq.nextval,#{id},#{name},#{begin},#{end},#{persons},#{progress},#{iconcls},#{offer_id},#{department},#{position})
-	</insert>
+	<!-- 	 insert into works values(work_seq.nextval,#{id},#{name},#{begin},#{end},#{persons},#{progress},#{iconcls},#{offer_id},#{department},#{position})
+	 -->
+	 insert into works values(work_seq.nextval,#{iconcls},#{name},#{begin},#{end},#{persons},#{progress})
+	
+	 
+	 </insert>
 	
 	<update id="update" parameterType="com.choa.admin.work.WorkDTO">
-		UPDATE work set id=#{id}, name=#{name},begin=#{begin}, end=#{end},persons=#{persons},progress=#{progress}, iconcls=#{iconcls} where num=#{num} and offer_id=#{offer_id}
+		UPDATE works set iconcls=#{iconcls}, name=#{name},begin=#{begin}, end=#{end},persons=#{persons},progress=#{progress} where id=#{id} 
 	</update>
 	
 	<update id="update_pro" parameterType="com.choa.admin.work.WorkDTO">
-		UPDATE work set progress=#{progress} where num=#{num} and id=#{offer_id}
+		UPDATE works set progress=#{progress} where id=#{id} 
 	</update>
 	
 	<delete id="delete" parameterType="com.choa.admin.work.WorkDTO">
-		DELETE FROM work WHERE num=#{num} and offer_id=#{offer_id}
+		DELETE FROM works WHERE id=#{id}
 	</delete>
 	
 	

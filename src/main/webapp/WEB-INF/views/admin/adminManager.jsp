@@ -26,162 +26,6 @@
 	src="${pageContext.request.contextPath}/admin_m/jquery.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/admin_m/jquery.easyui.min.js"></script>
-<script type="text/javascript">
-	
-	$(function() {
-		list();
-		var dataSet = {
-			"total" : 7,
-			"rows" : [ {
-				"id" : 1,
-				"name" : "All Tasks",
-				"begin" : "3/4/2017",
-				"end" : "3/20/2017",
-				"persons" : "유재석 외 6명",
-				"progress" : 60,
-				"iconCls" : "icon-ok"
-			}, {
-				"id" : 2,
-				"name" : "Designing",
-				"begin" : "3/4/2017",
-				"end" : "3/10/2017",
-				"progress" : 100,
-				"_parentId" : 1,
-				"state" : "closed"
-			}, {
-				"id" : 21,
-				"name" : "Database",
-				"persons" : "파이팅/화이팅/열심히",
-				"begin" : "3/4/2017",
-				"end" : "3/6/2017",
-				"progress" : 100,
-				"_parentId" : 2
-			}, {
-				"id" : 22,
-				"name" : "UML",
-				"persons" : "열공",
-				"begin" : "3/7/2017",
-				"end" : "3/8/2017",
-				"progress" : 100,
-				"_parentId" : 2
-			}, {
-				"id" : 23,
-				"name" : "Export Document",
-				"persons" : "머있나",
-				"begin" : "3/9/2017",
-				"end" : "3/10/2017",
-				"progress" : 100,
-				"_parentId" : 2
-			}, {
-				"id" : 3,
-				"name" : "Coding",
-				"persons" : "아이유",
-				"begin" : "3/11/2017",
-				"end" : "3/18/2017",
-				"progress" : 80
-			}, {
-				"id" : 4,
-				"name" : "Testing",
-				"persons" : "김지수",
-				"begin" : "3/19/2017",
-				"end" : "3/20/2017",
-				"progress" : 20
-			} ]
-		}
-		$('#tg').treegrid({
-			data : dataSet
-		});
-	});
-	//list가져오기
-	function list(){
-		$.post("./work_list",function(data){
-			alert("data :"+JSON.stringify(data));
-			//data=JSON.parse(data);
-			alert("data[0] :"+data.worklist[0].num);
-			
-			
-		})
-		
-	}	
-	
-	function formatProgress(value) {
-		if (value) {
-			var s = '<div style="width:100%;border:1px solid #ccc">'
-					+ '<div style="width:' + value
-					+ '%;background:#cc0000;color:#fff">' + value + '%'
-					+ '</div>'
-			'</div>';
-			return s;
-		} else {
-			return '';
-		}
-	}
-	var editingId;
-	function edit() {
-		if (editingId != undefined) {
-			$('#tg').treegrid('select', editingId);
-			return;
-		}
-		var row = $('#tg').treegrid('getSelected');
-		if (row) {
-			editingId = row.id
-			$('#tg').treegrid('beginEdit', editingId);
-		}
-	}
-	function save() {
-		if (editingId != undefined) {
-			var t = $('#tg');
-			t.treegrid('endEdit', editingId);
-			editingId = undefined;
-			var persons = 0;
-			var rows = t.treegrid('getChildren');
-			for (var i = 0; i < rows.length; i++) {
-				var p = parseInt(rows[i].persons);
-				if (!isNaN(p)) {
-					persons += p;
-				}
-			}
-			var frow = t.treegrid('getFooterRows')[0];
-			frow.persons = persons;
-			t.treegrid('reloadFooter');
-		}
-	}
-	function cancel() {
-		if (editingId != undefined) {
-			$('#tg').treegrid('cancelEdit', editingId);
-			editingId = undefined;
-		}
-	}
-	var idIndex = 100;
-	function append() {
-		idIndex++;
-		var d1 = new Date();
-		var d2 = new Date();
-		d2.setMonth(d2.getMonth() + 1);
-		var node = $('#tg').treegrid('getSelected');
-		var parentid = null;
-		var node = $('#tg').treegrid('getSelected');
-		if (node)
-			parentid = node.id;
-		$('#tg').treegrid('append', {
-			parent : parentid,
-			data : [ {
-				id : idIndex,
-				name : 'New Task' + idIndex,
-				persons : parseInt(Math.random() * 10),
-				begin : $.fn.datebox.defaults.formatter(d1),
-				end : $.fn.datebox.defaults.formatter(d2),
-				progress : parseInt(Math.random() * 100)
-			} ]
-		})
-	}
-	function removeIt() {
-		var node = $('#tg').treegrid('getSelected');
-		if (node) {
-			$('#tg').treegrid('remove', node.id);
-		}
-	}
-</script>
 <style type="text/css">
 .datagrid .panel-body{
 	padding: 0px 0px 0px 0px;"
@@ -200,11 +44,15 @@
 	<h2>@@부서 팀장만 사용가능</h2>
 	<p>부서내 사원들에게 업무 부여가능</p>
 	<div style="margin: 20px 0;">
-		<a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a> 
-		<a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="save()">저장</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a> 
+		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
+		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">수정</button>
+		<button type="button" class="btn btn-info btn-lg" onclick="start()">새로고침</button>
+		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button>
+		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="dbupdatesave()">저장</a> -->
+	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a>  -->
 	</div>	
 	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:900px"
 			data-options="
@@ -222,14 +70,227 @@
 			<tr>
 				<th data-options="field:'name',width:180,editor:'text'">업무명</th>
 				<th data-options="field:'persons',width:60,align:'right',editor:'numberbox'">사원명</th>
-				<th data-options="field:'begin',width:80,editor:'datebox'">시작 날짜</th>
-				<th data-options="field:'end',width:80,editor:'datebox'">마감 날짜</th>
+				<th data-options="field:'begin',width:80,editor:'text'">시작 날짜</th>
+				<th data-options="field:'end',width:80,editor:'text'">마감 날짜</th>
 				<th data-options="field:'progress',width:120,formatter:formatProgress,editor:'numberbox'">진행 정도</th>
 			</tr>
 		</thead>
 	</table>
 	</div>
 </div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+      		<input type="hidden" id="iconcls" value="icon-ok">
+        	프로젝트명<input type="text" id="name" value="">
+        	프로젝트 할사람<input type="text" id="persons" value="">
+        	시작<input type="text" id="begin" value="">
+        	끝<input type="text" id="end" value="">
+        	<input type="hidden" id="progress" value="0">
+        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="append()" data-dismiss="modal">추가</button>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  
+  <div id="myModal_mod" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+      		<input type="hidden" id="iconcls_mod" value="icon-ok">
+      		<input type="hidden" id="id_mod" value="">
+        	프로젝트명<input type="text" id="name_mod" value="">
+        	프로젝트 할사람<input type="text" id="persons_mod" value="">
+        	시작<input type="text" id="begin_mod" value="">
+        	끝<input type="text" id="end_mod" value="">
+        	퍼센트<input type="number" id="progress_mod" value="">
+        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
 <c:import url="../temp/footer.jsp" />
 </body>
+<script type="text/javascript">
+	/* var keynum=0; */
+	start();
+	function start(){
+		$.post("./work_list",function(data){
+			/* 날짜 형식 변경 */
+			/* var cut,begin,cut2,end;
+			for(var i=0;i<100;i++){
+				if(data.worklist[i]!=null){
+					keynum=i+1;
+					cut=data.worklist[i].begin.split('-');
+					begin=cut[2]+'/'+cut[1]+'/'+cut[0];
+					data.worklist[i].begin=begin;
+					cut2=data.worklist[i].end.split('-');
+					end=cut[2]+'/'+cut[1]+'/'+cut[0];
+					data.worklist[i].end=end;
+				}else{
+					break;
+				}
+			} */
+			/* 제이슨 짜르기  */
+			var str=JSON.stringify(data);			
+			var str=str.substring(str.indexOf('['),str.indexOf(']')+1);			
+			alert(str);
+			/* 다시 제이슨 오브젝트화 */
+			str=JSON.parse(str);
+			alert(str);
+		var dataSet = {
+			"total" : 7,
+			"rows" : str			
+			}		
+		$('#tg').treegrid({
+			data : dataSet
+		});
+		
+	})
+	}
+	
+	function formatProgress(value) {
+		if (value) {
+			var s = '<div style="width:100%;border:1px solid #ccc">'
+					+ '<div style="width:' + value
+					+ '%;background:#cc0000;color:#fff">' + value + '%'
+					+ '</div>'
+			'</div>';
+			return s;
+		} else {
+			return '';
+		}
+	}
+	var editingId;
+	var row;
+	function edit() {
+		if (editingId != undefined) {
+			$('#tg').treegrid('select', editingId);
+			return;
+		}
+		row = $('#tg').treegrid('getSelected');		
+		if (row) {
+			editingId = row.id
+			$('#tg').treegrid('beginEdit', editingId);
+		}		
+		$("#id_mod").attr("value",row.id);
+		$("#name_mod").attr("value",row.name);
+		$("#persons_mod").attr("value",row.persons);
+		$("#begin_mod").attr("value",row.begin);
+		$("#end_mod").attr("value",row.end);
+		$("#progress_mod").attr("value",row.progress);
+		$("#iconcls_mod").attr("value",row.iconcls);
+		save();		
+	}
+	function dbupdatesave(){
+		$.post("./work_update",{ 
+			id : $("#id_mod").val(),		
+			name : $("#name_mod").val(),		
+			persons : $("#persons_mod").val(),
+			begin : $("#begin_mod").val(),
+			end : $("#end_mod").val(),
+			progress : $("#progress_mod").val(),
+			iconcls : $("#iconcls_mod").val()
+		});	
+		start();
+	}
+	function save() {
+		if (editingId != undefined) {
+			var t = $('#tg');
+			t.treegrid('endEdit', editingId);
+			editingId = undefined;
+			var persons = 0;
+			var rows = t.treegrid('getChildren');			
+			for (var i = 0; i < rows.length; i++) {
+				var p = parseInt(rows[i].persons);				
+				if (!isNaN(p)) {
+					persons += p;
+				}
+				
+			}
+			var frow = t.treegrid('getFooterRows')[0];
+			frow.persons = persons;
+			t.treegrid('reloadFooter');
+			
+		}
+	}
+	/* 디비 insert */
+	function dbsave(idIndex) {
+		
+		$.post("./work_insert",{ 
+			id : idIndex,		
+			name : $('#name').val(),		
+			persons : $('#persons').val(),
+			begin : $('#begin').val(),
+			end : $('#end').val(),
+			progress : $('#progress').val(),
+			iconcls : $('#iconcls').val()
+		});		
+	}
+	function cancel() {
+		if (editingId != undefined) {
+			$('#tg').treegrid('cancelEdit', editingId);
+			editingId = undefined;
+		}
+	}
+	var idIndex = 100;
+	function append() {
+		idIndex++;
+		var d1 = new Date();
+		var d2 = new Date();
+		d2.setMonth(d2.getMonth() + 1);
+		var node = $('#tg').treegrid('getSelected');
+		var parentid = null;
+		var node = $('#tg').treegrid('getSelected');
+		if (node)
+		{
+			parentid = node.id;
+		}
+		dbsave(idIndex);	
+		
+		$('#tg').treegrid('append', {
+			parent : parentid,
+			data : [ {
+				id : idIndex,
+				name : $('#name').val(),
+				persons : $('#persons').val(),
+				begin : $('#begin').val(),
+				end : $('#end').val(),
+				progress : $('#progress').val()
+			} ]
+		})
+		start();
+	}
+	function removeIt() {
+		var node = $('#tg').treegrid('getSelected');
+		if (node) {
+			$('#tg').treegrid('remove', node.id);
+		}
+		$.post("./work_delete",{ 
+			id : node.id	
+		});
+	}
+
+</script>
 </html>

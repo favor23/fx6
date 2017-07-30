@@ -49,7 +49,16 @@
 <c:import url="../temp/footer.jsp" />
 </body>
 <script>
-	
+var str;
+$.post("./schedul_list",function(data){
+	/* 제이슨 짜르기  */
+	str=JSON.stringify(data);			
+	str=str.substring(str.indexOf('['),str.indexOf(']')+1);			
+	/* 다시 제이슨 오브젝트화 */
+	str=JSON.parse(str);
+	gogo(str);
+})
+function gogo(str) {
 $('#calendar').fullCalendar({
 	header: {
 		left: 'prev,next today',
@@ -60,53 +69,8 @@ $('#calendar').fullCalendar({
 	navLinks: true, // can click day/week names to navigate views
 	businessHours: true, // display business hours
 	editable: true,
-	events: [
-		{
-			title: 'Business Lunch',
-			start: '2017-05-03T13:00:00',
-			constraint: 'businessHours'
-		},
-		{
-			title: 'Meeting',
-			start: '2017-05-13T11:00:00',
-			color: '#257e4a'
-		},
-		{
-			title: 'Conference',
-			start: '2017-05-18',
-			end: '2017-05-20'
-		},
-		{
-			title: 'Party',
-			start: '2017-05-29T20:00:00'
-		},
-
-		// areas where "Meeting" must be dropped
-		{
-			id: 'availableForMeeting',
-			start: '2017-05-11T10:00:00',
-			end: '2017-05-11T16:00:00',
-		},
-		{
-			id: 'availableForMeeting',
-			title: 'Party',
-			start: '2017-05-13T10:00:00',
-			end: '2017-05-13T16:00:00',
-		},
-
-		// red areas where no events can be dropped
-		{
-			start: '2017-05-24',
-			end: '2017-05-30',
-		},
-		{
-			start: '2017-05-06',
-			end: '2017-05-08',
-			overlap: false,
-			rendering: 'background',
-			color: '#ff9f89'
-		}
-	]
-});
+	events: str
+	});	
+}
 </script>
 </html>
