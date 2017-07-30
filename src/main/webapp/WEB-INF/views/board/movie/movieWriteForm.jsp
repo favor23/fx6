@@ -145,7 +145,7 @@
 					      <tr>
 					        <td>줄거리</td>
 					        <td>
-					        	<textarea rows="8" cols="80" name="synopsis">${dto.synopsis}</textarea>
+					        	<textarea rows="8" cols="80" name="synopsis" style="resize: none;">${dto.synopsis}</textarea>
 					        </td>
 					      </tr>
 					      <tr>

@@ -7,12 +7,12 @@ public class CampaignDTO {
 	private String id;
 	private String campaign_title;
 	private int goal_price;
-	private Date campaign_start;
+	private int period;
 	private Date campaign_end;
 	private String campaign_img;
 	private String simple_story;
 	private String story;
-	private String main_img;
+	private String main_video;
 	private String option_msg;
 	private int benefit_num;
 	private String bank;
@@ -42,11 +42,11 @@ public class CampaignDTO {
 	public void setGoal_price(int goal_price) {
 		this.goal_price = goal_price;
 	}
-	public Date getCampaign_start() {
-		return campaign_start;
+	public int getPeriod() {
+		return period;
 	}
-	public void setCampaign_start(Date campaign_start) {
-		this.campaign_start = campaign_start;
+	public void setPeriod(int period) {
+		this.period = period;
 	}
 	public Date getCampaign_end() {
 		return campaign_end;
@@ -72,11 +72,11 @@ public class CampaignDTO {
 	public void setStory(String story) {
 		this.story = story;
 	}
-	public String getMain_img() {
-		return main_img;
+	public String getMain_video() {
+		return main_video;
 	}
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setMain_video(String main_video) {
+		this.main_video = main_video;
 	}
 	public String getOption_msg() {
 		return option_msg;
