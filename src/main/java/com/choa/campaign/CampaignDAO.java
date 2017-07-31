@@ -17,4 +17,8 @@ public class CampaignDAO {
 	public int numSelect() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "numSelect");
 	}
+	
+	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "campaignComplete", campaignDTO);
+	}
 }

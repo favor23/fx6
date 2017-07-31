@@ -15,4 +15,8 @@ public class CampaignService {
 	public int numSelect() throws Exception {
 		return campaignDAO.numSelect();
 	}
+	
+	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
+		return campaignDAO.campaignComplete(campaignDTO);
+	}
 }

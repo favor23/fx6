@@ -19,13 +19,21 @@ public class BenefitController {
 	@Autowired
 	private BenefitService benefitService;
 	
-	@RequestMapping(value = "benefitWrite", method = RequestMethod.GET)
-	public String benefitWrite(BenefitDTO benefitDTO, Model model) {
+	@RequestMapping(value = "benefitWrite", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String benefitWrite(BenefitDTO benefitDTO) {
 		int result = 0;
 		String message = "혜택 등록 실패! 자세한 사항은 담당자에게 문의하세요.";
+		int count = 0;
 		
 		try {
-			result = benefitService.benefitWrite(benefitDTO);
+			count = benefitService.benefitCount(benefitDTO.getCampaign_num()-1);
+			
+			if(count<10) {
+				result = benefitService.benefitWrite(benefitDTO);				
+			} else {
+				message = "혜택은 10개 이하만 등록 가능합니다.";
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,10 +43,7 @@ public class BenefitController {
 			message = "혜택 등록 성공!";
 		}
 		
-		model.addAttribute("message", message);
-		model.addAttribute("path", "../campaign/campaignCreateForm3");
-		
-		return "commons/result";
+		return message;
 	}
 	
 	@RequestMapping(value = "benefitList/{campaign_num}", method = RequestMethod.GET)
@@ -54,5 +59,25 @@ public class BenefitController {
 		}
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "benefitDelete", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String benefitDelete(Integer benefit_num) {
+		int result = 0;
+		String message = "혜택 삭제 실패! 자세한 사항은 담당자에게 문의하세요.";
+		
+		try {
+			result = benefitService.benefitDelete(benefit_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			message = "혜택이 삭제 되었습니다.";
+		}
+		
+		return message;
 	}
 }

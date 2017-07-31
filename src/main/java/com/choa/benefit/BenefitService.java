@@ -17,4 +17,12 @@ public class BenefitService {
 	public List<BenefitDTO> benefitList(int campaign_num) throws Exception {
 		return benefitDAO.benefitList(campaign_num);
 	}
+	
+	public int benefitCount(int campaign_num) throws Exception {
+		return benefitDAO.benefitCount(campaign_num);
+	}
+	
+	public int benefitDelete(int benefit_num) throws Exception {
+		return benefitDAO.benefitDelete(benefit_num);
+	}
 }

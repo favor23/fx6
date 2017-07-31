@@ -134,6 +134,10 @@
 	.ben_list:last-child {
 		margin-bottom: 0px;
 	}
+	
+	.ben_del {
+		margin-top: 4px;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -178,7 +182,7 @@
 				if($(".benefit_price").val()!=null&&$(".benefit_price").val()!="") {
 					if($(".benefit_price").val()>1000||$(".benefit_price").val()==1000) {
 						if($(".benefit_contents").val()!=null&&$(".benefit_contents").val()!="") {
-							$("#frm2").submit();
+							benefitWrite();
 						} else {
 							alert("혜택 내용을 입력하세요.");
 						}	
@@ -192,6 +196,16 @@
 				alert("혜택명을 입력해주세요.");
 			}
 		});
+		
+		$(".next").click(function() {
+			$("#frm").submit();
+		});
+		
+		$(document).on("click", ".ben_del", function() {
+			var benefit_num = $(this).attr("id");
+			
+			benefitDelete(benefit_num);
+		});
 	});
 	
 	function getBenefitList(campaign_num) {
@@ -201,17 +215,51 @@
 			success: function(data) {
 				var result = "";
 				
-				if(data!=null) {
+				if(data!=null&&data!="") {
 					$(".body_left").attr("style", "background-color: white; box-shadow: 0px 0px 0px white;");
+					
+					$(data).each(function() {
+						result += '<div class="ben_list">';
+						result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + this.benefit_title + '</span>';
+						result += '<input type="button" class="btn btn-danger ben_del" value="삭제" id="' + this.benefit_num + '" style="float: right;">';
+						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">원</span>';
+						result += '<span style="float: right; margin-top: 5px; margin-right: 5px; font-size: 1.5em; color: #0052cc;">' + this.benefit_price + '</span>';
+						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">후원금액</span>';
+						result += '</div>';
+					});					
+				} else {
+					result += '<h2 style="text-align: center; vertical-align: middle;">등록된 혜택이 없습니다.</h2>';
 				}
-				
-				$(data).each(function() {
-					result += '<div class="ben_list">';
-					result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + this.benefit_title + '</span>';
-					result += '</div>';
-				});
-				
+					
 				$(".body_left").html(result);
+			}
+		});
+	}
+	
+	function benefitWrite() {
+		var params = $("#frm2").serialize();
+		
+		$.ajax({
+			url: "../benefit/benefitWrite",
+			type: "POST",
+			data: params,
+			success: function(data) {
+				alert(data.trim());
+				getBenefitList($(".num").val()-1);
+			}			
+		});
+	}
+	
+	function benefitDelete(benefit_num) {
+		$.ajax({
+			url: "../benefit/benefitDelete",
+			type: "POST",
+			data: {
+				benefit_num: benefit_num
+			},
+			success: function(data) {
+				alert(data.trim());
+				getBenefitList($(".num").val()-1);
 			}
 		});
 	}
@@ -244,7 +292,15 @@
 				혜택
 			</div>
 			<div class="main_con">
-				<form action="campaignCreateForm3" id="frm" method="post" enctype="multipart/form-data">
+				<form action="campaignCreateForm3" id="frm" method="post">
+					<input type="hidden" name="campaign_title" value="${dto.campaign_title}">
+					<input type="hidden" name="goal_price" value="${dto.goal_price}">
+					<input type="hidden" name="period" value="${dto.period}">
+					<input type="hidden" name="campaign_end" value="${dto.campaign_end}">
+					<input type="hidden" name="campaign_img" value="${dto.campaign_img}">
+					<input type="hidden" name="simple_story" value="${dto.simple_story}">
+					<input type="hidden" name="main_video" value="${dto.main_video}">
+					<input type="hidden" name="story" value="${dto.story}">
 					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
 					<table class="table">
 						<tr>
@@ -263,7 +319,7 @@
 						</tr>
 					</table>
 					<div class="main_btns">
-						<input type="button" class="btn btn-warning" value="다음 단계로">
+						<input type="button" class="btn btn-warning next" value="다음 단계로">
 					</div>
 				</form>
 			</div>
@@ -277,9 +333,9 @@
 				        </div>
 				        <div class="modal-footer">
 				          <div class="body_left">
-				          	<h2 style="text-align: center; vertical-align: middle;">등록된 혜택이 없습니다.</h2>
+				          	
 				          </div>
-				        <form action="../benefit/benefitWrite" id="frm2">
+				        <form name="frm2" id="frm2">
 				          <input type="hidden" class="num" name="campaign_num" value="${campaign_num}">
 				          <div class="body_right">
 				          	<table class="table">

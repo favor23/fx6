@@ -9,4 +9,10 @@
 	<select id="benefitList" parameterType="java.lang.Integer" resultType="com.choa.benefit.BenefitDTO">
 		select * from benefit where campaign_num=#{campaign_num} order by benefit_price asc
 	</select>
+	<select id="benefitCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select nvl(count(benefit_num), 0) from benefit where campaign_num=#{campaign_num}
+	</select>
+	<delete id="benefitDelete" parameterType="java.lang.Integer">
+		delete benefit where benefit_num=#{benefit_num}
+	</delete>
 </mapper>

@@ -16,7 +16,35 @@ public class CampaignDTO {
 	private String option_msg;
 	private String bank;
 	private String bank_account;
+	private String register_name;
+	private String register_phone;
+	private String register_email;
+	private String permission;
 	
+	public String getRegister_name() {
+		return register_name;
+	}
+	public void setRegister_name(String register_name) {
+		this.register_name = register_name;
+	}
+	public String getRegister_phone() {
+		return register_phone;
+	}
+	public void setRegister_phone(String register_phone) {
+		this.register_phone = register_phone;
+	}
+	public String getRegister_email() {
+		return register_email;
+	}
+	public void setRegister_email(String register_email) {
+		this.register_email = register_email;
+	}
+	public String getPermission() {
+		return permission;
+	}
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
 	public int getCampaign_num() {
 		return campaign_num;
 	}

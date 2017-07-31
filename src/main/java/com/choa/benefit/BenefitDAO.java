@@ -19,4 +19,12 @@ public class BenefitDAO {
 	public List<BenefitDTO> benefitList(int campaign_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "benefitList", campaign_num);
 	}
+	
+	public int benefitCount(int campaign_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "benefitCount", campaign_num);
+	}
+	
+	public int benefitDelete(int benefit_num) throws Exception {
+		return sqlSession.delete(NAMESPACE + "benefitDelete", benefit_num);
+	}
 }

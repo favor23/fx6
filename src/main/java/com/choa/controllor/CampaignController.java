@@ -47,7 +47,7 @@ public class CampaignController {
 	}
 	
 	@RequestMapping(value = "campaignCreateForm", method = RequestMethod.POST)
-	public String calpaignCreateForm(String campaign_title, Integer goal_price, Integer period, @RequestParam("campaign_end") String campaign_end, @RequestParam("campaign_img") MultipartFile campaign_img, HttpSession session, Model model) {
+	public String campaignCreateForm(String campaign_title, Integer goal_price, Integer period, @RequestParam("campaign_end") String campaign_end, @RequestParam("campaign_img") MultipartFile campaign_img, HttpSession session, Model model) {
 		FileService fileService = new FileService();
 		CampaignDTO campaignDTO = new CampaignDTO();
 		
@@ -89,8 +89,8 @@ public class CampaignController {
 		return "crowd_funding/campaign/campaignCreateForm3";
 	}
 	
-	@RequestMapping(value = "campaignCreateForm3", method = RequestMethod.GET)
-	public void campaignCreateForm3(Model model) {
+	@RequestMapping(value = "campaignCreateForm3", method = RequestMethod.POST)
+	public String campaignCreateForm3(CampaignDTO campaignDTO ,Model model) {
 		int num = 0;
 		
 		try {
@@ -100,11 +100,31 @@ public class CampaignController {
 			e.printStackTrace();
 		}
 		
+		model.addAttribute("dto", campaignDTO);
 		model.addAttribute("campaign_num", num);
+		
+		return "crowd_funding/campaign/campaignCreateForm4";
 	}
 	
-	@RequestMapping(value = "campaignCreateForm4", method = RequestMethod.GET)
-	public void campaignCreateForm4() {
+	@RequestMapping(value = "campaignCreateForm4", method = RequestMethod.POST)
+	public String campaignCreateForm4(CampaignDTO campaignDTO, Model model) {
+		int result = 0;
+		String message = "캠페인 생성 실패! 자세한 사항은 담당자에게 문의하세요.";
 		
+		try {
+			result = campaignService.campaignComplete(campaignDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0) {
+			message = "캠페인이 생성되었습니다!";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("path", "../../index");
+		
+		return "commons/result";
 	}
 }
