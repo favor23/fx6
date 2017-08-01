@@ -18,7 +18,7 @@ public class AdminDAOImpl implements MemberDAO{
 
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="AdminMapper.";
+	private static final String NAMESPACE="AdminMapper.";
 	
 	
 	
@@ -72,8 +72,8 @@ public class AdminDAOImpl implements MemberDAO{
 	}
 	
 
-	public AdminDTO selectOne() {
-		return sqlSession.selectOne(NAMESPACE+"admin_selectOne");
+	public AdminDTO selectOne(AdminDTO AdminDTO) {
+		return sqlSession.selectOne(NAMESPACE+"admin_selectOne",AdminDTO);
 	}
 	
 	
