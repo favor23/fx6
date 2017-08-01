@@ -180,7 +180,7 @@
 			if($(".main4_2").attr("title")=="stop") {
 				alert("약관에 동의하지 않으셨습니다. 약관에 동의해주세요.");
 			} else {
-				location.href = "campaignCreateForm";
+				location.href = "campaignWrite";
 			}
 		});
 	});

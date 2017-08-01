@@ -9,4 +9,17 @@ public class CampaignDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
+	
+	public int campaignWrite() throws Exception {
+		return sqlSession.insert(NAMESPACE + "campaignWrite");
+	}
+	
+	public int numSelect() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "numSelect");
+	}
+	
+	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
+		System.out.println("dao");
+		return sqlSession.update(NAMESPACE + "campaignComplete", campaignDTO);
+	}
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="BenefitMapper">
+	<insert id="benefitWrite" parameterType="com.choa.benefit.BenefitDTO">
+		insert into benefit values(benefit_seq.nextval, #{benefit_title}, #{benefit_price}, #{benefit_contents}, #{campaign_num}-1	)
+	</insert>
+	<select id="benefitList" parameterType="java.lang.Integer" resultType="com.choa.benefit.BenefitDTO">
+		select * from benefit where campaign_num=#{campaign_num} order by benefit_price asc
+	</select>
+	<select id="benefitCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select nvl(count(benefit_num), 0) from benefit where campaign_num=#{campaign_num}
+	</select>
+	<delete id="benefitDelete" parameterType="java.lang.Integer">
+		delete benefit where benefit_num=#{benefit_num}
+	</delete>
+</mapper>
