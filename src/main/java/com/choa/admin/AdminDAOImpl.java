@@ -57,11 +57,25 @@ public class AdminDAOImpl implements MemberDAO{
 		return 0;
 	}
 
-@Override
+	@Override
 	public int update(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	/* =======================================인트라넷 =============================== */
+	
+	// admin모두 부르기
+	public List<AdminDTO> selectlist() {
+		return sqlSession.selectList(NAMESPACE+"admin_selectList");
+	}
+	
+
+	public AdminDTO selectOne() {
+		return sqlSession.selectOne(NAMESPACE+"admin_selectOne");
+	}
+	
 	
 	
 }

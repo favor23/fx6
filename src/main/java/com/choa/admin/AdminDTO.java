@@ -4,9 +4,23 @@ import com.choa.member.MemberDTO;
 
 public class AdminDTO extends MemberDTO{
 	
-	private String department;
-	private String position;
+	private String department,
+	position,
+	phone,
+	email;	
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getDepartment() {
 		return department;
 	}

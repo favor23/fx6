@@ -11,4 +11,10 @@
  	{ call admin_login(#{adminDTO.id, mode=IN},#{adminDTO.pw, mode=IN},#{admin, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=AdminDTO}) }
  	</select>
  	
- </mapper> 
+ 	<select id="admin_selectList" resultType="com.choa.admin.AdminDTO">
+ 		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID
+ 	</select>
+ 	<select id="admin_selectOne" resultType="com.choa.admin.AdminDTO">
+ 		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID and M.ID=#{ID}
+ 	</select>  
+</mapper> 
