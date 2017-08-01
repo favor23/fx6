@@ -35,7 +35,7 @@
 		$(document).on("click", "#mod", function() {
 			$("body").attr("style", "background-color: #595959;");
 			$("#modli").html('<a href="#" id="mod_cancel" onclick="return false;">수정취소</a>');
-			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
+			$("#delli").html('<a href="#" id="del" onclick="return false;">영화삭제</a>');
 			
 			$(document).on("click", ".pic-caption", function() {
 				location.href = "movieWriteForm?path=Update&movie_num=" + $(this).attr("accesskey");
@@ -44,7 +44,7 @@
 		
 		$(document).on("click" ,"#mod_cancel", function() {
 			$("body").removeAttr("style");
-			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
+			$("#modli").html('<a href="#" id="mod" onclick="return false;">영화수정</a>');
 			
 			$(document).on("click", ".pic-caption", function() {
 				location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
@@ -54,7 +54,7 @@
 		$(document).on("click", "#del", function() {
 			$("body").attr("style", "background-color: #595959;");
 			$("#delli").html('<a href="#" id="del_cancel" onclick="return false;">삭제취소</a>');
-			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
+			$("#modli").html('<a href="#" id="mod" onclick="return false;">영화수정</a>');
 			
 			$(document).on("click", ".pic-caption", function() {
 				if(confirm('정말 삭제하시겠습니까?')) {
@@ -67,7 +67,7 @@
 		
 		$(document).on("click", "#del_cancel", function() {
 			$("body").removeAttr("style");
-			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
+			$("#delli").html('<a href="#" id="del" onclick="return false;">영화삭제</a>');
 			
 			$(document).on("click", ".pic-caption", function() {
 				location.href = "movieDetail?movie_num=" + $(this).attr("accesskey");
@@ -346,7 +346,7 @@
 	
 	.art2 {
 		width: 100%;
-		height: 80px;
+		height: 50px;
 	}
 	
 	.sub_wrap {
@@ -403,6 +403,10 @@
 		margin-left: 10%;
 		line-height: 50px;
 	}
+	
+	.plus_d2_list ul li {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -456,19 +460,16 @@
 	      <span class="sr-only">Next</span>
 	    </a>
 	  </div>
+	  
+	  <c:import url="../../temp/header_plus_movie.jsp"></c:import>
+	  
 	  <article class="art2">
 	  	<div class="sub_wrap">
 	  		<div class="sub1">
 	  			<div class="sub1_con">
 		  			<ul class="sub1_ul">
 		  				<li>
-		  					<a href="#">현재상영작</a>
-		  				</li>
-		  				<li>
-		  					<a href="#">개봉예정작</a>
-		  				</li>
-		  				<li>
-		  					<a href="#">보고싶어요</a>
+		  					<span>관리자 콘솔</span>
 		  				</li>
 		  			</ul>
 		  		</div>
@@ -477,13 +478,13 @@
 	  			<div class="sub2_con">
 	  				<ul class="sub2_ul">
 	  					<li id="delli">
-	  						<a href="#" id="del" onclick="return false;">삭제</a>
+	  						<a href="#" id="del" onclick="return false;">영화삭제</a>
 	  					</li>
 	  					<li id="modli">
-	  						<a href="#" id="mod" onclick="return false;">수정</a>
+	  						<a href="#" id="mod" onclick="return false;">영화수정</a>
 	  					</li>
 	  					<li>
-	  						<a href="movieWriteForm?path=Write">추가</a>
+	  						<a href="movieWriteForm?path=Write">영화추가</a>
 	  					</li>
 	  				</ul>
 	  			</div>
