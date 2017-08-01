@@ -24,16 +24,7 @@ public class AdminDAOImpl implements MemberDAO{
 	
 	@Override
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("adminDTO", memberDTO);
-		sqlSession.selectOne(NAMESPACE+"login", map);
-		List<AdminDTO> list =(List<AdminDTO>)map.get("admin");
-		if(list.isEmpty()){
-			return null;				
-		}else {
-			return list.get(0);
-		}
-		
+		return sqlSession.selectOne(NAMESPACE+"admin_login",memberDTO);		
 	}
 	
 	

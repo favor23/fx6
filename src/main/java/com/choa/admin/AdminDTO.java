@@ -7,8 +7,17 @@ public class AdminDTO extends MemberDTO{
 	private String department,
 	position,
 	phone,
-	email;	
+	email,
+	picture;	
 	
+	
+	
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	public String getPhone() {
 		return phone;
 	}

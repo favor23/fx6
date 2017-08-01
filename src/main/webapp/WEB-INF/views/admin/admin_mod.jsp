@@ -55,10 +55,25 @@ td{
 			<div>
 			<form action="./admin_mod">
 				<table class="table">
-					<tr>
+										<tr>
 						<td class="td3" rowspan="5" ><img src="<c:url value="${member.picture}"/>"></td>
 						<td>이름</td>
 						<td>${member.name}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>아이디</td>
+						<td>${member.id}</td>
+						<td></td>
+					</tr>					
+					<tr>
+						<td>비밀번호</td>
+						<td><input name="pw" type="password"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>비밀번호 확인</td>
+						<td><input type="password"></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -67,20 +82,17 @@ td{
 						<td></td>
 					</tr>
 					<tr>
+						<td><button class="btn-info">사진바꾸기</button></td>
 						<td>직책</td>
 						<td>${member.position}</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td>${member.phone}</td>
-						<td></td>
-					</tr>
-					<tr>
+						<td><input type="text" name="phone" value="${member.phone}"></td>
 						<td>이메일</td>						
-						<td>${member.email}</td>
-						<td><button class="admin_mod btn-danger">회원정보 수정</button></td>
-					</tr>
+						<td><input type="email" name="email" value="${member.email}"></td>
+					</tr>					
 					<tr>
 						<td></td>
 						<td></td>
@@ -88,71 +100,11 @@ td{
 						<td></td>
 					</tr>					
 				</table>
+				<input type="button" class="btn-success" value="수정완료">
 				</form>
 			</div>
 		</div>
-
-		<div class="d2_a">
-			<h2>부</h2>
-			<table>
-				<tr>
-					<td>부장</td>
-					<td colspan="5">
-						<c:forEach items="">
-						<div>
-							<img src="<c:url value="/img/admin/라이언.PNG"/>">
-							<p></p>
-						</div>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>차장</td>
-					<td colspan="5">
-						<c:forEach items="">
-						<div>
-							<img src="<c:url value="/img/admin/라이언.PNG"/>">
-							<p></p>
-						</div>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>대리</td>
-					<td colspan="5">
-						<c:forEach items="">
-						<div>
-							<img src="<c:url value="/img/admin/라이언.PNG"/>">
-							<p></p>
-						</div>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>주임</td>
-					<td colspan="5">
-						<c:forEach items="">
-						<div>
-							<img src="<c:url value="/img/admin/라이언.PNG"/>">
-							<p></p>
-						</div>
-						</c:forEach>
-					</td>
-				</tr>
-				<tr>
-					<td>사원</td>
-					<td colspan="5">
-						<c:forEach items="">
-						<div>
-							<img src="<c:url value="/img/admin/라이언.PNG"/>">
-							<p></p>
-						</div>
-						</c:forEach>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+		</div>	
 	<c:import url="../temp/footer.jsp" />
 </body>
 </html>

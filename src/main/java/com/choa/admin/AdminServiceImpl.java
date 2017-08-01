@@ -1,5 +1,7 @@
 package com.choa.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,16 @@ public class AdminServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	/* =======================================인트라넷 =============================== */
 	
+	// admin모두 부르기
+	public List<AdminDTO> selectlist() {
+		return adminDAO.selectlist();
+	}	
+
+	public AdminDTO selectOne(AdminDTO AdminDTO) {
+		return adminDAO.selectOne(AdminDTO);
+	}	
 	
 }

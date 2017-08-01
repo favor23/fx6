@@ -1,16 +1,21 @@
 package com.choa.controllor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.choa.admin.AdminDTO;
 import com.choa.admin.AdminServiceImpl;
 import com.choa.member.MemberDTO;
 
@@ -33,7 +38,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "admin/adminPage", method = RequestMethod.GET)
-	public void adminPage() {
+	public void adminPage(HttpServletRequest request,Model model) {
+		AdminDTO adminDTO=(AdminDTO)request.getAttribute("member");
+		List<AdminDTO> list=new ArrayList<AdminDTO>();
+		list=adminService.selectlist();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping(value = "admin/admin_mod", method = RequestMethod.GET)
+	public void admin_mod() {
 
 	}
 
