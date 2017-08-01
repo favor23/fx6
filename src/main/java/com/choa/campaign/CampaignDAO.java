@@ -19,6 +19,7 @@ public class CampaignDAO {
 	}
 	
 	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
+		System.out.println("dao");
 		return sqlSession.update(NAMESPACE + "campaignComplete", campaignDTO);
 	}
 }

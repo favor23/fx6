@@ -111,6 +111,8 @@ public class CampaignController {
 		int result = 0;
 		String message = "캠페인 생성 실패! 자세한 사항은 담당자에게 문의하세요.";
 		
+		campaignDTO.setCampaign_num(campaignDTO.getCampaign_num()-1);
+		
 		try {
 			result = campaignService.campaignComplete(campaignDTO);
 		} catch (Exception e) {

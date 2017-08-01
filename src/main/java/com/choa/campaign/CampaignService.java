@@ -17,6 +17,7 @@ public class CampaignService {
 	}
 	
 	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
+		System.out.println("service");
 		return campaignDAO.campaignComplete(campaignDTO);
 	}
 }
