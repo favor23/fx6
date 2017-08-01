@@ -125,7 +125,7 @@ public class CampaignController {
 		}
 		
 		model.addAttribute("message", message);
-		model.addAttribute("path", "../../index");
+		model.addAttribute("path", "../cf_index");
 		
 		return "commons/result";
 	}

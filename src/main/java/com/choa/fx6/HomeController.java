@@ -86,4 +86,8 @@ public class HomeController {
 		movieController.movieView(movie_num, model);
 	}
 	
+	@RequestMapping(value = "/crowd_funding/cf_index")
+	public void cfIndex() {
+		
+	}
 }
