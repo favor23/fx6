@@ -135,7 +135,7 @@
 <script type="text/javascript">
 	/* var keynum=0; */
 	start();
-	function start(){
+	function start(){		
 		$.post("./work_list",function(data){
 			/* 날짜 형식 변경 */
 			/* var cut,begin,cut2,end;
@@ -155,10 +155,8 @@
 			/* 제이슨 짜르기  */
 			var str=JSON.stringify(data);			
 			var str=str.substring(str.indexOf('['),str.indexOf(']')+1);			
-			alert(str);
 			/* 다시 제이슨 오브젝트화 */
 			str=JSON.parse(str);
-			alert(str);
 		var dataSet = {
 			"total" : 7,
 			"rows" : str			
@@ -213,7 +211,7 @@
 			progress : $("#progress_mod").val(),
 			iconcls : $("#iconcls_mod").val()
 		});	
-		start();
+		setTimeout("start()", 500);
 	}
 	function save() {
 		if (editingId != undefined) {
@@ -268,7 +266,7 @@
 			parentid = node.id;
 		}
 		dbsave(idIndex);	
-		
+		setTimeout("start()", 500);
 		$('#tg').treegrid('append', {
 			parent : parentid,
 			data : [ {
@@ -280,7 +278,7 @@
 				progress : $('#progress').val()
 			} ]
 		})
-		start();
+		
 	}
 	function removeIt() {
 		var node = $('#tg').treegrid('getSelected');

@@ -4,11 +4,20 @@ import java.sql.Date;
 
 public class SchedulDTO {
 	private String id,
-	title;
+	title,
+	color;
 	
+
 	private Date start,
 	end;
 
+	public String getColor() {
+		return color;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public String getId() {
 		return id;
 	}

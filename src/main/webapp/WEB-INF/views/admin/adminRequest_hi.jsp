@@ -18,7 +18,7 @@
 	height: 300px;
 	width: 100%;
 	background-color: gray;
-	margin: 25px 0 25px 0;
+	margin-top: 50px;
 }
 .d1_b{
 	height: 700px;
@@ -40,13 +40,6 @@
 			인사팀 돈관리 <br>
 			철저하게 돈관리하자.
 		</div>
-		<div class="d1_a">
-			
-		</div>	
-		
-		<div class="d1_a">
-			
-		</div>	
 		
 		<div class="d1_a">
 			
@@ -54,7 +47,11 @@
 		
 		<div class="d1_a">
 			
-		</div>
+		</div>	
+		
+		<div class="d1_a">
+			
+		</div>			
 	</div>
 <c:import url="../temp/footer.jsp" />
 </body>

@@ -55,17 +55,32 @@ $.post("./schedul_list",function(data){
 	str=JSON.stringify(data);			
 	str=str.substring(str.indexOf('['),str.indexOf(']')+1);			
 	/* 다시 제이슨 오브젝트화 */
+	alert(str);
 	str=JSON.parse(str);
-	gogo(str);
+	var date = new Date();
+	 
+	    var year = date.getFullYear(); //년도
+	    var month = date.getMonth()+1; //월
+	    var day = date.getDate(); //일
+	 
+	    if ((day+"").length < 2) {       // 일이 한자리 수인 경우 앞에 0을 붙여주기 위해
+	        day = "0" + day;
+	    }
+	 
+	var getToday = year+"-"+month+"-"+day; // 오늘 날짜 
+
+	gogo(str, getToday);
 })
-function gogo(str) {
+
+
+function gogo(str, getToday) {
 $('#calendar').fullCalendar({
 	header: {
 		left: 'prev,next today',
 		center: 'title',
 		right: 'month,agendaWeek,agendaDay,listMonth'
 	},
-	defaultDate: '2017-05-12',//sysdate 값 필요
+	defaultDate: getToday,//sysdate 값 필요
 	navLinks: true, // can click day/week names to navigate views
 	businessHours: true, // display business hours
 	editable: true,

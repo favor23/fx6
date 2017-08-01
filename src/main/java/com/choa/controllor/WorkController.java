@@ -109,12 +109,19 @@ public class WorkController {
 			List<SchedulDTO> list2=new ArrayList<SchedulDTO>();
 			SchedulDTO schedulDTO;
 			int i=0;
+			String[] color={"#0054FF","#2F9D27","#993800","#C98500"};
+			System.out.println(color[0]);
+			
 			for(WorkDTO ar: list){
 				schedulDTO=new SchedulDTO();
 				schedulDTO.setId(ar.getPersons());
 				schedulDTO.setTitle(ar.getName());
 				schedulDTO.setStart(ar.getBegin());
 				schedulDTO.setEnd(ar.getEnd());
+				schedulDTO.setColor(color[i++]);
+				if(i==4){
+					i=0;
+				}
 				list2.add(schedulDTO);
 			}
 			Map<String, Object> map=new HashMap<String, Object>();
