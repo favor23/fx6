@@ -2,17 +2,17 @@
 
 /* =======================footer================================== */
 footer{
-	height: 590px;
+	height: 200px;
 	width: 100%;
 	
 }
-#footer_div1{
+/* #footer_div1{
 	height: 66%;
 	width: 100%;
 	background-color: #3A3A3A;
-}
+} */
 #footer_div2{
-	height: 34%;
+	height: 100%;
 	width: 100%;
 	background-color: #161616;
 	border: 1px solid black; 

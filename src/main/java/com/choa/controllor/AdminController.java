@@ -39,7 +39,6 @@ public class AdminController {
 
 	@RequestMapping(value = "admin/adminPage", method = RequestMethod.GET)
 	public void adminPage(HttpServletRequest request,Model model) {
-		AdminDTO adminDTO=(AdminDTO)request.getAttribute("member");
 		List<AdminDTO> list=new ArrayList<AdminDTO>();
 		list=adminService.selectlist();
 		model.addAttribute("list", list);
@@ -63,6 +62,13 @@ public class AdminController {
 	@RequestMapping(value = "admin/adminRequest", method = RequestMethod.GET)
 	public void adminRequest() {
 
+	}
+	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
+	public void admin_list(String department,Model model) {
+		model.addAttribute("department", department);
+		List<AdminDTO> list=new ArrayList<AdminDTO>();
+		list=adminService.selectlist();
+		model.addAttribute("list", list);
 	}
 	/*@ResponseBody
 	@RequestMapping(value = "admin/adminManager", method = RequestMethod.GET)
