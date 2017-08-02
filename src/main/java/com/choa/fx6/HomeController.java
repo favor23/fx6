@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.choa.campaign.CampaignDTO;
+import com.choa.campaign.CampaignService;
 import com.choa.controllor.MovieController;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieService;
@@ -28,6 +31,8 @@ public class HomeController {
 	@Inject
 	private MovieController movieController;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private CampaignService campaignService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -87,7 +92,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/crowd_funding/cf_index")
-	public void cfIndex() {
+	public void cfIndex(Model model) {
+		List<CampaignDTO> list = null;
+		List<CampaignDTO> list2 = null;
 		
+		try {
+			list = campaignService.campaignNew();
+			list2 = campaignService.campaignBest();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("newList", list);
+		model.addAttribute("bestList", list);
 	}
 }

@@ -10,6 +10,18 @@
 		select last_number from user_sequences where sequence_name=upper('campaign_seq')
 	</select>
 	<update id="campaignComplete" parameterType="com.choa.campaign.CampaignDTO">
-		update campaign set id=#{id}, campaign_title=#{campaign_title}, goal_price=#{goal_price}, period=#{period}, campaign_end=#{campaign_end}, campaign_img=#{campaign_img}, simple_story=#{simple_story}, story=#{story}, main_video=#{main_video}, option_msg=#{option_msg}, bank=#{bank}, bank_account=#{bank_account}, register_name=#{register_name}, register_phone=#{register_phone}, register_email=#{register_email}, permission='unapproved' where campaign_num=#{campaign_num}
+		update campaign set id=#{id}, campaign_title=#{campaign_title}, goal_price=#{goal_price}, period=#{period}, campaign_end=#{campaign_end}, campaign_img=#{campaign_img}, simple_story=#{simple_story}, story=#{story}, main_video=#{main_video}, option_msg=#{option_msg}, bank=#{bank}, bank_account=#{bank_account}, register_name=#{register_name}, register_phone=#{register_phone}, register_email=#{register_email}, permission='unapproved', campaign_start=sysdate, thumbs_up=0 where campaign_num=#{campaign_num}
 	</update>
+	<select id="campaignNew" resultType="com.choa.campaign.CampaignDTO">
+		select * from 
+		(select rownum r, c.* from 
+		(select * from campaign order by campaign_start desc) c) 
+		where r between 1 and 3
+	</select>
+	<select id="campaignBest" resultType="com.choa.campaign.CampaignDTO">
+		select * from 
+		(select rownum r, c.* from
+		(select * from campaign order by thumbs_up desc) c) 
+		where r between 1 and 12
+	</select>
 </mapper>

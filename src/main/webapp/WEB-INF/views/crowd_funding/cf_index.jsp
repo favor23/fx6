@@ -15,6 +15,14 @@
 		background-color: #0052cc;
 	}
 	
+	.main_middle {
+		width: 100%;
+		height: 250px;
+		margin-top: 50px;
+		background-color: #0052cc;
+		display: inline-block;
+	}
+	
 	.top1 {
 		width: 100%;
 		height: 30%;
@@ -42,23 +50,34 @@
 		color: white;
 	}
 
-	.carousel {
+	.carousel1 {
 		width: 60%;
 		height: 500px;
 		float: left;
 		overflow: hidden;
 	}
 	
+	.carousel2 {
+		width: 60%;
+		float: left;
+	}
+	
 	.nav_left,
 	.nav_right {
 		float: left;
 		width: 20%;
-		height: 1500px;
+		height: 1300px;
 	}
 	
 	.nav_right {
 		float: right;
 		display: none;
+	}
+	
+	.nav_left2 {
+		float: left;
+		width: 20%;
+		height: 500px;
 	}
 	
 	footer {
@@ -97,9 +116,10 @@
 	}
 	
 	/* carousel2 */
-	img { max-width:100%; }
+	.thumbnails a img { max-width:100%; }
 
-	a {
+	.thumbnails a,
+	.caption a {
 	    -webkit-transition: all 150ms ease;
 		-moz-transition: all 150ms ease;
 		-ms-transition: all 150ms ease;
@@ -107,7 +127,8 @@
 		transition: all 150ms ease; 
 		}
 	    
-	a:hover {
+	.thumbnails a:hover,
+	.caption a:hover {
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
 	    filter: alpha(opacity=50); /* IE7 */
 	    text-decoration: none;
@@ -151,7 +172,87 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+	
+	.carousel-caption {
+		width: 100%;
+		bottom: 350px;
+		opacity: 0.9;
+		left: 0;
+	}
+	
+	.carousel-caption p,
+	.carousel-caption h3 {
+		background-color: #ff1a8c;
+	}
+	
+	.carousel-caption h3 {
+		font-size: 4.0em;
+	}
+	
+	.carousel-caption p {
+		font-size: 1.2em;
+	}
+	
+	.main4_wrap {
+		width: 100%;
+		height: 228px;
+	}
+	
+	.main4_1,
+	.main4_2 {
+		width: 60%;
+		height: 100%;
+		float: left;
+		border: 1px solid #e0e0d1;
+		background-color: #f5f5f0;
+	}
+	
+	.main4_1 {
+		margin-top: 50px;
+	}
+	
+	.main4_1 p {
+		text-align: center;
+		color: #8a8a5c;
+	}
+	
+	.main4_1 p:first-child {
+		font-size: 1.4em;
+		color: black;
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+	
+	.main4_1 input {
+		width: 150px;
+		height: 40px;
+		margin-left: auto; 
+		margin-right: auto;
+		margin-top: 20px;
+		display: block;
+	}
+	
+	.main4_2 {
+		cursor: pointer;
+		font-size: 1.4em;
+		text-align: center;
+		line-height: 228px;
+		margin-top: 20px;
+		margin-bottom: 100px;
+	}
+	
+	.main4_2:hover {
+		border: 2px solid #0052cc;
+		font-size: 1.5em;
+	}
 </style>
+<script type="text/javascript">
+	$(function() {
+		$(".main4_2").click(function() {
+			location.href = "campaign/campaignCreate";
+		});
+	});
+</script>
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -182,12 +283,13 @@
 			<p>NEW PICK</p>
 		</article>
 		
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide carousel1" data-ride="carousel">
 			<!-- Indicators -->
 		    <ol class="carousel-indicators">
 		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		      <li data-target="#myCarousel" data-slide-to="1"></li>
 		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		      <li data-target="#myCarousel" data-slide-to="3"></li>
 		    </ol>
 		    
 		    <!-- Wrapper for slides -->
@@ -195,27 +297,17 @@
 		
 		      <div class="item active">
 		        <img src="<c:url value="/img/movie-img/test5.jpg" />" alt="Los Angeles" style="width:100%;">
-		        <div class="carousel-caption">
-		          <h3>Los Angeles</h3>
-		          <p>LA is always so much fun!</p>
-		        </div>
 		      </div>
-		
-		      <div class="item">
-		        <img src="<c:url value="/img/movie-img/test6.jpg" />" alt="Chicago" style="width:100%;">
-		        <div class="carousel-caption">
-		          <h3>Chicago</h3>
-		          <p>Thank you, Chicago!</p>
-		        </div>
-		      </div>
-		    
-		      <div class="item">
-		        <img src="<c:url value="/img/movie-img/test7.jpg" />" alt="New York" style="width:100%;">
-		        <div class="carousel-caption">
-		          <h3>New York</h3>
-		          <p>We love the Big Apple!</p>
-		        </div>
-		      </div>
+		      
+		      <c:forEach items="${newList}" var="newList">
+		      	  <div class="item">
+			        <img src="<c:url value="${newList.campaign_img}" />" alt="Chicago" style="width:100%;">
+			        <div class="carousel-caption">
+			          <h3>${newList.campaign_title}</h3>
+			          <p>${newList.simple_story}</p>
+			        </div>
+			      </div>
+		      </c:forEach>
 		  
 		    </div>
 		
@@ -226,7 +318,7 @@
 			<p>BEST PICK</p>
 		</article>
 		
-		<div class="carousel slide" id="myCarousel2">
+		<div class="carousel slide carousel2" id="myCarousel2">
 	        <div class="carousel-inner">
 	            <div class="item active">
 	                    <ul class="thumbnails">
@@ -385,17 +477,36 @@
 	                    </ul>
 	              </div><!-- /Slide3 --> 
 	        </div>
-	        
 	       
 		   <nav>
 				<ul class="control-box pager">
 					<li><a data-slide="prev" href="#myCarousel2" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
-					<li><a data-slide="next" href="#myCarousel2" class=""><i class="glyphicon glyphicon-chevron-right"></i></li>
+					<li><a data-slide="next" href="#myCarousel2" class=""><i class="glyphicon glyphicon-chevron-right"></i></a></li>
 				</ul>
 			</nav>
 		   <!-- /.control-box -->   
 	                              
 	    </div><!-- /#myCarousel -->
+	    
+	    <article class="main_middle">
+			
+		</article>
+		
+		<nav class="nav_left2">
+		
+		</nav>
+	    
+	    <div class="main4_wrap">
+	    	<div class="main4_1">
+	    		<p>캠페인 둘러보기</p>
+				<p>수많은 영화인들의 꿈과 아이디어가 담긴</p>
+				<p>다양한 프로젝트들을 만나보세요.</p>
+				<input type="button" class="btn btn-warning list_btn" value="자세히 보기">
+	    	</div>
+	    	<div class="main4_2">
+				캠페인 만들기.
+			</div>
+	    </div>
 		
 		<nav class="nav_right">
 			

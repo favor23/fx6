@@ -1,5 +1,7 @@
 package com.choa.campaign;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,14 @@ public class CampaignService {
 	}
 	
 	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
-		System.out.println("service");
 		return campaignDAO.campaignComplete(campaignDTO);
+	}
+	
+	public List<CampaignDTO> campaignNew() throws Exception {
+		return campaignDAO.campaignNew();
+	}
+	
+	public List<CampaignDTO> campaignBest() throws Exception {
+		return campaignDAO.campaignBest();
 	}
 }

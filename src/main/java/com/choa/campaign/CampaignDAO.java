@@ -1,5 +1,7 @@
 package com.choa.campaign;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +21,14 @@ public class CampaignDAO {
 	}
 	
 	public int campaignComplete(CampaignDTO campaignDTO) throws Exception {
-		System.out.println("dao");
 		return sqlSession.update(NAMESPACE + "campaignComplete", campaignDTO);
+	}
+	
+	public List<CampaignDTO> campaignNew() throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignNew");
+	}
+	
+	public List<CampaignDTO> campaignBest() throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignBest");
 	}
 }
