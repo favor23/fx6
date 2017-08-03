@@ -273,7 +273,7 @@ width:800px;
 							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/sun_sun.jpg);">
 						</a>
 						</c:if>
-
+ 
 						<div class="ProfileCard-content">
 							<a class="ProfileCard-avatarLink js-nav js-tooltip"
 								href="/dia_official" tabindex="-1" aria-hidden="true"> <img
