@@ -13,6 +13,22 @@
 		height: 250px;
 		margin-top: 50px;
 		background-color: #0052cc;
+		z-index: 1;
+		position: relative;
+	}
+	
+	.main_top:after {
+		content: "";
+		background-image: url("../../img/cf-img/main-top2.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.4;
+	    z-index: -1;
 	}
 	
 	.nav_left,
@@ -199,7 +215,7 @@
 				캠페인 만들기
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 130px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				우리의 캠페인을 통해 그 기회를 만들어 보세요!

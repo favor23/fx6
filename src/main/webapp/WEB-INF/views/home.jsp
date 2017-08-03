@@ -81,6 +81,7 @@ background-color: white;
 <a href="board/cinema/cinema_my">cinema_my</a>
 <a href="board/cinema/cinema_time">cinema_time</a>
 <a href="crowd_funding/campaign/campaignCreate">campaignCreate</a>
+<a href="crowd_funding/cf_index">cf_index</a>
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
