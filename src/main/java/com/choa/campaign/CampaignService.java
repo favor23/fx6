@@ -29,4 +29,12 @@ public class CampaignService {
 	public List<CampaignDTO> campaignBest() throws Exception {
 		return campaignDAO.campaignBest();
 	}
+	
+	public List<CampaignDTO> campaignBest2() throws Exception {
+		return campaignDAO.campaignBest2();
+	}
+	
+	public List<CampaignDTO> campaignBest3() throws Exception {
+		return campaignDAO.campaignBest3();
+	}
 }

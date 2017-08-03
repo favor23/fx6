@@ -31,4 +31,12 @@ public class CampaignDAO {
 	public List<CampaignDTO> campaignBest() throws Exception {
 		return sqlSession.selectList(NAMESPACE + "campaignBest");
 	}
+	
+	public List<CampaignDTO> campaignBest2() throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignBest2");
+	}
+	
+	public List<CampaignDTO> campaignBest3() throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignBest3");
+	}
 }

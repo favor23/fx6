@@ -22,7 +22,21 @@ public class CampaignDTO {
 	private String permission;
 	private Date campaign_start;
 	private int thumbs_up;
+	private int support_price;
+	private int support_hit;
 	
+	public int getSupport_price() {
+		return support_price;
+	}
+	public void setSupport_price(int support_price) {
+		this.support_price = support_price;
+	}
+	public int getSupport_hit() {
+		return support_hit;
+	}
+	public void setSupport_hit(int support_hit) {
+		this.support_hit = support_hit;
+	}
 	public Date getCampaign_start() {
 		return campaign_start;
 	}

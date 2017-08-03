@@ -13,14 +13,59 @@
 		height: 250px;
 		margin-top: 50px;
 		background-color: #0052cc;
+		z-index: 1;
+		position: relative;
+	}
+	
+	.main_top:after {
+		content: "";
+		background-image: url("../img/cf-img/main-top.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.4;
+	    z-index: -1;
 	}
 	
 	.main_middle {
 		width: 100%;
 		height: 250px;
-		margin-top: 50px;
+		margin-top: 70px;
 		background-color: #0052cc;
 		display: inline-block;
+		z-index: 1;
+		position: relative;
+	}
+	
+	.main_middle:after {
+		content: "";
+		background-image: url("../img/cf-img/main-middle.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.2;
+	    z-index: -1;
+	}
+	
+	.main_middle p:first-child {
+		color: white;
+		font-size: 2.2em;
+		margin-top: 50px;
+		margin-left: 350px;
+	}
+	
+	.main_middle p:last-child {
+		color: #b3d9ff;
+		font-size: 1.2em;
+		margin-left: 350px;
 	}
 	
 	.top1 {
@@ -132,16 +177,19 @@
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
 	    filter: alpha(opacity=50); /* IE7 */
 	    text-decoration: none;
+	    opacity: 0.6;
 	}
 	
 	.thumbnails li> .fff .caption { 
 	    background:#fff !important; 
-	    padding:10px
+	    padding:10px;
 	}
 	
 	/* Thumbnail Box */
 	.caption h4 {
 	    color: #444;
+	    font-size: 0.9em;
+	    height: 30px;
 	}
 	
 	.caption p {  
@@ -209,6 +257,22 @@
 	
 	.main4_1 {
 		margin-top: 50px;
+		z-index: 1;
+		position: relative;
+	}
+	
+	.main4_1:after {
+		content: "";
+		background-image: url("../img/cf-img/list-btn.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.3;
+	    z-index: -1;
 	}
 	
 	.main4_1 p {
@@ -239,17 +303,46 @@
 		line-height: 228px;
 		margin-top: 20px;
 		margin-bottom: 100px;
+		z-index: 1;
+		position: relative;
+		
+	}
+	
+	.main4_2:after {
+		content: "";
+		background-image: url("../img/cf-img/form-btn.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.3;
+	    z-index: -1;
 	}
 	
 	.main4_2:hover {
 		border: 2px solid #0052cc;
 		font-size: 1.5em;
 	}
+	
+	.thumbnail {
+		overflow: hidden;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
 		$(".main4_2").click(function() {
 			location.href = "campaign/campaignCreate";
+		});
+		
+		$(".thumbnail img").mouseover(function() {
+			$(this).attr("style", "-webkit-transform:scale(1.1); -moz-transform:scale(1.1); -o-transform:scale(1.1); transform:scale(1.1);transition: transform .35s;-o-transition: transform .35s;-moz-transition: transform .35s;-webkit-transition: transform .35s;")
+		});
+		
+		$(".thumbnail img").mouseleave(function() {
+			$(this).attr("style", "-webkit-transform:scale(1.0); -moz-transform:scale(1.0); -o-transform:scale(1.0); transform:scale(1.0);transition: transform .35s;-o-transition: transform .35s;-moz-transition: transform .35s;-webkit-transition: transform .35s;")
 		});
 	});
 </script>
@@ -263,7 +356,7 @@
 				크라우드 펀딩
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 130px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				우리의 캠페인을 통해 그 기회를 만들어 보세요!
@@ -321,160 +414,58 @@
 		<div class="carousel slide carousel2" id="myCarousel2">
 	        <div class="carousel-inner">
 	            <div class="item active">
-	                    <ul class="thumbnails">
+	                <ul class="thumbnails">
+	                	<c:forEach items="${bestList}" var="bestList">
 	                        <li class="col-sm-3">
 	    						<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
+										<h4>${bestList.campaign_title}</h4>
+										<p>${bestList.register_name}</p>
 										<a class="btn btn-mini" href="#">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                    </ul>
+	                    </c:forEach>
+	                </ul>
 	              </div><!-- /Slide1 --> 
 	            <div class="item">
-	                    <ul class="thumbnails">
+	               <ul class="thumbnails">
+	                    <c:forEach items="${bestList2}" var="bestList">
 	                        <li class="col-sm-3">
 								<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
+										<h4>${bestList.campaign_title}</h4>
+										<p>${bestList.register_name}</p>
 										<a class="btn btn-mini" href="#">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                    </ul>
+	                    </c:forEach>
+	                </ul>
 	              </div><!-- /Slide2 --> 
 	            <div class="item">
-	                    <ul class="thumbnails">
-	                        <li class="col-sm-3">	
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
+	                <ul class="thumbnails">
+	                	<c:forEach items="${bestList3}" var="bestList">
 	                        <li class="col-sm-3">
 								<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
+										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
+										<h4>${bestList.campaign_title}</h4>
+										<p>${bestList.register_name}</p>
 										<a class="btn btn-mini" href="#">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                        <li class="col-sm-3">
-								<div class="fff">
-									<div class="thumbnail">
-										<a href="#"><img src="http://placehold.it/360x240" alt=""></a>
-									</div>
-									<div class="caption">
-										<h4>Praesent commodo</h4>
-										<p>Nullam Condimentum Nibh Etiam Sem</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
-									</div>
-	                            </div>
-	                        </li>
-	                    </ul>
+	                    </c:forEach>
+	                </ul>
 	              </div><!-- /Slide3 --> 
 	        </div>
 	       
@@ -489,7 +480,8 @@
 	    </div><!-- /#myCarousel -->
 	    
 	    <article class="main_middle">
-			
+			<p>새로운 취미가 되다</p>
+			<p>당신의 꿈이 세상에 개봉되는 것, 어렵지 않습니다.</p>
 		</article>
 		
 		<nav class="nav_left2">

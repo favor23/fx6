@@ -95,16 +95,22 @@ public class HomeController {
 	public void cfIndex(Model model) {
 		List<CampaignDTO> list = null;
 		List<CampaignDTO> list2 = null;
+		List<CampaignDTO> list3 = null;
+		List<CampaignDTO> list4 = null;
 		
 		try {
 			list = campaignService.campaignNew();
 			list2 = campaignService.campaignBest();
+			list3 = campaignService.campaignBest2();
+			list4 = campaignService.campaignBest3();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("newList", list);
-		model.addAttribute("bestList", list);
+		model.addAttribute("bestList", list2);
+		model.addAttribute("bestList2", list3);
+		model.addAttribute("bestList3", list4);
 	}
 }
