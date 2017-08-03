@@ -82,5 +82,11 @@ public class AdminController {
 	public void adminManager() {
 		
 	}
+	
+	@RequestMapping(value = "admin/admin_modal", method = RequestMethod.GET)
+	public void admin_modal(AdminDTO adminDTO,Model model) {
+		adminDTO=adminService.selectOne(adminDTO);
+		model.addAttribute("s_dto", adminDTO );		
+	}
 
 }

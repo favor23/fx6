@@ -84,6 +84,5 @@ public class HomeController {
 	@RequestMapping(value="/index_movielist/modal_ticket")
 	public void modal_ticket(int movie_num,Model model){
 		movieController.movieView(movie_num, model);
-	}
-	
+	}	
 }
