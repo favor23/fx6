@@ -20,7 +20,35 @@ public class CampaignDTO {
 	private String register_phone;
 	private String register_email;
 	private String permission;
+	private Date campaign_start;
+	private int thumbs_up;
+	private int support_price;
+	private int support_hit;
 	
+	public int getSupport_price() {
+		return support_price;
+	}
+	public void setSupport_price(int support_price) {
+		this.support_price = support_price;
+	}
+	public int getSupport_hit() {
+		return support_hit;
+	}
+	public void setSupport_hit(int support_hit) {
+		this.support_hit = support_hit;
+	}
+	public Date getCampaign_start() {
+		return campaign_start;
+	}
+	public void setCampaign_start(Date campaign_start) {
+		this.campaign_start = campaign_start;
+	}
+	public int getThumbs_up() {
+		return thumbs_up;
+	}
+	public void setThumbs_up(int thumbs_up) {
+		this.thumbs_up = thumbs_up;
+	}
 	public String getRegister_name() {
 		return register_name;
 	}

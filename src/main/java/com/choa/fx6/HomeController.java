@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.choa.campaign.CampaignDTO;
+import com.choa.campaign.CampaignService;
 import com.choa.controllor.MovieController;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieService;
@@ -28,6 +31,8 @@ public class HomeController {
 	@Inject
 	private MovieController movieController;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private CampaignService campaignService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -84,5 +89,28 @@ public class HomeController {
 	@RequestMapping(value="/index_movielist/modal_ticket")
 	public void modal_ticket(int movie_num,Model model){
 		movieController.movieView(movie_num, model);
-	}	
+	}
+	
+	@RequestMapping(value = "/crowd_funding/cf_index")
+	public void cfIndex(Model model) {
+		List<CampaignDTO> list = null;
+		List<CampaignDTO> list2 = null;
+		List<CampaignDTO> list3 = null;
+		List<CampaignDTO> list4 = null;
+		
+		try {
+			list = campaignService.campaignNew();
+			list2 = campaignService.campaignBest();
+			list3 = campaignService.campaignBest2();
+			list4 = campaignService.campaignBest3();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("newList", list);
+		model.addAttribute("bestList", list2);
+		model.addAttribute("bestList2", list3);
+		model.addAttribute("bestList3", list4);
+	}
 }

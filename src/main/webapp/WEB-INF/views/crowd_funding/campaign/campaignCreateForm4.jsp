@@ -121,24 +121,6 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".top1_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm";				
-			}
-		});
-		
-		$(".top2_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm2";				
-			}
-		});
-		
-		$(".top3_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm3";				
-			}
-		});
-		
 		$(".approve").click(function() {
 			$("#frm").submit();
 		});

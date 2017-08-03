@@ -141,24 +141,6 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".top1_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm";				
-			}
-		});
-		
-		$(".top2_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm2";				
-			}
-		});
-		
-		$(".top4_img").click(function() {
-			if(confirm("이동하실 경우, 현재 입력중인 정보들이 사라집니다. 이동하시겠습니까?")) {
-				location.href = "campaignCreateForm4";				
-			}
-		});
-		
 		$('.benefit_title').keyup(function (e){
 	        var content = $(this).val();
 	        $('#counter').html(content.length + '/30');
@@ -183,6 +165,9 @@
 					if($(".benefit_price").val()>1000||$(".benefit_price").val()==1000) {
 						if($(".benefit_contents").val()!=null&&$(".benefit_contents").val()!="") {
 							benefitWrite();
+							$(".benefit_title").val("");
+							$(".benefit_price").val("");
+							$(".benefit_contents").val("");
 						} else {
 							alert("혜택 내용을 입력하세요.");
 						}	
@@ -219,8 +204,14 @@
 					$(".body_left").attr("style", "background-color: white; box-shadow: 0px 0px 0px white;");
 					
 					$(data).each(function() {
+						var benefit_title = this.benefit_title;
+						
+						if(benefit_title.length>=9) {
+							benefit_title = benefit_title.substr(0, 9) + "...";
+						}
+						
 						result += '<div class="ben_list">';
-						result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + this.benefit_title + '</span>';
+						result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + benefit_title + '</span>';
 						result += '<input type="button" class="btn btn-danger ben_del" value="삭제" id="' + this.benefit_num + '" style="float: right;">';
 						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">원</span>';
 						result += '<span style="float: right; margin-top: 5px; margin-right: 5px; font-size: 1.5em; color: #0052cc;">' + this.benefit_price + '</span>';
