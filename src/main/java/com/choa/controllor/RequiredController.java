@@ -68,7 +68,7 @@ public class RequiredController {
 		}
 		
 		if(result>0){
-			message="요청 완료했습니다.";
+			message="요청을 성공했습니다.";
 		}
 		
 		model.addAttribute("message", message);
@@ -158,10 +158,10 @@ public class RequiredController {
 			e.printStackTrace();
 		}
 		
-		message="업데이트를 실패했습니다.";
+		message="업데이트에 실패했습니다.";
 		
 		if(result>0){
-			message="업데이트를 성공했습니다.";
+			message="업데이트에 성공했습니다.";
 		}
 		
 		model.addAttribute("message", message);
@@ -171,5 +171,40 @@ public class RequiredController {
 	}
 	
 	
+	
+	//replyForm
+	@RequestMapping(value="requiredReply", method=RequestMethod.GET)
+	public String requiredReply(Model model, int num){
+		model.addAttribute("path", "Reply");
+		model.addAttribute("reply", num);
+		return "board/required/requiredWrite";
+	}
+	
+	
+	//reply
+	@RequestMapping(value="requiredReply", method=RequestMethod.POST)
+	public String  requiredReply(RequiredDTO requiredDTO, Model model){
+		
+		System.out.println("dkdjk");
+		int result = 0;
+		String message = "답글 작성을 실패했습니다.";
+		
+		
+		try {
+			result = requiredService.requiredReply(requiredDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			message="답글 작성을 성공했습니다.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("path", "requiredList");
+		
+		return "commons/result";
+	}
 	
 }

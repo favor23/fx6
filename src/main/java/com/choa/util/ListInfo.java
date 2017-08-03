@@ -19,6 +19,20 @@ public class ListInfo {
 	private int startNum; //화면블럭의 첫번째페이지 번호
 	private int lastNum; //화면블럭의 마지막페이지 번호
 	
+	private int review_num;
+	
+	
+	
+	
+	
+	
+
+	public int getReview_num() {
+		return review_num;
+	}
+	public void setReview_num(int review_num) {
+		this.review_num = review_num;
+	}
 	//신경쓰지 마세요 -기원
 	private int movie_num;
 	

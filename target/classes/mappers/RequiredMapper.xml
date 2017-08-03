@@ -30,7 +30,7 @@
   		(select rownum R, N.* from
   		(select * from required
   		<include refid="search"></include>
-  			order by num desc) N)
+  			order by ref desc, step asc) N)
   			where R between #{startRow} and #{lastRow}
   	</select>
   	
@@ -53,5 +53,9 @@
   	<update id="hit">
   		update required set hit=hit+1 where num=#{num}
   	</update> 
+  	
+  	<insert id="requiredReply"  parameterType="java.util.Map" statementType="CALLABLE">
+  		{ call required_reply(#{requiredDTO.num, mode=IN}, #{requiredDTO.writer, mode=IN}, #{requiredDTO.title, mode=IN}, #{requiredDTO.contents, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER} )}
+  	</insert>
    
   </mapper>

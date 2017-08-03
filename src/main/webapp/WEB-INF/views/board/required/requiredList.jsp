@@ -12,6 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
+<c:import url="../../temp/bootStrap.jsp"></c:import>
 
 <style type="text/css">
 
@@ -102,7 +103,7 @@
 </style>
 </head>
 <body>
-
+ <c:import url="../../temp/header.jsp"/>
 
 	
 	<div class="main">
@@ -132,7 +133,16 @@
 					<tr class="boardtitle" id="${dto.num}" style="cursor:hand;">
 						<td>${dto.num}</td>
 						<td>${dto.writer}</td>
-						<td><div class="boardtitle2">${dto.title}</div></td>
+						
+						
+                                 <td> 
+                                <div class="boardtitle2"><c:forEach begin="1" end="${dto.depth}" var="i">
+                                         <span>RE:</span>
+                                       </c:forEach> ${dto.title}</div>
+                                 </td>
+                       
+                     
+						
 						<td><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
 						<td>${dto.hit}</td>
 					
@@ -142,16 +152,16 @@
 			</table>
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="${board}List?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
+				<a href="requiredList?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
 				var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="${board}List?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}">${i}</a>
+				<a href="requiredList?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}">${i}</a>
 			</c:forEach>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="${board}List?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
+				<a href="requiredList?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
 			</c:if>
 
 			<a href="requiredWrite">WRITE</a>
@@ -162,7 +172,7 @@
 
 	
 
-
+<c:import url="../../temp/footer.jsp"/>
 <script type="text/javascript">
 
 

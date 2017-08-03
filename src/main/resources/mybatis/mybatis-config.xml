@@ -6,7 +6,14 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.choa.review.ReviewDTO" alias="ReviewDTO"/>
-  		<typeAlias type="com.choa.required.RequiredDTO" alias="RequiredDTO"></typeAlias>
+  		<typeAlias type="com.choa.required.RequiredDTO" alias="RequiredDTO"/>
+  		<typeAlias type="com.choa.reply.ReplyDTO" alias="ReplyDTO"/>
+  		<typeAlias type="com.choa.apply.ApplyDTO" alias="ApplyDTO"/>
+  		<typeAlias type="com.choa.matching.MatchingDTO" alias="MatchingDTO"/>
+  		<typeAlias type="com.choa.note.NoteDTO" alias="NoteDTO"/>
+  		<typeAlias type="com.choa.rent.RentDTO" alias="RentDTO"/>
+  		<typeAlias type="com.choa.cart.CartDTO" alias="CartDTO"/>
+  		<typeAlias type="com.choa.order_rent.Order_rentDTO" alias="Order_rentDTO"/>  		
   	</typeAliases>
   
   </configuration>

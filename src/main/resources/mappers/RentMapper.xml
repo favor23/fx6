@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="RentMapper">
+  	<select id="rentList" resultType="RentDTO" parameterType="com.choa.util.ListInfo">
+  		select * from
+  		(select rownum r, m.* from
+  		(select * from rent order by num asc) m)
+  		where r between #{startRow} and #{lastRow}
+  	</select>
+  	<select id="rentCount" resultType="java.lang.Integer">
+  		select nvl(count(num), 0) from rent
+  	</select>
+  	<select id="rentView" resultType="RentDTO" parameterType="java.lang.Integer">
+  		select * from rent where num=#{num}
+  	</select>
+  	
+  
+  
+  </mapper>

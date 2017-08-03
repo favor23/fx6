@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="CartMapper">
+  	<insert id="write" parameterType="CartDTO">
+  		insert into cart values(#{id},#{list_img},#{product_name},#{quantity},#{price},cart_seq.nextval,#{start_date},#{end_date},#{total})
+  	</insert>
+  	<select id="list" parameterType="com.choa.util.ListInfo" resultType="CartDTO">
+  		select * from
+  		(select rownum C, N.*from
+  		(select * from cart order by cart_num asc) N)
+  	</select>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo" >
+  		select nvl(count(cart_num), 0) from cart
+  	</select>
+  	
+  	<delete id="delete" parameterType="java.lang.Integer">
+  		delete cart where cart_num=#{cart_num}
+  	</delete>
+  </mapper>

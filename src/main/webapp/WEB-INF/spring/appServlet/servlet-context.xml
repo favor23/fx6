@@ -34,6 +34,13 @@
 	
 	<context:component-scan base-package="com.choa.review" />
 	<context:component-scan base-package="com.choa.required" />
+	<context:component-scan base-package="com.choa.reply" />
+	<context:component-scan base-package="com.choa.matching" />
+	<context:component-scan base-package="com.choa.apply" />
+	<context:component-scan base-package="com.choa.note" />
+	<context:component-scan base-package="com.choa.rent" />
+	<context:component-scan base-package="com.choa.cart" />
+	<context:component-scan base-package="com.choa.order_rent"/>
 	
 	<context:component-scan base-package="com.choa.member" />
 	<context:component-scan base-package="com.choa.customer" />

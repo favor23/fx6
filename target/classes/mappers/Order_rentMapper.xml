@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="Order_rentMapper">
+  		<insert id="insert" parameterType="Order_rentDTO">
+  			insert into order_rent values(order_seq.nextval,#{id},#{product_name},#{quantity},#{price},#{start_date},#{end_date}, 0,'unapproved', #{list_img})		
+  		</insert>
+  		<select id="list" parameterType="java.lang.Integer" resultType="Order_rentDTO">
+  			select * from cart where cart_num=#{cart_num}
+  		</select>
+  		<delete id="delete" parameterType="java.lang.Integer"> 
+  		delete cart where cart_num=#{cart_num}
+  	</delete>
+  	<select id="check" parameterType="com.choa.util.ListInfo" resultType="Order_rentDTO">
+  		select * from
+  		(select rownum R, N.*from
+  		(select * from order_rent order by num desc) N)
+  		where R between #{startRow} and #{lastRow} 		
+  	</select>
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
+  		select nvl(count(num),0) from order_rent
+  	</select>
+  
+  </mapper>

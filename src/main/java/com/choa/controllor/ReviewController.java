@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.choa.reply.ReplyDTO;
 import com.choa.review.ReviewDTO;
 import com.choa.review.ReviewService;
 import com.choa.util.ListInfo;
@@ -30,6 +31,7 @@ public class ReviewController {
 				ar = reviewService.reviewList(listInfo);
 				model.addAttribute("list", ar);
 				model.addAttribute("listInfo", listInfo);
+				model.addAttribute("Rnum",61);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,7 +45,8 @@ public class ReviewController {
 	
 	//writeForm
 	@RequestMapping(value="reviewWrite", method=RequestMethod.GET)
-	public String reviewWrite(Model model){
+	public String reviewWrite(Model model, ReplyDTO replyDTO){
+		model.addAttribute("dto", replyDTO);
 		model.addAttribute("path", "Write");
 		
 		return "board/review/reviewWrite";

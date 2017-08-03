@@ -32,4 +32,5 @@
 	
 	<a href="requiredUpdate?num=${view.num}">Update</a>
 	<a href="requiredDelete?num=${view.num}">Delete</a>
+	<a href="requiredReply?num=${view.num}">Reply</a>
 

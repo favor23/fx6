@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="ReplyMapper">
+  	
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
+  		select nvl(count(review_num),0)from reply
+  	</select>
+  	
+  	<delete id="delete" parameterType="java.lang.Integer">
+  		delete reply where reply_num=#{reply_num}
+  	</delete>
+  	
+	<!-- <update id="delete" parameterType="java.lang.Integer">
+  		update reply set contents='삭제된 댓글입니다.' where reply_num=#{reply_num} 
+  	</update> -->
+  
+  	<insert id="write" parameterType="ReplyDTO">
+  		insert into reply values(reply_seq.nextval,#{review_num},#{writer},#{contents}, sysdate )
+  	</insert>
+  	
+  	<update id="update" parameterType="ReplyDTO">
+  		update reply set writer=#{writer} contents=#{contents} where reply_num=#{reply_num}
+  	</update>
+  
+  	<select id="list" parameterType="com.choa.util.ListInfo" resultType="ReplyDTO">
+  		select * from 
+  		(select rownum R, N.* from 
+  		(select * from reply where review_num=#{review_num}
+  		   order by reply_num desc) N) 
+  		where R between #{startRow} and #{lastRow}
+  		<!-- select * from reply where review_num=#{review_num} order by reply_num desc -->
+  	</select>
+  
+  </mapper>
+  

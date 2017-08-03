@@ -1,6 +1,8 @@
 package com.choa.required;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,18 @@ public class RequiredDAO {
 	}
 	
 	public void reviewHit(int num) throws Exception{
+		
+	}
+	
+	public int requiredReply(RequiredDTO requiredDTO) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("requiredDTO", requiredDTO);
+		sqlSession.insert(NAMESPACE+"requiredReply", map);
+		int result = (Integer)map.get("result");
+		
+		return result;
+		
 		
 	}
 

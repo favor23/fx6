@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,7 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
-
+<c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
 
 	.main{
@@ -129,7 +129,7 @@
 </style>
 </head>
 <body>
-
+ <c:import url="../../temp/header.jsp"/>
 
 	
 	<div class="main">
@@ -139,6 +139,10 @@
 			</div>
 			
 			<div class="first1-2">
+				
+				
+             
+			
 			
 			</div>
 
@@ -159,7 +163,7 @@
 					<tr class="boardtitle" id="${dto.num}" style="cursor:hand;">
 						<td>${dto.num}</td>
 						<td>${dto.writer}</td>
-						<td><div class="boardtitle2">${dto.title}</div></td> 
+						<td><div class="boardtitle2">${dto.title}</div></td>
 						<td><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
 						<td>${dto.hit}</td>
 						<td>${dto.thumbs_up}</td>
@@ -169,19 +173,20 @@
 			</table>
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="${board}List?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
+				<a href="reviewList?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
 				var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="${board}List?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}">${i}</a>
+				<a href="reviewList?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}">${i}</a>
 			</c:forEach>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="${board}List?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
+				<a href="reviewList?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
 			</c:if>
 
 			<a href="reviewWrite">WRITE</a>
+			
 		</div>
 	
 	</div>
@@ -189,9 +194,32 @@
 
 	
 
-
+<c:import url="../../temp/footer.jsp"/>
 <script type="text/javascript">
 
+
+
+$.ajax({
+	url : "reviewView?num="+${Rnum},
+	datatype : "get",
+	success : function(data) {
+		
+		$(".first1-1").html(data.trim());
+
+	}
+
+});
+
+$.ajax({
+	url : "reviewReply?review_num="+${Rnum},
+	datatype : "get",
+	success : function(data) {
+		
+		$(".first1-2").html(data.trim());
+		
+	}
+	
+});
 
 $(".boardtitle").click(function() {
 	var vnum=$(this).attr("id");
@@ -207,7 +235,39 @@ $(".boardtitle").click(function() {
 		}
 
 	});
-}) 
+	
+	$.ajax({
+		url : "reviewReply?review_num="+vnum,
+		datatype : "get",
+		success : function(data) {
+			
+			$(".first1-2").html(data.trim());
+			
+		}
+		
+	});
+});
+$(".first1-2").on("click","#reply_btn",function() {
+    alert("dkals");
+    $("#frm").submit();            
+ });
+ 
+ $(".first1-2").on("click",".update_btn1",function() {	
+	  var reply_num = $(this).attr("id");
+	  var review_num = $(this).attr("accesskey");	 
+	  alert(reply_num);
+	  alert(review_num);
+	/*  $.ajax({		  
+		  url : "replyMod?reply_num="+reply_num+"&review_num="+review_num,				
+		 success:function(data){
+			  $(".reply_2").html(data);
+			
+			  }
+		  }		  
+	  });  */ 
+
+});
+
 
 
 </script>

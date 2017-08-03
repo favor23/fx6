@@ -43,5 +43,10 @@ public class RequiredService {
 		return requiredDAO.requiredUpdate(requiredDTO);
 	}
 	
+	
+	//replyWrite
+	public int requiredReply(RequiredDTO requiredDTO) throws Exception{
+		return requiredDAO.requiredReply(requiredDTO);
+	}
 
 }
