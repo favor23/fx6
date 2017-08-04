@@ -20,6 +20,7 @@
 	height: 350px;
 	background-color: #1b1b1b;
 	
+	
 }
 #black_video{
 	width: 1350px;

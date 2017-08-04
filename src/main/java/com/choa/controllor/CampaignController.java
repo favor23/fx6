@@ -27,6 +27,11 @@ public class CampaignController {
 		
 	}
 	
+	@RequestMapping(value = "campaignList", method = RequestMethod.GET)
+	public void campaignList() {
+		
+	}
+	
 	@RequestMapping(value = "campaignWrite", method = RequestMethod.GET)
 	public String campaignWrite() {
 		int result = 0;

@@ -23,6 +23,33 @@ public class MovieService {
 		return movieDAO.movieList(listInfo);
 	}
 	
+	public List<MovieDTO> movieList2(ListInfo listInfo) throws Exception {
+		int totalCount = movieDAO.movieCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return movieDAO.movieList2(listInfo);
+	}
+	
+	public List<MovieDTO> movieList3(ListInfo listInfo) throws Exception {
+		int totalCount = movieDAO.movieCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return movieDAO.movieList3(listInfo);
+	}
+	
+	public List<MovieDTO> movieList4(ListInfo listInfo) throws Exception {
+		int totalCount = movieDAO.movieCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return movieDAO.movieList4(listInfo);
+	}
+	
 	public int movieCount() throws Exception {
 		return movieDAO.movieCount();
 	}

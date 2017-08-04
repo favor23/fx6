@@ -349,6 +349,10 @@
 		height: 50px;
 	}
 	
+	.header_plus {
+		height: 54px;
+	}
+	
 	.sub_wrap {
 		width: 100%;
 		height: 100%;

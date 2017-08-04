@@ -3,15 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- header_plus start -->
 <div class="header_plus" >
-	<div class="plus_d1"></div>
 	<div class="plus_d2">
 		<div class="plus_d2_list">
 			<ul>
-				<li id="#" class="header_plus_li">
+				<li id="../movie/movieList" class="header_plus_li">
+						전체
+				</li>
+				<li id="../movie/movieList2" class="header_plus_li">
 						현재상영작
 				</li>
-				<li id="#" class="header_plus_li">
+				<li id="../movie/movieList3" class="header_plus_li">
 						개봉예정작
+				</li>
+				<li id="../movie/movieList4" class="header_plus_li">
+						지난영화
 				</li>
 			</ul>
 		</div>

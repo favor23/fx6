@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="RoomMapper">
+  
+  	<select id="playtime" resultType="com.choa.room.RoomDTO" parameterType="java.lang.Integer">
+		select * from room where num=#{num}
+  	</select>
+		<!-- select num, play_Time, startTime, lastTime from room where num=#{num} -->
+		<!-- select num, play_Time, startTime, lastTime from room where num=#{num} -->
+  		<!-- select num, play_Time, to_char(startTime, yyyyMMddHHmmssSSS), to_char(lastTime, yyyyMMddHHmmssSSS) from room where num=#{num} -->
+  
+  	<update id="playtimeUpdate" parameterType="com.choa.room.RoomDTO">
+  		update room set starttime=#{startTime}, lasttime=#{lastTime} where num=#{num}
+  	</update>
+  
+  </mapper>

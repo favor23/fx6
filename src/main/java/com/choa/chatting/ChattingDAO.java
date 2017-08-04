@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.choa.customer.CustomerDTO;
+
 @Repository
 public class ChattingDAO {
 	
@@ -34,6 +36,12 @@ public class ChattingDAO {
 		map.put("contents", contents);
 		return sqlSession.insert(NAMESPACE+"chatting2", map);
 	}
+	public int ticket(CustomerDTO customerDTO){
+		return sqlSession.update(NAMESPACE+"ticket", customerDTO);
+	}
 	
+	public int playview(CustomerDTO customerDTO){
+		return sqlSession.update(NAMESPACE+"playview", customerDTO);
+	}
 	
 }
