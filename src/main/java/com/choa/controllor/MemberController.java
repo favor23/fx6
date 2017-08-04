@@ -292,8 +292,12 @@ public class MemberController {
 			}
 		}
 
-		@RequestMapping(value="/member/gmail")
-		public void gmailTest()throws Exception {
+		@RequestMapping(value="/emailTest/naverlogin")
+		public void emailTest1()throws Exception {
+			
+		}
+		@RequestMapping(value="/emailTest/callback")
+		public void emailTest2()throws Exception {
 			
 		}
 
