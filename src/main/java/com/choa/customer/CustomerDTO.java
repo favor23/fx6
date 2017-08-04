@@ -15,6 +15,35 @@ public class CustomerDTO extends MemberDTO {
 	private String reView;
 	private Date birth;
 	private String taste;
+	private int ban;
+	private int banLog;
+	
+	
+	
+	public int getBanLog() {
+		return banLog;
+	}
+	public void setBanLog(int banLog) {
+		this.banLog = banLog;
+	}
+	public int getBan() {
+		return ban;
+	}
+	public void setBan(int ban) {
+		this.ban = ban;
+	}
+	public String getTaste() {
+		return taste;
+	}
+	public void setTaste(String taste) {
+		this.taste = taste;
+	}
+	public Date getBirth() {
+		return birth;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
 	public String getId() {
 		return id;
 	}
@@ -45,6 +74,7 @@ public class CustomerDTO extends MemberDTO {
 	public void setSung(String sung) {
 		this.sung = sung;
 	}
+	
 	public String getTicket() {
 		return ticket;
 	}
@@ -63,23 +93,6 @@ public class CustomerDTO extends MemberDTO {
 	public void setReView(String reView) {
 		this.reView = reView;
 	}
-	public Date getBirth() {
-		return birth;
-	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-	public String getTaste() {
-		return taste;
-	}
-	public void setTaste(String taste) {
-		this.taste = taste;
-	}
-	
-	
-	
-	
-	
 	
 	
 	

@@ -8,6 +8,50 @@
  	<select id="admin_login" parameterType="com.choa.admin.AdminDTO" resultType="com.choa.admin.AdminDTO"> 
  		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID and M.ID=#{id} and M.PW=#{pw}
  	</select>
+ 	<update id="banPlus" parameterType="java.util.Map">
+    update customer set ban=ban+${ban}, banlog=banlog+${ban} where id=#{id}
+ </update>
+ 
+ <select id="chkBan" resultType="com.choa.customer.CustomerDTO" parameterType="java.lang.String">
+ 	select ban,banlog from customer where id=#{id}
+ </select>
+ 
+ <update id="banReset" parameterType="java.lang.String">
+ update customer set ban=0 where id=#{id}
+ </update>
+ 
+ <select id="callBanList" resultType="com.choa.banList.BanlistDTO">
+ 	select * from banlist where proccess='x'
+ </select>
+ 
+ <select id="callBanList2" resultType="com.choa.banList.BanlistDTO">
+ 	select * from banlist where proccess='o'
+ </select>
+ 
+ <select id="banCount" resultType="java.lang.Integer">
+ 	select count(proccess) from banlist where proccess='x'
+ </select>
+ 
+ <update id="proccess" parameterType="java.util.Map">
+ update banlist set proccess='o',adminid=#{id},ban=#{ban} where num=#{num}
+ </update>
+ 
+ <select id="reasonCount" parameterType="java.lang.String" resultType="com.choa.banList.ReasonDTO">
+ 	select count(decode(reason,'욕설 및 비속어','1')) a,count(decode(reason,'도배','1')) b,
+ 	count(decode(reason,'분란조장','1')) c,count(decode(reason,'스포일러','1')) d,
+ 	 from banlist where targetid=#{id};
+ </select>
+ 
+ <select id="chatLog" parameterType="java.lang.String" resultType="com.choa.chatting.ChattingDTO">
+ 	select * from chatting where writer=#{id} and proccess='x'
+ </select>
+ 
+ <update id="chatProccess">
+ 	update chatting set proccess='o' where num in
+ 	<foreach collection="num" item="type" index="index1" separator="," open="(" close=")">#{type}</foreach>
+ </update>
+ 	
+ 	
  	<select id="admin_selectList" resultType="com.choa.admin.AdminDTO">
  		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID
  	</select>

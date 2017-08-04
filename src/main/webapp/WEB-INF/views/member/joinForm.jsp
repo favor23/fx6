@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 <title>Insert title here</title>
 <style type="text/css">
 #join_box td {
@@ -191,16 +190,20 @@
 	margin-top: 5px;
 
 }
+
+#smtext {
+line-height:3;
+	font-size: small;
+}
 </style>
 </head>
 <body>
 <c:import url="../temp/bootStrap.jsp" />
 <c:import url="../temp/header.jsp" />
+<c:if test="${check eq true }">
 	<!-- 아이디 비번 폰 이메일 주소 성별 직업 이름 나이 grade result -->
 	<label id="head_label">회원가입</label>
 	<div id="join_box">
-<!-- String regex = "^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$";
-    예) 시작은 영문으로만, '_'를 제외한 특수문자 안되며 영문, 숫자, '_'으로만 이루어진 5 ~ 12자 이하 -->
 		<form action="customerJoin" id="join_frm" method="post">
 			<table>
 				<tr>
@@ -214,8 +217,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="jf1">비밀번호</td>
-					<td class="jf2"><input type="password" name="pw" id="pw" class="text" onblur="pw_chk()" onfocus="focus1()">
+					<td class="jf1">비밀번호</td><!-- 0804비번체크 해제 -->
+					<td class="jf2"><input type="password" name="pw" id="pw" class="text"> <!-- < onblur="pw_chk()" onfocus="focus1()" > -->
+			
 					</td>
 					<td class="jf3" id="text_pw"><label class="sText1">8~20자의 영문과 1개 이상의 숫자,특수문자만 가능.</label> 
 					<label class="sText2">비밀번호 양식과 맞지않습니다.</label>
@@ -224,8 +228,9 @@
 				</tr>
 				<tr>
 					<td class="jf1">비밀번호 확인</td>
-					<td class="jf2"><input type="password" id="pwc" class="text" onblur="pwc_chk()"></td>
+					<td class="jf2"><input type="password" id="pwc" class="text"></td>
 					<td class="jf3" id="text_pw2"><label class="sText3">비밀번호가 일치하지 않습니다.</label></td>
+					<!-- 0804 비밀번호 정규식 일시 해제 >   onblur="pwc_chk()" -->
 				</tr>
 				<tr>
 					<td class="jf1">생년월일</td>
@@ -256,7 +261,7 @@
 				</tr>
 				<tr>
 					<td class="jf1">집주소</td>
-					<td colspan="2" class="jf2"><input type="text" name="address" class="text"></td>
+					<td colspan="2" class="jf2"><input type="text" name="address" class="text" style=" width: 79.4%;"></td>
 				</tr>
 				<tr>
 					<td class="jf1">성별</td>
@@ -265,48 +270,38 @@
 					<td class="jf3"><span class="span">여 : <input type="radio"
 							name="sung" value="f"></span></td>
 				</tr>
-
-				<!-- <tr>
-					<td class="jf1">직업</td>
-					<td  class="jf2" colspan="2">
-						<span class="jobSpan span">학생 : <input type="radio" name="jobRadio" value="student" onchange="test(1)"></span>&nbsp; &nbsp; &nbsp;
-						<span class="jobSpan span">직접입력 : <input type="radio" name="jobRadio" value="etc" checked="checked" onchange="test(2)"></span>
-						<label id="hiddenLabel"><input type="text" id="etc" class="text"></label>
-					</td>
-				</tr> -->
-
 				<tr>
-				<td class="jf1">선호하는 장르</td>
+				<td class="jf1">선호하는 장르<br><span id="smtext">(5개 선택해주세요)</span></td>
 					<td colspan="2"  class="jf2">
 						<p class="p_tag">
 						<!-- 뮤지컬, 미스터리, 로맨스(멜로), 공상 과학, 스포츠, 스릴러, 전쟁, 서부극 -->
-						<span class="span">액션 : <input type="checkbox" name="taste" value="horror">&nbsp;&nbsp;</span>
-						<span class="span">모험 : <input type="checkbox" name="taste" value="reasoning">&nbsp;&nbsp;</span>
-						<span class="span">범죄 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">전쟁 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
+						<span class="span">액션 : <input type="checkbox" name="taste" value="액션" class="action">&nbsp;&nbsp;</span>
+						<span class="span">모험 : <input type="checkbox" name="taste" value="모험" class="adventure">&nbsp;&nbsp;</span>
+						<span class="span">추리 : <input type="checkbox" name="taste" value="추리" class="reason">&nbsp;&nbsp;</span>
+						<span class="span">전쟁 : <input type="checkbox" name="taste" value="전쟁" class="warfare">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">역사 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
-						<span class="span">다큐 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
-						<span class="span">공포 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
-						<span class="span">가족 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">역사 : <input type="checkbox" name="taste" value="역사" class="history">&nbsp;&nbsp;</span>
+						<span class="span">다큐 : <input type="checkbox" name="taste" value="다큐" class="document">&nbsp;&nbsp;</span>
+						<span class="span">공포 : <input type="checkbox" name="taste" value="공포" class="horror">&nbsp;&nbsp;</span>
+						<span class="span">가족 : <input type="checkbox" name="taste" value="가족" class="family">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">판타지 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">누와르 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
-						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic">&nbsp;&nbsp;</span>
-						<span class="span">드라마 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">판타지 : <input type="checkbox" name="taste" value="판타지" class="fantasy">&nbsp;&nbsp;</span>
+						<span class="span">누아르 : <input type="checkbox" name="taste" value="누아르" class="noir">&nbsp;&nbsp;</span>
+						<span class="span">코미디 : <input type="checkbox" name="taste" value="코미디" class="comic">&nbsp;&nbsp;</span>
+						<span class="span">드라마 : <input type="checkbox" name="taste" value="드라마" class="drama">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">스포츠 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
-						<span class="span">스릴러 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">로맨스 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="뮤지컬" class="musical">&nbsp;&nbsp;</span>
+						<span class="span">스포츠 : <input type="checkbox" name="taste" value="스포츠" class="sports">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="스릴러" class="thriller">&nbsp;&nbsp;</span>
+						<span class="span">로맨스 : <input type="checkbox" name="taste" value="로맨스" class="romance">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">미스터리 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
-						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="thrill">&nbsp;&nbsp;</span>
-						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">미스터리 : <input type="checkbox" name="taste" value="미스테리" class="mystery">&nbsp;&nbsp;</span>
+						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="애니메이션" class="animation">&nbsp;&nbsp;</span>
+						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="SF" class="sf">&nbsp;&nbsp;</span>
 						</p>
 					</td>
 				</tr>
@@ -326,34 +321,55 @@
 			<input type="button" id="joinBtn" value="다음">
 		</form>
 	</div>
+</c:if>
+<c:if test="${check ne true }">
+<h2>잘못 된 요청입니다. </h2>
+</c:if>
+	
 
 <c:import url="../temp/footer.jsp" />
 
 
 <script type="text/javascript">
+var taste_checker="";
+	$("input[type='checkbox']").click(function(){
+		var num = $('input:checkbox:checked').length;
+		if(num==0){
+			taste_checker="";
+		}else if(num>0){
+			taste_checker="ok";
+		}
+	});
+	
+
 var year = new Date().getFullYear(); //올해 년도 구함.
 var id_checker = "";
-var pw_checker = "";
+var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""으로 바꾸어 놓아야함
 		/* <select name="user_birth_year">
 		<option value="2000" selected>2000</option> */
-		
+	
 		$("#id_check").click(function(){
 			var vid=$("#id").val();
 			//아이디 생성 조건 작성.
-			$.post("idCheck",{
-				id:vid,
-			},function(data){
-				data=data.trim();
-				if(data!=""){
-					$(".pass").css("display","none");
-					$(".none_pass").css("display","inherit");
-					id_checker="";
-				}else {
-					$(".none_pass").css("display","none");
-					$(".pass").css("display","inherit");
-					id_checker="ok";
-				}
-			})
+			var regex = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,11}$/;
+			if(regex.test(vid)){
+				$.post("idCheck",{
+					id:vid,
+				},function(data){
+					data=data.trim();
+					if(data!=""){
+						$(".pass").css("display","none");
+						$(".none_pass").css("display","inherit");
+						id_checker="";
+					}else {
+						$(".none_pass").css("display","none");
+						$(".pass").css("display","inherit");
+						id_checker="ok";
+					}
+				});
+			}else {
+				alert("아이디 생성 조건에 맞지 않습니다.");
+			}
 		});
 		
 		//모든 자동완성 off
@@ -478,10 +494,12 @@ var pw_checker = "";
 						+ $("#myDay").val();
 				$("#birth").val(text);//생년 월일 저장
 				//중복체크를 했는지, 패스워드가 조건에 맞는지, 패스워드와 패스워드 확인과 일치하는지 확인해줌.
-				if (id_checker != "" && pw_checker != "") {
+				if (id_checker != "" && pw_checker != ""&&taste_checker!="") {
 					$("#join_frm").submit();
-				} else {
-					alert("다시 확인하세요");
+				} else if(id_checker == "" && pw_checker == ""){
+					alert("다시 확인하세요.");
+				}else if(taste_checker==""){
+					alert("선호하는 장르를 다시 확인해주세요.");
 				}
 
 			});
@@ -493,6 +511,7 @@ var pw_checker = "";
 		var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
 		var ck = pwc.test(pw);
 		if (ck) {
+			
 			pw_checker = "ok";
 			$(".sText1").css("display", "none");
 			$(".sText2").css("display", "none");

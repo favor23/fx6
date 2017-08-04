@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+ol, ul {
+	list-style: none;
+}
+
+#container {
+	width: 80%;
+	margin-left: 10%;
+	min-width: 1000px;
+	height: 800px;
+	width: 80%;
+}
+/************* controllBox **************/
+#controlBox {
+	margin-top: 50px;
+	width: 100%;
+	height: 102px;
+	border-bottom: 2px solid black;
+	display: inline-block;
+}
+#memberView {
+	background-size: 50px 50px;
+	background-position-x: center;
+	background-position-y: 10px;
+	line-height: 10;
+}
+
+#memberUpdate {
+	background-size: 50px 50px;
+	background-position-x: center;
+	background-position-y: 10px;
+	line-height: 10;
+}
+
+#memberDrop {
+	background-size: 50px 50px;
+	background-position-x: center;
+	background-position-y: 10px;
+	line-height: 10;
+}
+
+#memberPr {
+	background-size: 50px 50px;
+	background-position-x: center;
+	background-position-y: 10px;
+	line-height: 10;
+}
+
+/*********************************************/
+#shj_ul {
+	width: 80%;
+	margin-left:10%;
+	height: 100px;
+	display: inline-block;
+}
+
+#shj_ul li {
+	width: 33%;
+	text-align: center;
+	float: left;
+	cursor: pointer;
+	font-weight:bold;
+	font-size: 12pt;
+	height: 100px;
+	background-repeat: no-repeat;
+	background-position-y: 12px;
+}
+
+#shj_ul li:HOVER {
+	background-color: #edf984;
+}
+
+.hd {
+	font-weight: bold;
+	font-size: large;
+}
+
+#main_box {
+	padding: 20px 20px 20px 20px;
+	width: 100%;
+	height: 650px;
+	display: inline-block;
+}
