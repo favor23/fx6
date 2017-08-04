@@ -30,7 +30,7 @@
 <script>
 $(".header_plus_li").click(function() {
 	location.href=$(this).attr("id");
-})
+});
 
 </script>
 
