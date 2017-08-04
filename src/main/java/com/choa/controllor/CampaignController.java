@@ -1,6 +1,7 @@
 package com.choa.controllor;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.choa.campaign.CampaignDTO;
 import com.choa.campaign.CampaignService;
 import com.choa.file.FileService;
+import com.choa.movie.MovieDTO;
+import com.choa.util.ListInfo;
 
 @Controller
 @RequestMapping(value = "/crowd_funding/campaign/**")
@@ -29,6 +32,11 @@ public class CampaignController {
 	
 	@RequestMapping(value = "campaignList", method = RequestMethod.GET)
 	public void campaignList() {
+		
+	}
+	
+	@RequestMapping(value = "getCampaignList", method = RequestMethod.POST)
+	public void campaignList(Integer curPage, Model model) {
 		
 	}
 	

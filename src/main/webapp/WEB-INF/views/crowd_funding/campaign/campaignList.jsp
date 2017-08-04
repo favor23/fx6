@@ -57,7 +57,53 @@
 		font-size: 1.2em;
 		color: white;
 	}
+	
+	.art {
+		width: 60%;
+		height: 500px;
+		margin: 0 auto;
+		display: table;
+		margin-bottom: 80px;
+		background-color: lime;
+	}
 </style>
+<script type="text/javascript">
+	$(function() {
+		var count = 0;
+		var curPage = 0;
+		
+		//스크롤 이벤트 발생 시
+		$(document).scroll(function() {
+			var scrollHeight = $(window).scrollTop() + $(window).height();
+			var documentHeight = $(document).height();
+			
+			if (documentHeight <= scrollHeight + 1) {
+				//if(count<'${totalCount}'||count!='${totalCount}') {
+					curPage++;
+					
+					getList(curPage);
+					
+					count = count + 10;
+				//}
+			}
+		});
+	});
+	
+	function getList(curPage) {
+		$.ajax({
+			url:"getCampaignList",
+			type:"POST",
+			data:{
+				curPage:curPage
+			},
+			success:function(data) {
+				if(data!="") {
+					$(".art").append(data.trim());
+				}
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<c:import url="../../temp/header.jsp"></c:import>
@@ -79,8 +125,11 @@
 			</div>
 		</article>
 		
-		<c:import url="../../temp/header_plus_movie.jsp"></c:import>
+		<c:import url="../../temp/header_plus_cfList.jsp"></c:import>
 		
+		<article class="art">
+	  
+	    </article>
 	</section>
 	
 	<c:import url="../../temp/footer.jsp"></c:import>
