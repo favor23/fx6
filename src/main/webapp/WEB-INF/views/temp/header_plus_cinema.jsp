@@ -31,6 +31,7 @@
 $(".header_plus_li").click(function() {
 	location.href=$(this).attr("id");
 })
+
 </script>
 
 <!-- 필요한곳에  사용
