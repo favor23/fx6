@@ -17,9 +17,17 @@
 <style type="text/css">
 
 	.main{
-		width: 1500px;
-		height: 930px;
+		width: 100%;
+		height: 1300px;
 		/* background-color: yellow; */
+		margin: 0 auto;
+	
+	}
+	
+	.se_main{
+		width: 80%;
+		height: 100%;
+		background-color: red;
 		margin: 0 auto;
 	
 	}
@@ -62,7 +70,7 @@
 	
 	.table{
 		
-		width: 75%;
+		width: 100%;
 		height: 70%;
 		border: solid black 2px;
 		
@@ -107,6 +115,7 @@
 
 	
 	<div class="main">
+		<div class="se_main">
 		<div class="first">
 			<div class="first1-1">
 			
@@ -167,6 +176,7 @@
 			<a href="requiredWrite">WRITE</a>
 		</div>
 	
+	</div>
 	</div>
 	
 
