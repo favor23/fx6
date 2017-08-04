@@ -153,21 +153,31 @@ public class SocketController {
 	}
 	
 	@RequestMapping(value="ticket", method=RequestMethod.POST)
-	public String ticket(String movie_num, HttpSession session){
+	public String ticket(Integer movie_num, HttpSession session){
 		System.out.println("ticket");
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		String id = customerDTO.getId();
+		System.out.println(id);
+		System.out.println("movie_num : "+movie_num);
 		int check = 0;
 		String [] ticket = customerDTO.getTicket().split("/");
+		System.out.println("0 : "+ticket[0]);
+		System.out.println("1 : "+ticket[1]);
 		String str = null;
+		System.out.println("length : "+ticket.length);
 		for(int i=0;i<ticket.length;i++){
-			if(ticket[i].equals(movie_num)){
+			System.out.println("for");
+			System.out.println("for 안에 ticket:"+ticket[i]);
+			System.out.println("for 안에 movie_num:"+movie_num);
+			if(ticket[i].equals(String.valueOf(movie_num))){
+				System.out.println("if");
 				customerDTO.setPlayView(customerDTO.getPlayView()+"/"+ticket[i]);
 				check=1;
 			}else{
-				str = str+"/"+ticket[i];
+				return "/index";
 			}
 		}
+		System.out.println("ticket : "+check);
 		if(check==1){
 			customerDTO.setTicket(str);
 			chattingService.ticket(customerDTO);

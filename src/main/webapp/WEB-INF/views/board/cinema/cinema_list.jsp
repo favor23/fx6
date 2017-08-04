@@ -124,7 +124,6 @@ ul{
 			<c:forEach items="${list}" var="dto">
 				<div class="list">
 					<div class="list_poster"><img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic"> </div>
-					<input type="hidden" value="${dto.movie_num}" id="movie_num${dto.movie_num}" class="movie_num">
 					
 					<div id="info">
 						<nav>
@@ -189,7 +188,7 @@ ul{
 					<div id="btn_div">
 						<button class="btn-success">ticket </button>
 						<button class="btn-primary">후원페이지</button>
-						<button class="btn-danger chat">영화시청</button>
+						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
 			</c:forEach>
@@ -200,19 +199,16 @@ ul{
 </body>
 <script type="text/javascript">
 
-	var list='${list}';
-	/* for(var i=0;i<list.size();i++){
-		var movie = $("#movie_num").val();
-	} */
 	
-	var movie_num = $(".movie_num");
-	var movie_num2 = $("#movie_num2");
-	alert(movie_num.val());
-	alert(movie_num2.val());
-			/* alert(this.movie_num.val()); */
 	
 	$(".chat").click(function() {
-			window.open("${pageContext.request.contextPath}/chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		var id = $(this).attr("id");
+		alert(id);
+		$.post("${pageContext.request.contextPath}/chatting/ticket", {
+			movie_num:id
+		},function(data){});
+		alert("fdsa");
+			window.open("${pageContext.request.contextPath}/chatting/bbb", "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	});
 	
 	var now = new Date();
