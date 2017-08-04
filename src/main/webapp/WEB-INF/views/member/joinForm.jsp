@@ -217,8 +217,8 @@ line-height:3;
 					</td>
 				</tr>
 				<tr>
-					<td class="jf1">비밀번호</td>
-					<td class="jf2"><input type="password" name="pw" id="pw" class="text"  onblur="pw_chk()" onfocus="focus1()" >
+					<td class="jf1">비밀번호</td><!-- 0804비번체크 해제 -->
+					<td class="jf2"><input type="password" name="pw" id="pw" class="text"> <!-- < onblur="pw_chk()" onfocus="focus1()" > -->
 			
 					</td>
 					<td class="jf3" id="text_pw"><label class="sText1">8~20자의 영문과 1개 이상의 숫자,특수문자만 가능.</label> 
@@ -228,8 +228,9 @@ line-height:3;
 				</tr>
 				<tr>
 					<td class="jf1">비밀번호 확인</td>
-					<td class="jf2"><input type="password" id="pwc" class="text" onblur="pwc_chk()"></td>
+					<td class="jf2"><input type="password" id="pwc" class="text"></td>
 					<td class="jf3" id="text_pw2"><label class="sText3">비밀번호가 일치하지 않습니다.</label></td>
+					<!-- 0804 비밀번호 정규식 일시 해제 >   onblur="pwc_chk()" -->
 				</tr>
 				<tr>
 					<td class="jf1">생년월일</td>
@@ -343,7 +344,7 @@ var taste_checker="";
 
 var year = new Date().getFullYear(); //올해 년도 구함.
 var id_checker = "";
-var pw_checker = "";
+var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""으로 바꾸어 놓아야함
 		/* <select name="user_birth_year">
 		<option value="2000" selected>2000</option> */
 	

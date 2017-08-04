@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="MovieUploadMapper">
+  
+  	<insert id="upload" statementType="CALLABLE" parameterType="java.util.Map">
+  		{ call movieuploadroomcreate(#{fname, mode=IN}, #{oname, mode=IN}, #{playtime, mode=IN}, #{starttime, mode=IN}, #{lasttime, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+  	</insert>
+    	
+  	<select id="view" parameterType="java.lang.Integer" resultType="com.choa.movieupload.MovieUploadDTO">
+  		select * from MOVIEUPLOAD where movie_num=#{movie_num}
+  	</select>
+  	
+  </mapper>

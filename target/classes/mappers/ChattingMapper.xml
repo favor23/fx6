@@ -13,4 +13,12 @@
   		{ call chattingGrade(#{room_num, mode=IN}, #{writer, mode=IN}, #{contents, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
   	</insert>
   
+  	<update id="ticket" parameterType="com.choa.customer.CustomerDTO">
+  		update customer set ticket=#{ticket}, playview=#{playView} where id=#{id}
+  	</update>
+  	
+  	<update id="playview" parameterType="com.choa.customer.CustomerDTO">
+  		update customer set playview=#{playView}, review=#{reView} where id=#{id}
+  	</update>
+  
   </mapper>

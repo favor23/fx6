@@ -50,4 +50,9 @@
 	<context:component-scan base-package="com.choa.benefit" />
 	<context:component-scan base-package="com.choa.banList" />
 	<context:component-scan base-package="com.choa.prfile" />
+		<context:component-scan base-package="com.choa.room" />
+	<context:component-scan base-package="com.choa.movieupload" />
+	<context:component-scan base-package="com.choa.chatting" />
+	<context:component-scan base-package="com.choa.cinema" />
+	
 </beans:beans>

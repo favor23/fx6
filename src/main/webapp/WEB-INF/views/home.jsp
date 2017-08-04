@@ -26,6 +26,10 @@ background-color: white;
 #logOut{
 background-color: white;
 }
+body{
+	height: 3000px;
+	width: auto;
+}
 </style>
 </head>
 <body>
@@ -174,5 +178,72 @@ background-color: white;
 <a href="chatting/chat">chat</a>
 <P>  The time on the server is ${serverTime}. </P>
 </div>
+
+<p>===성재형==========성재형==========성재형==========성재형==========성재형==========성재형==========성재형==========성재형==========성재형=====================================================================</p>
+<h1>Hello world!</h1>
+
+	<P>The time on the server is ${serverTime}.</P>
+
+	<c:if test="${member == null }">
+		<button id="join">회원가입</button>
+		<button id="login">로그인</button>
+	</c:if>
+	<c:if test="${member != null }">
+	<button id="myPage">마이페이지</button>
+		<button id="logOut">로그아웃</button>
+		
+	</c:if>
+	<c:if test="${member.id!=null }">
+	접속자 아이디 : ${member.id } 
+	</c:if>
+	
+
+	<script type="text/javascript">
+		$("#join").click(function() {
+			location.href="member/join";
+		});
+		$("#login").click(function() {
+			location.href="member/login";
+		});
+		$("#myPage").click(function() {
+			location.href="member/myPage";
+		});
+		$("#logOut").click(function() {
+			location.href="member/logOut";
+		});
+		
+	</script>
+
+<a href="chatting/aaa">aaa</a>
+<button id="chat1">aaa</button>
+<button id="chatb">bbb</button>
+<a href="paySystem/aaa1">aaa1</a>
+<a href="paySystem/pay24">pay24</a>
+<a href="index">index</a>
+<a href="defaultPage">defaultPage</a>
+<a href="board/movie/movieList">movieList</a>
+<a href="board/review/reviewList">reviewList</a>
+<a href="board/required/requiredList">requiredList</a>
+<a href="chatting/chat1">chat1</a>
+<a href="chatting/chat2">chat2</a>
+<a href="chatting/chat3">chat3</a>
+<a href="chatting/chat4">chat4</a>
+<a href="chatting/chat5">chat5</a>
+<a href="admin/adminPage">adminPage</a>
+<a href="board/cinema/cinema_list">cinema_list</a>
+<a href="board/cinema/cinema_my">cinema_my</a>
+<a href="board/cinema/cinema_time">cinema_time</a>
+<a href="crowd_funding/campaign/campaignCreate">campaignCreate</a>
+<a href="movieupload/movieupload">movieupload</a>
+<P>  The time on the server is ${serverTime}. </P>
 </body>
+<script type="text/javascript">
+$("#chatb").click(function() {
+	window.open("chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+});
+
+$("#chat1").click(function() {
+	window.open("chatting/aaa", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+});
+</script>
 </html>

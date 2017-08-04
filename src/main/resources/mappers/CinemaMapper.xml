@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+  
+  <mapper namespace="CinemaMapper">
+  	<select id="listAll" resultType="com.choa.movie.MovieDTO">
+  		select * from movie
+  	</select>
+  
+  	<select id="myList" parameterType="java.util.Map" resultType="com.choa.movie.MovieDTO">
+  		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where movie_num=(select ticket from customer where id=#{id}) order by movie_num asc) m) 
+		where r between #{listInfo.startRow} and #{listInfo.lastRow}
+  	</select>
+	
+	<select id="myCount" parameterType="java.lang.String" resultType="java.lang.String">
+		select ticket from customer where id=#{id}
+	</select>
+	
+	<select id="schedule" resultType="com.choa.movie.MovieDTO">
+		select * from movie where release_date > SYSDATE
+	</select>
+	
+	<select id="hotList" parameterType="java.util.Map" resultType="com.choa.movie.MovieDTO">
+      select * from 
+      (select rownum r, m.* from 
+      (select * from movie where genre like 
+      <foreach collection="genrear" item="type" index="index" separator="or genre like">
+    	  #{type}
+      </foreach>
+      order by movie_num asc) m) 
+      where r between #{listInfo.startRow} and #{listInfo.lastRow}
+   </select>
+
+	
+  </mapper>
