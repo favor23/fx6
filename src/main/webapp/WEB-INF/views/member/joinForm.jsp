@@ -217,8 +217,9 @@ line-height:3;
 					</td>
 				</tr>
 				<tr>
-					<td class="jf1">비밀번호</td><!-- 0804비번체크 해제 -->
-					<td class="jf2"><input type="password" name="pw" id="pw" class="text"> <!-- < onblur="pw_chk()" onfocus="focus1()" > -->
+					<td class="jf1">비밀번호</td>
+					<td class="jf2"><input type="password" name="pw" id="pw" class="text">
+					<!-- 0804 비밀번호 체크 해제   onblur="pw_chk()" onfocus="focus1()"  -->
 			
 					</td>
 					<td class="jf3" id="text_pw"><label class="sText1">8~20자의 영문과 1개 이상의 숫자,특수문자만 가능.</label> 
@@ -228,7 +229,9 @@ line-height:3;
 				</tr>
 				<tr>
 					<td class="jf1">비밀번호 확인</td>
-					<td class="jf2"><input type="password" id="pwc" class="text"></td>
+					<td class="jf2"><input type="password" id="pwc" class="text" ></td>
+					<!--0804비밀번호 체크 해제 onblur="pwc_chk()" -->
+
 					<td class="jf3" id="text_pw2"><label class="sText3">비밀번호가 일치하지 않습니다.</label></td>
 					<!-- 0804 비밀번호 정규식 일시 해제 >   onblur="pwc_chk()" -->
 				</tr>

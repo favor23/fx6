@@ -1,5 +1,6 @@
 package com.choa.controllor;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,49 @@ public class MovieController {
 		model.addAttribute("totalCount", totalCount);
 	}
 	
+	@RequestMapping(value = "movieList2")
+	public void movieList2(Model model) {
+		int totalCount = 0;
+
+		try {
+			totalCount = movieService.movieCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("totalCount", totalCount);
+	}
+	
+	@RequestMapping(value = "movieList3")
+	public void movieList3(Model model) {
+		int totalCount = 0;
+
+		try {
+			totalCount = movieService.movieCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("dDay", "dDay");
+	}
+	
+	@RequestMapping(value = "movieList4")
+	public void movieList4(Model model) {
+		int totalCount = 0;
+
+		try {
+			totalCount = movieService.movieCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("totalCount", totalCount);
+	}
+	
 	@RequestMapping(value = "getMovieList", method = RequestMethod.GET)
 	public void movieList(Integer curPage, Model model) {
 		List<MovieDTO> list = null;
@@ -55,6 +99,72 @@ public class MovieController {
 		}
 		
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping(value = "getMovieList2", method = RequestMethod.GET)
+	public String movieList2(Integer curPage, Model model) {
+		List<MovieDTO> list = null;
+		ListInfo listInfo = new ListInfo();
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			list = movieService.movieList2(listInfo);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "board/movie/getMovieList";
+	}
+	
+	@RequestMapping(value = "getMovieList3", method = RequestMethod.GET)
+	public String movieList3(Integer curPage, Model model) {
+		List<MovieDTO> list = null;
+		ListInfo listInfo = new ListInfo();
+		java.util.Date date = new java.util.Date();
+		long d_day = 0;
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			list = movieService.movieList3(listInfo);
+			
+			for(MovieDTO dto: list) {
+				d_day = dto.getRelease_date().getTime() - date.getTime();
+				d_day = d_day/(1000*24*60*60) + 1;
+				
+				dto.setD_day((int)d_day);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "board/movie/getMovieList";
+	}
+	
+	@RequestMapping(value = "getMovieList4", method = RequestMethod.GET)
+	public String movieList4(Integer curPage, Model model) {
+		List<MovieDTO> list = null;
+		ListInfo listInfo = new ListInfo();
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			list = movieService.movieList4(listInfo);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
+		
+		return "board/movie/getMovieList";
 	}
 		
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)

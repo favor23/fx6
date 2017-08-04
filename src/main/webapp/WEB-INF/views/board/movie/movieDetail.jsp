@@ -491,7 +491,6 @@
 			    <li class="active"><a data-toggle="tab" href="#home">주요정보</a></li>
 			    <li><a data-toggle="tab" href="#menu3" id="sr">한줄평</a></li>
 			    <li><a data-toggle="tab" href="#menu4" id="review">리뷰</a></li>
-			    <li><a data-toggle="tab" href="#menu5">연관영화</a></li>
 			  </ul>
 			
 			  <div class="tab-content">
@@ -532,10 +531,6 @@
 			      	
 			      	</div>
 			      </div>
-			    </div>
-			    <div id="menu5" class="tab-pane fade">
-			      <h3>Menu 5</h3>
-			      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
 			    </div>
 			  </div>
 		</article>
