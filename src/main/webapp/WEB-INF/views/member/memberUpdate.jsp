@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
 #memberBox {
-	border: 1px solid black;
 	width: 70%;
 	margin-left: 15%;
 	padding: 15px;
@@ -145,30 +143,41 @@ width: 250px;
 				<td class="jf1">집주소</td>
 				<td colspan="2"><input type="text" name="address" value="${member.address }" class="input address"></td>
 			</tr>
-
-			<tr>
-				<td class="jf1">직업</td>
-				<td colspan="2">
-					<span class="span">감독 : <input type="radio" name="job" class="g" value="director"></span>
-					<span class="span">작가 : <input type="radio" name="job" class="g" value="writer"></span>
-					<span class="span">유저 : <input type="radio" name="job" class="g" value="user"></span></td>
-			</tr>
 			<tr>
 				<td class="jf1">선호하는 장르</td>
-				<td colspan="2"  class="jf2">
+					<td colspan="2"  class="jf2">
 						<p class="p_tag">
-						<span class="span">공포 : <input type="checkbox" name="taste" value="horror">&nbsp;&nbsp;</span>
-						<span class="span">추리 : <input type="checkbox" name="taste" value="reasoning">&nbsp;&nbsp;</span>
-						<span class="span">스릴러 : <input type="checkbox" name="taste" value="thrill">&nbsp;&nbsp;</span>
+						<!-- 뮤지컬, 미스터리, 로맨스(멜로), 공상 과학, 스포츠, 스릴러, 전쟁, 서부극 -->
+						<span class="span">액션 : <input type="checkbox" name="taste" value="action" class="action">&nbsp;&nbsp;</span>
+						<span class="span">모험 : <input type="checkbox" name="taste" value="adventure" class="adventure">&nbsp;&nbsp;</span>
+						<span class="span">추리 : <input type="checkbox" name="taste" value="reason" class="reason">&nbsp;&nbsp;</span>
+						<span class="span">전쟁 : <input type="checkbox" name="taste" value="warfare" class="warfare">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic">&nbsp;&nbsp;</span>
-						<span class="span">로멘스 : <input type="checkbox" name="taste" value="romance">&nbsp;&nbsp;</span>
-						<span class="span">액션 : <input type="checkbox" name="taste" value="action">&nbsp;&nbsp;</span>
-						<span class="span">성인 : <input type="checkbox" name="taste" value="adult">&nbsp;&nbsp;</span>
+						<span class="span">역사 : <input type="checkbox" name="taste" value="history" class="history">&nbsp;&nbsp;</span>
+						<span class="span">다큐 : <input type="checkbox" name="taste" value="document" class="document">&nbsp;&nbsp;</span>
+						<span class="span">공포 : <input type="checkbox" name="taste" value="horror" class="horror">&nbsp;&nbsp;</span>
+						<span class="span">가족 : <input type="checkbox" name="taste" value="family" class="family">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">판타지 : <input type="checkbox" name="taste" value="fantasy" class="fantasy">&nbsp;&nbsp;</span>
+						<span class="span">누아르 : <input type="checkbox" name="taste" value="noir" class="noir">&nbsp;&nbsp;</span>
+						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic" class="comic">&nbsp;&nbsp;</span>
+						<span class="span">드라마 : <input type="checkbox" name="taste" value="drama" class="drama">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="musical" class="musical">&nbsp;&nbsp;</span>
+						<span class="span">스포츠 : <input type="checkbox" name="taste" value="sports" class="sports">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="thriller" class="thriller">&nbsp;&nbsp;</span>
+						<span class="span">로맨스 : <input type="checkbox" name="taste" value="romance" class="romance">&nbsp;&nbsp;</span>
+						</p>
+						<p class="p_tag">
+						<span class="span">미스터리 : <input type="checkbox" name="taste" value="mystery" class="mystery">&nbsp;&nbsp;</span>
+						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="animation" class="animation">&nbsp;&nbsp;</span>
+						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="sf" class="sf">&nbsp;&nbsp;</span>
 						</p>
 					</td>
-			</tr>
+				</tr>
 		</table>
 	<!-- email -->
 	<input type="hidden" value="${member.id }" name="id">
@@ -178,6 +187,7 @@ width: 250px;
 
 	<button id="updateBtn">완료</button>
 </div>
+
 	<script type="text/javascript">
 	var pw_checker = "";
 	var test = '${member.email}';
@@ -186,13 +196,13 @@ width: 250px;
 	var b = test[1];
 	$("#e1").val(test[0]);
 	$("#e3").val(test[1]);
-	var ck='${member.job}';
-	if(ck=='none'){
-		$("."+ck).attr("checked","checked");	
-		$("#etc").val(ck);
-	}else { 
-		$("."+ck).attr("checked","checked");		
+	
+	var taste = '${member.taste}';
+	taste = taste.split(",");
+	for(var i in taste){
+		$("."+taste[i]).attr("checked","checked");
 	}
+
 	
 		$("#updateBtn").click(function() {
 			var job = $('input:radio[name="r"]:checked').val();
@@ -209,12 +219,6 @@ width: 250px;
 			if(pw!=pwc){
 				$("#pwc2").html("비밀번호가 일치하지않습니다.");
 			}			
-			
-			if (job == 'etc') {
-				$("#job").val($("#etc").val());
-			} else {
-				$("#job").val(job);
-			}
 
 			$("#email").val($("#e1").val()+"@"+$("#e3").val());
 			

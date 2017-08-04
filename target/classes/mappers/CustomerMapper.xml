@@ -5,9 +5,10 @@
   
  <mapper namespace="CustomerMapper"> 
  <resultMap type="com.choa.customer.CustomerDTO" id="CustomerDTO"></resultMap>
- 
+ <resultMap type="com.choa.movie.MovieDTO" id="MovieDTO"></resultMap>
+
  	<insert id="join" statementType="CALLABLE" parameterType="java.util.Map" >
- 	{ call member_join(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customerDTO.phone,mode=IN},#{customerDTO.email,mode=IN},#{customerDTO.address,mode=IN},#{customerDTO.sung,mode=IN},#{customerDTO.job,mode=IN},#{customerDTO.name,mode=IN},#{customerDTO.age,mode=IN},#{customerDTO.birth,mode=IN},#{customerDTO.grade,mode=IN},#{customerDTO.taste,mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+ 	{ call member_join(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customerDTO.age,mode=IN},#{customerDTO.name,mode=IN},#{customerDTO.grade,mode=IN},#{customerDTO.phone,mode=IN},#{customerDTO.email,mode=IN},#{customerDTO.address,mode=IN},#{customerDTO.sung,mode=IN},#{customerDTO.birth,mode=IN},#{customerDTO.taste,mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</insert>
  	
  	<select id="login" statementType="CALLABLE" parameterType="java.util.Map"> 
@@ -20,14 +21,58 @@
  	</delete>
  	
  	<update id="update" statementType="CALLABLE" parameterType="java.util.Map">
- 	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.job, mode=IN},#{dto.taste, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+ 	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.taste, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</update>
  	
- 	<select id="idCheck" statementType="CALLABLE" parameterType="java.util.Map">
- 	{ call id_check(#{customerDTO.id, mode=IN},#{check, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
+ 	<select id="idCheck" parameterType="com.choa.customer.CustomerDTO" resultType="com.choa.customer.CustomerDTO">
+ 	select id from customer where id=#{id}
  	</select>
  	
+ 	<select id="pwCheck" statementType="CALLABLE" parameterType="java.util.Map">
+ 	{ call pw_check(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{check, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
+ 	</select>
  	
- 	
- 	
+ 	<select id="movieList" resultType="com.choa.movie.MovieDTO" parameterType="java.util.Map">
+		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where genre like 
+		<foreach collection="taste" item="type" index="index" separator="or genre like">
+		#{type}
+		</foreach>
+		order by movie_num asc) m) 
+		where r between #{listInfo.startRow} and #{listInfo.lastRow}
+	</select>
+	<select id="movieList2" resultType="com.choa.movie.MovieDTO" parameterType="java.util.Map">
+		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where genre like #{taste}
+		order by movie_num asc) m) 
+		where r between #{listInfo.startRow} and #{listInfo.lastRow}
+	</select>
+	
+	<!-- 이거 분명 에러난다 해보셈 -->
+	<select id="movieCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+	select nvl(count(movie_num), 0) from movie where genre like
+	<foreach collection="taste" item="type" index="index1" separator="or genre like">#{type}</foreach>
+	</select>
+	
+	<select id="movieCount2" resultType="java.lang.Integer" parameterType="java.util.Map">
+	select nvl(count(movie_num), 0) from movie where genre like #{taste}
+	</select>
+	
+	
+	
+	<update id="write_pr" parameterType="com.choa.pr.PrDTO">
+	update mypr set award=#{award},education=#{education},activity=#{activity},introduce=#{introduce} where id=#{id}
+	</update>
+	
+	<select id="view_pr" resultType="com.choa.pr.PrDTO" parameterType="com.choa.customer.CustomerDTO">
+	select * from mypr where id=#{id}
+	</select>
+	
+	<insert id="intoBan" parameterType="com.choa.banList.BanlistDTO"><!-- adminid ban reg_date -->
+		insert into banlist values(#{targetId},#{reason},'nothing',#{senderId},#{roomNum},'x',ban_num.nextval,'없음',0,sysdate)
+	</insert>
+	
+<!-- 영화가 종료될때 playview 번호를 가져와서 해당 playView를 가진 사람의 ban을 0으로 바꿔주기. -->
  </mapper> 

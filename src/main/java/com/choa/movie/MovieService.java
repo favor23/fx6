@@ -50,4 +50,8 @@ public class MovieService {
 	public Double movieSrStars(int movie_num) throws Exception {
 		return movieDAO.movieSrStars(movie_num);
 	}
+	
+	public MovieRcdDTO rcd(int num)throws Exception{
+		return movieDAO.rcd(num);
+	}
 }

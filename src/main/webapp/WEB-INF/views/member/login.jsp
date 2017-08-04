@@ -107,7 +107,7 @@ label {
 				<tr>
 					<td class="text1">비밀번호</td>
 					<td><input type="password" name="pw" autocomplete="off"
-						class="a"></td>
+						class="a">
 				</tr>
 			</table>
 			<div>

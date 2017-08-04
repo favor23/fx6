@@ -31,4 +31,8 @@
 	<select id="movieSrStars" resultType="java.lang.Double" parameterType="java.lang.Integer">
 		select round(avg(sr_stars), 1) from simple_review where movie_num=#{movie_num}
 	</select>
+	<!-- sinHojeong -->
+	<select id="rcd" resultType="com.choa.movie.MovieRcdDTO" parameterType="java.lang.Integer">
+	select * from movie_rcd where movie_num=#{num}
+	</select>
 </mapper>

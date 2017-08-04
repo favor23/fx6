@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.choa.chat.EchoHandler;
+import com.choa.chatting.ChattingService;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.MemberDTO;
 import com.choa.room.roomuser.RoomUserDTO;
@@ -26,7 +28,26 @@ public class SocketController {
 	private EchoHandler echoHandler;
 	@Inject
 	private RoomUserService roomUserService;	
+	@Inject
+	private ChattingService chattingService;
 	private int aaa=0;
+	
+
+	   @RequestMapping(value="chch", method=RequestMethod.POST)
+	   public String input(Integer num, String writer, String contents, String grade, Model model, HttpServletRequest request)throws Exception{
+	      CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+	      System.out.println("grade:"+grade);
+	      if(customerDTO.getGrade().equals(grade)){
+	         int a = chattingService.chatting(num, writer, contents, grade);
+	         System.out.println("if : "+a);
+	      }else{
+	         int a = chattingService.chatting2(num, writer, contents);
+	         System.out.println("else : "+a);
+	      }
+	      model.addAttribute("message", "asa");
+
+	      return "/commons/ajaxResult";
+	   }
 	
 	
 	@RequestMapping(value="aaa")
