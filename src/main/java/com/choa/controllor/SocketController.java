@@ -208,11 +208,19 @@ public class SocketController {
 	public String playtimeUpdate(Integer num, String play_Time, String startTime, String lastTime, Model model)throws Exception{
 		RoomDTO roomDTO = new RoomDTO();
 		roomDTO.setNum(num);
-		roomDTO.setLastTime(lastTime);
 		roomDTO.setPlay_Time(play_Time);
 		Long starttt = Long.parseLong(startTime);
-		starttt = starttt+40000;
+		Long lastttt = Long.parseLong(lastTime);
+		if(!startTime.substring(10, 14).equals("240000")){
+			starttt = starttt+40000;
+			lastttt = lastttt+40000;
+		}else{
+			starttt = starttt+860000;
+			lastttt = lastttt+860000;
+		}
 		String startt = String.valueOf(starttt);
+		String lasttt = String.valueOf(lastttt);
+		roomDTO.setLastTime(lasttt);
 		roomDTO.setStartTime(startt);
 		System.out.println(roomDTO.getStartTime());
 		System.out.println(startt+40000);
