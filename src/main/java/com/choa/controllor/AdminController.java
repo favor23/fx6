@@ -116,6 +116,7 @@ public class AdminController {
 	// loginProccess
 	@RequestMapping(value = "member/adminLogin", method = RequestMethod.POST)
 	public String login(MemberDTO memberDTO, HttpSession session) throws Exception {
+		memberDTO.setPw(hash.hashtest(memberDTO));
 		memberDTO = adminService.login(memberDTO);
 		if (memberDTO != null) {
 			session.setAttribute("member", memberDTO);

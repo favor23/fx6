@@ -30,13 +30,7 @@
 		<c:if test="${empty member}">
 		<div class="dropdown"
 				style="height: 50px; width: 150px; float: right;">
-				<li id="bar_login" class="dropdown-toggle" type="button"
-					data-toggle="dropdown">로그인</li>
-				<ul class="dropdown-menu"
-					style="background-color: white; margin: 0 0 0 0;">
-					ID : <input type="text">
-					PW : <input type="password">					
-				</ul>
+				<li id="bar_login"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>				
 			</div>
 
 		</c:if> <c:if test="${!empty member}">
