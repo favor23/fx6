@@ -11,6 +11,11 @@
 </head>
 <body>
 	<c:import url="temp/header.jsp" />
+	
+	
+	
+	
+	
 	<!-- main start -->
 	<section id="main_section">
 		<section id="myCarousel" class="carousel slide" data-ride="carousel">
