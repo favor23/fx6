@@ -15,7 +15,15 @@ public class MovieDTO {
 	private String poster_img;
 	private Date release_end;
 	private int movie_price;
+	// No DB
+	private int d_day;
 	
+	public int getD_day() {
+		return d_day;
+	}
+	public void setD_day(int d_day) {
+		this.d_day = d_day;
+	}
 	public int getMovie_price() {
 		return movie_price;
 	}

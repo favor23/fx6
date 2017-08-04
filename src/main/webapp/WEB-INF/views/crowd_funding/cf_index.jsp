@@ -344,6 +344,10 @@
 		$(".thumbnail img").mouseleave(function() {
 			$(this).attr("style", "-webkit-transform:scale(1.0); -moz-transform:scale(1.0); -o-transform:scale(1.0); transform:scale(1.0);transition: transform .35s;-o-transition: transform .35s;-moz-transition: transform .35s;-webkit-transition: transform .35s;")
 		});
+		
+		$(".list_btn").click(function() {
+			location.href = "campaign/campaignList";
+		});
 	});
 </script>
 </head>

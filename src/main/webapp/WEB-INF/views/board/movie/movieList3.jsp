@@ -77,7 +77,7 @@
 	
 	function getList(curPage) {
 		$.ajax({
-			url:"getMovieList",
+			url:"getMovieList3",
 			type:"GET",
 			data:{
 				curPage:curPage
@@ -410,6 +410,23 @@
 	
 	.plus_d2_list ul li {
 		cursor: pointer;
+	}
+	
+	.dDay {
+		width: 70px;
+		height: 30px;
+		position: absolute;
+		top: 5px;
+		right: 0px;
+		z-index: 1;
+		background-color: #ff0066;
+		opacity: 0.7;
+	}
+	
+	.dDay p {
+		color: white;
+		font-size: 1.5em;
+		text-align: center;
 	}
 </style>
 </head>
