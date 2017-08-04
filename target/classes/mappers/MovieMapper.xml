@@ -9,6 +9,24 @@
 		(select * from movie order by movie_num asc) m) 
 		where r between #{startRow} and #{lastRow}
 	</select>
+	<select id="movieList2" resultType="com.choa.movie.MovieDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where release_date&lt;=to_char(sysdate, 'YYMMDD') and release_end>=to_char(sysdate, 'YYMMDD') order by movie_num asc) m) 
+		where r between #{startRow} and #{lastRow}
+	</select>
+	<select id="movieList3" resultType="com.choa.movie.MovieDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where release_date>to_char(sysdate, 'YYMMDD') order by movie_num asc) m) 
+		where r between #{startRow} and #{lastRow}
+	</select>
+	<select id="movieList4" resultType="com.choa.movie.MovieDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, m.* from 
+		(select * from movie where release_end&lt;to_char(sysdate, 'YYMMDD') order by movie_num asc) m) 
+		where r between #{startRow} and #{lastRow}
+	</select>
 	<select id="movieCount" resultType="java.lang.Integer">
 		select nvl(count(movie_num), 0) from movie
 	</select>

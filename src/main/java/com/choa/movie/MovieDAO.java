@@ -18,6 +18,18 @@ public class MovieDAO {
 		return sqlSession.selectList(NAMESPACE + "movieList", listInfo);
 	}
 	
+	public List<MovieDTO> movieList2(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "movieList2", listInfo);
+	}
+	
+	public List<MovieDTO> movieList3(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "movieList3", listInfo);
+	}
+	
+	public List<MovieDTO> movieList4(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "movieList4", listInfo);
+	}
+	
 	public int movieCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "movieCount");
 	}

@@ -77,7 +77,7 @@
 	
 	function getList(curPage) {
 		$.ajax({
-			url:"getMovieList",
+			url:"getMovieList4",
 			type:"GET",
 			data:{
 				curPage:curPage
