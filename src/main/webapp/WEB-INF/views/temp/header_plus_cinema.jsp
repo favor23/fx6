@@ -7,21 +7,21 @@
 	<div class="plus_d2">
 		<div class="plus_d2_list">
 		<ul>
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_plus_li"> 
 				모든 상영관
 		</li>
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_hotList" class="header_plus_li">
 				추천 상영관
 		</li>
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_time" class="header_plus_li">
 				상영시간표
 		</li>		
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_my" class="header_plus_li">
 				마이 시네마
 		</li>
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_scheduleList" class="header_plus_li">
 				오픈예정 시네마
-		</li>		
+		</li>
 		</ul>
 		</div>
 	</div>
@@ -30,7 +30,8 @@
 <script>
 $(".header_plus_li").click(function() {
 	location.href=$(this).attr("id");
-})
+});
+
 </script>
 
 <!-- 필요한곳에  사용

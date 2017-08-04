@@ -24,35 +24,35 @@
    <context:component-scan base-package="com.choa.controllor"/>
    <context:component-scan base-package="com.choa.fx6" />
 
-   <context:component-scan base-package="com.choa.movie" />
-   <context:component-scan base-package="com.choa.sr" />
-   <context:component-scan base-package="com.choa.room.roomuser" />
-   <context:component-scan base-package="com.choa.paySystem" />
-   <context:component-scan base-package="com.choa.payment"/>
-   <context:component-scan base-package="com.choa.payment.movie" />
-   <context:component-scan base-package="com.choa.payment.support" />
-   
-   <context:component-scan base-package="com.choa.review" />
-   <context:component-scan base-package="com.choa.required" />
-   <context:component-scan base-package="com.choa.reply" />
-   <context:component-scan base-package="com.choa.matching" />
-   <context:component-scan base-package="com.choa.apply" />
-   <context:component-scan base-package="com.choa.note" />
-   <context:component-scan base-package="com.choa.rent" />
-   <context:component-scan base-package="com.choa.cart" />
-   <context:component-scan base-package="com.choa.order_rent"/>
-   
-   <context:component-scan base-package="com.choa.member" />
-   <context:component-scan base-package="com.choa.customer" />
-   <context:component-scan base-package="com.choa.admin" />
-   <context:component-scan base-package="com.choa.admin.work" />
-   <context:component-scan base-package="com.choa.campaign" />
-   <context:component-scan base-package="com.choa.benefit" />
-   <context:component-scan base-package="com.choa.banList" />
-   <context:component-scan base-package="com.choa.prfile" />
-      <context:component-scan base-package="com.choa.room" />
-   <context:component-scan base-package="com.choa.movieupload" />
-   <context:component-scan base-package="com.choa.chatting" />
-   <context:component-scan base-package="com.choa.cinema" />
-   
+	<context:component-scan base-package="com.choa.movie" />
+	<context:component-scan base-package="com.choa.sr" />
+	<context:component-scan base-package="com.choa.room.roomuser" />
+	<context:component-scan base-package="com.choa.paySystem" />
+	<context:component-scan base-package="com.choa.payment"/>
+	<context:component-scan base-package="com.choa.payment.movie" />
+	<context:component-scan base-package="com.choa.payment.support" />
+	
+	<context:component-scan base-package="com.choa.review" />
+	<context:component-scan base-package="com.choa.required" />
+	<context:component-scan base-package="com.choa.reply" />
+	<context:component-scan base-package="com.choa.matching" />
+	<context:component-scan base-package="com.choa.apply" />
+	<context:component-scan base-package="com.choa.note" />
+	<context:component-scan base-package="com.choa.rent" />
+	<context:component-scan base-package="com.choa.cart" />
+	<context:component-scan base-package="com.choa.order_rent"/>
+	
+	<context:component-scan base-package="com.choa.member" />
+	<context:component-scan base-package="com.choa.customer" />
+	<context:component-scan base-package="com.choa.admin" />
+	<context:component-scan base-package="com.choa.admin.work" />
+	<context:component-scan base-package="com.choa.campaign" />
+	<context:component-scan base-package="com.choa.benefit" />
+	<context:component-scan base-package="com.choa.banList" />
+	<context:component-scan base-package="com.choa.prfile" />
+	<context:component-scan base-package="com.choa.room" />
+	<context:component-scan base-package="com.choa.movieupload" />
+	<context:component-scan base-package="com.choa.chatting" />
+	<context:component-scan base-package="com.choa.cinema" />
 </beans:beans>
+
