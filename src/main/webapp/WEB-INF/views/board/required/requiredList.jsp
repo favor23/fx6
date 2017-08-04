@@ -18,9 +18,10 @@
 
 	.main{
 		width: 100%;
-		height: 1300px;
+		height: 930px;
 		/* background-color: yellow; */
 		margin: 0 auto;
+		margin-top: 20px;
 	
 	}
 	
@@ -35,7 +36,7 @@
 
 	.first{
 		
-		width: 70%;
+		width: 62%;
 		height: 100%;
 		/* background-color: red;  */
 		float: left;
@@ -58,7 +59,7 @@
 	}
 	
 	.second{
-		width:28%;
+		width:35%;
 		height: 100%;
 		/* background-color: blue; */
 		float: right;
@@ -73,8 +74,8 @@
 		width: 100%;
 		height: 70%;
 		border: solid black 2px;
-		
 		margin-top: 50px;
+		vertical-align: middle;
 	}
 	
 .boardtitle2{
@@ -104,7 +105,24 @@
 	
 	}
 	
-
+	.font{
+		
+		font-family: "lucida grande", Tahoma, Verdana, Arial, Helvetica, sans-serif, "나눔고딕", NanumGothic, "돋움", Dotum'';
+		font-size: 12px;
+		line-height: 58px;
+		vertical-align: middle;
+		
+	}
+	
+	.tr{
+	
+		
+		line-height: 58px;
+		vertical-align: middle;
+	}
+	
+	
+	
 	
 	
 
@@ -112,10 +130,16 @@
 </head>
 <body>
  <c:import url="../../temp/header.jsp"/>
+ <c:import url="../../temp/header_plus_board.jsp" />
 
 	
 	<div class="main">
+
 		<div class="se_main">
+
+	<div class="main2" style="width: 75%; margin: 0 auto">
+		
+
 		<div class="first">
 			<div class="first1-1">
 			
@@ -127,33 +151,27 @@
 
 		</div>
 		<div class="second">
-			
-			<table class="table table table-hover">
-				<tr>
-					<th>No</th>
-					<th>WRITE</th>
-					<th>TITLE</th>
-					<th>DATE</th>
-					<th>HIT</th>
+			<table class="table">
+				<tr class="tr">
+					<th class="font" style="border-right: 1px gray solid">No</th>
+					<th class="font">WRITER</th>
+					<th class="font">TITLE</th>
+					<th class="font">DATE</th>
+					<th class="font">HIT</th>
 				
 					
 				</tr>
 				<c:forEach items="${list}" var="dto">
-					<tr class="boardtitle" id="${dto.num}" style="cursor:hand;">
-						<td>${dto.num}</td>
-						<td>${dto.writer}</td>
-						
-						
-                                 <td> 
-                                <div class="boardtitle2"><c:forEach begin="1" end="${dto.depth}" var="i">
-                                         <span>RE:</span>
-                                       </c:forEach> ${dto.title}</div>
-                                 </td>
-                       
-                     
-						
-						<td><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
-						<td>${dto.hit}</td>
+					<tr class="boardtitle tr" id="${dto.num}" style="cursor:hand;" >
+						<td class="font td" style="color: red;">${dto.num}</td>
+						<td class="font td">${dto.writer}</td>
+						<td class="font td"> 
+                           <div class="boardtitle2"><c:forEach begin="1" end="${dto.depth}" var="i">
+                           <span>RE:</span>
+                           </c:forEach> ${dto.title}</div>
+                        </td>
+						<td class="font td"><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
+						<td class="font td">${dto.hit}</td>
 					
 					
 					</tr>
@@ -175,7 +193,7 @@
 
 			<a href="requiredWrite">WRITE</a>
 		</div>
-	
+	</div>
 	</div>
 	</div>
 	
