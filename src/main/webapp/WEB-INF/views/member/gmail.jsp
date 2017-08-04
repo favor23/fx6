@@ -8,8 +8,8 @@
     <p>Gmail API Quickstart</p>
 
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
+    <button id="authorize-button" >Authorize</button>
+    <button id="signout-button" >Sign Out</button>
 
     <pre id="content"></pre>
 
