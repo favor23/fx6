@@ -292,6 +292,10 @@ public class MemberController {
 			}
 		}
 
+		@RequestMapping(value="/member/gmail")
+		public void gmailTest()throws Exception {
+			
+		}
 
 
 }

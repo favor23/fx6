@@ -108,7 +108,7 @@ background-color: white;
 <h5>/upload/1501586621585_lupeow.png</h5>
 </div>
 
-
+<a href="member/gmail">@@@@@  GMAIL @@@@@</a>
 <a href="chatting/aaa">CHAT</a>
 <a href="member/myGenre">GENRE_TEST</a>
 <a href="member/admin/banProccessList">밴 처리한거 결과물 불러오는 게시판</a>
