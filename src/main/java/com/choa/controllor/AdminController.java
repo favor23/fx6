@@ -133,7 +133,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "admin/admin_mod", method = RequestMethod.GET)
 	public void admin_mod() {
-
+		
 	}
 
 	@RequestMapping(value = "admin/adminBusiness", method = RequestMethod.GET)

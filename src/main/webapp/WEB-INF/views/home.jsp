@@ -8,10 +8,6 @@
 <head>
 	<title>Home</title>
 	<style type="text/css">
-#hojeong {
-	width: 100px;		
-}
-	
 button {
 	border: 1px solid gray;
 	border-radius: 5px;
@@ -112,11 +108,11 @@ body{
 <div style="width: 600px;height: 400px;border: 1px solid black;">
 	<p>이미지 경로 테스트</p>
 	
-<img id="hojeong" alt="" src="<c:url value="/upload/1501585824954_KakaoTalk_20170704_115722091.jpg"/>">
+<img alt="" src="<c:url value="/upload/1501585824954_KakaoTalk_20170704_115722091.jpg"/>">
 <h5>/upload/1501586621585_lupeow.png</h5>
 </div>
 
-<a href="emailTest/naverlogin">@@@@@ naver @@@@@</a>
+<a href="member/gmail">@@@@@  GMAIL @@@@@</a>
 <a href="chatting/aaa">CHAT</a>
 <a href="member/myGenre">GENRE_TEST</a>
 <a href="member/admin/banProccessList">밴 처리한거 결과물 불러오는 게시판</a>

@@ -27,6 +27,7 @@
 	margin-top: 50px;
 }
 </style>
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -36,6 +37,7 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
+		<c:import url="./admin_one.jsp" />
 		<div class="d1_a">
 			인사팀 돈관리 <br>
 			철저하게 돈관리하자.

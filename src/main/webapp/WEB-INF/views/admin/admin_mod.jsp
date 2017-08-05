@@ -44,151 +44,6 @@ td {
 	height: 100%;
 }
 
-.AdaptiveSearchTimeline-separationModule {
-	margin-bottom: 15px;
-}
-
-li {
-	text-align: inherit;
-}
-
-.ProfileCard {
-	background-color: #fff;
-	border: 1px solid #e6ecf0;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	text-align: left;
-}
-
-.Grid-cell {
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	display: inline-block;
-	font-size: 14px;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	vertical-align: top;
-	width: 100%;
-}
-
-.Grid {
-	display: block;
-	font-size: 0;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-}
-
-.ProfileCard--wide .ProfileCard-bg {
-	height: 160px;
-}
-
-.ProfileCard a, .ProfileCard a:hover, .ProfileCard a:focus, .ProfileCard a:active,
-	.ProfileCard .pretty-link, .ProfileCard .pretty-link:hover,
-	.ProfileCard .pretty-link:focus, .ProfileCard .pretty-link:active {
-	color: #1c94e0;
-}
-
-.ProfileCard-bg {
-	background-position: 0 50%;
-	background-size: 100%;
-	display: block;
-	height: 90px;
-}
-
-img {
-	border: 0;
-}
-
-.ProfileCard-avatarImage {
-	border-radius: 50%;
-	display: block;
-	height: 200px;
-	width: 200px;
-	float: left;
-	position: relative;
-	top: -70px;
-}
-
-.ProfileCardStats-statLabel {
-	color: #657786;
-	font-size: 12px;
-	font-weight: bold;
-	letter-spacing: .02em;
-	overflow: hidden;
-	transition: color .15s ease-in-out;
-	float: left;
-	margin-left: 10px;
-}
-
-.ProfileCardStats-statValue {
-	display: block;
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 3px;
-	transition: color .15s ease-in-out;
-	margin-left: 20px;
-}
-
-.ProfileCard--wide .ProfileNameTruncated-link {
-	font-size: 21px;
-	line-height: 28px;
-	font-weight: bold;
-}
-
-a:hover, a:focus, a:active {
-	text-decoration: underline;
-}
-
-a:active, a:hover {
-	outline: 0;
-}
-
-.ProfileNameTruncated-link {
-	color: #14171a;
-	font-size: 18px;
-	font-weight: bold;
-	padding-right: 2px;
-}
-
-.u-textInheritColor {
-	color: inherit !important;
-}
-
-a {
-	background: transparent;
-}
-
-.u-textTruncate {
-	max-width: 100%;
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-	white-space: nowrap !important;
-	word-wrap: normal !important;
-}
-
-.ProfileNameTruncated {
-	height: 22px;
-	line-height: 1.3;
-	margin-top: -2px;
-}
-
-.ProfileCard-userFields {
-	color: #14171a;
-	margin-top: 8px;
-	width: 100%;
-}
-
-.ProfileCard {
-	background-color: #fff;
-	border: 1px solid #e6ecf0;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	text-align: left;
-	height: 500px;
-}
-
 div {
 	display: block;
 }
@@ -277,6 +132,7 @@ button{
         margin-top: 30px;
         }
 </style>
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -297,27 +153,27 @@ button{
     
     "
 						data-screen-name="dia_official" data-user-id="3259624118"
-						data-feedback-token="" data-impression-id="">
+						data-feedback-token="" data-impression-id="" style="height: 500px">
 						<c:if test="${member.department eq '회계부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://imgnews.naver.com/image/032/2017/02/19/l_2017021801002475800202941_99_20170219094306.jpg);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장1.jpg);">
 						</a>
 						</c:if>
 						<c:if test="${member.department eq '인사부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://imgnews.naver.com/image/011/2017/01/23/1OAXIEPZQJ_1_99_20170123085603.jpg);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장2.jpg);">
 						</a></c:if>
 						<c:if test="${member.department eq '후원부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fpost.phinf.naver.net%2FMjAxNzAzMzBfMTc3%2FMDAxNDkwODUyNTUyOTcw.Z3yjstF8B7sS77FulE_ntjki4AqolkU59F62JkixxyAg.Qted81nFoHw7bGjWE_wTzZ2rTqSbAnb3iEM-qTUsOf8g.JPEG%2FIMVJYeyxt0PZpm7ntRVLRI4vvzBo.jpg&type=b400);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/프로듀사.jpg);">
 						</a></c:if>
 						<c:if test="${member.department eq '매니저'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://blogfiles2.naver.net/20160309_61/peokim99_1457486730065Tew3q_JPEG/%C5%C2%BE%E7%C0%C7%C8%C4%BF%B9%C3%D4%BF%B5%C1%F6_%286%29.JPG);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/sun_sun.jpg);">
 						</a>
 						</c:if>
 
