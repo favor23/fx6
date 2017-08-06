@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,16 @@
 }
 #Manager_table{
 	
+}
+.modal_d1 , .modal_d2, .modal_d3{
+	width: 33.3%;
+	height: 400px;
+	float: left;
+}
+
+.easyui-linkbutton{
+	height:50px;
+	width: 100%;
 }
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
@@ -88,14 +99,29 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">${member.department} 업무 추가</h4>
       </div>
       <div class="modal-body">
       		<input type="hidden" id="iconcls" value="icon-ok">
-        	프로젝트명<input type="text" id="name" value="">
-        	프로젝트 할사람<input type="text" id="persons" value="">
-        	시작<input type="text" id="begin" value="">
-        	끝<input type="text" id="end" value="">
+        	<div class="modal_d1">
+        		프로젝트명<input type="text" id="name" value="">
+        		<br>
+        		시작날짜<input type="date" id="begin" value="">
+        		<br>~<br>
+        		끝 날짜<input type="date" id="end" value="">
+        	</div>
+        	<div class="modal_d2">
+        	${member.department} 명단 리스트
+        	<table>
+        	<td><tr>이름</tr><tr>직책</tr><tr>업무갯수</tr></td>
+        	<td><tr></tr><tr></tr><tr></tr></td>
+        	</table>
+        	</div>
+        	<div class="modal_d3">
+        		인원<li>111</li>
+        		<input type="hidden" id="persons" value="">
+        	</div>
+        	
         	<input type="hidden" id="progress" value="0">
         	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="append()" data-dismiss="modal">추가</button>        
       </div>

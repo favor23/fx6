@@ -114,6 +114,7 @@
         <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
+      
       		<input type="hidden" id="iconcls_mod" value="icon-ok">
       		<input type="hidden" id="id_mod" value="">
         	<input type="hidden" id="name_mod" value="">
@@ -121,7 +122,11 @@
         	<input type="hidden" id="begin_mod" value="">
         	<input type="hidden" id="end_mod" value="">
         	진행정도<input type="number" id="progress_mod" value="">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>        
+        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>
+       
+       <%-- <c:if test="">
+       
+       </c:if> --%>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
