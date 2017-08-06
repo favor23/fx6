@@ -28,6 +28,10 @@
 	height:50px;
 	width: 100%;
 }
+.admin_smell_img{
+	height: 50px;
+	width: 40px;
+}
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/admin_m/themes/default/easyui.css" />"
@@ -92,78 +96,28 @@
 	</table>
 	</div>
 </div>
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">${member.department} 업무 추가</h4>
-      </div>
-      <div class="modal-body">
-      		<input type="hidden" id="iconcls" value="icon-ok">
-        	<div class="modal_d1">
-        		프로젝트명<input type="text" id="name" value="">
-        		<br>
-        		시작날짜<input type="date" id="begin" value="">
-        		<br>~<br>
-        		끝 날짜<input type="date" id="end" value="">
-        	</div>
-        	<div class="modal_d2">
-        	${member.department} 명단 리스트
-        	<table>
-        	<td><tr>이름</tr><tr>직책</tr><tr>업무갯수</tr></td>
-        	<td><tr></tr><tr></tr><tr></tr></td>
-        	</table>
-        	</div>
-        	<div class="modal_d3">
-        		인원<li>111</li>
-        		<input type="hidden" id="persons" value="">
-        	</div>
-        	
-        	<input type="hidden" id="progress" value="0">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="append()" data-dismiss="modal">추가</button>        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-  </div>
-  
-  <div id="myModal_mod" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-      		<input type="hidden" id="iconcls_mod" value="icon-ok">
-      		<input type="hidden" id="id_mod" value="">
-        	프로젝트명<input type="text" id="name_mod" value="">
-        	프로젝트 할사람<input type="text" id="persons_mod" value="">
-        	시작<input type="text" id="begin_mod" value="">
-        	끝<input type="text" id="end_mod" value="">
-        	퍼센트<input type="number" id="progress_mod" value="">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-  </div>
+<div id="crate_modal"></div>
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
 	/* var keynum=0; */
 	start();
+	
+	
+	/* 모델 생성 */
+	$(".btn-info").mouseenter(function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_workinsert_cr_modal",
+			type : "GET",
+			success : function(data) {
+				$("#crate_modal").html(data);
+			}
+		});
+	})
+	
+	
+	
+	
 	function start(){		
 		$.post("./work_list",function(data){
 			/* 날짜 형식 변경 */

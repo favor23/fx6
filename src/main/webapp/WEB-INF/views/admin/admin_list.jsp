@@ -32,7 +32,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '부장'}">													
 							<img
-							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>

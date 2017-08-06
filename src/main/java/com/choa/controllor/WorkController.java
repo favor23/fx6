@@ -9,10 +9,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.choa.admin.AdminDTO;
+import com.choa.admin.AdminServiceImpl;
 import com.choa.admin.work.SchedulDTO;
 import com.choa.admin.work.WorkDTO;
 import com.choa.admin.work.WorkService;
@@ -24,7 +27,9 @@ public class WorkController {
 
 	@Autowired
 	private WorkService workService;
-
+	@Autowired
+	private AdminServiceImpl adminService;
+	
 	// 추가
 	@RequestMapping(value="work_insert")
 	public String insert(WorkDTO workDTO) {
@@ -83,11 +88,11 @@ public class WorkController {
 	// 전체 리스트
 	@ResponseBody
 	@RequestMapping(value="work_list")
-	public Map<String, Object> list() {
+	public Map<String, Object> list(Model model) {
 		List<WorkDTO> list=new ArrayList<WorkDTO>();
 		list=workService.list();
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("worklist", list);
+		map.put("worklist", list);		
 		return map;
 	}
 

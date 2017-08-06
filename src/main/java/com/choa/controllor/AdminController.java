@@ -167,13 +167,20 @@ public class AdminController {
 	
 	@RequestMapping(value = "admin/adminManager", method = RequestMethod.GET)
 	public void adminManager() {
-		
 	}
+	
+	
 	
 	@RequestMapping(value = "admin/admin_modal", method = RequestMethod.GET)
 	public void admin_modal(AdminDTO adminDTO,Model model) {
 		adminDTO=adminService.selectOne(adminDTO);
 		model.addAttribute("s_dto", adminDTO );		
 	}
-
+	
+	@RequestMapping(value = "admin/admin_workinsert_cr_modal", method = RequestMethod.GET)
+	public void admin_modal_list(Model model) {
+		List<AdminDTO> list=new ArrayList<AdminDTO>();
+		list=adminService.selectlist();
+		model.addAttribute("admin_list", list);
+	}
 }
