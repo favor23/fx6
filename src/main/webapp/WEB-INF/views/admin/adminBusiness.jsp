@@ -32,7 +32,7 @@
 }
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-<c:import url="../temp/bootStrap_api_crash.jsp" />
+<c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>

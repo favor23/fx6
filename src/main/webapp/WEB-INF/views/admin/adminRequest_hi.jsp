@@ -27,7 +27,7 @@
 	margin-top: 50px;
 }
 </style>
-<c:import url="../temp/bootStrap.jsp" />
+<c:import url="../temp/bootStrap_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>

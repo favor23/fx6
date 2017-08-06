@@ -10,7 +10,7 @@
 <script src='${pageContext.request.contextPath}/calendar/lib/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/calendar/lib/jquery.min.js'></script>
 <script src='${pageContext.request.contextPath}/calendar/fullcalendar.min.js'></script>
-<c:import url="../temp/bootStrap_api_crash.jsp" />
+<c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <style type="text/css">
 #tap{
 	width: 100%;
