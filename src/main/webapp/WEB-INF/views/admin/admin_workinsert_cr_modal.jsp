@@ -53,7 +53,8 @@
 						</tr>
 						<c:forEach items="${admin_list}" var="dto">
 							<c:if test="${dto.department eq member.department}">
-								<div class=""><c:if test="${dto.id eq member.department}"></div>
+							<div class="dto_id_select"></div>
+								<%-- <div class="dto_id_select"><c:if test="${dto.id eq dto.id}">
 								<tr>
 									<td rowspan="2"><img class="admin_smell_img"
 										src="<c:url value="${dto.picture}"/>"></td>
@@ -65,7 +66,7 @@
 										class="btn-default select_one_x" value="참여취소"></td>
 									
 								</tr>
-								<div class=""></c:if></div>
+								</c:if></div> --%>
 							</c:if>
 						</c:forEach>
 					</table>

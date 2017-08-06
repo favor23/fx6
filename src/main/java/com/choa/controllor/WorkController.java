@@ -92,7 +92,7 @@ public class WorkController {
 		List<WorkDTO> list=new ArrayList<WorkDTO>();
 		list=workService.list();
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("worklist", list);		
+		map.put("worklist", list);
 		return map;
 	}
 

@@ -166,7 +166,34 @@ public class AdminController {
 
 	
 	@RequestMapping(value = "admin/adminManager", method = RequestMethod.GET)
-	public void adminManager() {
+	public void adminManager(Model model) {
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		model.addAttribute("admin_list", list2);
+	}
+	
+	@RequestMapping(value = "admin/admin_modal3", method = RequestMethod.GET)
+	public void admin_modal3(String[] jbAry,String[] delAry,Model model) {
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		String str_plus="";
+				
+		for(int i=0;i<jbAry.length;i++){
+			for(int j=0;j<delAry.length;j++){
+				if(jbAry[i].equals(delAry[j])){
+					jbAry[i]="del";					
+				}
+				System.out.println(delAry[j]);
+			}
+			if(!jbAry.equals(null)&&!jbAry[i].equals("del")){
+				str_plus+=jbAry[i]+"/";
+			}
+		}
+		
+		
+		model.addAttribute("admin_list", list2);
+		model.addAttribute("jbAry",jbAry);
+		model.addAttribute("str_plus",str_plus);
 	}
 	
 	
@@ -177,10 +204,10 @@ public class AdminController {
 		model.addAttribute("s_dto", adminDTO );		
 	}
 	
-	@RequestMapping(value = "admin/admin_workinsert_cr_modal", method = RequestMethod.GET)
+	/*@RequestMapping(value = "admin/admin_workinsert_cr_modal", method = RequestMethod.GET)
 	public void admin_modal_list(Model model) {
 		List<AdminDTO> list=new ArrayList<AdminDTO>();
 		list=adminService.selectlist();
 		model.addAttribute("admin_list", list);
-	}
+	}*/
 }
