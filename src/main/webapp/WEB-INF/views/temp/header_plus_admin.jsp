@@ -16,7 +16,7 @@
 		<li id="${pageContext.request.contextPath}/admin/adminSchedule" class="header_plus_li">
 				스케줄관리 
 		</li>
-		<li id="${pageContext.request.contextPath}/admin/adminRequest" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/admin/adminRequest_hi" class="header_plus_li">
 				요청관리 
 		</li>
 		<%-- <li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">

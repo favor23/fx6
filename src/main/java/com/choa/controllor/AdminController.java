@@ -150,6 +150,12 @@ public class AdminController {
 	public void adminRequest() {
 
 	}
+	
+	@RequestMapping(value = "admin/adminRequest_hi", method = RequestMethod.GET)
+	public void adminRequest_hi() {
+
+	}
+	
 	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
 	public void admin_list(String department,Model model) {
 		model.addAttribute("department", department);
@@ -177,11 +183,24 @@ public class AdminController {
 		List<AdminDTO> list2=new ArrayList<AdminDTO>();
 		list2=adminService.selectlist();
 		String str_plus="";
-				
+		
+		for(int x=0;x<jbAry.length;x++){
+			for(int y=0;y<jbAry.length;y++){
+				if(x!=y){
+					if(jbAry[x].equals(jbAry[y])){
+						jbAry[x]="del";	
+						jbAry[y]="del";	
+						break;
+					}
+				}
+			}
+		}
+		
 		for(int i=0;i<jbAry.length;i++){
 			for(int j=0;j<delAry.length;j++){
 				if(jbAry[i].equals(delAry[j])){
-					jbAry[i]="del";					
+					jbAry[i]="del";	
+					delAry[j]="del_s";
 				}
 				System.out.println(delAry[j]);
 			}

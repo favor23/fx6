@@ -88,7 +88,7 @@
 		<thead>
 			<tr>
 				<th data-options="field:'name',width:180,editor:'text'">업무명</th>
-				<th data-options="field:'persons',width:60,align:'right',editor:'numberbox'">사원명</th>
+				<th data-options="field:'persons',width:60,align:'right',editor:'numberbox'">아이디명</th>
 				<th data-options="field:'begin',width:80,editor:'text'">시작 날짜</th>
 				<th data-options="field:'end',width:80,editor:'text'">마감 날짜</th>
 				<th data-options="field:'progress',width:120,formatter:formatProgress,editor:'numberbox'">진행 정도</th>
@@ -131,9 +131,8 @@
 									<td>${dto.position}</td>
 								</tr>
 								<tr>
-									<td><input id="${dto.id}" type="button"
-										class="btn-default select_one_a" data-toggle="modal" data-target="#myModal_ins" value="정보"></td>
-									<td><input id="${dto.id}" type="button"
+									
+									<td colspan="2"><input id="${dto.id}" type="button"
 										class="btn-default insert_gogo" value="참여"></td>
 								</tr>
 							</c:if>
@@ -198,9 +197,9 @@
 	var delAry = new Array();
 	var content=0;
 	var content2=0;
+	var del="del";
 	/* $(".select_one_a").click(function(){
-		var id = $(this).attr("id");			
-		alert(id);
+		var id = $(this).attr("id");	
 		modal_crate(id);
 	});
 
@@ -215,8 +214,12 @@
 	}	 */
 	$(".insert_gogo").click(function(){
 		
-		var str=$(this).attr('id');
-		alert(content);
+		var str=$(this).attr('id');	
+		if($(this).val()=='참여'){
+			$(this).attr("value","참여취소");
+		}else{
+			$(this).attr("value","참여");
+		}
 		jbAry[content]=str;
 		content++;
 		$.ajax({
@@ -231,7 +234,6 @@
 	
 	$(".modal_d3").on("click",".select_one_x",function(){
 		var str=$(this).attr('id');
-		alert(str);
 		delAry[content2]=str;
 		content2++;
 		$.ajax({
