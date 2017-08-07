@@ -118,7 +118,7 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "getMovieList3", method = RequestMethod.GET)
-	public String movieList3(Integer curPage, Model model) {
+	public void movieList3(Integer curPage, Model model) {
 		List<MovieDTO> list = null;
 		ListInfo listInfo = new ListInfo();
 		java.util.Date date = new java.util.Date();
@@ -141,8 +141,6 @@ public class MovieController {
 		}
 		
 		model.addAttribute("list", list);
-		
-		return "board/movie/getMovieList";
 	}
 	
 	@RequestMapping(value = "getMovieList4", method = RequestMethod.GET)

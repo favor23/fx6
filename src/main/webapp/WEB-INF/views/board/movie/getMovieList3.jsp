@@ -6,6 +6,9 @@
 		<section class="wrapper cl">
 			<div class="pic pic-3d">
 				<img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic">
+				<div class="dDay">
+					<p>D-${dto.d_day}</p>
+				</div>
 				<span class="pic-caption open-right" accesskey="${dto.movie_num}">
 					<h1 class="pic-title">${dto.movie_title}</h1>
 					<hr>
