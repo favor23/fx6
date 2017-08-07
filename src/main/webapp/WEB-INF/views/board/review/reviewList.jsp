@@ -74,7 +74,7 @@
 		height: 70%;
 		border-top : 2px solid #503396;
 		border-bottom: 2px solid #d9d9d9;
-		margin-top: 20px;
+		margin-top: 10px;
 		vertical-align: middle;
 	}
 	
@@ -98,7 +98,7 @@
 	
 		border-bottom: 1px solid gray;
 		color : #666;
-		background-color: #f8f8f8;
+		
 		height: 30px;
 		
 	}
@@ -199,6 +199,7 @@
 				background-color: #503396;
 				color: white;
 				
+				
 			}
 			
 			#search_btn:HOVER {
@@ -208,10 +209,10 @@
 			}
 			
 			.view_btn{
-				width: 100%;
+				width: 300px;
 				height: 26px;
-				
-				margin-top: 20px;
+				margin-left : 570px;
+				margin-top: 10px;
 			}
 			
 			.view_bt{
@@ -269,6 +270,75 @@
 			.top_btn3:HOVER {
 				background-image: url("${pageContext.request.contextPath}/img/board-img/matching_on.jpg");
 			}
+			
+			
+			.td1{
+			
+				background-color: #f2f2f2;
+				font-size: 12px;
+				color: #666;
+				width: 15%;
+			}
+			
+			.view_td{
+			
+				vertical-align: middle;	
+				
+			}
+			
+			.view_mar{
+				margin-left: 10px;
+			}
+			
+			.top_text{
+				display: inline;
+				float: left;
+			
+			}
+			
+			#reply_btn{
+				width: 102px; 
+				height: 66px; 
+				float: left; 
+				border-bottom: 1px solid #d9d9d9;
+				border-right: 1px solid #d9d9d9;
+				border-top: 1px solid #d9d9d9; 
+				background-color: #f2f2f2;
+				font-size: 16px;
+				color: #595959;
+				
+			}
+			
+			#reply_btn:HOVER{
+				
+				background-color: #bfbfbf;
+				color: white;
+			
+			}
+			
+			#reply_btn2{
+				width: 102px; 
+				height: 66px; 
+				float: left; 
+				border-bottom: 1px solid #d9d9d9;
+				border-right: 1px solid #d9d9d9;
+				border-top: 1px solid #d9d9d9; 
+				background-color: #f2f2f2;
+				font-size: 16px;
+				color: #595959;
+				
+			}
+			
+			#reply_btn2:HOVER{
+				
+				background-color: #bfbfbf;
+				color: white;
+			
+			}
+			
+			
+			
+			
 			
 
 </style>
@@ -336,7 +406,7 @@
                   
 			<table class="table">
 				<tr class="tr">
-					<th class="font th" style="border-right: 1px gray solid">No</th>
+					<th class="font th" style="border-right: 1px gray solid">NO</th>
 					<th class="font th">WRITER</th>
 					<th class="font th">TITLE</th>
 					<th class="font th">DATE</th>
@@ -383,8 +453,8 @@
 			</li>
 
 			</ul>
-				<span class="wr_bt">
-					<button type="button" id="wr_bt">글작성</button>
+				<span>
+					<button type="button" id="wr_bt" class="reviewWrite" >글작성</button>
 				</span>
 			</div>
 	
@@ -399,7 +469,11 @@
 <c:import url="../../temp/footer.jsp"/>
 <script type="text/javascript">
 
-
+	$(".reviewWrite").click(function() {
+		
+		location.href="reviewWrite";
+		
+	});
 
 $.ajax({
 	url : "reviewView?num="+${Rnum},

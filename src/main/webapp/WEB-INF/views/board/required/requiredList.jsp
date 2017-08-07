@@ -75,7 +75,7 @@
 		height: 70%;
 		border-top : 2px solid #503396;
 		border-bottom: 2px solid #d9d9d9;
-		margin-top: 20px;
+		margin-top: 10px;
 		vertical-align: middle;
 	}
 	
@@ -97,9 +97,9 @@
 	
 	.viewtr{
 	
-		border-bottom: 1px solid gray;
+		border-bottom: 1px solid #d9d9d9;
 		color : #666;
-		background-color: #f8f8f8;
+			
 		height: 30px;
 		
 	}
@@ -116,6 +116,7 @@
 		font-size: 12px;
 		line-height: 58px;
 		vertical-align: middle;
+		
 		
 	}
 	
@@ -181,6 +182,7 @@
 			
 			.search_bar{
 				
+				margin-top : 8px;
 				width: 100%;
 				height: 26px;
 				
@@ -211,8 +213,8 @@
 			.view_btn{
 				width: 100%;
 				height: 26px;
-				
-				margin-top: 20px;
+				margin-left : 510px;
+				margin-top: 10px;
 			}
 			
 			.view_bt{
@@ -271,6 +273,45 @@
 				background-image: url("${pageContext.request.contextPath}/img/board-img/matching_on.jpg");
 			}
 			
+			
+			.td1{
+			
+				background-color: #f2f2f2;
+				font-size: 12px;
+				color: #666;
+				width: 15%;
+			}
+			
+			.view_td{
+			
+				vertical-align: middle;	
+				
+			}
+			
+			.view_mar{
+				margin-left: 10px;
+			}
+			
+			
+			.top_text{
+				display: inline;
+				float: left;
+			
+			}
+			
+			.contentsView{
+				width: 100%;
+				height: 550px;
+				background-color: white;
+			}
+			
+			
+			.td{
+			
+				height: 58px;
+				
+				margin-top:10px;
+			}
 
 </style>
 </head>
@@ -319,7 +360,7 @@
 
 		</div>
 		<div class="second">
-		<div class="search_bar">
+		<div class="search_bar" >
 				<form action="requiredList" method="get">
                      <select id="kind" name="search" >
                         <option value="writer">작성자</option>
@@ -334,7 +375,7 @@
                   
 			<table class="table">
 				<tr class="tr">
-					<th class="font th" style="border-right: 1px gray solid">No</th>
+					<th class="font th">NO</th>
 					<th class="font th">WRITER</th>
 					<th class="font th">TITLE</th>
 					<th class="font th">DATE</th>
