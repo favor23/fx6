@@ -25,6 +25,11 @@ public class CampaignController {
 	@Autowired
 	private CampaignService campaignService; 
 	
+	@RequestMapping(value = "campaignView", method = RequestMethod.GET)
+	public void campaignView(Integer campaign_num) {
+		
+	}
+	
 	@RequestMapping(value = "campaignCreate", method = RequestMethod.GET)
 	public void campaignCreate() {
 		
