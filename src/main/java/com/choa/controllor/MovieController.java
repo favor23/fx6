@@ -1,6 +1,5 @@
 package com.choa.controllor;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.choa.file.FileService;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieService;
@@ -121,7 +118,7 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "getMovieList3", method = RequestMethod.GET)
-	public String movieList3(Integer curPage, Model model) {
+	public void movieList3(Integer curPage, Model model) {
 		List<MovieDTO> list = null;
 		ListInfo listInfo = new ListInfo();
 		java.util.Date date = new java.util.Date();
@@ -144,8 +141,6 @@ public class MovieController {
 		}
 		
 		model.addAttribute("list", list);
-		
-		return "board/movie/getMovieList";
 	}
 	
 	@RequestMapping(value = "getMovieList4", method = RequestMethod.GET)
