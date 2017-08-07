@@ -24,7 +24,7 @@
 			</ul>
 		</div>
 		</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">펀딩</li>
+		<li id="${pageContext.request.contextPath}/crowd_funding/cf_index" class="header_li">펀딩</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">매칭시스템</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">시나리오</li>
 		<c:if test="${empty member}">
