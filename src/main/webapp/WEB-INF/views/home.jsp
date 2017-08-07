@@ -124,7 +124,7 @@ body{
 
 	<c:if test="${member == null }">
 		<button id="join">회원가입</button>
-		<button id="login">로그인</button>
+		<button id="login1">로그인</button>
 	</c:if>
 	<c:if test="${member != null }">
 	<button id="myPage">마이페이지</button>   
@@ -160,8 +160,8 @@ body{
 		$("#join").click(function() {
 			location.href="member/join";
 		});
-		$("#login").click(function() {
-			location.href="member/login";
+		$("#login1").click(function() {
+			location.href="${pageContext.request.contextPath}/loginForm";
 		});
 		$("#myPage").click(function() {
 			location.href="member/myPage";

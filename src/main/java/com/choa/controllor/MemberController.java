@@ -64,7 +64,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/loginForm")
 	public String loginForm()throws Exception{
-		return "/member/logintester";
+		return "/member/login";
 	}
 	
 	@RequestMapping(value="member/joinForm",method=RequestMethod.POST)
@@ -202,11 +202,6 @@ public class MemberController {
 		return "/member/readThis";
 	}
 
-	//login!Form
-	@RequestMapping(value="/member/login")
-	public String login()throws Exception{
-		return "/member/login";
-	}
 
 	@RequestMapping(value="member/logOut")
 	public String memberLogOut(HttpSession session){

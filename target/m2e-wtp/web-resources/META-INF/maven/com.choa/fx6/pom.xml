@@ -21,7 +21,7 @@
 		</repository>
 	</repositories>
 	<dependencies>
-	<!-- 소셜아이디로 로그인 구현중 -->
+	<!-- 네이버 아이디로 로그인 -->
 <dependency>
 	<groupId>com.github.scribejava</groupId>
 	<artifactId>scribejava-core</artifactId>
@@ -32,6 +32,18 @@
     <groupId>com.googlecode.json-simple</groupId>
     <artifactId>json-simple</artifactId>
     <version>1.1.1</version>
+</dependency>
+<!-- 이메일 인증 시스템 구축 -->
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>4.3.0.RELEASE</version>
 </dependency>
 
 	
@@ -112,9 +124,11 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
 		</dependency>
-	
+		
 	
 		<!-- Spring -->
+		
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
