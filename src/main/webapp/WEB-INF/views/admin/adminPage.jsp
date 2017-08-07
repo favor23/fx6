@@ -194,7 +194,6 @@ $(".d2_a").on("mouseleave", ".select_department", function() {
 });
 $(".d2_a").on("click", ".select_department", function() {
 	var department = $(this).attr("accesskey");
-	alert(department);
 	$.ajax({
 		url : "${pageContext.request.contextPath}/admin/admin_list?department="+department,
 		type : "GET",
