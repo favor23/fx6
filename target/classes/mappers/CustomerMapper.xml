@@ -11,6 +11,10 @@
  	{ call member_join(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customerDTO.age,mode=IN},#{customerDTO.name,mode=IN},#{customerDTO.grade,mode=IN},#{customerDTO.phone,mode=IN},#{customerDTO.email,mode=IN},#{customerDTO.address,mode=IN},#{customerDTO.sung,mode=IN},#{customerDTO.birth,mode=IN},#{customerDTO.taste,mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</insert>
  	
+ 	<select id="gradeChecker" parameterType="java.lang.String" resultType="java.lang.String">
+ 		select grade from member where id=#{id}
+ 	</select>
+ 	
  	<select id="login" statementType="CALLABLE" parameterType="java.util.Map"> 
  	{ call customer_login(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customer, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
  	</select>
@@ -50,7 +54,6 @@
 		where r between #{listInfo.startRow} and #{listInfo.lastRow}
 	</select>
 	
-	<!-- 이거 분명 에러난다 해보셈 -->
 	<select id="movieCount" resultType="java.lang.Integer" parameterType="java.util.Map">
 	select nvl(count(movie_num), 0) from movie where genre like
 	<foreach collection="taste" item="type" index="index1" separator="or genre like">#{type}</foreach>

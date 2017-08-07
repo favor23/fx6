@@ -464,7 +464,7 @@ to {
 				$("#hPW").attr("value", pw);
 				$("#frm")
 						.attr("action",
-								"${pageContext.request.contextPath}/member/customerJoin");
+								"${pageContext.request.contextPath}/member/customerLogin");
 				$("#frm").submit();
 			} else {
 				document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";

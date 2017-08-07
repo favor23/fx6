@@ -21,6 +21,11 @@ public class CustomerServiceImpl implements MemberService{
 	@Autowired
 	private CustomerDAO customerDAO;
 	
+	
+	public String gradeChecker(String id)throws Exception{
+		return customerDAO.gradeChecker(id);
+	}
+	
 	public int intoBan(BanlistDTO banlistDTO)throws Exception{
 		return customerDAO.intoBan(banlistDTO);
 	}

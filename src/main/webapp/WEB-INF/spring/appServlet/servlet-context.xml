@@ -26,10 +26,9 @@
 
 	<context:component-scan base-package="com.choa.controllor" />
 	<context:component-scan base-package="com.choa.fx6" />
-
 	<context:component-scan base-package="com.choa.movie" />
 	<context:component-scan base-package="com.choa.sr" />
-	<!-- <context:component-scan base-package="com.choa.room.roomuser" /> -->
+	<context:component-scan base-package="com.choa.room.roomuser" />
 	<context:component-scan base-package="com.choa.paySystem" />
 	<context:component-scan base-package="com.choa.payment" />
 	<context:component-scan base-package="com.choa.payment.movie" />
@@ -58,7 +57,7 @@
 	<context:component-scan base-package="com.choa.cinema" />
 	<beans:bean id="naverLoginBO" class="com.choa.oauth.NaverLoginBO" />
 	<context:component-scan base-package="com.choa.oauth" />
-	<beans:bean class="com.choa.controllor.MailController">
-		<beans:property name="mailService" ref="mailService" />
-	</beans:bean>
+	
+	
 </beans:beans>
+

@@ -5,7 +5,8 @@
 			
 			
 			<div class="container">
-			<table id="viewtable" style="margin-top:50px;">
+			<h6 style="margin-top: 25px;">게시판 > 리뷰게시판</h6>
+			<table id="viewtable" style="margin-top:10px;">
 		
 		
 		
@@ -40,9 +41,11 @@
 				<td colspan="5">${view.contents}</td>
 			</tr>
 		</table>
+			<div class="view_btn">
+			<button href="reviewDelete?num=${view.num}" class="view_bt">Delete</button>
+			<button href="reviewUpdate?num=${view.num}" class="view_bt">Update</button>
+			</div>
 		</div>
 	
 	
-	<a href="reviewUpdate?num=${view.num}">Update</a>
-	<a href="reviewDelete?num=${view.num}">Delete</a>
-
+	
