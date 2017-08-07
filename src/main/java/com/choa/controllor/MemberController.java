@@ -128,19 +128,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="member/myPr",method=RequestMethod.POST)
-	public ModelAndView pr2(PrDTO prDTO)throws Exception{
-		ModelAndView mv = null;
+	public String pr2(PrDTO prDTO,Model model)throws Exception{
 		int result = customerService.write_pr(prDTO);
-		mv = new ModelAndView();
+		String message="작성 실패";
 		if(result>0){
-			mv.addObject("message", "작성 완료");
-		}else {
-			mv.addObject("message", "작성 실패");
+			message="작성 완료";
 		}
-		
-		mv.addObject("path", "../member/myPage");
-		mv.setViewName("commons/result");
-		return mv;
+		model.addAttribute("message", message);
+		model.addAttribute("path","../member/myPage");
+		return "/commons/result";
 	}
 	
 	@RequestMapping(value="member/myPr",method=RequestMethod.GET)

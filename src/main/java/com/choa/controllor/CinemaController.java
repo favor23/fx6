@@ -79,7 +79,7 @@ public class CinemaController {
 		
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		String genre = customerDTO.getTaste();
-		String [] genre_ar = genre.split("/");
+		String [] genre_ar = genre.split(",");
 		model.addAttribute("ar", genre_ar);
 		model.addAttribute("list", list);
 	}

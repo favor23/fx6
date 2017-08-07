@@ -51,7 +51,7 @@
 	margin-top: 50px;
 	width: 40%;
 	min-width: 800px;
-	height: 800px;
+	height: 830px;
 	margin-left: 25%;
 }
 
@@ -195,6 +195,29 @@
 line-height:3;
 	font-size: small;
 }
+
+.cert {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#certCode {
+border: 0.5px solid black;
+	border-radius: 5px;
+	padding-left: 4px;
+	height: 30px;
+}
+
+#certBtn {
+	border: 0.5px solid black;
+	border-radius: 5px;
+	background-color: green;
+	color:white;
+	font-weight: bold;
+	font-size: 15px;
+	width:125px;
+}
+
 </style>
 </head>
 <body>
@@ -261,6 +284,12 @@ line-height:3;
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
 					</select> <input type="text" id="e3" class="text"></td>
+				</tr>
+				<tr>
+					<td class="cert" colspan="3" style="padding-left: 158px;">
+					<input type="text" id="certCode"> <input type="button" id="certBtn" value="인증번호 발송">
+					 <span id="certTxt">인증번호가 발송되었습니다.</span>
+					</td>
 				</tr>
 				<tr>
 					<td class="jf1">집주소</td>
@@ -549,6 +578,20 @@ var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""
 			$("#e3").val(e2);
 		}
 	}
+	
+	//이메일 인증
+	var code="code";
+	$("#certBtn").click(function(){
+		$("#email").val($("#e1").val() + "@" + $("#e3").val());
+		var email=$("#email").val();
+		$.post("${pageContext.request.contextPath}/sendMail/auth",{
+			email:email
+		},function(data){
+			code=data;
+			$("#certTxt").
+		});
+	});
+	
 </script>
 </body>
 </html>

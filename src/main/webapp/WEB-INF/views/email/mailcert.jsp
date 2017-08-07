@@ -11,16 +11,22 @@
 <body>
 <h2>이메일 인증하기 테스트 페이지임</h2>
 <form action="" method="post" id="f">
-
-<input type="email">
-
 </form>
+
+<p>이메일 입력 : <input type="email" name="email" id="email"></p>
+
 <button id="b">인증번호 발급</button>
-<p>인증번호 입력 : <input type="text"></p>
+<span id="sp"></span>
+<p>인증번호 입력 : <input type="text" id="te"></p>
 
 <script type="text/javascript">
 $("#b").click(function(){
-	
+	var email=$("#email").val();
+	$.post("${pageContext.request.contextPath}/sendMail/auth",{
+		email:email
+	},function(data){
+		$("#sp").html(data);
+	});
 });
 
 

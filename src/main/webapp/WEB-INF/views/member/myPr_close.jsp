@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js"/>" charset="utf-8"></script>
+<c:import url="../temp/bootStrap_black.jsp" />
 <style type="text/css">
-
 #container {
 	height: auto;
 	padding-bottom: 40px;
@@ -159,30 +158,10 @@ border-radius:3px;
 	float: right;
 	margin-right: 9px;
 }
-
-#tap{
-	width: 100%;
-	height: 50px;
-}
-
-#main_session_default{
-	height: 1200px;
-	width: 1000px;
-	margin: 0 auto;
-}
-
-
 </style>
-<c:import url="../temp/bootStrap.jsp" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
-<c:import url="../temp/header.jsp" />
-<div id="tap"></div>
-<c:import url="../temp/header_plus_member.jsp" />
-<div id="main_session_default">
-<div id="prBox">
+
+	<div id="prBox">
 		<p class="p_title">"${member.id }" 님의 PR입니다.</p>
 		<div id="dialog_box">
 		<c:if test="${!empty file }">
@@ -304,65 +283,65 @@ border-radius:3px;
 		<input type="button" id="cen" class="btn btn-danger" value="취소">
 	</div>
 	<input type="hidden" id="path" value='<c:url value="/se2/SmartEditor2Skin.html"/>'>
-
-</div>
-<c:import url="temp/footer.jsp" />
-<script type="text/javascript">
-$("#don").css("display","none");
-
-var year = '${member.birth}';
-year = new Date(year).getFullYear();
-$("#birth").html(year);
-
-$("#rew").click(function(){
-	$("#view").css("display","none");
-	$(this).css("display","none");
-	$("#form").css("display","inherit");
-	$("#don").css("display","inline-block");
-});
-
-$("#cen").click(function(){
-	$("#form").css("display","none");
+	<script type="text/javascript">	
 	$("#don").css("display","none");
-	$("#view").css("display","inherit");
-	$("#rew").css("display","inline-block");
-});
-
-$("#don").click(function(){
-	$("#f").submit().location.reload();
-});
-
-$(".pic").mouseenter(function(){
-	$(".dialog_span").css("display","block");
-});
-$(".pic").mouseleave(function(){
-	$(".dialog_span").css("display","none");
-});
-
-$(".pic").click(function(){
-	var specs = "left=100,top=10,width=400px,height=450px";
-	specs += ",toolbar=no,menubar=no,status=no,resizable=no";
-	window.open("win_pic","win_pic",specs);
-});
-
-	var path = $("#path").val();
-	CKEDITOR.replace('award', {
-		height : '100px', // 입력창의 높이
-		startupFocus : false
+	
+	var year = '${member.birth}';
+	year = new Date(year).getFullYear();
+	$("#birth").html(year);
+	
+	$("#rew").click(function(){
+		$("#view").css("display","none");
+		$(this).css("display","none");
+		$("#form").css("display","inherit");
+		$("#don").css("display","inline-block");
 	});
-	CKEDITOR.replace('education', {
-		height : '100px', // 입력창의 높이
-		startupFocus : false
+	
+	$("#cen").click(function(){
+		$("#form").css("display","none");
+		$("#don").css("display","none");
+		$("#view").css("display","inherit");
+		$("#rew").css("display","inline-block");
 	});
-	CKEDITOR.replace('activity', {
-		height : '100px', // 입력창의 높이
-		startupFocus : false
+	
+	$("#don").click(function(){
+		$("#f").submit().location.reload();
 	});
-	CKEDITOR.replace('introduce', {
-		height : '300px', // 입력창의 높이
-		startupFocus : false
+	
+	$(".pic").mouseenter(function(){
+		$(".dialog_span").css("display","block");
 	});
+	$(".pic").mouseleave(function(){
+		$(".dialog_span").css("display","none");
+	});
+	
+	$(".pic").click(function(){
+		var specs = "left=100,top=10,width=400px,height=450px";
+		specs += ",toolbar=no,menubar=no,status=no,resizable=no";
+		window.open("win_pic","win_pic",specs);
+	});
+	
+		var path = $("#path").val();
+		CKEDITOR.replace('award', {
+			height : '100px', // 입력창의 높이
+			startupFocus : false
+		});
+		CKEDITOR.replace('education', {
+			height : '100px', // 입력창의 높이
+			startupFocus : false
+		});
+		CKEDITOR.replace('activity', {
+			height : '100px', // 입력창의 높이
+			startupFocus : false
+		});
+		CKEDITOR.replace('introduce', {
+			height : '300px', // 입력창의 높이
+			startupFocus : false
+		});
+		
+		
+		
+		
+	</script>
 
-</script>
 </body>
-</html>
