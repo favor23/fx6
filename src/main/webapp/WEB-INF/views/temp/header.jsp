@@ -30,7 +30,7 @@
 		<c:if test="${empty member}">
 		<div class="dropdown"
 				style="height: 50px; width: 150px; float: right;">
-				<li id="bar_login"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>				
+				<li id="bar_login"><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>				
 			</div>
 
 		</c:if> <c:if test="${!empty member}">
