@@ -6,32 +6,30 @@
 			
 			
 			<div class="container">
-					<h6 style="margin-top: 25px;">게시판 > 요청게시판</h6>
+					<div style="margin-top: 25px;" class="top_text">게시판 > 요청게시판</div>
+					<div class="view_btn">
+					<button href="requiredDelete?num=${view.num}" class="view_bt">Delete</button>
+					<button href="requiredReply?num=${view.num}" class="view_bt">Reply</button>
+					<button href="requiredUpdate?num=${view.num}" class="view_bt">Update</button>
+					</div>
 			<table id="viewtable" style="margin-top:10px;">
 		
 		
-		
 			<tr class="viewtr">
-				<td>${view.num}</td>
-				<td style="text-align: right;">${view.writer}</td>
+				<td class="td1 view_td"><div class="view_mar">작성자</div></td>
+				<td class="view_td"><div class="view_mar">${view.writer}</div></td>	
 			</tr>
 	
 			<tr class="viewtr">	
-				<td>${view.title} ${view.reg_date}</td>
-				<td style="text-align: right;">${view.hit}</td>
-				
+				<td  class="td1 view_td"><div class="view_mar">글제목</div></td>
+				<td class="view_td"><div class="view_mar">${view.title}</div></td>		
 			</tr>
 
 			<tr>
-				<td colspan="2">${view.contents}</td>
+				<td colspan="2"><div class="contentsView" style="padding: 10px;'">${view.contents}</div></td>
 			</tr>
 	
 	
 		</table>
-	<div class="view_btn">
-	<button href="requiredDelete?num=${view.num}" class="view_bt">Delete</button>
-	<button href="requiredReply?num=${view.num}" class="view_bt">Reply</button>
-	<button href="requiredUpdate?num=${view.num}" class="view_bt">Update</button>
-	</div>
 		</div>
 	

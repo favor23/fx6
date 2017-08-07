@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 #out_line {
-	margin-top:25px;
+	margin-top:80px;
 	min-width: 500px;
 	width:60%;
 	margin-left:20%;

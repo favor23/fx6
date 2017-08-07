@@ -24,7 +24,22 @@ public class CampaignDTO {
 	private int thumbs_up;
 	private int support_price;
 	private int support_hit;
+	// no db
+	private int per;
+	private int until_end;
 	
+	public int getUntil_end() {
+		return until_end;
+	}
+	public void setUntil_end(int until_end) {
+		this.until_end = until_end;
+	}
+	public int getPer() {
+		return per;
+	}
+	public void setPer(int per) {
+		this.per = per;
+	}
 	public int getSupport_price() {
 		return support_price;
 	}
