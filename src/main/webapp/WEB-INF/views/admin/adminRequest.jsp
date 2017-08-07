@@ -135,7 +135,7 @@
 	height: 50px;
 }
 </style>
-<c:import url="../temp/bootStrap.jsp" />
+<c:import url="../temp/bootStrap_black.jsp" />
 </head>
 <body>
 	<c:import url="../temp/header.jsp" />
