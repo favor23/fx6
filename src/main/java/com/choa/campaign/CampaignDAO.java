@@ -18,6 +18,22 @@ public class CampaignDAO {
 		return sqlSession.selectList(NAMESPACE + "campaignList", listInfo);
 	}
 	
+	public List<CampaignDTO> campaignList2(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList2", listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList3(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList3", listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList4(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList4", listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList5(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList5", listInfo);
+	}
+	
 	public int campaignCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "campaignCount");
 	}

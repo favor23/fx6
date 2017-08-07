@@ -45,14 +45,36 @@ public class CampaignController {
 	}
 	
 	@RequestMapping(value = "getCampaignList", method = RequestMethod.POST)
-	public void campaignList(Integer curPage, Model model) {
+	public void campaignList(Integer curPage, String dual, Model model) {
 		List<CampaignDTO> list = null;
 		ListInfo listInfo = new ListInfo();
+		java.util.Date date = new java.util.Date();
+		
+		long until_end = 0;
 		
 		listInfo.setCurPage(curPage);
 		
 		try {
-			list = campaignService.campaignList(listInfo);
+			if(dual.equals("")) {
+				list = campaignService.campaignList(listInfo);				
+			} else if(dual.equals("many_support")) {
+				list = campaignService.campaignList2(listInfo);
+			} else if(dual.equals("many_price")) {
+				list = campaignService.campaignList3(listInfo);
+			} else if(dual.equals("soon_end")) {
+				list = campaignService.campaignList4(listInfo);
+			} else {
+				list = campaignService.campaignList5(listInfo);
+			}
+
+			for(CampaignDTO dto: list) {
+				dto.setPer((int)(((double)dto.getSupport_price()/dto.getGoal_price())*100));
+				
+				until_end = dto.getCampaign_end().getTime() - date.getTime();
+				until_end = until_end/(1000*24*60*60);
+				
+				dto.setUntil_end((int)until_end);
+			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

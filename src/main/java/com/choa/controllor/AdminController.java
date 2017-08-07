@@ -22,6 +22,7 @@ import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.Hash;
 import com.choa.member.MemberDTO;
+import com.choa.util.ListInfo;
 
 @Controller
 public class AdminController {
@@ -32,6 +33,8 @@ public class AdminController {
 	private WorkController workController;
 	@Autowired
 	private Hash hash;
+	@Autowired
+	private Order_rentController order_rentController; 
 
 	
 	@RequestMapping(value="admin/banProccessList")
@@ -147,13 +150,13 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "admin/adminRequest", method = RequestMethod.GET)
-	public void adminRequest() {
-
+	public void adminRequest(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);
 	}
 	
 	@RequestMapping(value = "admin/adminRequest_hi", method = RequestMethod.GET)
-	public void adminRequest_hi() {
-
+	public void adminRequest_hi(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);
 	}
 	
 	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
