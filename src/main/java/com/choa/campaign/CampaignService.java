@@ -21,6 +21,42 @@ public class CampaignService {
 		return campaignDAO.campaignList(listInfo);
 	}
 	
+	public List<CampaignDTO> campaignList2(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList2(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList3(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList3(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList4(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList4(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList5(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList5(listInfo);
+	}
+	
 	public int campaignCount() throws Exception {
 		return campaignDAO.campaignCount();
 	}

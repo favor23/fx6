@@ -7,11 +7,12 @@
 		<div class="plus_d2_list">
 			<ul>
 				<li class="header_plus_li">
-					<select style="width: 200px; height: 30px; border-radius: 4px; border: 1px solid #b8b894;">
-						<option>최다 후원순</option>
-						<option>최다 금액순</option>
-						<option>마감 임박순</option>
-						<option>최신순</option>
+					<select name="kind" class="kind" style="width: 200px; height: 30px; border-radius: 4px; border: 1px solid #b8b894;">
+						<option value="">순서대로 보기</option>
+						<option value="many_support">최다 후원순</option>
+						<option value="many_price">최다 금액순</option>
+						<option value="soon_end">마감 임박순</option>
+						<option value="newest">최신순</option>
 					</select>
 				</li>
 			</ul>

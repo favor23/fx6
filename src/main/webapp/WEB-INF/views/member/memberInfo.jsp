@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Insert title here</title>
 <style type="text/css">
 #memberBox {
-	width: 60%;
-	margin-left: 20%;
+	width: 70%;
+	margin-left: 15%;
 	padding: 15px;
 }
 #memberBox td{
@@ -21,10 +17,9 @@
 
 
 #title {
-	margin-left: 23%;
-	margin-top: 40px;
+	margin-left: 15%;
+	margin-top: 50px;
 	width: 300px;
-	line-height:2;
 	font-weight: bold;
 	font-size: large;
 	border-bottom: 2px solid green;
@@ -133,9 +128,28 @@ width: 250px;
 
 }
 
+#tap{
+	width: 100%;
+	height: 50px;
+}
+
+#main_session_default{
+	height: 1200px;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+
 </style>
+<c:import url="../temp/bootStrap.jsp" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
+<c:import url="../temp/header.jsp" />
+<div id="tap"></div>
+<c:import url="../temp/header_plus_member.jsp" />
+<div id="main_session_default">
 <p id="title">${member.id } 님의 회원정보 입니다.</p>
 <div id="memberBox">
 	<form action="customerUpdate" id="frm" method="post">
@@ -205,25 +219,25 @@ width: 250px;
 	<input type="hidden" value="" id="email" name="email">
 	</form>
 </div>
-	<script type="text/javascript">
-	$("input[type='checkbox']").attr("disabled","disabled")
-	
-	
-	var taste = '${member.taste}';
-	taste = taste.split(",");
-	for(var i in taste){
-		$("."+taste[i]).attr("checked","checked");
-	}
-	
-	
-	var date = '${member.birth}';
-	var go = new Date(date).getFullYear()+'년 '+(new Date(date).getMonth()+1)+'월 '+new Date(date).getDate()+'일';
-	$(".birth").html(go);
-	
-	
-	
-	
 
-	</script>
+
+
+</div>
+<c:import url="../temp/footer.jsp" />
+<script type="text/javascript">
+$("input[type='checkbox']").attr("disabled","disabled");
+
+var taste = '${member.taste}';
+taste = taste.split(",");
+for(var i in taste){
+	$("."+taste[i]).attr("checked","checked");
+}
+
+
+var date = '${member.birth}';
+var go = new Date(date).getFullYear()+'년 '+(new Date(date).getMonth()+1)+'월 '+new Date(date).getDate()+'일';
+$(".birth").html(go);
+
+</script>
 </body>
 </html>

@@ -47,8 +47,8 @@
 <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
-    <property name="username" value="아이디@gmail.com" />
-    <property name="password" value="비밀번호" />
+    <property name="username" value="lu.nyang4505@gmail.com" />
+    <property name="password" value="B42b14b6b7_" />
     <property name="javaMailProperties">
         <props>
             <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
@@ -60,5 +60,8 @@
 <bean id="mailService" class="com.choa.certification.MailServiceImpl">
     <property name="javaMailSender" ref="javaMailSender" />
 </bean>
+<bean class="com.choa.controllor.MailController">
+		<property name="mailService" ref="mailService" />
+	</bean>
 		
 </beans>

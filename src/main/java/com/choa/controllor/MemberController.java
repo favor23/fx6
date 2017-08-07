@@ -128,19 +128,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="member/myPr",method=RequestMethod.POST)
-	public ModelAndView pr2(PrDTO prDTO)throws Exception{
-		ModelAndView mv = null;
+	public String pr2(PrDTO prDTO,Model model)throws Exception{
 		int result = customerService.write_pr(prDTO);
-		mv = new ModelAndView();
+		String message="작성 실패";
 		if(result>0){
-			mv.addObject("message", "작성 완료");
-		}else {
-			mv.addObject("message", "작성 실패");
+			message="작성 완료";
 		}
-		
-		mv.addObject("path", "../member/myPage");
-		mv.setViewName("commons/result");
-		return mv;
+		model.addAttribute("message", message);
+		model.addAttribute("path","../member/myPage");
+		return "/commons/result";
 	}
 	
 	@RequestMapping(value="member/myPr",method=RequestMethod.GET)
@@ -254,20 +250,29 @@ public class MemberController {
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
 	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO.setPw(hash.hashtest(memberDTO));
-		memberDTO = customerService.login(memberDTO);
+		String grade = customerService.gradeChecker(memberDTO.getId());
 		String message = "일치하는 아이디와 패스워드가 없습니다.";
 		String path="member/login";//로그인 실패시 경로.
-		if(memberDTO != null){
-			session.setAttribute("member",memberDTO);
-			message = "success";
-			path="/index";
-		}
-		model.addAttribute("message", message);
-		
+		if(grade.equals("admin")){
+			memberDTO = adminService.login(memberDTO);
+			if (memberDTO != null) {
+				session.setAttribute("member", memberDTO);
+				path="/index";
+			}
+		}else {
+			memberDTO = customerService.login(memberDTO);
+			if(memberDTO != null){
+				session.setAttribute("member",memberDTO);
+				message = "success";
+				path="/index";
+			}
+			model.addAttribute("message", message);
 
+
+		}
 		return path;
 	}
-	
+
 	@RequestMapping(value="member/delete",method=RequestMethod.POST)
 	public String delete(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		int result = customerService.delete(memberDTO);

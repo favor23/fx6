@@ -4,31 +4,38 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.choa.certification.MailService;
+import com.choa.certification.MailServiceImpl;
 
 @Controller
-public class MailController {
+public class MailController { 
 	//private UserService userService;
-    private MailService mailService;
+	@Autowired
+    private MailServiceImpl mailService;
  /*
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
- 
-    public void setMailService(MailService mailService) {
+ */
+    public void setMailService(MailServiceImpl mailService) {
         this.mailService = mailService;
     }
+    
+    
+    @RequestMapping(value="/email/mailcert")
+    public void mailcert()throws Exception{}
  
-    // 회원가입 이메일 인증
+    // 회원가입 이메일 인증 @ResponseBody
     @RequestMapping(value = "/sendMail/auth", method = RequestMethod.POST, produces = "application/json")
-    @ResponseBody
-    public boolean sendMailAuth(HttpSession session, @RequestParam String email) {
+    public String sendMailAuth(HttpSession session, @RequestParam String email,Model model) {
         int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
         String joinCode = String.valueOf(ran);
         session.setAttribute("joinCode", joinCode);
@@ -36,9 +43,17 @@ public class MailController {
         String subject = "회원가입 인증 코드 발급 안내 입니다.";
         StringBuilder sb = new StringBuilder();
         sb.append("귀하의 인증 코드는 " + joinCode + " 입니다.");
-        return mailService.send(subject, sb.toString(), "아이디@gmail.com", email, null);
+        boolean chk=mailService.send(subject, sb.toString(), "no-reply@gmail.com", email, null);
+        String message="";
+        if(chk){
+        	message=joinCode;
+        }else {
+        	message="인증번호 발급에 실패했습니다.";
+        }
+        model.addAttribute("message", message);
+        return "commons/ajaxResult";
     }
- 
+    /*
     // 아이디 찾기
     @RequestMapping(value = "/sendMail/id", method = RequestMethod.POST)
     public String sendMailId(HttpSession session, @RequestParam String email, @RequestParam String captcha, RedirectAttributes ra) {
