@@ -60,7 +60,7 @@ width:800px;
 
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-<c:import url="../temp/bootStrap_black.jsp" />
+<c:import url="../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>

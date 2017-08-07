@@ -15,7 +15,7 @@
 	margin: 0 auto;
 }
 .d1_a{
-	height: 300px;
+	height: 800px;
 	width: 100%;
 	background-color: gray;
 	margin-top: 50px;
@@ -27,7 +27,7 @@
 	margin-top: 50px;
 }
 </style>
-<c:import url="../temp/bootStrap_black.jsp" />
+<c:import url="../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -37,20 +37,15 @@
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
 		<div class="d1_a">
-			인사팀 돈관리 <br>
-			철저하게 돈관리하자.
-		</div>
-		
-		<div class="d1_a">
+			<table class="table">
+			<tr>
+			<td>번호</td><td>아이디</td><td>시작날짜</td><td>현재상황</td></tr>
+			<c:forEach items="${list}" var="dto">
+				<tr><td>${dto.num}</td><td>${dto.id }</td><td>${dto.start_date}</td><td>${dto.permission}</td>
+			</tr>
+			</c:forEach>
 			
-		</div>
-		
-		<div class="d1_a">
-			
-		</div>	
-		
-		<div class="d1_a">
-			
+			</table>
 		</div>			
 	</div>
 <c:import url="../temp/footer.jsp" />
