@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.choa.certification.MailService;
 
 @Controller
-public class MailController {
+public class MailController { 
 	//private UserService userService;
     private MailService mailService;
  /*
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
- 
+ */
     public void setMailService(MailService mailService) {
         this.mailService = mailService;
     }
@@ -38,7 +38,7 @@ public class MailController {
         sb.append("귀하의 인증 코드는 " + joinCode + " 입니다.");
         return mailService.send(subject, sb.toString(), "아이디@gmail.com", email, null);
     }
- 
+    /*
     // 아이디 찾기
     @RequestMapping(value = "/sendMail/id", method = RequestMethod.POST)
     public String sendMailId(HttpSession session, @RequestParam String email, @RequestParam String captcha, RedirectAttributes ra) {

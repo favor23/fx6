@@ -60,5 +60,8 @@
 <bean id="mailService" class="com.choa.certification.MailServiceImpl">
     <property name="javaMailSender" ref="javaMailSender" />
 </bean>
+<bean class="com.choa.controllor.MailController">
+		<property name="mailService" ref="mailService" />
+	</bean>
 		
 </beans>

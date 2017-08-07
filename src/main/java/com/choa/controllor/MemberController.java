@@ -254,20 +254,29 @@ public class MemberController {
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
 	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO.setPw(hash.hashtest(memberDTO));
-		memberDTO = customerService.login(memberDTO);
+		String grade = customerService.gradeChecker(memberDTO.getId());
 		String message = "일치하는 아이디와 패스워드가 없습니다.";
 		String path="member/login";//로그인 실패시 경로.
-		if(memberDTO != null){
-			session.setAttribute("member",memberDTO);
-			message = "success";
-			path="/index";
-		}
-		model.addAttribute("message", message);
-		
+		if(grade.equals("admin")){
+			memberDTO = adminService.login(memberDTO);
+			if (memberDTO != null) {
+				session.setAttribute("member", memberDTO);
+				path="/index";
+			}
+		}else {
+			memberDTO = customerService.login(memberDTO);
+			if(memberDTO != null){
+				session.setAttribute("member",memberDTO);
+				message = "success";
+				path="/index";
+			}
+			model.addAttribute("message", message);
 
+
+		}
 		return path;
 	}
-	
+
 	@RequestMapping(value="member/delete",method=RequestMethod.POST)
 	public String delete(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		int result = customerService.delete(memberDTO);

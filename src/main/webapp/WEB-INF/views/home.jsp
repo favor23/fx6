@@ -60,7 +60,7 @@ body{
 			location.href="member/join";
 		});
 		$("#login").click(function() {
-			location.href="member/login";
+			location.href="${pageContext.request.contextPath}/loginForm";
 		});
 		$("#myPage").click(function() {
 			location.href="member/myPage";

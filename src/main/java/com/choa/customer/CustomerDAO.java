@@ -25,6 +25,12 @@ public class CustomerDAO implements MemberDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE="CustomerMapper.";
 	
+	
+	public String gradeChecker(String id)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"gradeChecker", id);
+	}
+	
+	
 	public int intoBan(BanlistDTO banlistDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"intoBan", banlistDTO);
 	}
