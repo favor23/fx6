@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 			
 			
 			<div class="container">
-			<table id="viewtable" style="margin-top:50px;">
+					<h6 style="margin-top: 25px;">게시판 > 요청게시판</h6>
+			<table id="viewtable" style="margin-top:10px;">
 		
 		
 		
@@ -14,8 +16,7 @@
 				<td style="text-align: right;">${view.writer}</td>
 			</tr>
 	
-			<tr>
-				
+			<tr class="viewtr">	
 				<td>${view.title} ${view.reg_date}</td>
 				<td style="text-align: right;">${view.hit}</td>
 				
@@ -27,10 +28,10 @@
 	
 	
 		</table>
+	<div class="view_btn">
+	<button href="requiredDelete?num=${view.num}" class="view_bt">Delete</button>
+	<button href="requiredReply?num=${view.num}" class="view_bt">Reply</button>
+	<button href="requiredUpdate?num=${view.num}" class="view_bt">Update</button>
+	</div>
 		</div>
 	
-	
-	<a href="requiredUpdate?num=${view.num}">Update</a>
-	<a href="requiredDelete?num=${view.num}">Delete</a>
-	<a href="requiredReply?num=${view.num}">Reply</a>
-

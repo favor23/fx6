@@ -30,6 +30,10 @@ body{
 	height: 3000px;
 	width: auto;
 }
+#pic {
+	width: 150px;
+}
+
 </style>
 </head>
 <body>
@@ -108,19 +112,19 @@ body{
 <div style="width: 600px;height: 400px;border: 1px solid black;">
 	<p>이미지 경로 테스트</p>
 	
-<img alt="" src="<c:url value="/upload/1501585824954_KakaoTalk_20170704_115722091.jpg"/>">
+<img id="pic" alt="" src="<c:url value="/upload/1501585824954_KakaoTalk_20170704_115722091.jpg"/>">
 <h5>/upload/1501586621585_lupeow.png</h5>
 </div>
-
-<a href="member/gmail">@@@@@  GMAIL @@@@@</a>
+<a href="./login">야 로그인좀 하자 ㅅㅂ</a>
+<a href="email/naverlogin">@@@@@ naver @@@@@</a>
 <a href="chatting/aaa">CHAT</a>
 <a href="member/myGenre">GENRE_TEST</a>
 <a href="member/admin/banProccessList">밴 처리한거 결과물 불러오는 게시판</a>
-<a href="member/logintester">로그인 폼 테스트</a>
+<a href="${pageContext.request.contextPath}/loginForm">로그인 폼 테스트</a>
 
 	<c:if test="${member == null }">
 		<button id="join">회원가입</button>
-		<button id="login">로그인</button>
+		<button id="login1">로그인</button>
 	</c:if>
 	<c:if test="${member != null }">
 	<button id="myPage">마이페이지</button>   
@@ -156,8 +160,8 @@ body{
 		$("#join").click(function() {
 			location.href="member/join";
 		});
-		$("#login").click(function() {
-			location.href="member/login";
+		$("#login1").click(function() {
+			location.href="${pageContext.request.contextPath}/loginForm";
 		});
 		$("#myPage").click(function() {
 			location.href="member/myPage";

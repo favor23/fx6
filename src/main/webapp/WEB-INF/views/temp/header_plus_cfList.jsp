@@ -6,17 +6,13 @@
 	<div class="plus_d2">
 		<div class="plus_d2_list">
 			<ul>
-				<li id="../movie/movieList" class="header_plus_li">
-						전체
-				</li>
-				<li id="../movie/movieList2" class="header_plus_li">
-						현재상영작
-				</li>
-				<li id="../movie/movieList3" class="header_plus_li">
-						개봉예정작
-				</li>
-				<li id="../movie/movieList4" class="header_plus_li">
-						지난영화
+				<li class="header_plus_li">
+					<select style="width: 200px; height: 30px; border-radius: 4px; border: 1px solid #b8b894;">
+						<option>최다 후원순</option>
+						<option>최다 금액순</option>
+						<option>마감 임박순</option>
+						<option>최신순</option>
+					</select>
 				</li>
 			</ul>
 		</div>
@@ -24,9 +20,6 @@
 </div>
 <!-- header_plus end -->
 <script>
-$(".header_plus_li").click(function() {
-	location.href=$(this).attr("id");
-})
 </script>
 
 <!-- 필요한곳에  사용
