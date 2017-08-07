@@ -31,7 +31,6 @@
 	<context:component-scan base-package="com.choa.payment"/>
 	<context:component-scan base-package="com.choa.payment.movie" />
 	<context:component-scan base-package="com.choa.payment.support" />
-	
 	<context:component-scan base-package="com.choa.review" />
 	<context:component-scan base-package="com.choa.required" />
 	<context:component-scan base-package="com.choa.reply" />
@@ -54,5 +53,12 @@
 	<context:component-scan base-package="com.choa.movieupload" />
 	<context:component-scan base-package="com.choa.chatting" />
 	<context:component-scan base-package="com.choa.cinema" />
+	<beans:bean id="naverLoginBO" class="com.choa.oauth.NaverLoginBO" />
+	<context:component-scan base-package="com.choa.oauth" />
+	
+	
+	
+	
+	
 </beans:beans>
 
