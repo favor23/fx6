@@ -27,6 +27,7 @@ import com.choa.member.MemberDTO;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieRcdDTO;
 import com.choa.movie.MovieService;
+import com.choa.oauth.NaverService;
 import com.choa.pr.PrDTO;
 import com.choa.prfile.PrFileDTO;
 import com.choa.prfile.PrFileService;
@@ -44,6 +45,9 @@ public class MemberController {
 	private MovieService movieService;
 	
 	@Autowired
+	private NaverService naverService;
+	
+	@Autowired
 	private AdminServiceImpl adminService;
 	
 	@Autowired
@@ -52,9 +56,10 @@ public class MemberController {
 	@Autowired
 	private Hash hash;
 	
-	@RequestMapping(value="/member/logintester")
-	public void imTester()throws Exception{
-		
+	@RequestMapping(value="/naverJoin")
+	public String imTester(CustomerDTO customerDTO)throws Exception{
+		naverService.join(customerDTO);
+		return "/commons/thanksToJoin";
 	}
 	
 	
@@ -292,14 +297,6 @@ public class MemberController {
 			}
 		}
 
-		@RequestMapping(value="/emailTest/naverlogin")
-		public void emailTest1()throws Exception {
-			
-		}
-		@RequestMapping(value="/emailTest/callback")
-		public void emailTest2()throws Exception {
-			
-		}
 
 
 }
