@@ -62,6 +62,10 @@ public class MemberController {
 		return "/commons/thanksToJoin";
 	}
 	
+	@RequestMapping(value="/loginForm")
+	public String loginForm()throws Exception{
+		return "/member/logintester";
+	}
 	
 	@RequestMapping(value="member/joinForm",method=RequestMethod.POST)
 	public void readThis(String agree,Model model)throws Exception{

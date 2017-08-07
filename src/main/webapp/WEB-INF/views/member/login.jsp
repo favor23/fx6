@@ -110,12 +110,8 @@ label {
 						class="a">
 				</tr>
 			</table>
-			<div>
-				<span class="text2 span1">회원 : <input type="radio"
-					name="member" value="user" checked="checked" class="b"></span> <span
-					class="text2 span2">관리자 : <input type="radio" name="member"
-					value="admin" class="b"></span>
-
+			<div id="nid">
+				<input type="button" id="nlogin" value="네이버아이디로로그인">
 			</div>
 		</form>
 
@@ -133,6 +129,16 @@ label {
 			}
 
 			$("#frm").submit(); 
+		});
+		
+		//네이버 로그인 인증url불러오는 ajax
+		
+		
+		$("#nlogin").click(function(){
+			var path;
+			$.get("${pageContext.request.contextPath}/nlogin",function(data){
+				location.href=data;		
+			});
 		});
 	</script>
 
