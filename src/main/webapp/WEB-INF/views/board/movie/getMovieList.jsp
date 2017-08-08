@@ -6,11 +6,6 @@
 		<section class="wrapper cl">
 			<div class="pic pic-3d">
 				<img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic">
-				<c:if test="${dDay ne null or dDay ne ''}">
-					<div class="dDay">
-						<p>D-${dto.d_day}</p>
-					</div>
-				</c:if>
 				<span class="pic-caption open-right" accesskey="${dto.movie_num}">
 					<h1 class="pic-title">${dto.movie_title}</h1>
 					<hr>

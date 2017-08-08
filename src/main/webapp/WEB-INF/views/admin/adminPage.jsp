@@ -36,178 +36,6 @@ td{
 	height: 160px;
 	width: 120px;
 }
-.AdaptiveSearchTimeline-separationModule {
-	margin-bottom: 15px;
-}
-
-li {
-	text-align: inherit;
-}
-
-.ProfileCard {
-	background-color: #fff;
-	border: 1px solid #e6ecf0;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	text-align: left;
-}
-
-.Grid-cell {
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	display: inline-block;
-	font-size: 14px;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	vertical-align: top;
-	width: 100%;
-}
-
-.Grid {
-	display: block;
-	font-size: 0;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-}
-
-.ProfileCard--wide .ProfileCard-bg {
-	height: 160px;
-}
-
-.ProfileCard a, .ProfileCard a:hover, .ProfileCard a:focus, .ProfileCard a:active,
-	.ProfileCard .pretty-link, .ProfileCard .pretty-link:hover,
-	.ProfileCard .pretty-link:focus, .ProfileCard .pretty-link:active {
-	color: #1c94e0;
-}
-
-.ProfileCard-bg {
-	background-position: 0 10%;
-	display: block;
-	height: 90px;
-}
-
-img {
-	border: 0;
-}
-
-.ProfileCard-avatarImage {
-	border-radius: 50%;
-	display: block;
-	height: 200px;
-	width: 200px;
-	float: left;
-	position: relative;
-	top: -70px;
-}
-.ProfileCard-avatarImage_2 {
-	border-radius: 50%;
-	display: block;
-	height: 120px;
-	width: 120px;
-	float: left;
-}
-
-.ProfileCardStats-statLabel {
-	color: #657786;
-	font-size: 12px;
-	font-weight: bold;
-	letter-spacing: .02em;
-	overflow: hidden;
-	transition: color .15s ease-in-out;
-	float: left;
-	margin-left: 10px;
-}
-
-.ProfileCardStats-statValue {
-	display: block;
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 3px;
-	transition: color .15s ease-in-out;
-	margin-left: 20px;
-}
-
-.ProfileCard--wide .ProfileNameTruncated-link {
-	font-size: 21px;
-	line-height: 28px;
-	font-weight: bold;
-}
-
-a:hover, a:focus, a:active {
-	text-decoration: underline;
-}
-
-a:active, a:hover {
-	outline: 0;
-}
-
-.ProfileNameTruncated-link {
-	color: #14171a;
-	font-size: 18px;
-	font-weight: bold;
-	padding-right: 2px;
-}
-
-.u-textInheritColor {
-	color: inherit !important;
-}
-
-a {
-	background: transparent;
-}
-
-.u-textTruncate {
-	max-width: 100%;
-	overflow: hidden !important;
-	text-overflow: ellipsis !important;
-	white-space: nowrap !important;
-	word-wrap: normal !important;
-}
-
-.ProfileNameTruncated {
-	height: 22px;
-	line-height: 1.3;
-	margin-top: -2px;
-}
-
-.ProfileCard-userFields {
-	color: #14171a;
-	margin-top: 8px;
-	width: 100%;
-}
-
-.ProfileCard {
-	background-color: #fff;
-	border: 1px solid gray;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	text-align: left;
-}
-
-div {
-	display: block;
-}
-
-.ProfileCard-content {
-	margin: 13px 15px;
-	position: relative;
-}
-
-
-.select_department{
-
-	height: 50px;
-	line-height:50px;
-	width: 25%;
-	text-align:center;
-	background-color:#BDBDBD;
-	border: 1px solid gray; 
-	color: white;
-	font-weight: 900;
-	float: left;
-}
 
 td{
 	font-weight: 900;
@@ -231,7 +59,8 @@ width:800px;
 
 
 </style>
-<c:import url="../temp/bootStrap.jsp" />
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
+<c:import url="../temp/bootStrap_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -240,110 +69,7 @@ width:800px;
 	<div id="tap"></div>
 	<c:import url="../temp/header_plus_admin.jsp" />
 	<div id="main_session_default">
-		<div class="Grid Grid--withGutter" role="presentation">
-			<div class="Grid-cell">
-				<div class="AdaptiveStreamUserGallery-user js-stream-item"
-					data-item-type="user" role="listitem" data-item-id="3259624118"
-					id="stream-item-user-3259624118" data-item-type="user">
-					<div		class="ProfileCard js-actionable-user
-    ProfileCard--wide
-    
-    "
-						data-screen-name="dia_official" data-user-id="3259624118"
-						data-feedback-token="" data-impression-id="">
-						<c:if test="${member.department eq '회계부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
-							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장1.jpg);">
-						</a>
-						</c:if>
-						<c:if test="${member.department eq '인사부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
-							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장2.jpg);">
-						</a></c:if>
-						<c:if test="${member.department eq '후원부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
-							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/프로듀사.jpg);">
-						</a></c:if>
-						<c:if test="${member.department eq '매니저'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
-							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/sun_sun.jpg);">
-						</a>
-						</c:if>
- 
-						<div class="ProfileCard-content">
-							<a class="ProfileCard-avatarLink js-nav js-tooltip"
-								href="/dia_official" tabindex="-1" aria-hidden="true"> <img
-								class="ProfileCard-avatarImage js-action-profile-avatar"
-								src="<c:url value="${member.picture}"/>"
-								alt="">
-							</a>
-							<div class="ProfileCardStats">
-								<ul
-									class="ProfileCardStats-statList Arrange Arrange--bottom Arrange--equal">
-									<li class="ProfileCardStats-stat Arrange-sizeFit"> <span
-											class="ProfileCardStats-statLabel u-block">이름</span> <span
-											class="ProfileCardStats-statValue" 
-											data-is-compact="false">&emsp;${member.name}</span>
-									</li>
-									<li class="ProfileCardStats-stat Arrange-sizeFit"> <span
-											class="ProfileCardStats-statLabel u-block">부서</span> <span
-											class="ProfileCardStats-statValue" 
-											data-is-compact="false">&emsp;${member.department}</span>
-									</li>
-									<li class="ProfileCardStats-stat Arrange-sizeFit"> <span
-											class="ProfileCardStats-statLabel u-block">직책</span> <span
-											class="ProfileCardStats-statValue" 
-											data-is-compact="false">&emsp;${member.position}</span>
-									</li>
-								</ul>
-							</div>
-							<div class="ProfileCard-actions">
-								<div
-									class="ProfileCard-userActions with-rightCaret js-userActions">
-									<div class="UserActions   u-textLeft">
-										<div class="user-actions btn-group not-following "
-											data-user-id="3259624118" data-screen-name="dia_official"
-											data-name="DIA 다이아" data-protected="false">
-											<span class="UserActions-moreActions u-inlineBlock">
-												<button type="button"
-													class="js-tooltip unmute-button btn small plain-btn"
-													data-placement="top">
-													<span class="Icon Icon--muted Icon--medium"><span
-														class="visuallyhidden"><span class="username u-dir"
-															dir="ltr"></span>전화번호 : </span><b>${member.phone}</b></span>
-												</button>
-												<button type="button"
-													class="first-load js-tooltip mute-button btn small plain-btn"
-													data-placement="top">
-													<span class="Icon Icon--unmuted Icon--medium"><span
-														class="visuallyhidden"><span class="username u-dir"
-															dir="ltr"></span>이메일 : </span><b>${member.email}</b></span>
-												</button>
-												
-												<button type="button"
-													class="btn_mod first-load js-tooltip mute-button btn small plain-btn"
-													data-placement="top">
-													<span class="Icon Icon--unmuted Icon--medium"><span id="${pageContext.request.contextPath}/admin/admin_mod"
-														class="visuallyhidden"><span class="username u-dir"
-															dir="ltr"></span>정보수정을 원하십니까?</span>
-												</button>
-											</span>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-				</div>
-			</div>
-		</div>
+		<c:import url="./admin_one.jsp" />
 
 		<div class="d2_a">
 		<c:if test="${member.department eq '인사부'}">
@@ -460,9 +186,6 @@ width:800px;
 	<c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
-$(".visuallyhidden").click(function() {
-	location.href=$(this).attr("id");
-})
 $(".d2_a").on("mousemove", ".select_department", function() {
 		$(this).attr("class", "select_department action_gray");
 });
@@ -471,7 +194,6 @@ $(".d2_a").on("mouseleave", ".select_department", function() {
 });
 $(".d2_a").on("click", ".select_department", function() {
 	var department = $(this).attr("accesskey");
-	alert(department);
 	$.ajax({
 		url : "${pageContext.request.contextPath}/admin/admin_list?department="+department,
 		type : "GET",

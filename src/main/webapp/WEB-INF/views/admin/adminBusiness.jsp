@@ -31,7 +31,8 @@
 	padding: 0px 0px 0px 0px;"
 }
 </style>
-<c:import url="../temp/bootStrap_api_crash.jsp" />
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
+<c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -40,9 +41,8 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
-	<div id="Manager_table">	
-	<h2>사원</h2>
-	<p>진행정도 수정가능</p>
+	<c:import url="./admin_one.jsp" />
+	<div id="Manager_table">
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
@@ -53,7 +53,7 @@
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="dbupdatesave()">저장</a> -->
 	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a>  -->
 	</div>	
-	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:900px"
+	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:500px"
 			data-options="
 				iconCls: 'icon-ok',
 				rownumbers: true,
@@ -114,6 +114,7 @@
         <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
+      
       		<input type="hidden" id="iconcls_mod" value="icon-ok">
       		<input type="hidden" id="id_mod" value="">
         	<input type="hidden" id="name_mod" value="">
@@ -121,7 +122,11 @@
         	<input type="hidden" id="begin_mod" value="">
         	<input type="hidden" id="end_mod" value="">
         	진행정도<input type="number" id="progress_mod" value="">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>        
+        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>
+       
+       <%-- <c:if test="">
+       
+       </c:if> --%>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

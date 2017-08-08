@@ -8,7 +8,7 @@
 		<div class="plus_d2_list">
 		<ul>
 		<li id="${pageContext.request.contextPath}/admin/adminPage" class="header_plus_li">
-				마이페이지
+				사내조직도
 		</li>
 		<li id="${pageContext.request.contextPath}/admin/adminBusiness" class="header_plus_li">
 				업무관리 
@@ -16,15 +16,17 @@
 		<li id="${pageContext.request.contextPath}/admin/adminSchedule" class="header_plus_li">
 				스케줄관리 
 		</li>
-		<li id="${pageContext.request.contextPath}/admin/adminRequest" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/admin/adminRequest_hi" class="header_plus_li">
 				요청관리 
 		</li>
 		<%-- <li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
 				조직도
-		</li> --%>			
-		<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
-				관리자메뉴
-		</li>
+		</li> --%>		
+	<c:if test="${member.position eq '부장'}">
+			<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
+					관리자메뉴
+			</li>
+		</c:if>
 		</ul>
 		</div>
 	</div>

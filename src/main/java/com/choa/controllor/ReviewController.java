@@ -45,8 +45,8 @@ public class ReviewController {
 	
 	//writeForm
 	@RequestMapping(value="reviewWrite", method=RequestMethod.GET)
-	public String reviewWrite(Model model, ReplyDTO replyDTO){
-		model.addAttribute("dto", replyDTO);
+	public String reviewWrite(Model model, ReviewDTO reviewDTO){
+		model.addAttribute("dto", reviewDTO);
 		model.addAttribute("path", "Write");
 		
 		return "board/review/reviewWrite";

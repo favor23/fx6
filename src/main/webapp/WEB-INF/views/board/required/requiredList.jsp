@@ -18,16 +18,17 @@
 
 	.main{
 		width: 100%;
-		height: 1300px;
+		height: 930px;
 		/* background-color: yellow; */
 		margin: 0 auto;
+		margin-top: 20px;
 	
 	}
 	
 	.se_main{
 		width: 80%;
 		height: 100%;
-		background-color: red;
+		/* background-color: red; */
 		margin: 0 auto;
 	
 	}
@@ -35,7 +36,7 @@
 
 	.first{
 		
-		width: 70%;
+		width: 62%;
 		height: 100%;
 		/* background-color: red;  */
 		float: left;
@@ -58,7 +59,7 @@
 	}
 	
 	.second{
-		width:28%;
+		width:35%;
 		height: 100%;
 		/* background-color: blue; */
 		float: right;
@@ -72,9 +73,10 @@
 		
 		width: 100%;
 		height: 70%;
-		border: solid black 2px;
-		
-		margin-top: 50px;
+		border-top : 2px solid #503396;
+		border-bottom: 2px solid #d9d9d9;
+		margin-top: 10px;
+		vertical-align: middle;
 	}
 	
 .boardtitle2{
@@ -89,12 +91,16 @@
 	
 		width: 1000px;
 		height: 100%;
-		border: 2px black solid;
+		border-top : 2px solid #503396;
+		border-bottom: 2px solid #d9d9d9;
 	}
 	
 	.viewtr{
 	
-		border: 1px black solid;
+		border-bottom: 1px solid #d9d9d9;
+		color : #666;
+			
+		height: 30px;
 		
 	}
 	
@@ -104,20 +110,247 @@
 	
 	}
 	
-
+	.font{
+		
+		font-family: "lucida grande", Tahoma, Verdana, Arial, Helvetica, sans-serif, "나눔고딕", NanumGothic, "돋움", Dotum'';
+		font-size: 12px;
+		line-height: 58px;
+		vertical-align: middle;
+		
+		
+	}
+	
+	.tr{
+	
+		
+		line-height: 58px;
+		vertical-align: middle;
+	}
+	
+	.th{
+		
+		color : #666;
+		background-color: #f8f8f8;
+	
+	}
 	
 	
+	
+	
+			.pagination {
+			    display: inline-block;
+			    color: #503396;
+			    float: left;
+			   
+			}
+			
+			.pagination a {
+			    color: #503396;
+			    float: left;
+			    padding: 8px 16px;
+			    text-decoration: none;
+			    transition: background-color .3s;
+			    border: 1px solid #ddd;
+			    margin: 0 4px;
+			}
+			
+			.pagination a.active {
+			    background-color: #503396;
+			    color: white;
+			    border: 1px solid #351F66;
+			}
+			
+			.pagination a:hover:not(.active) {background-color: #ccc;}
+				
+			#wr_bt{
+				width: 70px;
+				height: 30px;
+				background-color: #503396;
+				display: inline;
+				float: right;
+				color: white;
+				border: 1px gray solid;
+			}
+			
+			#wr_bt:HOVER {
+				
+				background-color: white;
+				color:  #503396;
+				
+			}
+			
+			
+			.search_bar{
+				
+				margin-top : 8px;
+				width: 100%;
+				height: 26px;
+				
+			
+			}
+			
+			#kind{
+				
+				height: 26px;
+				float: left;
+			}
+			
+			#search_btn{
+				width : 43px;
+				height: 26px;
+				border: 1px gray solid;
+				background-color: #503396;
+				color: white;
+				
+			}
+			
+			#search_btn:HOVER {
+				
+				background-color: white;
+				color:  #503396;
+			}
+			
+			.view_btn{
+				width: 100%;
+				height: 26px;
+				margin-left : 510px;
+				margin-top: 10px;
+			}
+			
+			.view_bt{
+				width : 58px;
+				height: 26px;
+				border: 1px gray solid;
+				background-color: #503396;
+				color: white;
+				
+			}
+			
+			.view_bt:HOVER{
+				background-color: white;
+				color:  #503396;
+			
+			}
+			
+			.top_btn1{
+				width: 159px;
+				height: 125px;
+				background-image: url("${pageContext.request.contextPath}/img/board-img/required_on.jpg");
+				border-top: 1px solid #d9d9d9;
+				border-left: 1px solid #d9d9d9;
+				border-bottom: 1px solid #d9d9d9;
+				float: left;
+				
+			}
+			
+			.top_btn2{
+				width: 159px;
+				height: 125px;
+				background-image: url("${pageContext.request.contextPath}/img/board-img/review_off.jpg");
+				border: 1px solid #d9d9d9;
+				float: left;
+				
+			}
+			
+			
+			.top_btn3{
+				width: 159px;
+				height: 125px;
+				background-image: url("${pageContext.request.contextPath}/img/board-img/matching_off.jpg");
+				border-top: 1px solid #d9d9d9;
+				border-right: 1px solid #d9d9d9;
+				border-bottom: 1px solid #d9d9d9;
+				float: left;
+				
+			}
+			
+			
+			.top_btn2:HOVER {
+				background-image: url("${pageContext.request.contextPath}/img/board-img/review_on.jpg");
+			}
+			
+			.top_btn3:HOVER {
+				background-image: url("${pageContext.request.contextPath}/img/board-img/matching_on.jpg");
+			}
+			
+			
+			.td1{
+			
+				background-color: #f2f2f2;
+				font-size: 12px;
+				color: #666;
+				width: 15%;
+			}
+			
+			.view_td{
+			
+				vertical-align: middle;	
+				
+			}
+			
+			.view_mar{
+				margin-left: 10px;
+			}
+			
+			
+			.top_text{
+				display: inline;
+				float: left;
+			
+			}
+			
+			.contentsView{
+				width: 100%;
+				height: 550px;
+				background-color: white;
+			}
+			
+			
+			.td{
+			
+				height: 58px;
+				
+				margin-top:10px;
+			}
 
 </style>
 </head>
 <body>
  <c:import url="../../temp/header.jsp"/>
+ <c:import url="../../temp/header_plus_board.jsp" />
 
 	
 	<div class="main">
 		<div class="se_main">
+		
+		<div class="top_img" style="width: 488px; height: 160px; vertical-align:middle; margin: 0 auto;">
+			<div class="top_btn1">			
+			</div>
+			
+			<div class="top_btn2">			
+			</div>
+			
+			<div class="top_btn3">			
+			</div>
+		
+		<%-- <span class="top_btn1">
+			<img src="${pageContext.request.contextPath}/img/board-img/required_on.jpg"  alt="Pic" >
+		</span>
+		<span class="top_btn2">
+			<img src="${pageContext.request.contextPath}/img/board-img/review_off.jpg"  alt="Pic" >
+		</span>
+		<span class="top_btn3">
+			<img src="${pageContext.request.contextPath}/img/board-img/matching_off.jpg"  alt="Pic" >
+		</span> --%>
+					
+		</div>
+
+	<div class="main2" style="width: 75%; margin: 0 auto">
+		
+
 		<div class="first">
 			<div class="first1-1">
+
 			
 			</div>
 			
@@ -127,55 +360,78 @@
 
 		</div>
 		<div class="second">
-			
-			<table class="table table table-hover">
-				<tr>
-					<th>No</th>
-					<th>WRITE</th>
-					<th>TITLE</th>
-					<th>DATE</th>
-					<th>HIT</th>
+		<div class="search_bar" >
+				<form action="requiredList" method="get">
+                     <select id="kind" name="search" >
+                        <option value="writer">작성자</option>
+                        <option value="title">제목</option>
+                        <option value="contents">글내용</option>
+                     </select> 
+                     <input type="text" name="find" >
+                     <input type="submit" id="search_btn" value="검색"> 
+                     <input  type="hidden" name="curPage" value="1">
+                  </form>
+                  </div>
+                  
+			<table class="table">
+				<tr class="tr">
+					<th class="font th">NO</th>
+					<th class="font th">WRITER</th>
+					<th class="font th">TITLE</th>
+					<th class="font th">DATE</th>
+					<th class="font th">HIT</th>
 				
 					
 				</tr>
 				<c:forEach items="${list}" var="dto">
-					<tr class="boardtitle" id="${dto.num}" style="cursor:hand;">
-						<td>${dto.num}</td>
-						<td>${dto.writer}</td>
-						
-						
-                                 <td> 
-                                <div class="boardtitle2"><c:forEach begin="1" end="${dto.depth}" var="i">
-                                         <span>RE:</span>
-                                       </c:forEach> ${dto.title}</div>
-                                 </td>
-                       
-                     
-						
-						<td><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
-						<td>${dto.hit}</td>
+					<tr class="boardtitle tr" id="${dto.num}" style="cursor:hand;" >
+						<td class="font td">${dto.num}</td>
+						<td class="font td">${dto.writer}</td>
+						<td class="font td"> 
+                           <div class="boardtitle2"><c:forEach begin="1" end="${dto.depth}" var="i">
+                           <span>RE:</span>
+                           </c:forEach> ${dto.title}</div>
+                        </td>
+						<td class="font td"><fmt:formatDate value="${dto.reg_date}" pattern="MM.dd"/></td>
+						<td class="font td">${dto.hit}</td>
 					
 					
 					</tr>
 				</c:forEach>
 			</table>
-			<c:if test="${listInfo.curBlock>1}">
-				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="requiredList?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
-			</c:if>
-			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
-				var="i">
-				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="requiredList?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}">${i}</a>
-			</c:forEach>
-			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
-				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="requiredList?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
-			</c:if>
-
-			<a href="requiredWrite">WRITE</a>
+			
+			
+			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
+				<ul class="pagination pagination-sm" style="margin-top: -1px;">
+				
+						<li>
+						<c:if test="${listInfo.curBlock>1}">
+							<a href="requiredList?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">이전</a>
+						</c:if>
+						</li>
+						
+						<li>
+						<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
+							var="i">	
+							<a href="requiredList?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}" class="active">${i}</a>
+						</c:forEach>
+						</li>
+						
+						<li>
+						<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+							<a href="requiredList?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">다음]</a>
+						</c:if>
+						</li>
+				
+				</ul>
+				<span class="wr_bt">
+					<button type="button" id="wr_bt">글작성</button>
+				</span>
+			</div>
+			
+					
 		</div>
-	
+	</div>
 	</div>
 	</div>
 	
@@ -185,6 +441,11 @@
 <c:import url="../../temp/footer.jsp"/>
 <script type="text/javascript">
 
+
+$("#wr_bt").click(function() {
+	
+	location.href="requiredWrite"
+});
 
 $(".boardtitle").click(function() {
 	var vnum=$(this).attr("id");

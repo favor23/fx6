@@ -5,10 +5,61 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.choa.util.ListInfo;
+
 @Service
 public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
+	
+	public List<CampaignDTO> campaignList(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList2(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList2(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList3(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList3(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList4(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList4(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList5(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList5(listInfo);
+	}
+	
+	public int campaignCount() throws Exception {
+		return campaignDAO.campaignCount();
+	}
 	
 	public int campaignWrite() throws Exception {
 		return campaignDAO.campaignWrite();

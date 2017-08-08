@@ -24,19 +24,13 @@
 			</ul>
 		</div>
 		</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">펀딩</li>
+		<li id="${pageContext.request.contextPath}/crowd_funding/cf_index" class="header_li">펀딩</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">매칭시스템</li>
 		<li id="${pageContext.request.contextPath}/" class="header_li">시나리오</li>
 		<c:if test="${empty member}">
 		<div class="dropdown"
 				style="height: 50px; width: 150px; float: right;">
-				<li id="bar_login" class="dropdown-toggle" type="button"
-					data-toggle="dropdown">로그인</li>
-				<ul class="dropdown-menu"
-					style="background-color: white; margin: 0 0 0 0;">
-					ID : <input type="text">
-					PW : <input type="password">					
-				</ul>
+				<li id="bar_login"><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>				
 			</div>
 
 		</c:if> <c:if test="${!empty member}">
@@ -44,14 +38,25 @@
 				style="height: 50px; width: 150px; float: right;">
 				<li id="bar_login" class="dropdown-toggle" type="button"
 					data-toggle="dropdown">${member.name}님반갑습니다.</li>
+					<c:if test="${member.grade ne 'admin'}">
 				<ul class="dropdown-menu"
 					style="background-color: white; margin: 0 0 0 0;">
 					<li><a href="${pageContext.request.contextPath}/member/myPage">마이페이지</a></li>
-					<li><a href="board/required/requiredList">쪽지</a></li>
+					<li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myPage">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myPage">티켓구매 현황</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>					
 				</ul>
+				</c:if>
+				<c:if test="${member.grade eq 'admin'}">
+				<ul class="dropdown-menu"
+					style="background-color: white; margin: 0 0 0 0;">
+					<li><a href="${pageContext.request.contextPath}/member/myPage">사원 마이페이지</a></li>
+					<li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/myPage">업무페이지</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>					
+				</ul>
+				</c:if>
 			</div>
 		</c:if> </ui>
 	</div>

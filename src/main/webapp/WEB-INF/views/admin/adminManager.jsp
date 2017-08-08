@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,23 @@
 #Manager_table{
 	
 }
+.modal_d1 , .modal_d2, .modal_d3, .modal_d4_mod, .modal_view{
+	width: 300px;
+	height: 400px;
+	float: left;
+}
+
+.easyui-linkbutton{
+	height:50px;
+	width: 100%;
+}
+.admin_smell_img{
+	height: 50px;
+	width: 40px;
+}
+
 </style>
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/admin_m/themes/default/easyui.css" />"
 	rel='stylesheet' />
 <link href="<c:url value="/admin_m/themes/icon.css" />" rel='stylesheet' />
@@ -31,7 +48,8 @@
 	padding: 0px 0px 0px 0px;"
 }
 </style>
-<c:import url="../temp/bootStrap_api_crash.jsp" />
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
+<c:import url="../temp/bootStrap_api_crash_black_position.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -40,21 +58,23 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
+<c:import url="./admin_one.jsp" />
 	<div id="Manager_table">	
 	<h2>@@부서 팀장만 사용가능</h2>
-	<p>부서내 사원들에게 업무 부여가능</p>
+	<p>부서내 사원들에게 업무 부여가능</p>	
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button>
+		<button type="button" class="btn btn-info btn-lg btn_insert" data-toggle="modal" data-target="#myModal_ins">추가</button>
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">수정</button>
+		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">정보</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="start()">새로고침</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button>
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="dbupdatesave()">저장</a> -->
 	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a>  -->
 	</div>	
-	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:900px"
+	<table id="tg" class="easyui-treegrid" title="업무 분담표" style="width:1000px;height:500px"
 			data-options="
 				iconCls: 'icon-ok',
 				rownumbers: true,
@@ -69,7 +89,7 @@
 		<thead>
 			<tr>
 				<th data-options="field:'name',width:180,editor:'text'">업무명</th>
-				<th data-options="field:'persons',width:60,align:'right',editor:'numberbox'">사원명</th>
+				<th data-options="field:'persons',width:60,align:'right',editor:'numberbox'">아이디명</th>
 				<th data-options="field:'begin',width:80,editor:'text'">시작 날짜</th>
 				<th data-options="field:'end',width:80,editor:'text'">마감 날짜</th>
 				<th data-options="field:'progress',width:120,formatter:formatProgress,editor:'numberbox'">진행 정도</th>
@@ -78,63 +98,183 @@
 	</table>
 	</div>
 </div>
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<!-- =======================================================추가========================================================== -->
+<div id="insert_modal"></div>
+<!-- =======================================================수정========================================================== -->
+<div id="myModal_mod" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="width: 950px">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-      		<input type="hidden" id="iconcls" value="icon-ok">
-        	프로젝트명<input type="text" id="name" value="">
-        	프로젝트 할사람<input type="text" id="persons" value="">
-        	시작<input type="text" id="begin" value="">
-        	끝<input type="text" id="end" value="">
-        	<input type="hidden" id="progress" value="0">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="append()" data-dismiss="modal">추가</button>        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
+				<h4 class="modal-title well">${member.department}업무 수정</h4>
+			</div>
+			<div class="modal-body">
+				<input	type="hidden" id="id_mod" value="">
+				<input type="hidden" id="iconcls_mod" value="icon-ok">
+				<div class="modal_d1 well">
+					프로젝트명<input type="text" id="name_mod" value=""> <br> 
+					시작날짜<input 	type="date" id="begin_mod" value=""> <br>~<br> 
+						끝 날짜<input	type="date" id="end_mod" value="">						
+				퍼센트<input type="number" id="progress_mod"	value="">
+				</div>
+				<!-- div2 div3 ajax로 가져오기 -->
+				<div class="modal_mod_tt">	
+				<button id="list_list">인원추가하기</button>			
+				</div>
+								
+				<button href="javascript:void(0)" class="easyui-linkbutton"
+					onclick="dbupdatesave()" data-dismiss="modal" onclick="start()">수정</button>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="start()">Close</button>
+			</div>
+		</div>
 
-  </div>
-  </div>
-  
-  <div id="myModal_mod" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	</div>	
+</div>
+<!-- ==================================모달뷰================================================== -->
+<div id="myModal_view" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="width: 650px">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-      		<input type="hidden" id="iconcls_mod" value="icon-ok">
-      		<input type="hidden" id="id_mod" value="">
-        	프로젝트명<input type="text" id="name_mod" value="">
-        	프로젝트 할사람<input type="text" id="persons_mod" value="">
-        	시작<input type="text" id="begin_mod" value="">
-        	끝<input type="text" id="end_mod" value="">
-        	퍼센트<input type="number" id="progress_mod" value="">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
+				<h4 class="modal-title well">${member.department}업무 수정</h4>
+			</div>
+			<div class="modal-body">
+				<input	type="hidden" id="id_view" value="">
+				<input type="hidden" id="iconcls_view" value="icon-ok">
+				<div class="modal_d1 well">
+					프로젝트명<input type="text" id="name_view" value="" readonly="readonly"> <br> 
+					시작날짜<input 	type="date" id="begin_view" value="" readonly="readonly"> <br>~<br> 
+						끝 날짜<input	type="date" id="end_view" value="" readonly="readonly">						
+				퍼센트<input type="number" id="progress_view"	value="" readonly="readonly">
+				</div>
+				<!-- div2 div3 ajax로 가져오기 -->
+				<div class="modal_view well" style="overflow: auto">
+					<button class="btn_view">참여인원 보기</button>											
+				</div>				
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
 
-  </div>
-  </div>
+	</div>	
+</div>
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
 	/* var keynum=0; */
 	start();
+	var jbAry = new Array();
+	var delAry = new Array();
+	var content=0;
+	var content2=0;
+	var del="del";
+	var persons2="";
+	/* ======================================== 모달뷰 =============================================================  */
+	function viewview() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_view").html(data);
+			}
+		});	
+	}	
+	
+	
+	/* ===============================================모달수정======================================================  */
+	$("#list_list").click(function(){		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal4?jbAry='1'&delAry='1'",
+			type : "GET",
+			success : function(data) {
+				$(".modal_mod_tt").html(data);
+			}
+		});
+	})
+	
+	$(".modal_mod_tt").on("click","#modmodmod",function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d4_mod").html(data);
+			}
+		});
+	});
+	$(".modal_mod_tt").on("click",".insert_gogo2",function(){		
+		var str=$(this).attr('id');		
+		jbAry[content]=str;
+		content++;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d4_mod").html(data);
+			}
+		});
+		
+	})
+	function modal4_mod() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal4?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_mod_tt").html(data);
+			}
+		});	
+	}	
+	
+	/* ==========================================모달추가====================================================== */
+	$(".btn_insert").mouseenter(function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal2",
+			type : "GET",
+			success : function(data) {
+				$("#insert_modal").html(data);
+			}
+		});	
+	})
+	
+	$("#insert_modal").on("click",".insert_gogo",function(){		
+		var str=$(this).attr('id');	
+		if($(this).val()=='참여'){
+			$(this).attr("value","참여취소");
+		}else{
+			$(this).attr("value","참여");
+		}
+		jbAry[content]=str;
+		content++;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d3").html(data);
+			}
+		});
+		
+	})
+	
+	
+	/* $(".modal_d3").on("click",".select_one_x",function(){
+		var str=$(this).attr('id');
+		delAry[content2]=str;
+		content2++;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d3").html(data);
+			}
+		});
+	}); */
+	
+	
 	function start(){		
 		$.post("./work_list",function(data){
 			/* 날짜 형식 변경 */
@@ -163,8 +303,7 @@
 			}		
 		$('#tg').treegrid({
 			data : dataSet
-		});
-		
+		});		
 	})
 	}
 	
@@ -199,6 +338,31 @@
 		$("#end_mod").attr("value",row.end);
 		$("#progress_mod").attr("value",row.progress);
 		$("#iconcls_mod").attr("value",row.iconcls);
+		persons2=row.persons;
+		jbAry=persons2.split("/");
+		modal4_mod(jbAry,persons2);
+		save();		
+	}
+	function view() {
+		if (editingId != undefined) {
+			$('#tg').treegrid('select', editingId);
+			return;
+		}
+		row = $('#tg').treegrid('getSelected');		
+		if (row) {
+			editingId = row.id
+			$('#tg').treegrid('beginEdit', editingId);
+		}		
+		$("#id_view").attr("value",row.id);
+		$("#name_view").attr("value",row.name);
+		$("#persons_view").attr("value",row.persons);
+		$("#begin_view").attr("value",row.begin);
+		$("#end_view").attr("value",row.end);
+		$("#progress_view").attr("value",row.progress);
+		$("#iconcls_view").attr("value",row.iconcls);
+		persons2=row.persons;
+		jbAry=persons2.split("/");
+		viewview(jbAry,persons2);
 		save();		
 	}
 	function dbupdatesave(){
@@ -212,6 +376,8 @@
 			iconcls : $("#iconcls_mod").val()
 		});	
 		setTimeout("start()", 500);
+		jbAry="";
+		delAry="";
 	}
 	function save() {
 		if (editingId != undefined) {
@@ -244,7 +410,9 @@
 			end : $('#end').val(),
 			progress : $('#progress').val(),
 			iconcls : $('#iconcls').val()
-		});		
+		});
+		jbAry="";
+		delAry="";
 	}
 	function cancel() {
 		if (editingId != undefined) {
@@ -278,6 +446,8 @@
 				progress : $('#progress').val()
 			} ]
 		})
+		jbAry="";
+		delAry="";
 		
 	}
 	function removeIt() {

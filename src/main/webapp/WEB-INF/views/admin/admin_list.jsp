@@ -45,7 +45,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '차장'}">													
 							<img
-							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>
@@ -59,7 +59,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '과장'}">													
 							<img
-							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>
@@ -73,7 +73,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '대리'}">													
 							<img
-							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>
@@ -87,7 +87,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '주임'}">													
 							<img
-							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>
@@ -101,7 +101,7 @@
 						<c:if test="${dto.department eq department}">
 						<c:if test="${dto.position eq '사원'}">													
 							<img
-							id="${dto.id}"title="${dto.name}"data-toggle="modal" data-target="#myModal"
+							id="${dto.id}"title="${dto.name}${dto.id}"data-toggle="modal" data-target="#myModal"
 								class="ProfileCard-avatarImage_2 js-action-profile-avatar"
 								src="<c:url value="${dto.picture}"/>">				
 						</c:if>

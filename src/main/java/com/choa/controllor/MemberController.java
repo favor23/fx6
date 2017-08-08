@@ -27,6 +27,7 @@ import com.choa.member.MemberDTO;
 import com.choa.movie.MovieDTO;
 import com.choa.movie.MovieRcdDTO;
 import com.choa.movie.MovieService;
+import com.choa.oauth.NaverService;
 import com.choa.pr.PrDTO;
 import com.choa.prfile.PrFileDTO;
 import com.choa.prfile.PrFileService;
@@ -44,6 +45,9 @@ public class MemberController {
 	private MovieService movieService;
 	
 	@Autowired
+	private NaverService naverService;
+	
+	@Autowired
 	private AdminServiceImpl adminService;
 	
 	@Autowired
@@ -52,11 +56,16 @@ public class MemberController {
 	@Autowired
 	private Hash hash;
 	
-	@RequestMapping(value="/member/logintester")
-	public void imTester()throws Exception{
-		
+	@RequestMapping(value="/naverJoin")
+	public String imTester(CustomerDTO customerDTO)throws Exception{
+		naverService.join(customerDTO);
+		return "/commons/thanksToJoin";
 	}
 	
+	@RequestMapping(value="/loginForm")
+	public String loginForm()throws Exception{
+		return "/member/login";
+	}
 	
 	@RequestMapping(value="member/joinForm",method=RequestMethod.POST)
 	public void readThis(String agree,Model model)throws Exception{
@@ -119,19 +128,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="member/myPr",method=RequestMethod.POST)
-	public ModelAndView pr2(PrDTO prDTO)throws Exception{
-		ModelAndView mv = null;
+	public String pr2(PrDTO prDTO,Model model)throws Exception{
 		int result = customerService.write_pr(prDTO);
-		mv = new ModelAndView();
+		String message="작성 실패";
 		if(result>0){
-			mv.addObject("message", "작성 완료");
-		}else {
-			mv.addObject("message", "작성 실패");
+			message="작성 완료";
 		}
-		
-		mv.addObject("path", "../member/myPage");
-		mv.setViewName("commons/result");
-		return mv;
+		model.addAttribute("message", message);
+		model.addAttribute("path","../member/myPage");
+		return "/commons/result";
 	}
 	
 	@RequestMapping(value="member/myPr",method=RequestMethod.GET)
@@ -193,11 +198,6 @@ public class MemberController {
 		return "/member/readThis";
 	}
 
-	//login!Form
-	@RequestMapping(value="/member/login")
-	public String login()throws Exception{
-		return "/member/login";
-	}
 
 	@RequestMapping(value="member/logOut")
 	public String memberLogOut(HttpSession session){
@@ -250,20 +250,29 @@ public class MemberController {
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
 	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO.setPw(hash.hashtest(memberDTO));
-		memberDTO = customerService.login(memberDTO);
+		String grade = customerService.gradeChecker(memberDTO.getId());
 		String message = "일치하는 아이디와 패스워드가 없습니다.";
 		String path="member/login";//로그인 실패시 경로.
-		if(memberDTO != null){
-			session.setAttribute("member",memberDTO);
-			message = "success";
-			path="/index";
-		}
-		model.addAttribute("message", message);
-		
+		if(grade.equals("admin")){
+			memberDTO = adminService.login(memberDTO);
+			if (memberDTO != null) {
+				session.setAttribute("member", memberDTO);
+				path="/index";
+			}
+		}else {
+			memberDTO = customerService.login(memberDTO);
+			if(memberDTO != null){
+				session.setAttribute("member",memberDTO);
+				message = "success";
+				path="/index";
+			}
+			model.addAttribute("message", message);
 
+
+		}
 		return path;
 	}
-	
+
 	@RequestMapping(value="member/delete",method=RequestMethod.POST)
 	public String delete(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		int result = customerService.delete(memberDTO);
@@ -292,14 +301,6 @@ public class MemberController {
 			}
 		}
 
-		@RequestMapping(value="/emailTest/naverlogin")
-		public void emailTest1()throws Exception {
-			
-		}
-		@RequestMapping(value="/emailTest/callback")
-		public void emailTest2()throws Exception {
-			
-		}
 
 
 }

@@ -13,8 +13,8 @@
   </head>
   <body>
   <%
-    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "YOUR_CLIENT_SECRET";//애플리케이션 클라이언트 시크릿값";
+    String clientId = "Bj1_9UMI6rGHV7mggCcz";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "DaFiDKuT5H";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
     String state = request.getParameter("state");
     String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");

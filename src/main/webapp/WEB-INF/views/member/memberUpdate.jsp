@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
 <style type="text/css">
 #memberBox {
 	width: 70%;
@@ -11,7 +15,7 @@
 #title {
 	margin-left: 15%;
 	margin-top: 50px;
-	width: 180px;
+	width: 140px;
 	font-weight: bold;
 	font-size: large;
 	border-bottom: 2px solid green;
@@ -59,11 +63,11 @@
 }
 
 .address {
-	width: 90%;
+	width: 98%;
 }
 
 .sText1 {
-font-size: small;
+font-size: 12px;
 
 }
 .sText2 {
@@ -95,7 +99,28 @@ width: 250px;
 	height: 20px;
 }
 
+#tap{
+	width: 100%;
+	height: 50px;
+}
+
+#main_session_default{
+	height: 1200px;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+
 </style>
+<c:import url="../temp/bootStrap.jsp" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<c:import url="../temp/header.jsp" />
+<div id="tap"></div>
+<c:import url="../temp/header_plus_member.jsp" />
+<div id="main_session_default">
 <p id="title">회원정보수정</p>
 <div id="memberBox">
 	<form action="customerUpdate" id="frm" method="post">
@@ -188,90 +213,97 @@ width: 250px;
 	<button id="updateBtn">완료</button>
 </div>
 
-	<script type="text/javascript">
-	var pw_checker = "";
-	var test = '${member.email}';
-	test = test.split("@");
-	var a = test[0];
-	var b = test[1];
-	$("#e1").val(test[0]);
-	$("#e3").val(test[1]);
-	
-	var taste = '${member.taste}';
-	taste = taste.split(",");
-	for(var i in taste){
-		$("."+taste[i]).attr("checked","checked");
+
+
+
+</div>
+<c:import url="../temp/footer.jsp" />
+<script type="text/javascript">
+var pw_checker = "";
+var test = '${member.email}';
+test = test.split("@");
+var a = test[0];
+var b = test[1];
+$("#e1").val(test[0]);
+$("#e3").val(test[1]);
+
+var taste = '${member.taste}';
+taste = taste.split(",");
+for(var i in taste){
+	$("."+taste[i]).attr("checked","checked");
+}
+
+
+	$("#updateBtn").click(function() {
+		var job = $('input:radio[name="r"]:checked').val();
+		var pw = $("#pw").val();
+		var pwc =$("#pwc").val() ;
+		if(pw==""){
+			$("#pwc1").html("비밀번호를 입력해주세요");
+		}
+		
+		if(pwc==""){
+			$("#pwc2").html("비밀번호를 입력해주세요");
+		}
+		
+		if(pw!=pwc){
+			$("#pwc2").html("비밀번호가 일치하지않습니다.");
+		}			
+
+		$("#email").val($("#e1").val()+"@"+$("#e3").val());
+		
+		if(pw!=""&&pwc!=""&&pw==pwc){
+			$("#frm").submit();				
+		}else {
+			alert("입력하신 정보가 맞는지 다시 확인 바랍니다.");
+		}
+
+	});
+
+	function mailing() {
+		var e2 = $("#e2").val();
+		if (e2 == 'self') {
+			$("#e3").val('');
+		} else {
+			$("#e3").val(e2);
+		}
+
 	}
-
 	
-		$("#updateBtn").click(function() {
-			var job = $('input:radio[name="r"]:checked').val();
-			var pw = $("#pw").val();
-			var pwc =$("#pwc").val() ;
-			if(pw==""){
-				$("#pwc1").html("비밀번호를 입력해주세요");
-			}
-			
-			if(pwc==""){
-				$("#pwc2").html("비밀번호를 입력해주세요");
-			}
-			
-			if(pw!=pwc){
-				$("#pwc2").html("비밀번호가 일치하지않습니다.");
-			}			
-
-			$("#email").val($("#e1").val()+"@"+$("#e3").val());
-			
-			if(pw!=""&&pwc!=""&&pw==pwc){
-				$("#frm").submit();				
-			}else {
-				alert("입력하신 정보가 맞는지 다시 확인 바랍니다.");
-			}
-
-		});
-
-		function mailing() {
-			var e2 = $("#e2").val();
-			if (e2 == 'self') {
-				$("#e3").val('');
-			} else {
-				$("#e3").val(e2);
-			}
-
-		}
-		
-		function pw_chk() {
-			var pw = $("#pw").val();
-			var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-			var ck = pwc.test(pw);
-			if (ck) {
-				pw_checker = "ok";
-				$(".sText1").css("display","none");
-				$(".sText2").css("display","none");
-				$(".currect").css("display","inherit");
-			} else {
-				$(".sText1").css("display","none");
-				$(".sText2").css("display","inherit");
-				pw_checker = "";
-			}
-		}
-		
-		
-		function focus1(){
-			$(".sText1").css("display","inherit");
+	function pw_chk() {
+		var pw = $("#pw").val();
+		var pwc = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+		var ck = pwc.test(pw);
+		if (ck) {
+			pw_checker = "ok";
+			$(".sText1").css("display","none");
 			$(".sText2").css("display","none");
+			$(".currect").css("display","inherit");
+		} else {
+			$(".sText1").css("display","none");
+			$(".sText2").css("display","inherit");
+			pw_checker = "";
 		}
-		
-		function pwc_chk(){
-			var pw = $("#pw").val();
-			var pwc = $("#pwc").val();
-			if(pw!=pwc&&pw!=""){
-				$(".sText3").css("display","inherit");
-			}else {
-				$(".sText3").css("display","none");
-			}			
-		}
-		
-		
-		
-	</script>
+	}
+	
+	
+	function focus1(){
+		$(".sText1").css("display","inherit");
+		$(".sText2").css("display","none");
+	}
+	
+	function pwc_chk(){
+		var pw = $("#pw").val();
+		var pwc = $("#pwc").val();
+		if(pw!=pwc&&pw!=""){
+			$(".sText3").css("display","inherit");
+		}else {
+			$(".sText3").css("display","none");
+		}			
+	}
+	
+
+
+</script>
+</body>
+</html>

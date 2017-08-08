@@ -1,6 +1,7 @@
 package com.choa.controllor;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.choa.campaign.CampaignDTO;
 import com.choa.campaign.CampaignService;
 import com.choa.file.FileService;
+import com.choa.movie.MovieDTO;
+import com.choa.util.ListInfo;
 
 @Controller
 @RequestMapping(value = "/crowd_funding/campaign/**")
@@ -28,8 +31,56 @@ public class CampaignController {
 	}
 	
 	@RequestMapping(value = "campaignList", method = RequestMethod.GET)
-	public void campaignList() {
+	public void campaignList(Model model) {
+		int totalCount = 0;
 		
+		try {
+			totalCount = campaignService.campaignCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("totalCount", totalCount);
+	}
+	
+	@RequestMapping(value = "getCampaignList", method = RequestMethod.POST)
+	public void campaignList(Integer curPage, String dual, Model model) {
+		List<CampaignDTO> list = null;
+		ListInfo listInfo = new ListInfo();
+		java.util.Date date = new java.util.Date();
+		
+		long until_end = 0;
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			if(dual.equals("")) {
+				list = campaignService.campaignList(listInfo);				
+			} else if(dual.equals("many_support")) {
+				list = campaignService.campaignList2(listInfo);
+			} else if(dual.equals("many_price")) {
+				list = campaignService.campaignList3(listInfo);
+			} else if(dual.equals("soon_end")) {
+				list = campaignService.campaignList4(listInfo);
+			} else {
+				list = campaignService.campaignList5(listInfo);
+			}
+
+			for(CampaignDTO dto: list) {
+				dto.setPer((int)(((double)dto.getSupport_price()/dto.getGoal_price())*100));
+				
+				until_end = dto.getCampaign_end().getTime() - date.getTime();
+				until_end = until_end/(1000*24*60*60);
+				
+				dto.setUntil_end((int)until_end);
+			}
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "campaignWrite", method = RequestMethod.GET)

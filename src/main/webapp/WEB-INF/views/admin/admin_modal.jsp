@@ -25,23 +25,23 @@
 						<c:if test="${s_dto.department eq '회계부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://imgnews.naver.com/image/032/2017/02/19/l_2017021801002475800202941_99_20170219094306.jpg);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장1.jpg);">
 						</a>
 						</c:if>
 						<c:if test="${s_dto.department eq '인사부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://imgnews.naver.com/image/011/2017/01/23/1OAXIEPZQJ_1_99_20170123085603.jpg);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장2.jpg);">
 						</a></c:if>
 						<c:if test="${s_dto.department eq '후원부'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fpost.phinf.naver.net%2FMjAxNzAzMzBfMTc3%2FMDAxNDkwODUyNTUyOTcw.Z3yjstF8B7sS77FulE_ntjki4AqolkU59F62JkixxyAg.Qted81nFoHw7bGjWE_wTzZ2rTqSbAnb3iEM-qTUsOf8g.JPEG%2FIMVJYeyxt0PZpm7ntRVLRI4vvzBo.jpg&type=b400);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/프로듀사.jpg);">
 						</a></c:if>
 						<c:if test="${s_dto.department eq '매니저'}">
 						<a class="ProfileCard-bg js-nav" href="/dia_official"
 							tabindex="-1" aria-hidden="true"
-							style="background-color: #3B94D9; background-image: url(http://blogfiles2.naver.net/20160309_61/peokim99_1457486730065Tew3q_JPEG/%C5%C2%BE%E7%C0%C7%C8%C4%BF%B9%C3%D4%BF%B5%C1%F6_%286%29.JPG);">
+							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/sun_sun.jpg);">
 						</a>
 						</c:if>
 

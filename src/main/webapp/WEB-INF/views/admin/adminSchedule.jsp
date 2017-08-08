@@ -10,14 +10,14 @@
 <script src='${pageContext.request.contextPath}/calendar/lib/moment.min.js'></script>
 <script src='${pageContext.request.contextPath}/calendar/lib/jquery.min.js'></script>
 <script src='${pageContext.request.contextPath}/calendar/fullcalendar.min.js'></script>
-<c:import url="../temp/bootStrap_api_crash.jsp" />
+<c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <style type="text/css">
 #tap{
 	width: 100%;
 	height: 50px;
 }
 #main_session_default{
-	height: 1200px;
+	height: 1300px;
 	width: 1000px;
 	margin: 0 auto;
 }
@@ -33,17 +33,20 @@
 
 	#calendar {
 		max-width: 900px;
+		height:800px;
 		margin: 0 auto;
-		padding-top: 50px;
+		padding-top: 20px;
 	}
 
 </style>
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 </head>
 <body>
 <c:import url="../temp/header.jsp" />
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
+<c:import url="./admin_one.jsp" />
 	<div id='calendar'></div>
 </div>
 <c:import url="../temp/footer.jsp" />
@@ -55,7 +58,6 @@ $.post("./schedul_list",function(data){
 	str=JSON.stringify(data);			
 	str=str.substring(str.indexOf('['),str.indexOf(']')+1);			
 	/* 다시 제이슨 오브젝트화 */
-	alert(str);
 	str=JSON.parse(str);
 	var date = new Date();
 	 
