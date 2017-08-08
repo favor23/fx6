@@ -218,6 +218,15 @@ border: 0.5px solid black;
 	width:125px;
 }
 
+#chk_certBtn {
+	border: 0.5px solid black;
+	border-radius: 5px;
+	background-color: #ccff33;
+	font-weight: bold;
+	font-size: 15px;
+	width:125px;
+}
+
 </style>
 </head>
 <body>
@@ -283,12 +292,12 @@ border: 0.5px solid black;
 							<option value="gmail.com">gmail.com</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
-					</select> <input type="text" id="e3" class="text"></td>
+					</select> <input type="text" id="e3" class="text"> <input type="button" id="certBtn" value="인증번호 발송"></td>
 				</tr>
 				<tr>
 					<td class="cert" colspan="3" style="padding-left: 158px;">
-					<input type="text" id="certCode"> <input type="button" id="certBtn" value="인증번호 발송">
-					 <span id="certTxt">인증번호가 발송되었습니다.</span>
+					<input type="text" id="certCode"> <input type="button" id="chk_certBtn" value="인증번호확인">
+					 <span id="certTxt"></span>
 					</td>
 				</tr>
 				<tr>
@@ -363,6 +372,11 @@ border: 0.5px solid black;
 
 
 <script type="text/javascript">
+var year = new Date().getFullYear(); //올해 년도 구함.
+var id_checker = "";
+var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""으로 바꾸어 놓아야함
+var code="code";
+var code_checker="";
 var taste_checker="";
 	$("input[type='checkbox']").click(function(){
 		var num = $('input:checkbox:checked').length;
@@ -374,9 +388,7 @@ var taste_checker="";
 	});
 	
 
-var year = new Date().getFullYear(); //올해 년도 구함.
-var id_checker = "";
-var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""으로 바꾸어 놓아야함
+
 		/* <select name="user_birth_year">
 		<option value="2000" selected>2000</option> */
 	
@@ -517,7 +529,10 @@ var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""
 
 	//가입하기 버튼을 눌렀을때 작동하는 스크립트
 			$("#joinBtn").click(function(){
-
+				var myCode=$("#certCode").val();
+				if(code*1==myCode*1){
+					code_checker="ok";
+				}
 				$("#email").val($("#e1").val() + "@" + $("#e3").val());
 				var myYear = $("#myYear").val(); //내가 태어난 년도
 				var age = year - myYear; //나이 구하기
@@ -526,12 +541,14 @@ var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""
 						+ $("#myDay").val();
 				$("#birth").val(text);//생년 월일 저장
 				//중복체크를 했는지, 패스워드가 조건에 맞는지, 패스워드와 패스워드 확인과 일치하는지 확인해줌.
-				if (id_checker != "" && pw_checker != ""&&taste_checker!="") {
+				if (id_checker != "" && pw_checker != ""&&taste_checker!=""&&code_checker!="") {
 					$("#join_frm").submit();
 				} else if(id_checker == "" && pw_checker == ""){
 					alert("다시 확인하세요.");
 				}else if(taste_checker==""){
 					alert("선호하는 장르를 다시 확인해주세요.");
+				}else if(code_checker==""){
+					alert("이메일 인증을 다시 진행해 주세요");
 				}
 
 			});
@@ -580,16 +597,41 @@ var pw_checker = "a";//0804 비밀번호 정규식 해제 . 처이 완료 후 ""
 	}
 	
 	//이메일 인증
-	var code="code";
+	function readonlyCSS(num){
+		if(num*1==0){
+			$("#e1").removeAttr("readonly");
+			$("#e2").css("display","inherit");
+			$("#e3").removeAttr("readonly");
+		}else {
+			$("#e1").attr("readonly","readonly");
+			$("#e2").css("display","none");
+			$("#e3").attr("readonly","readonly");
+		}
+	}
+	
 	$("#certBtn").click(function(){
 		$("#email").val($("#e1").val() + "@" + $("#e3").val());
+		readonlyCSS(1);
 		var email=$("#email").val();
 		$.post("${pageContext.request.contextPath}/sendMail/auth",{
 			email:email
 		},function(data){
-			code=data;
-			$("#certTxt").
+			code=data*1;
+			$("#certTxt").html("인증번호가 발급되었습니다.");
+			$("#certBtn").attr("value","인증번호 재발송");
 		});
+	});
+	
+	$("#chk_certBtn").click(function(){
+		alert(code);
+		var myCode=$("#certCode").val();
+		if(code*1==myCode*1){
+			$("#certTxt").html("인증번호가 일치합니다.");
+			$("#certTxt").css("color","green");
+		}else {
+			$("#certTxt").html("인증번호가 일치하지않습니다.");
+			$("#certTxt").css("color","red");
+		}
 	});
 	
 </script>

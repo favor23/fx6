@@ -21,10 +21,12 @@
 		</li>
 		<%-- <li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
 				조직도
-		</li> --%>			
-		<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
-				관리자메뉴
-		</li>
+		</li> --%>		
+	<c:if test="${member.position eq '부장'}">
+			<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
+					관리자메뉴
+			</li>
+		</c:if>
 		</ul>
 		</div>
 	</div>

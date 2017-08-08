@@ -18,7 +18,7 @@
 #Manager_table{
 	
 }
-.modal_d1 , .modal_d2, .modal_d3{
+.modal_d1 , .modal_d2, .modal_d3, .modal_d4_mod, .modal_view{
 	width: 300px;
 	height: 400px;
 	float: left;
@@ -49,7 +49,7 @@
 }
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-<c:import url="../temp/bootStrap_api_crash_black.jsp" />
+<c:import url="../temp/bootStrap_api_crash_black_position.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -65,8 +65,9 @@
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_ins">추가</button>
+		<button type="button" class="btn btn-info btn-lg btn_insert" data-toggle="modal" data-target="#myModal_ins">추가</button>
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">수정</button>
+		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">정보</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="start()">새로고침</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button>
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
@@ -97,97 +98,72 @@
 	</table>
 	</div>
 </div>
-<div id="myModal_ins" class="modal fade" role="dialog">
+<!-- =======================================================추가========================================================== -->
+<div id="insert_modal"></div>
+<!-- =======================================================수정========================================================== -->
+<div id="myModal_mod" class="modal fade" role="dialog">
 	<div class="modal-dialog" style="width: 950px">
 
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">${member.department}업무 추가</h4>
+				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
+				<h4 class="modal-title well">${member.department}업무 수정</h4>
 			</div>
 			<div class="modal-body">
-				<input type="hidden" id="iconcls" value="icon-ok">
+				<input	type="hidden" id="id_mod" value="">
+				<input type="hidden" id="iconcls_mod" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name" value=""> <br> 시작날짜<input
-						type="date" id="begin" value=""> <br>~<br> 끝 날짜<input
-						type="date" id="end" value="">
+					프로젝트명<input type="text" id="name_mod" value=""> <br> 
+					시작날짜<input 	type="date" id="begin_mod" value=""> <br>~<br> 
+						끝 날짜<input	type="date" id="end_mod" value="">						
+				퍼센트<input type="number" id="progress_mod"	value="">
 				</div>
-				<div class="modal_d2 well" style="overflow: auto">
-					<table class="table" width="100%" border="0" cellspacing="0"
-						cellpadding="0">
-						<tr><td colspan="3">${member.department} 명단 리스트</td></tr>
-						<tr>
-							<td></td>
-							<td>이름</td>
-							<td>직책</td>
-						</tr>
-						<c:forEach items="${admin_list}" var="dto">
-							<c:if test="${dto.department eq member.department}">
-								<tr>
-									<td rowspan="2"><img class="admin_smell_img"
-										src="<c:url value="${dto.picture}"/>"></td>
-									<td>${dto.name}</td>
-									<td>${dto.position}</td>
-								</tr>
-								<tr>
-									
-									<td colspan="2"><input id="${dto.id}" type="button"
-										class="btn-default insert_gogo" value="참여"></td>
-								</tr>
-							</c:if>
-						</c:forEach>
-					</table>
+				<!-- div2 div3 ajax로 가져오기 -->
+				<div class="modal_mod_tt">	
+				<button id="list_list">인원추가하기</button>			
 				</div>
-				<div class="modal_d3 well" style="overflow: auto">
-					<table class="table" width="100%" border="0" cellspacing="0"
-						cellpadding="0">
-						<tr>
-							<td colspan="3">프로젝트 참여인원</td>							
-						</tr>						
-					</table>
-				</div>
-
-				<input type="hidden" id="progress" value="0">
+								
 				<button href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="append()" data-dismiss="modal">추가</button>
+					onclick="dbupdatesave()" data-dismiss="modal" onclick="start()">수정</button>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="start()">Close</button>
 			</div>
 		</div>
 
-	</div>
+	</div>	
 </div>
-
-<div id="myModal_mod" class="modal fade" role="dialog">
-	<div class="modal-dialog">
+<!-- ==================================모달뷰================================================== -->
+<div id="myModal_view" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="width: 650px">
 
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Modal Header</h4>
+				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
+				<h4 class="modal-title well">${member.department}업무 수정</h4>
 			</div>
 			<div class="modal-body">
-				<input type="hidden" id="iconcls_mod" value="icon-ok"> <input
-					type="hidden" id="id_mod" value=""> 프로젝트명<input type="text"
-					id="name_mod" value=""> 프로젝트 할사람<input type="text"
-					id="persons_mod" value=""> 시작<input type="text"
-					id="begin_mod" value=""> 끝<input type="text" id="end_mod"
-					value=""> 퍼센트<input type="number" id="progress_mod"
-					value="">
-				<button href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="dbupdatesave()" data-dismiss="modal">추가</button>
+				<input	type="hidden" id="id_view" value="">
+				<input type="hidden" id="iconcls_view" value="icon-ok">
+				<div class="modal_d1 well">
+					프로젝트명<input type="text" id="name_view" value="" readonly="readonly"> <br> 
+					시작날짜<input 	type="date" id="begin_view" value="" readonly="readonly"> <br>~<br> 
+						끝 날짜<input	type="date" id="end_view" value="" readonly="readonly">						
+				퍼센트<input type="number" id="progress_view"	value="" readonly="readonly">
+				</div>
+				<!-- div2 div3 ajax로 가져오기 -->
+				<div class="modal_view well" style="overflow: auto">
+					<button class="btn_view">참여인원 보기</button>											
+				</div>				
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 
-	</div>
+	</div>	
 </div>
-<div id="modal_1"></div>
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
@@ -198,22 +174,74 @@
 	var content=0;
 	var content2=0;
 	var del="del";
-	/* $(".select_one_a").click(function(){
-		var id = $(this).attr("id");	
-		modal_crate(id);
-	});
-
-	function modal_crate(id) {
+	var persons2="";
+	/* ======================================== 모달뷰 =============================================================  */
+	function viewview() {
 		$.ajax({
-			url : "${pageContext.request.contextPath}/admin/admin_modal?id="+ id,
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
 			type : "GET",
 			success : function(data) {
-				$("#modal_1").html(data);
+				$(".modal_view").html(data);
+			}
+		});	
+	}	
+	
+	
+	/* ===============================================모달수정======================================================  */
+	$("#list_list").click(function(){		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal4?jbAry='1'&delAry='1'",
+			type : "GET",
+			success : function(data) {
+				$(".modal_mod_tt").html(data);
 			}
 		});
-	}	 */
-	$(".insert_gogo").click(function(){
+	})
+	
+	$(".modal_mod_tt").on("click","#modmodmod",function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d4_mod").html(data);
+			}
+		});
+	});
+	$(".modal_mod_tt").on("click",".insert_gogo2",function(){		
+		var str=$(this).attr('id');		
+		jbAry[content]=str;
+		content++;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_d4_mod").html(data);
+			}
+		});
 		
+	})
+	function modal4_mod() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal4?jbAry="+jbAry+"&delAry="+delAry,
+			type : "GET",
+			success : function(data) {
+				$(".modal_mod_tt").html(data);
+			}
+		});	
+	}	
+	
+	/* ==========================================모달추가====================================================== */
+	$(".btn_insert").mouseenter(function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/admin_modal2",
+			type : "GET",
+			success : function(data) {
+				$("#insert_modal").html(data);
+			}
+		});	
+	})
+	
+	$("#insert_modal").on("click",".insert_gogo",function(){		
 		var str=$(this).attr('id');	
 		if($(this).val()=='참여'){
 			$(this).attr("value","참여취소");
@@ -232,7 +260,8 @@
 		
 	})
 	
-	$(".modal_d3").on("click",".select_one_x",function(){
+	
+	/* $(".modal_d3").on("click",".select_one_x",function(){
 		var str=$(this).attr('id');
 		delAry[content2]=str;
 		content2++;
@@ -243,7 +272,7 @@
 				$(".modal_d3").html(data);
 			}
 		});
-	});
+	}); */
 	
 	
 	function start(){		
@@ -274,8 +303,7 @@
 			}		
 		$('#tg').treegrid({
 			data : dataSet
-		});
-		
+		});		
 	})
 	}
 	
@@ -310,6 +338,31 @@
 		$("#end_mod").attr("value",row.end);
 		$("#progress_mod").attr("value",row.progress);
 		$("#iconcls_mod").attr("value",row.iconcls);
+		persons2=row.persons;
+		jbAry=persons2.split("/");
+		modal4_mod(jbAry,persons2);
+		save();		
+	}
+	function view() {
+		if (editingId != undefined) {
+			$('#tg').treegrid('select', editingId);
+			return;
+		}
+		row = $('#tg').treegrid('getSelected');		
+		if (row) {
+			editingId = row.id
+			$('#tg').treegrid('beginEdit', editingId);
+		}		
+		$("#id_view").attr("value",row.id);
+		$("#name_view").attr("value",row.name);
+		$("#persons_view").attr("value",row.persons);
+		$("#begin_view").attr("value",row.begin);
+		$("#end_view").attr("value",row.end);
+		$("#progress_view").attr("value",row.progress);
+		$("#iconcls_view").attr("value",row.iconcls);
+		persons2=row.persons;
+		jbAry=persons2.split("/");
+		viewview(jbAry,persons2);
 		save();		
 	}
 	function dbupdatesave(){
@@ -323,6 +376,8 @@
 			iconcls : $("#iconcls_mod").val()
 		});	
 		setTimeout("start()", 500);
+		jbAry="";
+		delAry="";
 	}
 	function save() {
 		if (editingId != undefined) {
@@ -355,7 +410,9 @@
 			end : $('#end').val(),
 			progress : $('#progress').val(),
 			iconcls : $('#iconcls').val()
-		});		
+		});
+		jbAry="";
+		delAry="";
 	}
 	function cancel() {
 		if (editingId != undefined) {
@@ -389,6 +446,8 @@
 				progress : $('#progress').val()
 			} ]
 		})
+		jbAry="";
+		delAry="";
 		
 	}
 	function removeIt() {
