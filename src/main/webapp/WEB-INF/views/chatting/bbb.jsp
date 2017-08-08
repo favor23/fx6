@@ -191,12 +191,15 @@ img{
 </head>
 <body>
 
+<c:if test="${member == null}">
+	<input type="hidden" onload="close()">
+</c:if>
 
 <div id="main-section">
 	
 	<!--===============================영화  -->
 		<div id="d1">
-			<div id="movie-info"></div>
+			<div id="movie-info"><input type="hidden" id="movie_num" value="${movie_num}"></div>
 				<div id="video-div">
 					<div id="video-container">
 					<c:forEach begin="1" end="4" step="1" var="i">
@@ -228,18 +231,23 @@ img{
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
 				</c:forEach>
-				<ul id="discussion${member.playView}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
+				<ul id="discussion${movie_num}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
 		</div>
 		<div id="messageCon">
-			<input type="hidden" id="userid${member.playView}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
-			<input type="text" name="contents" id="message${member.playView}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
-			<input type="button" id="btnSend${member.playView}" class="btn" value="보내기" /> <br />
+			<input type="hidden" id="userid${movie_num}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
+			<input type="hidden" name="grade" id="grade" value="${movie_num}">
+			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
+			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
 		</div>
 	</div>
 </div>
 	<script src="http://demo.dongledongle.com/Scripts/jquery-1.10.2.min.js"></script>
 	<script src="http://demo.dongledongle.com/Scripts/jquery.signalR-2.2.1.min.js"></script>
 	<script type="text/javascript">
+	
+	function close() {
+		window.close();
+	}
 	
 
 	/* ************************************************* 영화 ***************************************************** */
@@ -463,26 +471,25 @@ img{
 		   var today_m=today.substring(10,12);
 		   var starttime_h=starttime.substring(8,10);
 		   var today_h=today.substring(8,10);
-		   
+		   var movieRoomNum=$("#movie_num").val();
 		   	 		   
 		   var cftime = (starttime_h*1-today_h*1)*60*24+(starttime_m*1-today_m*1)*60+(starttime_s*1-today_s*1);/* 초 */
 		   /* alert(today_m);
 		   alert(today_h); */
-		    if(cftime<=0){
-				location.href="aaa";
+		   if(cftime<=0){
+				location.href="${pageContext.request.contextPath}/chatting/aaa?movieRoomNum="+movieRoomNum;
 		   }else{
 				setInterval(function() { 
-		  	  	 	location.href="aaa";
+		  	  	 	location.href="${pageContext.request.contextPath}/chatting/aaa?movieRoomNum="+movieRoomNum;
 				}, cftime*1000);
 		   }
 			
 		/* ************************************************* 채팅 ***************************************************** */
  		var connection = $.hubConnection('http://demo.dongledongle.com/');
 		var chat = connection.createHubProxy('chatHub');
-		var room = ${member.playView};
+		var room = ${movie_num};
 		var count = ${count};
 		var ttt;
-
 		function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
@@ -499,12 +506,12 @@ img{
 		}
 
 		//정규식 (채팅칸에 빈칸이면 전송 안되게 하기)
-		var message = $("#message" + room).val();
+		/* var message = $("#message" + room).val();
 		var regex = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,11}$/;
 		var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		var eng = /^[A-Za-z0-9-]+$/
 		var chk = message.match(kor);
-		var chk2 = message.match(eng);
+		var chk2 = message.match(eng); */
 
 		$(document).ready(
 				function() {
@@ -515,6 +522,7 @@ img{
 					for (var i = 1; i <= count; i++) {
 						if ($("#roomUser" + i).val() == name) {
 							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
+							
 							$.post("chch",{
 								num:'${member.playView}',
 								writer:htmlEncode(name),
@@ -541,9 +549,8 @@ img{
 
 		//스페이스는 32
 		function sendMessage() {
-			if ($("#message" + room).val() != "" && chk || chk2) {
-				chat.invoke('send', $('#userid' + room).val(), $(
-						'#message' + room).val());
+			if ($("#message" + room).val() != "" /* && chk || chk2 */) {
+				chat.invoke('send', $('#userid' + room).val(), $('#message' + room).val());
 				$('#message' + room).val('').focus();
 			}
 		}

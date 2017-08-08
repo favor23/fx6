@@ -348,6 +348,10 @@
 		$(".list_btn").click(function() {
 			location.href = "campaign/campaignList";
 		});
+		
+		$(".go_view").click(function() {
+			location.href = "campaign/campaignView?campaign_num=" + $(this).attr("accesskey");
+		});
 	});
 </script>
 </head>
@@ -398,7 +402,7 @@
 		      
 		      <c:forEach items="${newList}" var="newList">
 		      	  <div class="item">
-			        <img src="<c:url value="${newList.campaign_img}" />" alt="Chicago" style="width:100%;">
+			        <img src="<c:url value="${newList.campaign_img}" />" alt="Chicago" class="go_view" style="width:100%; cursor: pointer;" accesskey="${newList.campaign_num}">
 			        <div class="carousel-caption">
 			          <h3>${newList.campaign_title}</h3>
 			          <p>${newList.simple_story}</p>
@@ -423,12 +427,12 @@
 	                        <li class="col-sm-3">
 	    						<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
+										<a href="./campaign/campaignView?campaign_num=${bestList.campaign_num}"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
 										<h4>${bestList.campaign_title}</h4>
 										<p>${bestList.register_name}</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
+										<a class="btn btn-mini" href="./campaign/campaignView?campaign_num=${bestList.campaign_num}">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>
@@ -441,12 +445,12 @@
 	                        <li class="col-sm-3">
 								<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
+										<a href="./campaign/campaignView?campaign_num=${bestList.campaign_num}"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
 										<h4>${bestList.campaign_title}</h4>
 										<p>${bestList.register_name}</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
+										<a class="btn btn-mini" href="./campaign/campaignView?campaign_num=${bestList.campaign_num}">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>
@@ -459,12 +463,12 @@
 	                        <li class="col-sm-3">
 								<div class="fff">
 									<div class="thumbnail">
-										<a href="#"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
+										<a href="./campaign/campaignView?campaign_num=${bestList.campaign_num}"><img src="<c:url value="${bestList.campaign_img}" />" alt=""></a>
 									</div>
 									<div class="caption">
 										<h4>${bestList.campaign_title}</h4>
 										<p>${bestList.register_name}</p>
-										<a class="btn btn-mini" href="#">» Read More</a>
+										<a class="btn btn-mini" href="./campaign/campaignView?campaign_num=${bestList.campaign_num}">» Read More</a>
 									</div>
 	                            </div>
 	                        </li>

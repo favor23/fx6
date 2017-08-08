@@ -11,6 +11,8 @@
 }
 
 #main_session_default {
+	min-height: 900px;
+	max-height: 2770px;
 	height: auto;
 	width: 100%;	
 	padding-bottom: 100px;
@@ -97,6 +99,21 @@ ul{
 	margin: 0 auto;
 }
 
+#pageing {
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+	padding-bottom: 0;
+	font-size: medium;
+}
+
+#pageing > a{
+	text-decoration: none;
+}
+
+
 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
@@ -181,6 +198,21 @@ ul{
 				</div>
 			</c:forEach>
 		</div>
+		<div id="pageing">
+			<c:if test="${listInfo.curBlock>1}">
+				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
+				<a href="cinema_my?curPage=${listInfo.startNum-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
+				<%-- <span class="go" id="${i}">${i}</span> --%>
+				<a href="cinema_my?curPage=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
+				<a href="cinema_my?curPage=${listInfo.lastNum+1}">[다음]</a>
+			</c:if>
+		</div>
+		
 	</section>
 
 	<c:import url="../../temp/footer.jsp" />

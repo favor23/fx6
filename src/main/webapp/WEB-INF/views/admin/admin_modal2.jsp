@@ -36,7 +36,7 @@
 								<tr>
 									
 									<td colspan="2"><input id="${dto.id}" type="button"
-										class="btn-default insert_gogo" value="참여"></td>
+										class="btn-default insert_gogo" value="클릭"></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -53,10 +53,10 @@
 
 				<input type="hidden" id="progress" value="0">
 				<button href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="append()" data-dismiss="modal" >추가</button>
+					onclick="append()" data-dismiss="modal">추가</button>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setting()" >Close</button>
 			</div>
 		</div>
 

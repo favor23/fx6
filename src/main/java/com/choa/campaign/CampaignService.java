@@ -12,6 +12,10 @@ public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
 	
+	public CampaignDTO campaignView(int campaign_num) throws Exception {
+		return campaignDAO.campaignView(campaign_num);
+	}
+	
 	public List<CampaignDTO> campaignList(ListInfo listInfo) throws Exception {
 		int totalCount = campaignDAO.campaignCount();
 		

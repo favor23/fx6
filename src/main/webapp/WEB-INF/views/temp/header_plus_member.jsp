@@ -29,7 +29,7 @@ width: 25%;
 				영화 요청 목록(!)
 		</li>	
 		</c:if>
-		<li id="${pageContext.request.contextPath}/member/dropOut" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/member/dropUser" dropzone="f" class="header_plus_li">
 				회원 탈퇴
 		</li>
 		
