@@ -16,7 +16,6 @@ public class RoomService {
 	}
 	
 	public int playtimeUpdate(RoomDTO roomDTO)throws Exception{
-		System.out.println("service");
 		return roomDAO.playtimeUpdate(roomDTO);
 	}
 }

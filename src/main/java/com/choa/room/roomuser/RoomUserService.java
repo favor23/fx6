@@ -17,7 +17,6 @@ public class RoomUserService {
 	private RoomUserDAO roomUserDAO;
 	
 	public List<RoomUserDTO> selectList() throws Exception {	
-		System.out.println("서비스실행");
 		return roomUserDAO.selectList();
 	}
 	
