@@ -34,6 +34,13 @@
   			where R between #{startRow} and #{lastRow}
   	</select>
   	
+  	<select id="list_id" resultType="RequiredDTO">
+  		select * from
+  		(select rownum R, N.* from
+  		(select * from required order by ref desc, step asc) N)
+  			
+  	</select>
+  	
   	<select id="view" resultType="RequiredDTO" parameterType="java.lang.Integer">
   		select * from required where num=#{num}
   	</select>

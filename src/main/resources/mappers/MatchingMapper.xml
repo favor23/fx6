@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+  
+  <mapper namespace="MatchingMapper">
+  
+  	<select id="matchingList" resultType="com.choa.matching.MatchingDTO" parameterType="com.choa.util.ListInfo">
+  		select * from
+  		(select rownum r, m.*from
+  		(select * from matching order by matching_num asc) m)
+  		where r between #{startRow} and #{lastRow}
+  	</select>
+  	<select id="matchingCount" resultType="java.lang.Integer">
+  		select nvl(count(matching_num), 0) from matching
+  	</select>
+  	<select id="matchingDetail" resultType="MatchingDTO" parameterType="java.lang.Integer">
+  		select * from matching where matching_num=#{matching_num}
+  	</select>
+  	<select id="matchingDetaill2" resultType="MatchingDTO" parameterType="java.lang.Integer">
+  		select * from matching where matching_num=#{matching_num}
+  	</select>
+  	<insert id="matchingWrite" parameterType="MatchingDTO">
+  		insert into matching values(#{writer}, #{form}, #{genre}, #{title}, #{story}, #{scenario}, #{notice}, #{matching_img}, sysdate, matching_seq.nextval)
+  	</insert>
+  	<select id="matchingView" resultType="MatchingDTO" parameterType="java.lang.Integer">
+  		select * from matching where matching_num=#{matching_num}
+  	</select>
+  	<update id="matchingUpdate" parameterType="MatchingDTO">
+  		update Matching set title=#{title}, story=#{story}, scenario=#{scenario}, form=#{form}, genre=#{genre}, notice=#{notice} where matching_num=#{matching_num} 
+  	</update>
+  	<delete id="matchingDelete" parameterType="java.lang.Integer">
+  		delete matching where matching_num=#{matching_num}
+  	</delete>
+  	
+  	
+  </mapper>

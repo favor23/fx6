@@ -27,11 +27,18 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus.jsp" />
 <div id="main_session_default">
-	<div class="dropBox"><input type="password" name=""></div>
+	<div class="dropBox">
+	<p>비밀번호를 입력해주세요</p>
+	<input type="password" id="pw">
+	</div>
 
 
 
 </div>
 <c:import url="../temp/footer.jsp" />
 </body>
+<script type="text/javascript">
+	
+
+</script>
 </html>

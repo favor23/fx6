@@ -54,13 +54,10 @@ public class SocketController {
 	   @RequestMapping(value="chch", method=RequestMethod.POST)
 	   public String input(Integer num, String writer, String contents, String grade, Model model, HttpServletRequest request)throws Exception{
 	      CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
-	      System.out.println("grade:"+grade);
 	      if(customerDTO.getGrade().equals(grade)){
 	         int a = chattingService.chatting(num, writer, contents, grade);
-	         System.out.println("if : "+a);
 	      }else{
 	         int a = chattingService.chatting2(num, writer, contents);
-	         System.out.println("else : "+a);
 	      }
 	      model.addAttribute("message", "asa");
 
@@ -69,16 +66,14 @@ public class SocketController {
 	
 	
 	   @RequestMapping(value="aaa")
-		public void aaa(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
-		   System.out.println("aaa : "+movieRoomNum);
+		public String aaa(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();
 			int ck=0;
 			rDto.setNum(movieRoomNum);
 			String [] playar = customerDTO.getPlayView().split("/");
-			System.out.println("playar : "+playar);
-			System.out.println("movieRoomNum : "+movieRoomNum);
+			
 			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");
 			for (int j = 0; j < userar.length; j++) {
 				if(userar[j].equals(customerDTO.getId())){
@@ -99,30 +94,35 @@ public class SocketController {
 
 			roomDTO.getStartTime();
 			
-	        /*orderDTO.setOrder_time(rs.getTimestamp("order_time").toString());*/
-	        //date는 시분초가 나오지 않는다 그러므로 문자열로 date 대신 string 으로 바꿔서 사용한다 Timestamp는 시분초까지 받는다.
-			
-			
 			if(movieUploadDTO!=null){
 				model.addAttribute("view", movieUploadDTO);
 			}
 			
+			model.addAttribute("movie_num", movieRoomNum);
 			model.addAttribute("roomDTO", roomDTO);
 			model.addAttribute("count", userar.length);
 			model.addAttribute("str", userar);
 			model.addAttribute("list", list);
+			int check=0;
+			for(int i=0; i<playar.length;i++){
+				if(!playar[i].equals(movieRoomNum)){
+					check=0;
+				}else{
+					check=1;
+					break;
+				}
+			}
+			if(check==1){
+				return "/chatting/aaa";
+			}else{
+				return "/index";
+			}
 		}
 	   
 	   
 		@RequestMapping(value="bbb")
-		public String bbb(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
-			System.out.println("bbb : "+movieRoomNum);
+		public void bbb(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
-			if(customerDTO==null){	
-				model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-				model.addAttribute("path", "../member/login");
-				return "/commons/result";
-			}
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();	
 			int ck=0;
@@ -130,28 +130,26 @@ public class SocketController {
 			rDto.setNum(movieRoomNum);
 			String [] playar = customerDTO.getPlayView().split("/");
 			
-			System.out.println("rDto.getNum() : "+rDto.getNum());
-			
-			System.out.println("playview length : "+playar.length);
 			
 			//movieRoomNum이 customer이 가지고 있는 티켓과 같은지 확인하고
 			//rDto.getNum이 movieRoomNum이랑 같은지 확인하고 없으면 생성
 			
 			
-			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");		
+			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");
 			
 			for(int q=0;q<userar.length;q++){
-				System.out.println(userar[q]);
 				if(!userar[q].equals(customerDTO.getId())){
 					rDto.setUser_array(list.get(movieRoomNum-1).getUser_array()+"/"+customerDTO.getId());
 					ck=1;
+				}else{
+					rDto.setUser_array(list.get(movieRoomNum-1).getUser_array());
+					ck=0;
 					break;
 				}
 			}
 			
 			/*if(rDto.getUser_array())*/
 			
-			System.out.println("bb:"+rDto.getUser_array());
 			/*String str[] = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
 			for (int j = 0; j < str.length; j++) {
 				if(str[j].equals(customerDTO.getId())){
@@ -159,13 +157,12 @@ public class SocketController {
 				}
 			}*/
 			
-			if(ck==0){
+			if(ck==1){
 				roomUserService.update(rDto);
 			}
 			
 			list = roomUserService.selectList();
-	/*		userar = list.get(movieRoomNum-1).getUser_array().split("/");
-	*/		
+
 			RoomDTO roomDTO = new RoomDTO();
 			roomDTO = roomService.playtime(movieRoomNum);
 			model.addAttribute("roomDTO", roomDTO);
@@ -173,16 +170,6 @@ public class SocketController {
 			model.addAttribute("str",userar);
 			model.addAttribute("list", list);
 			model.addAttribute("movie_num", movieRoomNum);
-			return "chatting/bbb";
-			/*
-			for(int w=0;w<playar.length;w++){
-				if(playar[w].equals(movieRoomNum)){
-					System.out.println("?????");
-					return "/chatting/bbb";
-				}else{
-					return "/index";				
-				}
-			}*/
 		}
 	
 	@RequestMapping(value="aaa1")
@@ -230,24 +217,13 @@ public class SocketController {
 	
 	@RequestMapping(value="playview", method=RequestMethod.POST)
 	public String playview(int movie_num, HttpSession session){
-		System.out.println("playviw");
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		String id = customerDTO.getId();
-		System.out.println(id);
-		System.out.println("movie_num : "+movie_num);
 		int check = 0;
 		String [] playview = customerDTO.getPlayView().split("/");
-		System.out.println("playview length : "+playview.length);
-		System.out.println("0 : "+playview[0]);
-		System.out.println("1 : "+playview[1]);
 		String str = "";
-		System.out.println("length : "+playview.length);
 		for(int i=0;i<playview.length;i++){
-			System.out.println("for");
-			System.out.println("for 안에 ticket:"+playview[i]);
-			System.out.println("for 안에 movie_num:"+movie_num);
 			if(playview[i].equals(String.valueOf(movie_num))){
-				System.out.println("if");
 				customerDTO.setReView(customerDTO.getReView()+"/"+playview[i]);
 				check=1;
 			}else{
@@ -258,11 +234,8 @@ public class SocketController {
 				}
 			}
 		}
-		System.out.println("ticket : "+check);
-		System.out.println("str : "+ str);
 		if(check==1){
 			customerDTO.setPlayView(str);
-			System.out.println("ticket 끝 : "+customerDTO.getReView());
 			chattingService.playview(customerDTO);
 			session.setAttribute("member", customerDTO);
 			return "/index";
@@ -289,8 +262,6 @@ public class SocketController {
 		String lasttt = String.valueOf(lastttt);
 		roomDTO.setLastTime(lasttt);
 		roomDTO.setStartTime(startt);
-		System.out.println(roomDTO.getStartTime());
-		System.out.println(startt+40000);
 		int a = roomService.playtimeUpdate(roomDTO);
 		
 		model.addAttribute("message", "asa");

@@ -218,8 +218,50 @@ ul{
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
-	$(".chat").click(function() {
-		window.open("../../chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
-	});
+$(".chat").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="${pageContext.request.contextPath}/loginForm";
+	}else{
+	$.post("${pageContext.request.contextPath}/chatting/ticket", {
+		movie_num:id
+	},function(data){});
+		window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+	}
+});
+var now = new Date();
+var year = now.getFullYear(); // 현재시간중 4자리 연도
+var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
+if((month+"").length <2){
+   	month="0"+month; // 달의 숫자가 1자리라면 앞에 0을 붙힘
+   }
+   var date = now.getDate(); //현재시간중 날짜.
+   if((date+"").length <2){
+   	date="0"+date;
+   }
+   hour=now.getHours();
+   if((hour+"").length<2){
+   	hour="0"+hour;
+   }
+   minute=now.getMinutes();
+   if((minute+"").length<2){
+   	minute="0"+minute;
+   }
+   second = now.getSeconds();
+   if((second+"").length<2){
+   	second="0"+second;
+   }
+   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
+   if(today >= ${roomDTO.startTime} && today < ${roomDTO.lastTime}){
+	   $(".time").css("background-color", "red");
+	   $(".time").html("상영중입니다.");
+   }else if(today < ${roomDTO.startTime}){
+	   $(".time").css("background-color", "green");
+	   $(".time").html("곧 영화가 시작됩니다.");
+   }else if(today > ${roomDTO.lastTime}){
+	   $(".time").css("background-color", "green");
+	   $(".time").html("곧 영화가 시작됩니다.");
+   }
 </script>
 </html>
