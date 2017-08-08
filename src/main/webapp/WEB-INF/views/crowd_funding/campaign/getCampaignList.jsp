@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:forEach items="${list}" var="dto">
 	<div class="ct">
-		<div class="ct_wrap">
+		<div class="ct_wrap" accesskey="${dto.campaign_num}">
 			<section class="wrapper cl">
 				<div class="pic pic-3d">
 					<img src="<c:url value="${dto.campaign_img}"/>" class="pic-image" alt="Pic">
