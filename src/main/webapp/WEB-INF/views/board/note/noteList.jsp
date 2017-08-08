@@ -185,13 +185,13 @@ function checkAll(){
 				    <div class="modal-dialog modal-sm">
 				    
 				      <!-- Modal content-->
-				      <div class="modal-content" style="background-color: red; color: yellow;"><!-- 여기가 모달 창 조정 부분 -->
+				      <div class="modal-content" style="color:black; background-color: white;"><!-- 여기가 모달 창 조정 부분 -->
 				        <div class="modal-header">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">Modal Header</h4>
+				          <h4 class="modal-title">수신쪽지</h4>
 				        </div>
 				        <div class="modal-body2">
-				          <p>Some text in the modal.</p>
+				          <p>수신쪽지</p>
 				        </div>
 				        <div class="modal-footer">
 				        	
