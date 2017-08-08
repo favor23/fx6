@@ -105,7 +105,21 @@ ul{
 	text-align: center;
 	color: white;
 	padding-bottom: 0;
-	
+	margin-top: 12px;
+}
+
+#pageing {
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+	padding-bottom: 0;
+	font-size: medium;
+}
+
+#pageing > a{
+	text-decoration: none;
 }
 
 
@@ -192,7 +206,21 @@ ul{
 					</div>
 				</div>
 			</c:forEach>
-		</div>		
+		</div>
+		<div id="pageing">
+			<c:if test="${listInfo.curBlock>1}">
+				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.startNum-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
+				<%-- <span class="go" id="${i}">${i}</span> --%>
+				<a href="cinema_list?curPage=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.lastNum+1}">[다음]</a>
+			</c:if>
+		</div>
 	</section>
 
 	<c:import url="../../temp/footer.jsp" />
@@ -208,7 +236,7 @@ ul{
 			movie_num:id
 		},function(data){});
 		alert("fdsa");
-			window.open("${pageContext.request.contextPath}/chatting/bbb", "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+			window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	});
 	
 	var now = new Date();

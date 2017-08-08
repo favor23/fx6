@@ -36,10 +36,14 @@ public class CinemaController {
 
 	
 	@RequestMapping(value="/board/cinema/cinema_list")
-	public void cinema_list(Integer curPage, Model model, HttpServletRequest request) throws Exception{
+	public void cinema_list(Integer curPage, Model model, HttpServletRequest request, ListInfo listInfo) throws Exception{
 		movieController.movieList(curPage, model);
+		
+		cinemaService.listAll(listInfo);
+		
 		RoomDTO roomDTO = roomService.playtime(1);
 		model.addAttribute("roomDTO", roomDTO);
+		model.addAttribute("listInfo", listInfo);
 	}
 	
 	@RequestMapping(value="/board/cinema/cinema_list", method=RequestMethod.POST)
@@ -51,37 +55,61 @@ public class CinemaController {
 		
 	}
 	@RequestMapping(value="/board/cinema/cinema_my")
-	public void cinema_my(Integer curPage, Model model, HttpSession session){
+	public String cinema_my(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
 		List<MovieDTO> list = null;
-		ListInfo listInfo = new ListInfo();
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		String id = memberDTO.getId();
-		System.out.println(id);
-		System.out.println("cinema Controller MY");
+		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
+		if(customerDTO==null){
+			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
+			model.addAttribute("path", "../../member/login");
+			return "/commons/result";
+		}
+		String id = customerDTO.getId();
+		String [] ticket = customerDTO.getTicket().split("/");
 		
 		listInfo.setCurPage(curPage);
-		
+		int [] ticketar = new int[ticket.length];
+		for(int q=0;q<ticketar.length;q++){
+			ticketar[q] = Integer.parseInt(ticket[q]);
+			System.out.println("ticketar : "+ticketar[q]);
+		}
 		try {
-			list = cinemaService.myList(id, listInfo);
+			list = cinemaService.myList(id, listInfo, ticketar);
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+		return "/board/cinema/cinema_my";
 	}
 	
 	@RequestMapping(value="/board/cinema/cinema_hotList")
-	public void cinema_hot(Integer curPage, Model model, HttpSession session)throws Exception{
-		List<MovieDTO> list = new ArrayList<MovieDTO>();
-		
-		list = cinemaService.listAll();
-		
+	public String cinema_hot(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
+		List<MovieDTO> list = null;
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
-		String genre = customerDTO.getTaste();
-		String [] genre_ar = genre.split("/");
-		model.addAttribute("ar", genre_ar);
+		if(customerDTO==null){
+			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
+			model.addAttribute("path", "../../member/login");
+			return "/commons/result";
+		}
+		String id = customerDTO.getId();
+		String [] genre = customerDTO.getTaste().split(",");
+		System.out.println("asdasd");
+		listInfo.setCurPage(curPage);
+		try {
+			list = cinemaService.hotList(genre, listInfo);
+			System.out.println("컨트롤러 사이즈 : "+list.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("ar", genre);
 		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+		return "/board/cinema/cinema_hotList";
+		
 	}
 	
 	@RequestMapping(value="/board/cinema/cinema_scheduleList")
