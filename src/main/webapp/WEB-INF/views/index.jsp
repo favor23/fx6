@@ -156,6 +156,7 @@
 		</section>
 		<div id="modal_div2"></div>		
 	</section>
+	
 	<!-- main end -->
 	<!-- footer start -->
 	<c:import url="temp/footer.jsp" />
