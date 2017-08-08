@@ -200,8 +200,8 @@ ul{
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success">ticket </button>
-						<button class="btn-primary">후원페이지</button>
+						<button class="btn-success ticket_li" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
 						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
@@ -222,12 +222,32 @@ ul{
 			</c:if>
 		</div>
 	</section>
-
+	<div id="main_div2"></div>
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
 
 	
+	$(".ticket_li").mouseenter(function() {
+		var num = $(this).attr("accesskey");
+		$.ajax({
+			url : "${pageContext.request.contextPath}/index_movielist/modal_view?movie_num="+num,
+			type : "GET",
+			success : function(data) {
+				$("#main_div2").html(data);
+			}
+		});
+	});
+
+	$(".huwon").click(function() {
+		var id = $(this).attr("id");
+		if(${member==null}){
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="${pageContext.request.contextPath}/loginForm";
+		}else{
+			location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
+		}
+	});
 	
 	$(".chat").click(function() {
 		var id = $(this).attr("id");
