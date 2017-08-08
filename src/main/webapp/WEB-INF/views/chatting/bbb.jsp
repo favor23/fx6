@@ -230,27 +230,22 @@ img{
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
-				</c:forEach>
-				<ul id="discussion${member.playView}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
+			</c:forEach>
+			<ul id="discussion${movie_num}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
 		</div>
 		<div id="messageCon">
-			<input type="hidden" id="userid${member.playView}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
-			<input type="text" name="contents" id="message${member.playView}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
-			<input type="button" id="btnSend${member.playView}" class="btn" value="보내기" /> <br />
+			<input type="hidden" id="userid${movie_num}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
+			<input type="hidden" name="grade" id="grade" value="${member.grade}">
+			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
+			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
 		</div>
 	</div>
 </div>
 	<script src="http://demo.dongledongle.com/Scripts/jquery-1.10.2.min.js"></script>
 	<script src="http://demo.dongledongle.com/Scripts/jquery.signalR-2.2.1.min.js"></script>
 	<script type="text/javascript">
-	
-	function close() {
-		window.close();
-	}
-	
 
 	/* ************************************************* 영화 ***************************************************** */
-	
 	function range() {
 		var range=document.getElementById("volume-range").value;
 		var video = document.getElementById("video");
@@ -486,10 +481,9 @@ img{
 		/* ************************************************* 채팅 ***************************************************** */
  		var connection = $.hubConnection('http://demo.dongledongle.com/');
 		var chat = connection.createHubProxy('chatHub');
-		var room = ${member.playView};
+		var room = ${movie_num};
 		var count = ${count};
 		var ttt;
-
 		function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
@@ -506,16 +500,15 @@ img{
 		}
 
 		//정규식 (채팅칸에 빈칸이면 전송 안되게 하기)
-		/* var message = $("#message" + room).val();
+		var message = $("#message" + room).val();
 		var regex = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,11}$/;
 		var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		var eng = /^[A-Za-z0-9-]+$/
 		var chk = message.match(kor);
-		var chk2 = message.match(eng); */
+		var chk2 = message.match(eng);
 
 		$(document).ready(
 				function() {
-
 				chat.on('addNewMessageToPage', function(name, message, grade) {
 					var nowName = name;
 					var message = htmlEncode(message);
@@ -523,7 +516,7 @@ img{
 						if ($("#roomUser" + i).val() == name) {
 							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
 							$.post("chch",{
-								num:'${member.playView}',
+								num:'${movie_num}',
 								writer:htmlEncode(name),
 								contents:htmlEncode(message),
 								grade:htmlEncode(grade)

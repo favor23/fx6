@@ -97,7 +97,7 @@ ul{
 	margin: 0 auto;
 }
 
-#time {
+.time {
 	width: 100%;
 	height: 15%;
 	float: left;
@@ -196,7 +196,7 @@ ul{
 								</ul>
 							</div>
 						</nav>
-						<div id="time"> </div>
+						<div class="time"></div>
 					</div>
 					
 					<div id="btn_div">
@@ -231,12 +231,15 @@ ul{
 	
 	$(".chat").click(function() {
 		var id = $(this).attr("id");
-		alert(id);
+		if(${member==null}){
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="${pageContext.request.contextPath}/loginForm";
+		}else{
 		$.post("${pageContext.request.contextPath}/chatting/ticket", {
 			movie_num:id
 		},function(data){});
-		alert("fdsa");
 			window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		}
 	});
 	
 	var now = new Date();
@@ -263,14 +266,14 @@ ul{
 	   }
 	   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
 	   if(today >= ${roomDTO.startTime} && today < ${roomDTO.lastTime}){
-		   $("#time").css("background-color", "red");
-		   $("#time").html("상영중입니다.");
+		   $(".time").css("background-color", "red");
+		   $(".time").html("상영중입니다.");
 	   }else if(today < ${roomDTO.startTime}){
-		   $("#time").css("background-color", "green");
-		   $("#time").html("곧 영화가 시작됩니다.");
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
 	   }else if(today > ${roomDTO.lastTime}){
-		   $("#time").css("background-color", "green");
-		   $("#time").html("곧 영화가 시작됩니다.");
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
 	   }
 </script>
 </html>
