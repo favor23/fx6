@@ -11,7 +11,7 @@
 }
 
 #main_session_default {
-	height: 1200px;
+	height: 700px;
 	width: 1000px;
 	margin: 0 auto;
 }
@@ -204,7 +204,7 @@ button{
 							<div id="table_div">
 								<form>
 									<div class="question">
-										<label>ID</label><input type="text" value="${member.id}" readonly="readonly" /> 
+										<label>ID</label><input type="text" name="id" value="${member.id}" readonly="readonly" /> 
 									</div>
 									<div class="question">
 										<label>PW</label><input class="pw_1" name="pw" type="password">
@@ -213,10 +213,10 @@ button{
 										<label>PW Confirm</label><input class="pw_1" name="pw" type="password">
 									</div>
 									<div class="question">
-										<label>Phone</label><input type="text" name="" value="${member.phone}">
+										<label>Phone</label><input type="text" name="phone" value="${member.phone}">
 									</div>
 									<div class="question">
-										<label>Email</label><input type="email" name="" value="${member.email}"> 
+										<label>Email</label><input type="email" name="email" value="${member.email}"> 
 									</div>
 									<input type="button" id="picture_mod"  class="btn-info font-white" value="사진변경">
 									<input type="button" id="admin_mod_go" class="btn-info font-white" value="수정하기">
@@ -231,4 +231,9 @@ button{
 	</div>
 	<c:import url="../temp/footer.jsp" />
 </body>
+<script type="text/javascript">
+
+
+
+</script>
 </html>

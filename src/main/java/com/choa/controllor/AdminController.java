@@ -215,6 +215,7 @@ public class AdminController {
 		
 		model.addAttribute("admin_list", list2);
 		model.addAttribute("jbAry",jbAry);
+		model.addAttribute("jbAry_count",jbAry.length);
 		model.addAttribute("str_plus",str_plus);
 	}
 	
@@ -225,11 +226,108 @@ public class AdminController {
 		adminDTO=adminService.selectOne(adminDTO);
 		model.addAttribute("s_dto", adminDTO );		
 	}
+	@RequestMapping(value="admin/admin_modal2")
+	public void admin_modal2(Model model)
+	{
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		model.addAttribute("admin_list", list2);		
+	}
 	
+	@RequestMapping(value="admin/admin_modal4")
+	public void admin_modal4(String[] jbAry,String[] delAry,Model model) {
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		String str_plus="";
+		
+		for(int x=0;x<jbAry.length;x++){
+			for(int y=0;y<jbAry.length;y++){
+				if(x!=y){
+					if(jbAry[x].equals(jbAry[y])){
+						jbAry[x]="del";	
+						jbAry[y]="del";	
+						break;
+					}
+				}
+			}
+		}
+		
+		for(int i=0;i<jbAry.length;i++){
+			for(int j=0;j<delAry.length;j++){
+				if(jbAry[i].equals(delAry[j])){
+					jbAry[i]="del";	
+					delAry[j]="del_s";
+				}
+				System.out.println(delAry[j]);
+			}
+			if(!jbAry.equals(null)&&!jbAry[i].equals("del")){
+				str_plus+=jbAry[i]+"/";
+			}
+		}
+		
+		
+		model.addAttribute("admin_list", list2);
+		model.addAttribute("jbAry",jbAry);
+		model.addAttribute("str_plus",str_plus);
+	}
+	/*public void admin_modal4(String persons,String nopersons, Model model)
+	{
+		String[] str=persons.split("/");
+		persons="";
+		for(int i=0;i<str.length;i++){
+			if(str[i].equals(nopersons)){
+				str[i]="del";
+			}else{
+				persons+=str[i]+"/";
+			}
+		}
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		model.addAttribute("admin_list", list2);
+		model.addAttribute("str", str);
+		model.addAttribute("str_plus", persons);
+	}*/
 	/*@RequestMapping(value = "admin/admin_workinsert_cr_modal", method = RequestMethod.GET)
 	public void admin_modal_list(Model model) {
 		List<AdminDTO> list=new ArrayList<AdminDTO>();
 		list=adminService.selectlist();
 		model.addAttribute("admin_list", list);
 	}*/
+	@RequestMapping(value = "admin/admin_modal5", method = RequestMethod.GET)
+	public void admin_modal5(String[] jbAry,String[] delAry,Model model) {
+		List<AdminDTO> list2=new ArrayList<AdminDTO>();
+		list2=adminService.selectlist();
+		String str_plus="";
+		
+		for(int x=0;x<jbAry.length;x++){
+			for(int y=0;y<jbAry.length;y++){
+				if(x!=y){
+					if(jbAry[x].equals(jbAry[y])){
+						jbAry[x]="del";	
+						jbAry[y]="del";	
+						break;
+					}
+				}
+			}
+		}
+		
+		for(int i=0;i<jbAry.length;i++){
+			for(int j=0;j<delAry.length;j++){
+				if(jbAry[i].equals(delAry[j])){
+					jbAry[i]="del";	
+					delAry[j]="del_s";
+				}
+				System.out.println(delAry[j]);
+			}
+			if(!jbAry.equals(null)&&!jbAry[i].equals("del")){
+				str_plus+=jbAry[i]+"/";
+			}
+		}
+		
+		
+		model.addAttribute("admin_list", list2);
+		model.addAttribute("jbAry",jbAry);
+		model.addAttribute("jbAry_count",jbAry.length);
+		model.addAttribute("str_plus",str_plus);
+	}
 }

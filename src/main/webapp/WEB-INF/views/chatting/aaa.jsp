@@ -228,12 +228,12 @@ img{
 	<script src="http://demo.dongledongle.com/Scripts/jquery.signalR-2.2.1.min.js"></script>
 	<script type="text/javascript">
 	//정규식 (채팅칸에 빈칸이면 전송 안되게 하기)
-  	var message = $("#message" + room).val();
+  /* 	var message = $("#message" + room).val();
   	var regex = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,11}$/;
   	var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   	var eng = /^[A-Za-z0-9-]+$/
   	var chk = message.match(kor);
-  	var chk2 = message.match(eng);
+  	var chk2 = message.match(eng); */
   	var ban; //sinhojeong script	val
   	var val; //sinhojeong script	val
 
@@ -370,15 +370,13 @@ img{
 			startTime:'${roomDTO.startTime}',
 			lastTime:'${roomDTO.lastTime}'
 		},function(){});
-    	alert("영화가 끝났습니다.");
+		$.post("playview", {
+			movie_num:'${roomDTO.num}'
+		}, function(){});
+		alert("영화가 끝났습니다.");
 		window.close();
     }
-		$.post("chch",{
-			num:'${member.playView}',
-			writer:htmlEncode(name),
-			contents:htmlEncode(message),
-			grade:htmlEncode(grade)
-		},function(){});
+		
 	   var year = now.getFullYear(); // 현재시간중 4자리 연도
 	   var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
 	   if((month+"").length <2){
@@ -470,7 +468,7 @@ img{
 		
 		//스페이스는 32
 		function sendMessage() {
-			if ($("#message" + room).val() != "" && chk || chk2) {
+			if ($("#message" + room).val() != "" /* && chk || chk2 */) {
 				chat.invoke('send', $('#userid' + room).val(), $('#message' + room).val());
 				$('#message' + room).val('').focus();
 			}

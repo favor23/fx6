@@ -75,7 +75,7 @@
 	}
 	
 	.ct {
-		width: 289px;
+		width: 288px;
 		height: 390px;
 		float: left;
 		margin-top: 80px;
@@ -397,6 +397,10 @@
 			curPage = 1;
 			
 			getList2(curPage, $(".kind").val());
+		});
+		
+		$(document).on("click", ".ct_wrap", function() {
+			location.href = "campaignView?campaign_num=" + $(this).attr("accesskey");
 		});
 	});
 	

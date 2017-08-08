@@ -105,7 +105,21 @@ ul{
 	text-align: center;
 	color: white;
 	padding-bottom: 0;
-	
+	margin-top: 12px;
+}
+
+#pageing {
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+	padding-bottom: 0;
+	font-size: medium;
+}
+
+#pageing > a{
+	text-decoration: none;
 }
 
 
@@ -124,7 +138,6 @@ ul{
 			<c:forEach items="${list}" var="dto">
 				<div class="list">
 					<div class="list_poster"><img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic"> </div>
-					<input type="hidden" value="${dto.movie_num}" id="movie_num${dto.movie_num}" class="movie_num">
 					
 					<div id="info">
 						<nav>
@@ -189,30 +202,41 @@ ul{
 					<div id="btn_div">
 						<button class="btn-success">ticket </button>
 						<button class="btn-primary">후원페이지</button>
-						<button class="btn-danger chat">영화시청</button>
+						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
 			</c:forEach>
-		</div>		
+		</div>
+		<div id="pageing">
+			<c:if test="${listInfo.curBlock>1}">
+				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.startNum-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
+				<%-- <span class="go" id="${i}">${i}</span> --%>
+				<a href="cinema_list?curPage=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.lastNum+1}">[다음]</a>
+			</c:if>
+		</div>
 	</section>
 
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
 
-	var list='${list}';
-	/* for(var i=0;i<list.size();i++){
-		var movie = $("#movie_num").val();
-	} */
 	
-	var movie_num = $(".movie_num");
-	var movie_num2 = $("#movie_num2");
-	alert(movie_num.val());
-	alert(movie_num2.val());
-			/* alert(this.movie_num.val()); */
 	
 	$(".chat").click(function() {
-			window.open("${pageContext.request.contextPath}/chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		var id = $(this).attr("id");
+		alert(id);
+		$.post("${pageContext.request.contextPath}/chatting/ticket", {
+			movie_num:id
+		},function(data){});
+		alert("fdsa");
+			window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	});
 	
 	var now = new Date();

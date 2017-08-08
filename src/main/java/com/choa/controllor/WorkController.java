@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import com.choa.admin.AdminServiceImpl;
 import com.choa.admin.work.SchedulDTO;
 import com.choa.admin.work.WorkDTO;
 import com.choa.admin.work.WorkService;
+import com.choa.member.MemberDTO;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
@@ -37,6 +40,14 @@ public class WorkController {
 		System.out.println(workDTO.getIconcls());
 		System.out.println(workDTO.getName());
 		System.out.println(workDTO.getPersons());
+		String str[]=workDTO.getPersons().split("/");
+		String success_str="";
+		for(int i=0;i<str.length;i++){
+			if(str[i].contains("admin")){
+				success_str+=str[i]+"/";
+			}
+		}
+		workDTO.setPersons(success_str);
 		System.out.println(workDTO.getProgress());
 		System.out.println(workDTO.getBegin());
 		System.out.println(workDTO.getEnd());
@@ -108,7 +119,8 @@ public class WorkController {
 	// 전체 리스트
 		@ResponseBody
 		@RequestMapping(value="schedul_list")
-		public Map<String, Object> schedul() {
+		public Map<String, Object> schedul(HttpServletRequest request) {
+			MemberDTO memberDTO=(MemberDTO)request.getSession().getAttribute("member");
 			List<WorkDTO> list=new ArrayList<WorkDTO>();
 			list=workService.list();
 			List<SchedulDTO> list2=new ArrayList<SchedulDTO>();
@@ -116,10 +128,11 @@ public class WorkController {
 			int i=0;
 			String[] color={"#0054FF","#2F9D27","#993800","#C98500"};
 			System.out.println(color[0]);
-			
+			String []str=null;
 			for(WorkDTO ar: list){
 				schedulDTO=new SchedulDTO();
 				schedulDTO.setId(ar.getPersons());
+				str=ar.getPersons().split("/");
 				schedulDTO.setTitle(ar.getName());
 				schedulDTO.setStart(ar.getBegin());
 				schedulDTO.setEnd(ar.getEnd());
@@ -127,7 +140,12 @@ public class WorkController {
 				if(i==4){
 					i=0;
 				}
-				list2.add(schedulDTO);
+				for(int j=0;j<str.length;j++){
+					if(str[j].equals(memberDTO.getId())){
+						list2.add(schedulDTO);
+						System.out.println("스케줄++");
+					}
+				}
 			}
 			Map<String, Object> map=new HashMap<String, Object>();
 			map.put("schedullist", list2);

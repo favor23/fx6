@@ -26,6 +26,89 @@
 	    white-space: nowrap;
 
 	}
+	
+	.table{
+		
+		border-top: 2px solid #503396;
+		border-bottom: 2px solid #e1e1e1;
+		font-family: 'NanumGothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, 'Apple SD Gothic Neo', sans-serif;
+		font-size: 12px;
+	
+	}
+	
+	th{
+		
+		background-color: #f2f2f2;
+		color: #666;
+		font-size: 13px;
+		font-weight: 700;
+	
+	}
+	
+	.button_lab{
+		
+		width: 100%;
+		height: 60px;
+		/* background-color: yellow; */
+	}
+	
+	
+	.send_btn{
+		
+		border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	
+	}
+	
+	
+	.del_btn{
+	
+		border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+	}
+
+
+
+
+
+
+
+			.pagination {
+			    display: inline-block;
+			    color: #503396;
+			    float: left;
+			   
+			}
+			
+			.pagination a {
+			    color: #503396;
+			    float: left;
+			    padding: 8px 16px;
+			    text-decoration: none;
+			    transition: background-color .3s;
+			    border: 1px solid #ddd;
+			    margin: 0 4px;
+			}
+			
+			.pagination a.active {
+			    background-color: #503396;
+			    color: white;
+			    border: 1px solid #351F66;
+			}
+			
+			.pagination a:hover:not(.active) {background-color: #ccc;}
+
+
+
+
+
+
+
 
 </style>
 <script type="text/javascript">
@@ -44,17 +127,15 @@ function checkAll(){
 <body>
 <c:import url="../../temp/header.jsp"/>
 	<article class="note_main">
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#sendmessage">쪽지 보내기</button>
-	<button type="button" value="DELETE" id="delete_sel">DELETE</button>
 	
 	
 		
-		<table class="table table table-hover">
+		<table class="table">
 			<tr>
 				<th><input type="checkbox" name="checkAll"></th>
 				<th>보낸사람</th>
 				<th>내용</th>
-				<th>날짜</th>
+				<th>수신일자</th>
 			</tr>
 			<form method="get" id="del_frm" action="noteDelete2">
 			<c:forEach items="${list}" var="dto">
@@ -69,9 +150,12 @@ function checkAll(){
 			</c:forEach>
 				</form>
 		</table>
-		
-		
-		<c:if test="${listInfo.curBlock>1}">
+	
+	
+	<div class=" button_lab">
+	
+
+			 <c:if test="${listInfo.curBlock>1}">
 				<a href="noteList?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
@@ -80,6 +164,15 @@ function checkAll(){
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<a href="noteList?curPage=${listInfo.lastNum+1}">[다음]</a>
 			</c:if>
+	
+	<button type="button" value="삭제" id="delete_sel" class="del_btn">삭제</button>
+	<c:if test="${member.grade eq 'admin'}">
+		<button type="button" data-toggle="modal" data-target="#sendmessage" class="send_btn">쪽지 보내기</button>
+	</c:if>
+	</div>	
+		
+		
+		
 			
 			
 			
@@ -88,11 +181,11 @@ function checkAll(){
 			
 			
 							<!-- Modal -->
-				  <div class="modal fade" id="viewModal" role="dialog">
+				  <div class="modal fade" id="viewModal" role="dialog" >
 				    <div class="modal-dialog modal-sm">
 				    
 				      <!-- Modal content-->
-				      <div class="modal-content">
+				      <div class="modal-content" style="background-color: red; color: yellow;"><!-- 여기가 모달 창 조정 부분 -->
 				        <div class="modal-header">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">Modal Header</h4>
