@@ -14,6 +14,10 @@ public class CampaignDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
 	
+	public CampaignDTO campaignView(int campaign_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "campaignView", campaign_num);
+	}
+	
 	public List<CampaignDTO> campaignList(ListInfo listInfo) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "campaignList", listInfo);
 	}
