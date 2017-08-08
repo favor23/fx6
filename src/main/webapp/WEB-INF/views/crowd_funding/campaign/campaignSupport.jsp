@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,22 @@
 		height: 250px;
 		margin-top: 50px;
 		background-color: #0052cc;
+		z-index: 1;
+		position: relative;
+	}
+	
+	.main_top:after {
+		content: "";
+		background-image: url("../../img/cf-img/main-top4.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.4;
+	    z-index: -1;
 	}
 	
 	.main_art {
@@ -98,7 +115,7 @@
 	
 	.ben_list {
 		width: 100%;
-		height: 41px;
+		height: 100px;
 		margin-bottom: 10px;
 		box-shadow: 1px 1px 5px #adad85;
 		background-color: #f5f5f0;
@@ -108,15 +125,65 @@
 		margin-bottom: 0px;
 	}
 	
-	.ben_choice {
+	.ben_list:hover {
+		border: 3px solid #0052cc;
+	}
+	
+	.ben_choice,
+	.ben_dis {
 		margin-top: 4px;
 	}
 </style>
 <script type="text/javascript">
 	$(function() {
 		var campaign_num = ${campaign_num};
+		var count = 0;
 		
 		getBenefitList(campaign_num);
+		
+		$(document).on("click", ".ben_choice", function() {
+			count++;
+			
+			if(count<2) {
+				var total = parseInt($(this).attr("title")) + parseInt($(".add_price").val());
+				
+				$(this).attr("class", "btn btn-warning ben_dis");
+				$(this).val("해제");
+				
+				$(".total1").html($(this).attr("title"));
+				$(".total").html(total);
+				$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
+				$(".hidden_space2").html('<input type="hidden" name="benefit_title" value="' + $(this).attr("accesskey") + '">');
+			} else {
+				alert("혜택은 하나만 선택해주세요.");
+			}
+		});
+		
+		$(document).on("click", ".ben_dis", function() {
+			count = 0;
+			
+			var total = parseInt($(".add_price").val());
+			
+			$(this).attr("class", "btn btn-info ben_choice");
+			$(this).val("선택");
+			
+			$(".total1").html("");
+			$(".total").html($(".add_price").val());
+			$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
+			$(".hidden_space2").html("");
+		});
+		
+		$(".add_price").blur(function() {
+			var total = parseInt($(".ben_dis").attr("title")) + parseInt($(".add_price").val());
+			
+			$(".total2").html($(this).val());
+			$(".total").html(total);
+			$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
+		});
+		
+		$(".go_payment").click(function() {
+			$("#frm").submit();
+		});
 	});
 	
 	function getBenefitList(campaign_num) {
@@ -138,10 +205,11 @@
 						
 						result += '<div class="ben_list">';
 						result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + benefit_title + '</span>';
-						result += '<input type="button" class="btn btn-info ben_choice" value="선택" id="' + this.benefit_num + '" style="float: right;">';
+						result += '<input type="button" class="btn btn-info ben_choice" value="선택" id="' + this.benefit_num + '" title="' + this.benefit_price + '" accesskey="' + this.benefit_title + '" style="float: right;">';
 						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">원</span>';
 						result += '<span style="float: right; margin-top: 5px; margin-right: 5px; font-size: 1.5em; color: #0052cc;">' + this.benefit_price + '</span>';
 						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">후원금액</span>';
+						result += '<div class="ben_bottom" style="font-size: 0.9em; color: #6b6b47; float: left; padding: 10px;">' + this.benefit_contents + '</div>';
 						result += '</div>';
 					});					
 				} else {
@@ -166,11 +234,11 @@
 			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
-				우리의 캠페인을 통해 그 기회를 만들어 보세요!
+				마음에 드는 캠페인에 후원해보세요!
 			</div>
 			<div class="top3">
-				<p>꿈과 아이디어를 가지고 본인의 영화를 실현시키고자 행동하는 사람들을 뜻합니다.</p>
-				<p>당신의 소중한 꿈과 톡톡튀는 아이디어를 영화로 만들어 드립니다.</p>
+				<p>당신이 보태주는 힘 하나하나가 그들에겐 희망입니다.</p>
+				<p>후원금을 발판삼아 그들의 꿈을 세상에 알려주세요.</p>
 			</div>
 		</article>
 		<article class="main_art">
@@ -179,6 +247,9 @@
 			</div>
 			<div class="main_con">
 				<form action="campaignSupport" id="frm" method="post">
+					<div class="hidden_space"></div>
+					<div class="hidden_space2"></div>
+					<input type="hidden" name="campaign_num" value="${campaign_num}">
 					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
 					<table class="table">
 						<tr>
@@ -201,12 +272,13 @@
 						<tr>
 							<td>결제 금액</td>
 							<td>
-						        
+						        후원 혜택금액&nbsp;<span class="total1" style="color: #0052cc; font-size: 2.0em;"></span>&nbsp;+&nbsp;후원 금액<span class="total2" style="color: #0052cc; font-size: 2.0em;"></span>
+						        <p>=&nbsp;총 결제금액&nbsp;<span class="total" style="color: #0052cc; font-size: 2.5em;"></span></p>
 							</td>
 						</tr>
 					</table>
 					<div class="main_btns">
-						<input type="button" class="btn btn-warning" value="다음 단계로">
+						<input type="button" class="btn btn-warning go_payment" value="다음 단계로">
 					</div>
 				</form>
 			</div>
