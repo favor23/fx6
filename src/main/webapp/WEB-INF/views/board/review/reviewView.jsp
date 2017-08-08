@@ -30,19 +30,19 @@
 			<tr class="viewtr">
 			<td  class="td1 view_td"><div class="view_mar">별점</div></td>
 				<c:if test="${view.stars eq '1'}">
-					<td><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></td>				
+					<td><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></td>				
 				</c:if>
 				<c:if test="${view.stars eq '2'}">
-					<td><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></td>				
+					<td><img src="<c:url value="/img/reviewimg/star2.jpg"/>"></td>				
 				</c:if>
 				<c:if test="${view.stars eq '3'}">
-					<td><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></td>				
+					<td><img src="<c:url value="/img/reviewimg/star3.jpg"/>"></td>				
 				</c:if>
 				<c:if test="${view.stars eq '4'}">
-					<td><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></td>				
+					<td><img src="<c:url value="/img/reviewimg/star4.jpg"/>"></td>				
 				</c:if>
 				<c:if test="${view.stars eq '5'}">
-					<td><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></td>				
+					<td><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></td>				
 				</c:if>
 				</tr>
 			<tr>

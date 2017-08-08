@@ -76,6 +76,8 @@
 		border-bottom: 2px solid #d9d9d9;
 		margin-top: 10px;
 		vertical-align: middle;
+		font-family: 'NanumGothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, 'Apple SD Gothic Neo', sans-serif;
+		font-size: 12px;
 	}
 	
 .boardtitle2{
@@ -129,6 +131,8 @@
 		
 		color : #666;
 		background-color: #f8f8f8;
+		font-weight: 600;
+		font-size: 13px;
 	
 	}
 	
@@ -406,7 +410,7 @@
                   
 			<table class="table">
 				<tr class="tr">
-					<th class="font th" style="border-right: 1px gray solid">NO</th>
+					<th class="font th" >NO</th>
 					<th class="font th">WRITER</th>
 					<th class="font th">TITLE</th>
 					<th class="font th">DATE</th>
