@@ -26,6 +26,22 @@ public class CustomerDAO implements MemberDAO{
 	private final String NAMESPACE="CustomerMapper.";
 	
 	
+	//유저 탈퇴
+	public int dropUser(String id)throws Exception{
+		return sqlSession.delete(NAMESPACE+"dropuser", id);
+	}
+	
+	//탈퇴하려는 유저의 비밀번호가 일치하는지 조회.
+	public int dropUserCheck(MemberDTO memberDTO)throws Exception{
+		String id=sqlSession.selectOne(NAMESPACE+"findPw", memberDTO);
+		int num=0;
+		if(id.equals(memberDTO.getId())){
+			num=1;
+		}
+		return num;
+	}
+	
+	
 	public String gradeChecker(String id)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"gradeChecker", id);
 	}
