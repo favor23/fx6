@@ -56,6 +56,14 @@ public class MemberController {
 	@Autowired
 	private Hash hash;
 	
+	@Autowired
+	private RequiredController requiredController;
+	
+	@RequestMapping(value="/member/myMovieReq")
+	public void myMovieReq(ListInfo listInfo,Model model){
+		requiredController.requiredList(model, listInfo);
+	}
+	
 	@RequestMapping(value="/member/dropUser")
 	public String dropUser(String id)throws Exception{
 		int num = customerService.dropUser(id);
