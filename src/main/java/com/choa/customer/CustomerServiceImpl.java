@@ -20,17 +20,28 @@ public class CustomerServiceImpl implements MemberService{
 
 	@Autowired
 	private CustomerDAO customerDAO;
-	
-	
+
+
+	//유저 탈퇴
+	public int dropUser(String id)throws Exception{
+		return customerDAO.dropUser(id);
+	}
+
+	//탈퇴하려는 유저의 비밀번호가 일치하는지 조회.
+	public int dropUserCheck(MemberDTO memberDTO)throws Exception{
+		
+		return customerDAO.dropUserCheck(memberDTO);
+	}
+
 	public String gradeChecker(String id)throws Exception{
 		return customerDAO.gradeChecker(id);
 	}
-	
+
 	public int intoBan(BanlistDTO banlistDTO)throws Exception{
 		return customerDAO.intoBan(banlistDTO);
 	}
-	
-	
+
+
 	public PrDTO view_pr(CustomerDTO customerDTO)throws Exception{
 		return customerDAO.view_pr(customerDTO);
 		

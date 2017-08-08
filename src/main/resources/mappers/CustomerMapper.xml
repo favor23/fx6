@@ -7,6 +7,16 @@
  <resultMap type="com.choa.customer.CustomerDTO" id="CustomerDTO"></resultMap>
  <resultMap type="com.choa.movie.MovieDTO" id="MovieDTO"></resultMap>
 
+	
+	<delete id="dropuser" parameterType="com.choa.member.MemberDTO">
+		{ call dropuser(#{id, mode=IN} #{result, mode=OUT, javaType=int, jdbcType=INTEGER} }
+	</delete>
+
+	<select id="findPw" parameterType="com.choa.member.MemberDTO" resultType="java.lang.String">
+		select id from member where id=#{id} and pw=#{pw}
+	</select>
+
+
  	<insert id="join" statementType="CALLABLE" parameterType="java.util.Map" >
  	{ call member_join(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customerDTO.age,mode=IN},#{customerDTO.name,mode=IN},#{customerDTO.grade,mode=IN},#{customerDTO.phone,mode=IN},#{customerDTO.email,mode=IN},#{customerDTO.address,mode=IN},#{customerDTO.sung,mode=IN},#{customerDTO.birth,mode=IN},#{customerDTO.taste,mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</insert>
