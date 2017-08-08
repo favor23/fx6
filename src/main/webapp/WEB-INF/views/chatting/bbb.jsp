@@ -231,12 +231,13 @@ img{
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
 				</c:forEach>
-				<ul id="discussion${member.playView}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
+				<ul id="discussion${movie_num}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
 		</div>
 		<div id="messageCon">
-			<input type="hidden" id="userid${member.playView}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
-			<input type="text" name="contents" id="message${member.playView}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
-			<input type="button" id="btnSend${member.playView}" class="btn" value="보내기" /> <br />
+			<input type="hidden" id="userid${movie_num}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
+			<input type="hidden" name="grade" id="grade" value="${movie_num}">
+			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
+			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
 		</div>
 	</div>
 </div>
@@ -486,10 +487,9 @@ img{
 		/* ************************************************* 채팅 ***************************************************** */
  		var connection = $.hubConnection('http://demo.dongledongle.com/');
 		var chat = connection.createHubProxy('chatHub');
-		var room = ${member.playView};
+		var room = ${movie_num};
 		var count = ${count};
 		var ttt;
-
 		function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
@@ -522,6 +522,7 @@ img{
 					for (var i = 1; i <= count; i++) {
 						if ($("#roomUser" + i).val() == name) {
 							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
+							
 							$.post("chch",{
 								num:'${member.playView}',
 								writer:htmlEncode(name),

@@ -41,7 +41,7 @@
 					<c:if test="${member.grade ne 'admin'}">
 				<ul class="dropdown-menu"
 					style="background-color: white; margin: 0 0 0 0;">
-					<li><a href="${pageContext.request.contextPath}/member/myPage">마이페이지</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/memberInfo">마이페이지</a></li>
 					<li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myPage">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/member/myPage">티켓구매 현황</a></li>

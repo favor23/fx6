@@ -27,7 +27,7 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus.jsp" />
 <div id="main_session_default">
-	<div class="dropBox"><input type="password" name=""></div>
+	<div class="dropBox"><input type="password" id=""></div>
 
 
 
