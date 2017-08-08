@@ -8,10 +8,32 @@
   		select * from movie
   	</select>
   
+  	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo" >
+  		select nvl(count(movie_num), 0) from movie
+  	</select>
+  	
+  	<select id="countMy" resultType="java.lang.Integer" parameterType="java.util.Map" >
+  		select nvl(count(movie_num), 0) from movie where movie_num like
+  		<foreach collection="ticketar" item="ticket" separator="or movie_num like">
+			#{ticket}
+		</foreach>
+  	</select>
+  	
+  	<select id="countHot" resultType="java.lang.Integer" parameterType="java.util.Map" >
+  		select nvl(count(movie_num), 0) from movie where genre like
+  		<foreach collection="genre" item="type" separator="or genre like">
+    	  #{type}
+     	</foreach>
+  	</select>
+  
   	<select id="myList" parameterType="java.util.Map" resultType="com.choa.movie.MovieDTO">
   		select * from 
 		(select rownum r, m.* from 
-		(select * from movie where movie_num=(select ticket from customer where id=#{id}) order by movie_num asc) m) 
+		(select * from movie where movie_num like 
+		<foreach collection="ticketar" item="ticket" separator="or movie_num like">
+			#{ticket}
+		</foreach>
+		 order by movie_num asc) m) 
 		where r between #{listInfo.startRow} and #{listInfo.lastRow}
   	</select>
 	
@@ -27,7 +49,7 @@
       select * from 
       (select rownum r, m.* from 
       (select * from movie where genre like 
-      <foreach collection="genrear" item="type" index="index" separator="or genre like">
+      <foreach collection="genre" item="type" index="index" separator="or genre like">
     	  #{type}
       </foreach>
       order by movie_num asc) m) 

@@ -11,7 +11,7 @@
 			src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"></li>
 		<li id="${pageContext.request.contextPath}/board/movie/movieList"
 			class="header_li">영화</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">상영관</li>
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_li">상영관</li>
 		<div class="dropdown">
 			<li id="header_board" class="dropdown-toggle" data-toggle="dropdown"
 				style="line-height: 49px; text-align: center; border-right: 1px solid #e5e5e5; float: left; font-weight: bold; height: 49px; width: 107px; cursor: pointer;">

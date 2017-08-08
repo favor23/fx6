@@ -69,16 +69,19 @@ public class SocketController {
 	
 	
 	   @RequestMapping(value="aaa")
-		public void aaa(HttpServletRequest request,Model model) throws Exception{
+		public void aaa(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
+		   System.out.println("aaa : "+movieRoomNum);
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();
 			int ck=0;
-			rDto.setNum(Integer.parseInt(customerDTO.getPlayView()));
-			rDto.setUser_array(list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array()+"/"+customerDTO.getId());
-			String str[] = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
-			for (int j = 0; j < str.length; j++) {
-				if(str[j].equals(customerDTO.getId())){
+			rDto.setNum(movieRoomNum);
+			String [] playar = customerDTO.getPlayView().split("/");
+			System.out.println("playar : "+playar);
+			System.out.println("movieRoomNum : "+movieRoomNum);
+			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");
+			for (int j = 0; j < userar.length; j++) {
+				if(userar[j].equals(customerDTO.getId())){
 					ck=1;
 				}
 			}
@@ -88,11 +91,11 @@ public class SocketController {
 			}
 			
 			list = roomUserService.selectList();
-			str = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
+			userar = list.get(movieRoomNum-1).getUser_array().split("/");
 			MovieUploadDTO movieUploadDTO = new MovieUploadDTO();
-			movieUploadDTO = movieView(Integer.parseInt(customerDTO.getPlayView()));
+			movieUploadDTO = movieView(movieRoomNum);
 			RoomDTO roomDTO = new RoomDTO();
-			roomDTO = roomService.playtime(Integer.parseInt(customerDTO.getPlayView()));
+			roomDTO = roomService.playtime(movieRoomNum);
 
 			roomDTO.getStartTime();
 			
@@ -105,9 +108,81 @@ public class SocketController {
 			}
 			
 			model.addAttribute("roomDTO", roomDTO);
-			model.addAttribute("count", str.length);
-			model.addAttribute("str",str);
+			model.addAttribute("count", userar.length);
+			model.addAttribute("str", userar);
 			model.addAttribute("list", list);
+		}
+	   
+	   
+		@RequestMapping(value="bbb")
+		public String bbb(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
+			System.out.println("bbb : "+movieRoomNum);
+			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+			if(customerDTO==null){	
+				model.addAttribute("message", "로그인이 필요한 서비스입니다.");
+				model.addAttribute("path", "../member/login");
+				return "/commons/result";
+			}
+			RoomUserDTO rDto=new RoomUserDTO();
+			List<RoomUserDTO> list = roomUserService.selectList();	
+			int ck=0;
+			
+			rDto.setNum(movieRoomNum);
+			String [] playar = customerDTO.getPlayView().split("/");
+			
+			System.out.println("rDto.getNum() : "+rDto.getNum());
+			
+			System.out.println("playview length : "+playar.length);
+			
+			//movieRoomNum이 customer이 가지고 있는 티켓과 같은지 확인하고
+			//rDto.getNum이 movieRoomNum이랑 같은지 확인하고 없으면 생성
+			
+			
+			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");		
+			
+			for(int q=0;q<userar.length;q++){
+				System.out.println(userar[q]);
+				if(!userar[q].equals(customerDTO.getId())){
+					rDto.setUser_array(list.get(movieRoomNum-1).getUser_array()+"/"+customerDTO.getId());
+					ck=1;
+					break;
+				}
+			}
+			
+			/*if(rDto.getUser_array())*/
+			
+			System.out.println("bb:"+rDto.getUser_array());
+			/*String str[] = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
+			for (int j = 0; j < str.length; j++) {
+				if(str[j].equals(customerDTO.getId())){
+					ck=1;
+				}
+			}*/
+			
+			if(ck==0){
+				roomUserService.update(rDto);
+			}
+			
+			list = roomUserService.selectList();
+	/*		userar = list.get(movieRoomNum-1).getUser_array().split("/");
+	*/		
+			RoomDTO roomDTO = new RoomDTO();
+			roomDTO = roomService.playtime(movieRoomNum);
+			model.addAttribute("roomDTO", roomDTO);
+			model.addAttribute("count", userar.length);
+			model.addAttribute("str",userar);
+			model.addAttribute("list", list);
+			model.addAttribute("movie_num", movieRoomNum);
+			return "chatting/bbb";
+			/*
+			for(int w=0;w<playar.length;w++){
+				if(playar[w].equals(movieRoomNum)){
+					System.out.println("?????");
+					return "/chatting/bbb";
+				}else{
+					return "/index";				
+				}
+			}*/
 		}
 	
 	@RequestMapping(value="aaa1")
@@ -121,51 +196,26 @@ public class SocketController {
 		return movieUploadDTO;
 	}
 	
-	@RequestMapping(value="bbb")
-	public void bbb(HttpServletRequest request,Model model) throws Exception{
-		CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
-		RoomUserDTO rDto=new RoomUserDTO();
-		List<RoomUserDTO> list = roomUserService.selectList();	
-		int ck=0;
-		
-		rDto.setNum(Integer.parseInt(customerDTO.getPlayView()));
-		rDto.setUser_array(list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array()+"/"+customerDTO.getId());
-		String str[] = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
-		for (int j = 0; j < str.length; j++) {
-			if(str[j].equals(customerDTO.getId())){
-				ck=1;
-			}
-		}
-		
-		if(ck==0){
-			roomUserService.update(rDto);
-		}
-		
-		list = roomUserService.selectList();
-		str = list.get(Integer.parseInt(customerDTO.getPlayView())-1).getUser_array().split("/");
-		
-		RoomDTO roomDTO = new RoomDTO();
-		roomDTO = roomService.playtime(Integer.parseInt(customerDTO.getPlayView()));
-		model.addAttribute("roomDTO", roomDTO);
-		model.addAttribute("count", str.length);
-		model.addAttribute("str",str);
-		model.addAttribute("list", list);
-	}
+
 	
 	@RequestMapping(value="ticket", method=RequestMethod.POST)
-	public String ticket(String movie_num, HttpSession session){
-		System.out.println("ticket");
+	public String ticket(Integer movie_num, HttpSession session){
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		String id = customerDTO.getId();
 		int check = 0;
 		String [] ticket = customerDTO.getTicket().split("/");
-		String str = null;
+		
+		String str = "";
 		for(int i=0;i<ticket.length;i++){
-			if(ticket[i].equals(movie_num)){
+			if(ticket[i].equals(String.valueOf(movie_num))){
 				customerDTO.setPlayView(customerDTO.getPlayView()+"/"+ticket[i]);
 				check=1;
 			}else{
-				str = str+"/"+ticket[i];
+				if(str.equals("")){
+					str="0";
+				}else{
+					str = str+"/"+ticket[i];
+				}
 			}
 		}
 		if(check==1){
@@ -180,22 +230,39 @@ public class SocketController {
 	
 	@RequestMapping(value="playview", method=RequestMethod.POST)
 	public String playview(int movie_num, HttpSession session){
-		
+		System.out.println("playviw");
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		String id = customerDTO.getId();
+		System.out.println(id);
+		System.out.println("movie_num : "+movie_num);
 		int check = 0;
 		String [] playview = customerDTO.getPlayView().split("/");
-		String str = null;
+		System.out.println("playview length : "+playview.length);
+		System.out.println("0 : "+playview[0]);
+		System.out.println("1 : "+playview[1]);
+		String str = "";
+		System.out.println("length : "+playview.length);
 		for(int i=0;i<playview.length;i++){
-			if(playview[i].equals(movie_num)){
-				customerDTO.setReView(customerDTO.getPlayView()+"/"+playview[i]);
+			System.out.println("for");
+			System.out.println("for 안에 ticket:"+playview[i]);
+			System.out.println("for 안에 movie_num:"+movie_num);
+			if(playview[i].equals(String.valueOf(movie_num))){
+				System.out.println("if");
+				customerDTO.setReView(customerDTO.getReView()+"/"+playview[i]);
 				check=1;
 			}else{
-				str = str+"/"+playview[i];
+				if(str.equals("")){
+					str="0";
+				}else{
+					str = str+"/"+playview[i];
+				}
 			}
 		}
+		System.out.println("ticket : "+check);
+		System.out.println("str : "+ str);
 		if(check==1){
 			customerDTO.setPlayView(str);
+			System.out.println("ticket 끝 : "+customerDTO.getReView());
 			chattingService.playview(customerDTO);
 			session.setAttribute("member", customerDTO);
 			return "/index";
