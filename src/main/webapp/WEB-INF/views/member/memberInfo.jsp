@@ -151,7 +151,6 @@ width: 250px;
 <c:import url="../temp/header_plus_member.jsp" />
 <div id="main_session_default">
 <p id="title">${member.id } 님의 회원정보 입니다.</p>
-<div id="memberBox">
 	<form action="customerUpdate" id="frm" method="post">
 		<table class="table table-bordered">
 			<tr id="t">
@@ -220,10 +219,8 @@ width: 250px;
 	</form>
 </div>
 
-
-
-</div>
 <c:import url="../temp/footer.jsp" />
+</body>
 <script type="text/javascript">
 $("input[type='checkbox']").attr("disabled","disabled");
 
@@ -239,5 +236,4 @@ var go = new Date(date).getFullYear()+'년 '+(new Date(date).getMonth()+1)+'월 
 $(".birth").html(go);
 
 </script>
-</body>
 </html>

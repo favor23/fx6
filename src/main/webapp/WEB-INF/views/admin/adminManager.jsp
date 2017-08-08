@@ -125,7 +125,7 @@
 				</div>
 								
 				<button href="javascript:void(0)" class="easyui-linkbutton"
-					onclick="dbupdatesave()" data-dismiss="modal" onclick="start()">수정</button>
+					onclick="dbupdatesave()" data-dismiss="modal">수정</button>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="start()">Close</button>
@@ -208,9 +208,17 @@
 		});
 	});
 	$(".modal_mod_tt").on("click",".insert_gogo2",function(){		
-		var str=$(this).attr('id');		
-		jbAry[content]=str;
-		content++;
+		var str=$(this).attr('id');
+		var key=0;
+		for(var i=0;i<jbAry.length;i++){
+			if(jbAry[i]==str){
+				jbAry[i]='del';
+				key=1;
+			}
+		}		
+		if(key==0){
+			jbAry[jbAry.length+1]=str;
+		}
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
 			type : "GET",
@@ -220,7 +228,7 @@
 		});
 		
 	})
-	function modal4_mod() {
+	function modal4_mod(jbAry,persons2) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/admin_modal4?jbAry="+jbAry+"&delAry="+delAry,
 			type : "GET",
@@ -243,15 +251,15 @@
 	
 	$("#insert_modal").on("click",".insert_gogo",function(){		
 		var str=$(this).attr('id');	
-		if($(this).val()=='참여'){
+		/* if($(this).val()=='참여'){
 			$(this).attr("value","참여취소");
 		}else{
 			$(this).attr("value","참여");
-		}
+		} */
 		jbAry[content]=str;
 		content++;
 		$.ajax({
-			url : "${pageContext.request.contextPath}/admin/admin_modal3?jbAry="+jbAry+"&delAry="+delAry,
+			url : "${pageContext.request.contextPath}/admin/admin_modal5?jbAry="+jbAry+"&delAry="+delAry,
 			type : "GET",
 			success : function(data) {
 				$(".modal_d3").html(data);
@@ -303,7 +311,8 @@
 			}		
 		$('#tg').treegrid({
 			data : dataSet
-		});		
+		});	
+		setting();
 	})
 	}
 	
@@ -322,6 +331,7 @@
 	var editingId;
 	var row;
 	function edit() {
+		var key=0;
 		if (editingId != undefined) {
 			$('#tg').treegrid('select', editingId);
 			return;
@@ -337,9 +347,9 @@
 		$("#begin_mod").attr("value",row.begin);
 		$("#end_mod").attr("value",row.end);
 		$("#progress_mod").attr("value",row.progress);
-		$("#iconcls_mod").attr("value",row.iconcls);
+		$("#iconcls_mod").attr("value",row.iconcls);		
 		persons2=row.persons;
-		jbAry=persons2.split("/");
+		jbAry=persons2.split("/");		
 		modal4_mod(jbAry,persons2);
 		save();		
 	}
@@ -376,8 +386,7 @@
 			iconcls : $("#iconcls_mod").val()
 		});	
 		setTimeout("start()", 500);
-		jbAry="";
-		delAry="";
+		setting();
 	}
 	function save() {
 		if (editingId != undefined) {
@@ -398,6 +407,7 @@
 			t.treegrid('reloadFooter');
 			
 		}
+		
 	}
 	/* 디비 insert */
 	function dbsave(idIndex) {
@@ -411,8 +421,8 @@
 			progress : $('#progress').val(),
 			iconcls : $('#iconcls').val()
 		});
-		jbAry="";
-		delAry="";
+		start();
+		
 	}
 	function cancel() {
 		if (editingId != undefined) {
@@ -446,9 +456,8 @@
 				progress : $('#progress').val()
 			} ]
 		})
-		jbAry="";
-		delAry="";
-		
+	
+		setting();
 	}
 	function removeIt() {
 		var node = $('#tg').treegrid('getSelected');
@@ -458,6 +467,14 @@
 		$.post("./work_delete",{ 
 			id : node.id	
 		});
+	}
+	function setting(){
+		jbAry=new Array();
+		delAry=new Array();
+		content=0;
+		content2=0;
+		del="del";
+		persons2="";
 	}
 
 </script>

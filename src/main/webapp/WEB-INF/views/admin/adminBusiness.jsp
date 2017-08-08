@@ -46,9 +46,10 @@
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button>
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">수정</button>
-		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button>
+		<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">추가</button> -->
+		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">업무 정보</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">퍼센트 수정</button>
+		<!-- <button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button> -->
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="dbupdatesave()">저장</a> -->
 	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a>  -->
@@ -117,12 +118,12 @@
       
       		<input type="hidden" id="iconcls_mod" value="icon-ok">
       		<input type="hidden" id="id_mod" value="">
-        	<input type="hidden" id="name_mod" value="">
+        	<input type="text" id="name_mod" value="" readonly="readonly">
         	<input type="hidden" id="persons_mod" value="">
         	<input type="hidden" id="begin_mod" value="">
         	<input type="hidden" id="end_mod" value="">
-        	진행정도<input type="number" id="progress_mod" value="">
-        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">추가</button>
+        	진행정도<input type="number" id="progress_mod"  max="100" maxlength="3" value="">
+        	<button href="javascript:void(0)"class="easyui-linkbutton" onclick="dbupdatesave()" data-dismiss="modal">변경</button>
        
        <%-- <c:if test="">
        

@@ -23,7 +23,36 @@ import com.choa.util.ListInfo;
 @RequestMapping(value = "/crowd_funding/campaign/**")
 public class CampaignController {
 	@Autowired
-	private CampaignService campaignService; 
+	private CampaignService campaignService;
+	
+	@RequestMapping(value = "campaignSupport", method = RequestMethod.GET)
+	public void campaignSupport(Integer campaign_num, Model model) {
+		model.addAttribute("campaign_num", campaign_num);
+	}
+	
+	@RequestMapping(value = "campaignView", method = RequestMethod.GET)
+	public void campaignView(Integer campaign_num, Model model) {
+		CampaignDTO campaignDTO = null;
+		java.util.Date date = new java.util.Date();
+		
+		long until_end = 0;
+		
+		try {
+			campaignDTO = campaignService.campaignView(campaign_num);
+			
+			campaignDTO.setPer((int)(((double)campaignDTO.getSupport_price()/campaignDTO.getGoal_price())*100));
+				
+			until_end = campaignDTO.getCampaign_end().getTime() - date.getTime();
+			until_end = until_end/(1000*24*60*60);
+				
+			campaignDTO.setUntil_end((int)until_end);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("dto", campaignDTO);
+	}
 	
 	@RequestMapping(value = "campaignCreate", method = RequestMethod.GET)
 	public void campaignCreate() {

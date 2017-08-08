@@ -74,10 +74,9 @@ public class LoginController {
 			String id=(String)jo.get("id");
 			String name=(String)jo.get("name");
 			String sung=(String)jo.get("gender");
-			System.out.println(sung);
-			if(sung.equals('M')){
+			if(sung.equals("M")){
 				sung="m";
-			}else if(sung.equals('F')){
+			}else if(sung.equals("F")){
 				sung="f";
 			}else {
 				sung="u";

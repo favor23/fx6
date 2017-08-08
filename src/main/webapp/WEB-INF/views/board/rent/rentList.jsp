@@ -30,9 +30,9 @@ $(".hover").mouseleave(
 				  float: left;
 				  overflow: hidden;
 				  margin: 10px 1%;
-				  min-width: 220px;
-				  max-width: 220px;
-				  max-height: 220px;
+				  min-width: 300px;
+				  max-width: 300px;
+				  max-height: 300px;
 				  width: 100%;
 				  color: black;
 				  text-align: left;
@@ -163,8 +163,8 @@ $(".hover").mouseleave(
 	
 	.pic-image{
 	
-		width: 250px;
-		height: 250px;
+		width: 300px;
+		height: 300px;
 		margin-top: 25px;
 		margin-left: 2%;
 		float: left;
@@ -190,6 +190,8 @@ $(".hover").mouseleave(
 </head>
 <body>
    <c:import url="../../temp/header.jsp"/>
+   <c:import url="../../temp/header_plus_rent.jsp" />
+   
    
    
    

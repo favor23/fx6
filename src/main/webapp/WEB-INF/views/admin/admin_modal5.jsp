@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td colspan="3">프로젝트 참여인원<span class="badge">${jbAry_count-1}</span><input type="hidden" id="persons_mod" name="persons" value="${str_plus}">
-							<input type="hidden" id="persons" name="persons" value="${str_plus}"></td>
+							<td colspan="3">프로젝트 참여인원<input type="text" id="persons_mod" name="persons" value="${str_plus}">
+							<input type="text" id="persons" name="persons" value="${str_plus}"></td>
 							
 						</tr>
 						<c:forEach items="${admin_list}" var="dto">
-							<c:forEach items="${jbAry}" var="strAry">							
+							<c:if test="${dto.department eq member.department}">
+							<c:forEach items="${jbAry}" var="strAry">
 								<c:if test="${dto.id eq strAry}">
 								<tr>
 									<td rowspan="2"><img class="admin_smell_img"
@@ -17,15 +18,12 @@
 									<td>${dto.position}</td>
 								</tr>
 								<tr>
-									<td colspan="2"><c:if test="${member.department ne dto.department}">
-										[다른 부서의 인원입니다.]
-									</c:if>	
-									<c:if test="${member.department eq dto.department}">
-										<button class="btn-success">참여 완료 되었습니다.</button>
-									</c:if>									
-									</td>								
+									<%-- <td colspan="2"><input id="${dto.id}" type="button"
+										class="btn-default select_one_x" value="참여취소"></td> --%>
+									
 								</tr>
 								</c:if>
 								</c:forEach>
+							</c:if>
 						</c:forEach>
 					</table>

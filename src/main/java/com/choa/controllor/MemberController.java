@@ -56,6 +56,28 @@ public class MemberController {
 	@Autowired
 	private Hash hash;
 	
+	@Autowired
+	private RequiredController requiredController;
+	
+	@RequestMapping(value="/member/myMovieReq")
+	public void myMovieReq(ListInfo listInfo,Model model){
+		requiredController.requiredList(model, listInfo);
+	}
+	
+	@RequestMapping(value="/member/dropUser")
+	public String dropUser(String id)throws Exception{
+		int num = customerService.dropUser(id);
+		return "/commons/thanks";
+	}
+	
+	
+	@RequestMapping(value="/member/dropUserCheck")
+	public String dropUserCheck(MemberDTO memberDTO,Model model)throws Exception {
+		int num=customerService.dropUserCheck(memberDTO);
+		model.addAttribute("message", num);
+		return "/commons/ajaxResult";
+	}
+	
 	@RequestMapping(value="/naverJoin")
 	public String imTester(CustomerDTO customerDTO)throws Exception{
 		naverService.join(customerDTO);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- header_plus start -->
 <style type="text/css">
 li {
@@ -19,19 +20,31 @@ width: 25%;
 				회원 정보 수정
 		</li>
 		<li id="${pageContext.request.contextPath}/member/" dropzone="f" class="header_plus_li">
-				구매한 영화(!)
+				구매한 영화
 		</li>
-		<c:if test="${member.grade ne normal}">
+		<c:if test="${member.grade ne 'normal'}">
 		<li id="${pageContext.request.contextPath}/member/myPr" dropzone="n" class="header_plus_li normal">
 				나의 프로필
 		</li>
-		<li id="${pageContext.request.contextPath}/mebmer/" dropzone="f" class="header_plus_li normal">
-				영화 요청 목록(!)
-		</li>	
 		</c:if>
-		<li id="${pageContext.request.contextPath}/member/dropOut" dropzone="f" class="header_plus_li">
+		<c:if test="${fn:contains(member.grade,'감독')}" >
+		<li id="${pageContext.request.contextPath}/board/cart/cartList" dropzone="f" class="header_plus_li">
+				장바구니
+		</li>
+		<li id="${pageContext.request.contextPath}/board/order_rent/orderList" dropzone="f" class="header_plus_li">
+				장비 요청 목록
+		</li>
+		</c:if>
+		<li id="${pageContext.request.contextPath}/board/note/noteList" dropzone="f" class="header_plus_li">
+				쪽지
+		</li>
+		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
+				영화 요청 목록
+		</li>	
+		<li id="${pageContext.request.contextPath}/member/dropUser" dropzone="f" class="header_plus_li">
 				회원 탈퇴
 		</li>
+		
 		
 		
 		</ul>
