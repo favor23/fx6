@@ -12,6 +12,14 @@ public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
 	
+	public int campaignUp(int campaign_num) throws Exception {
+		return campaignDAO.campaignUp(campaign_num);
+	}
+	
+	public int campaignHit(int campaign_num) throws Exception {
+		return campaignDAO.campaignHit(campaign_num);
+	}
+	
 	public CampaignDTO campaignView(int campaign_num) throws Exception {
 		return campaignDAO.campaignView(campaign_num);
 	}

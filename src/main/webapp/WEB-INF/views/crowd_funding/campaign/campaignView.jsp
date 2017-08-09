@@ -9,9 +9,12 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	footer {
+		display: flow-root;
+	}
+	
 	.main_wrap {
 		width: 1020px;
-		height: 1300px;
 		margin: 0 auto;
 		margin-top: 100px;
 	}
@@ -27,6 +30,8 @@
 		height: 350px;
 		float: right;
 		padding: 20px;
+		padding-top: 0px;
+		padding-right: 0px;
 	}
 	
 	.detail_title {
@@ -98,7 +103,6 @@
 	
 	.main {
 		width: 600px;
-		height: 950px;
 		float: left;
 		background-color: lime;
 	}
@@ -114,16 +118,52 @@
 	    position: relative; 
 	}
 	
-	#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-	#section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-	#section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+	#section1 {padding-top:50px;color: #fff; background-color: #1E88E5;}
+	#section2 {padding-top:50px;color: #fff; background-color: #673ab7;}
+	#section3 {padding-top:50px;color: #fff; background-color: #ff9800;}
+	
+	.sup,
+	.thumbs_up {
+		width: 208px;
+		height: 50px;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
 		$(".sup").click(function() {
 			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
 		});
+		
+		$(".thumbs_up").click(function() {
+			var campaign_num = ${dto.campaign_num};
+			
+			thumbs_up(campaign_num);
+			badge(campaign_num);
+		});
 	});
+	
+	function thumbs_up(campaign_num) {
+		$.ajax({
+			url:"campaignUp",
+			type:"POST",
+			data:{
+				campaign_num:campaign_num
+			},
+			success:function(data) {
+				
+			}
+		});
+	}
+	
+	function badge(campaign_num) {
+		$.ajax({
+			url:"campaignBadge/" + campaign_num,
+			type:"GET",
+			success:function(data) {
+				$(".badge").html(data.thumbs_up);
+			}
+		});
+	}
 </script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -132,7 +172,7 @@
 	<section id="main_section">
 		<article class="main_wrap">
 			<div class="youtube">
-				<iframe width="600" height="350" src="https://www.youtube.com/embed/Jq55NTFaqVk?ecver=1" frameborder="0" allowfullscreen></iframe>
+				<iframe width="600" height="350" src="${dto.main_video}" frameborder="0" allowfullscreen></iframe>
 			</div>
 			<div class="detail">
 				<div class="detail_title">
@@ -196,7 +236,13 @@
 				</nav>    
 				
 				<div id="section1" class="container-fluid">
-				  ${dto.story}
+					<div class="section1_title" style="font-size: 1.5em; font-weight: bold;">
+						캠페인 스토리
+					</div>
+					<div class="section1_contents">
+						${dto.story}
+					</div>
+				
 				</div>
 				<div id="section2" class="container-fluid">
 				  <h1>Section 2</h1>
@@ -211,6 +257,7 @@
 			</div>
 			<div class="ben">
 				<input type="button" class="btn btn-info sup" value="후원하기">
+				<button type="button" class="btn btn-danger thumbs_up">추천하기&nbsp;&nbsp;<span class="badge">${dto.thumbs_up}</span></button>
 			</div>
 		</article>
 	</section>

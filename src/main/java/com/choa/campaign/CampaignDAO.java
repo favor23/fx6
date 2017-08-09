@@ -14,6 +14,14 @@ public class CampaignDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
 	
+	public int campaignUp(int campaign_num) throws Exception {
+		return sqlSession.update(NAMESPACE + "campaignUp", campaign_num);
+	}
+	
+	public int campaignHit(int campaign_num) throws Exception {
+		return sqlSession.update(NAMESPACE + "campaignHit", campaign_num);
+	}
+	
 	public CampaignDTO campaignView(int campaign_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "campaignView", campaign_num);
 	}
