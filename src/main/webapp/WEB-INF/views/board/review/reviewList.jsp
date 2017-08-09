@@ -17,7 +17,7 @@
 
 	.main{
 		width: 100%;
-		height: 930px;
+		height: 1200px;
 		/* background-color: yellow; */
 		margin: 0 auto;
 		margin-top: 20px;
@@ -55,6 +55,7 @@
 		width: 100%;
 		height: 30%;
 		/* background-color: lime; */
+		
 	}
 	
 	.second{
@@ -64,6 +65,7 @@
 		float: right;
 		overflow-x:hidden; 
 		overflow-y:auto;
+		margin-top: 7px;
 		
 	}
 	
@@ -74,7 +76,7 @@
 		height: 70%;
 		border-top : 2px solid #503396;
 		border-bottom: 2px solid #d9d9d9;
-		margin-top: 10px;
+		margin-top: 11px;
 		vertical-align: middle;
 		font-family: 'NanumGothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, 'Apple SD Gothic Neo', sans-serif;
 		font-size: 12px;
@@ -98,7 +100,7 @@
 	
 	.viewtr{
 	
-		border-bottom: 1px solid gray;
+		border-bottom: 1px solid #d9d9d9;
 		color : #666;
 		
 		height: 30px;
@@ -341,7 +343,19 @@
 			}
 			
 			
+			.contentsView{
+				width: 100%;
+				height: 490px;
+				background-color: white;
+			}
 			
+			
+			.td{
+			
+				height: 58px;
+				
+				margin-top:10px;
+			}
 			
 			
 
@@ -395,7 +409,7 @@
 		</div>
 		<div class="second">
 			<div class="search_bar">
-				<form action="requiredList" method="get">
+				<form action="reviewList" method="get">
                      <select id="kind" name="search" >
                         <option value="writer">작성자</option>
                         <option value="title">제목</option>
@@ -411,6 +425,7 @@
 			<table class="table">
 				<tr class="tr">
 					<th class="font th" >NO</th>
+
 					<th class="font th">WRITER</th>
 					<th class="font th">TITLE</th>
 					<th class="font th">DATE</th>
@@ -555,3 +570,21 @@ $(".first1-2").on("click","#reply_btn",function() {
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
