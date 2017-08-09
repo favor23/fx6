@@ -39,6 +39,25 @@ public class RentController {
 	}
 	
 	
+	@RequestMapping(value="rentListaccessory", method=RequestMethod.GET)
+	public String rentListaccessory(Model model, ListInfo listInfo){
+		
+		
+		List<RentDTO> ar = null;
+		
+		try {
+			ar = rentService.rentList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "board/rent/rentListaccessory";
+		
+	}
+	
 	@RequestMapping(value="rentListdrone", method=RequestMethod.GET)
 	public String rentListdrone(Model model, ListInfo listInfo){
 		
@@ -57,6 +76,66 @@ public class RentController {
 		return "board/rent/rentListdrone";
 		
 	}
+	
+	@RequestMapping(value="rentListlens", method=RequestMethod.GET)
+	public String rentListlens(Model model, ListInfo listInfo){
+		
+		
+		List<RentDTO> ar = null;
+		
+		try {
+			ar = rentService.rentList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "board/rent/rentListlens";
+		
+	}
+	
+	
+	@RequestMapping(value="rentListlight", method=RequestMethod.GET)
+	public String rentListlight(Model model, ListInfo listInfo){
+		
+		
+		List<RentDTO> ar = null;
+		
+		try {
+			ar = rentService.rentList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "board/rent/rentListlight";
+		
+	}
+	
+	
+	@RequestMapping(value="rentListsteadicam", method=RequestMethod.GET)
+	public String rentListsteadicam(Model model, ListInfo listInfo){
+		
+		
+		List<RentDTO> ar = null;
+		
+		try {
+			ar = rentService.rentList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "board/rent/rentListsteadicam";
+		
+	}
+	
 	
 	
 	@RequestMapping(value="rentView", method=RequestMethod.GET)

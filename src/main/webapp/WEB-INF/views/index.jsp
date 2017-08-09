@@ -11,11 +11,11 @@
 </head>
 <body>
 	<c:import url="temp/header.jsp" />
-	
-	
-	
-	
-	
+
+
+
+
+
 	<!-- main start -->
 	<section id="main_section">
 		<section id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -82,19 +82,16 @@
 
 			<!-- Left and right controls -->
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				
-			</a> <a class="right carousel-control" href="#myCarousel"
-				data-slide="next">
-			</a>
-		</section>	
 
-		<section id="main_div2">
-		
+			</a> <a class="right carousel-control" href="#myCarousel"
+				data-slide="next"> </a>
 		</section>
-		
-		
-		
-			<section id="main_div3">
+
+		<section id="main_div2"></section>
+
+
+
+		<section id="main_div3">
 			<div id="div3_d1">
 				<div id="div3_title">
 					<h3>새로운 펀딩 정보</h3>
@@ -106,31 +103,20 @@
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
 								<div class="item active">
-									<ul class="div2_mvlist" style="padding-left: 150px;">
-										1
-										<%-- <c:forEach begin="1" end="4" var="i">
-									<li>
-										<div class="list_img">
-											<span class="boxoffice n${i}">0${i}</span> <img
-												src="<c:url value="/img/index/list스파이더맨.jpg"/>">
-										</div>
-										<div class="list_div">
-											<div class="list_div_name">
-												<img src=""><a href="#">스파이더맨</a>
-											</div>
-											<button class="btn-info list_a">상세보기</button>
-											<button class="btn-info list_a">예매하기</button>
-										</div>
-									</li>
-								</c:forEach> --%>
-									</ul>
+									<img src="<c:url value="/img/movie-img/test5.jpg" />"
+										alt="Los Angeles" style="width: 100%; height:300px;">
 								</div>
-								<c:forEach begin="2" end="5" var="i">
-									<div class="item">
-										<ul class="div2_mvlist" style="padding-left: 150px;">
-											${i}
 
-										</ul>
+								<c:forEach items="${newList}" var="newList">
+									<div class="item">
+										<img src="<c:url value="${newList.campaign_img}" />"
+											alt="Chicago" class="go_view"
+											style="width: 100%; height:300px; cursor: pointer;"
+											accesskey="${newList.campaign_num}">
+										<div class="carousel-caption">
+											<h3>${newList.campaign_title}</h3>
+											<p>${newList.simple_story}</p>
+										</div>
 									</div>
 								</c:forEach>
 								<!-- Left and right controls -->
@@ -154,8 +140,9 @@
 				<div id="div3_d3"></div>
 			</div>
 		</section>
-		<div id="modal_div2"></div>		
+		<div id="modal_div2"></div>
 	</section>
+
 	<!-- main end -->
 	<!-- footer start -->
 	<c:import url="temp/footer.jsp" />
@@ -200,7 +187,7 @@
 		
 		function modal_ticket_crate(movie_num) {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+movie_num,
+				url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+movie_num+"&man=${pageContext.request.contextPath}/index",
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);

@@ -30,6 +30,7 @@
 			<tr class="viewtr">
 			<td  class="td1 view_td"><div class="view_mar">별점</div></td>
 				<c:if test="${view.stars eq '1'}">
+
 					<td><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></td>				
 				</c:if>
 				<c:if test="${view.stars eq '2'}">
@@ -43,10 +44,11 @@
 				</c:if>
 				<c:if test="${view.stars eq '5'}">
 					<td><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></td>				
+
 				</c:if>
 				</tr>
 			<tr>
-				<td colspan="2">${view.contents}</td>
+				<td colspan="2"><div class="contentsView" style="padding: 10px;'">${view.contents}</div></td>
 			</tr>
 		</table>
 			
@@ -54,3 +56,5 @@
 	
 	
 	
+
+
