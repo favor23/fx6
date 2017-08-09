@@ -52,7 +52,8 @@ public class HomeController {
 	}
 	//인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!
 	@RequestMapping(value="/index")
-	public void index(){		
+	public void index(Model model){	
+		cfIndex(model);
 	}
 	@RequestMapping(value="/defaultPage")
 	public void defaultPage(){		
@@ -87,8 +88,9 @@ public class HomeController {
 	public void m4(){}
 	
 	@RequestMapping(value="/index_movielist/modal_ticket")
-	public void modal_ticket(int movie_num,Model model){
+	public void modal_ticket(String man,int movie_num,Model model){
 		movieController.movieView(movie_num, model);
+		model.addAttribute("man", man);
 	}
 	
 	@RequestMapping(value = "/crowd_funding/cf_index")
