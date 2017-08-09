@@ -122,7 +122,7 @@
 	
 	.ct {
 		width: 230px;
-		height: 336px;
+		height: 280px;
 		float: left;
 		margin-top: 80px;
 		margin-left: 2.7%;

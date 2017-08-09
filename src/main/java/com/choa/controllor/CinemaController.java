@@ -60,7 +60,7 @@ public class CinemaController {
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "../../member/login");
+			model.addAttribute("path", "../../loginForm");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
@@ -70,7 +70,6 @@ public class CinemaController {
 		int [] ticketar = new int[ticket.length];
 		for(int q=0;q<ticketar.length;q++){
 			ticketar[q] = Integer.parseInt(ticket[q]);
-			System.out.println("ticketar : "+ticketar[q]);
 		}
 		try {
 			list = cinemaService.myList(id, listInfo, ticketar);
@@ -90,16 +89,14 @@ public class CinemaController {
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "../../member/login");
+			model.addAttribute("path", "/");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
 		String [] genre = customerDTO.getTaste().split(",");
-		System.out.println("asdasd");
 		listInfo.setCurPage(curPage);
 		try {
 			list = cinemaService.hotList(genre, listInfo);
-			System.out.println("컨트롤러 사이즈 : "+list.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

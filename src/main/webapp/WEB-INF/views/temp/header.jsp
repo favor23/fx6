@@ -18,8 +18,8 @@
 				게시판</li>
 			<ul class="dropdown-menu"
 				style="position: absolute; width: 100px; top: 48px; left: 420px; background-color: white;">
-				<li><a href="board/required/requiredList">요청게시판</a></li>
-				<li><a href="board/review/reviewList">리뷰게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/required/requiredList">요청게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/board/review/reviewList">리뷰게시판</a></li>
 				<li><a href="#">매칭게시판</a></li>
 			</ul>
 		</div>

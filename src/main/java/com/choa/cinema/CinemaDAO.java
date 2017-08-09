@@ -26,7 +26,6 @@ public class CinemaDAO {
 	
 	public List<MovieDTO> myList(String id, ListInfo listInfo, int [] ticketar)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("cinema DAO");
 		map.put("id", id);
 		map.put("listInfo", listInfo);
 		map.put("ticketar", ticketar);
@@ -59,10 +58,6 @@ public class CinemaDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("genre", genre);
 		map.put("listInfo", listInfo);
-		System.out.println("dao length : "+genre.length);
-		for(int i=0;i<genre.length;i++){
-			System.out.println(genre[i]);
-		}
 		return sqlSession.selectOne(NAMESPACE+"countHot", map);
 	}
 }
