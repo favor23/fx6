@@ -184,6 +184,7 @@
 			});
 
 		});
+		
 		$("#main_div2").on("mousemove", ".mouse_action", function() {
 			$(this).attr("class", "mouse_action action_on");
 		});

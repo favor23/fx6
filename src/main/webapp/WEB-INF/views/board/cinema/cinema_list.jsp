@@ -122,6 +122,27 @@ ul{
 	text-decoration: none;
 }
 
+.modal-body, .modal-header, .modal-footer, .modal-content {
+	width: 800px;
+	height: auto;
+}	
+
+.modal-div2 {
+	width: 380px;
+	height: 400px;
+	float: left;
+}
+
+#pay_btn{
+ margin:5px 0 13px 400px;
+ width:47%;
+ height: 50px;	
+}
+
+#close_location{
+	margin: 10px 5px 0 0;
+	float: right;
+}
 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
@@ -200,7 +221,7 @@ ul{
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success ticket_li" data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
 						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
 						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
@@ -231,14 +252,14 @@ ul{
 	$(".ticket_li").mouseenter(function() {
 		var num = $(this).attr("accesskey");
 		$.ajax({
-			url : "${pageContext.request.contextPath}/index_movielist/modal_view?movie_num="+num,
+			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=${pageContext.request.contextPath}/board/cinema/cinema_list",
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);
 			}
 		});
 	});
-
+	
 	$(".huwon").click(function() {
 		var id = $(this).attr("id");
 		if(${member==null}){

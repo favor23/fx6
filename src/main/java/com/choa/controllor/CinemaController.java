@@ -55,12 +55,12 @@ public class CinemaController {
 		
 	}
 	@RequestMapping(value="/board/cinema/cinema_my")
-	public String cinema_my(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
+	public String cinema_my(Integer curPage, Model model, HttpSession session, ListInfo listInfo)throws Exception{
 		List<MovieDTO> list = null;
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "../../loginForm");
+			model.addAttribute("path", "../board/cinema/cinema_list");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
@@ -77,19 +77,21 @@ public class CinemaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		RoomDTO roomDTO = roomService.playtime(1);
+		model.addAttribute("roomDTO", roomDTO);
+		model.addAttribute("listInfo", listInfo);
 		model.addAttribute("list", list);
 		model.addAttribute("listInfo", listInfo);
 		return "/board/cinema/cinema_my";
 	}
 	
 	@RequestMapping(value="/board/cinema/cinema_hotList")
-	public String cinema_hot(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
+	public String cinema_hot(Integer curPage, Model model, HttpSession session, ListInfo listInfo)throws Exception{
 		List<MovieDTO> list = null;
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "/");
+			model.addAttribute("path", "../board/cinema/cinema_list");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
@@ -101,7 +103,9 @@ public class CinemaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		RoomDTO roomDTO = roomService.playtime(1);
+		model.addAttribute("roomDTO", roomDTO);
+		model.addAttribute("listInfo", listInfo);
 		model.addAttribute("ar", genre);
 		model.addAttribute("list", list);
 		model.addAttribute("listInfo", listInfo);

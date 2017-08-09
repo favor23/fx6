@@ -99,6 +99,17 @@ ul{
 	margin: 0 auto;
 }
 
+.time {
+	width: 100%;
+	height: 15%;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	padding-bottom: 0;
+	margin-top: 12px;
+}
+
 #pageing {
 	width: 100%;
 	height: 50px;
@@ -113,7 +124,27 @@ ul{
 	text-decoration: none;
 }
 
+.modal-body, .modal-header, .modal-footer, .modal-content {
+	width: 800px;
+	height: auto;
+}	
 
+.modal-div2 {
+	width: 380px;
+	height: 400px;
+	float: left;
+}
+
+#pay_btn{
+ margin:5px 0 13px 400px;
+ width:47%;
+ height: 50px;	
+}
+
+#close_location{
+	margin: 10px 5px 0 0;
+	float: right;
+}
 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
@@ -188,11 +219,12 @@ ul{
 								</ul>
 							</div>
 						</nav>
+						<div class="time"></div>
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success">ticket </button>
-						<button class="btn-primary">후원페이지</button>
+						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-primary huwon">후원페이지</button>
 						<button class="btn-danger chat">영화시청</button>
 					</div>
 				</div>
@@ -214,10 +246,31 @@ ul{
 		</div>
 		
 	</section>
-
+	<div id="main_div2"></div>
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
+$(".ticket_li").mouseenter(function() {
+	var num = $(this).attr("accesskey");
+	$.ajax({
+		url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=${pageContext.request.contextPath}/board/cinema/cinema_my",
+		type : "GET",
+		success : function(data) {
+			$("#main_div2").html(data);
+		}
+	});
+});
+
+$(".huwon").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="${pageContext.request.contextPath}/loginForm";
+	}else{
+		location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
+	}
+});
+
 $(".chat").click(function() {
 	var id = $(this).attr("id");
 	if(${member==null}){
@@ -230,6 +283,7 @@ $(".chat").click(function() {
 		window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	}
 });
+
 var now = new Date();
 var year = now.getFullYear(); // 현재시간중 4자리 연도
 var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
