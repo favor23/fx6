@@ -14,7 +14,7 @@
 		<li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_li">상영관</li>
 		<div class="dropdown">
 			<li id="header_board" class="dropdown-toggle" data-toggle="dropdown"
-				style="line-height: 49px; text-align: center; border-right: 1px solid #e5e5e5; float: left; font-weight: bold; height: 49px; width: 107px; cursor: pointer;">
+				style="line-height: 49px; text-align: center; border-right: 1px solid #e5e5e5; float: left; font-weight: bold; height: 49px; width: 130px; cursor: pointer;">
 				게시판</li>
 			<ul class="dropdown-menu"
 				style="position: absolute; width: 100px; top: 48px; left: 420px; background-color: white; border: 0.1px solid #e5e5e5;">
@@ -25,8 +25,8 @@
 		</div>
 		</li>
 		<li id="${pageContext.request.contextPath}/crowd_funding/cf_index" class="header_li">펀딩</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">매칭시스템</li>
-		<li id="${pageContext.request.contextPath}/" class="header_li">시나리오</li>
+	<%-- 	<li id="${pageContext.request.contextPath}/board/matching/matchingList" class="header_li">매칭시스템</li> --%>
+		<li id="${pageContext.request.contextPath}/board/matching/matchingList" class="header_li">시나리오</li>
 		<c:if test="${empty member}">
 		<div class="dropdown"
 				style="height: 50px; width: 150px; float: right;">
