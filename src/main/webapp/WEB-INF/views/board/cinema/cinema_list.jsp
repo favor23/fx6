@@ -252,7 +252,7 @@ ul{
 	$(".ticket_li").mouseenter(function() {
 		var num = $(this).attr("accesskey");
 		$.ajax({
-			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=${pageContext.request.contextPath}/board/cinema/cinema_list",
+			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_list",
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);

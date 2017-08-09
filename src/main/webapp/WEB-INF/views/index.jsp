@@ -187,7 +187,7 @@
 		
 		function modal_ticket_crate(movie_num) {
 			$.ajax({
-				url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+movie_num+"&man=${pageContext.request.contextPath}/index",
+				url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+movie_num+"&man=/index",
 				type : "GET",
 				success : function(data) {
 					$("#modal_div2").html(data);
