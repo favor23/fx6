@@ -135,7 +135,7 @@
 </head>
 <body>
 	<c:import url="../../temp/header.jsp" />
-
+<c:import url="../../temp/header_plus_member.jsp"/>
 	<section class="allSection">
 		<section class="mainSection">
 			<div class="top_t">ORDER</div>

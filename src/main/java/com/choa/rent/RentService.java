@@ -14,13 +14,12 @@ public class RentService {
 	private RentDAO rentDAO;
 	
 	//list
-	public List<RentDTO> rentList(ListInfo listInfo) throws Exception{
+	public List<RentDTO> rentList() throws Exception{
 		int totalCount = rentDAO.rentCount();
 		
-		listInfo.makePage(totalCount);
-		listInfo.setRow();
+	
 		
-		return rentDAO.rentList(listInfo);
+		return rentDAO.rentList();
 	}
 	
 	//count

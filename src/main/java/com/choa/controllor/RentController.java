@@ -19,20 +19,26 @@ public class RentController {
 	@Autowired
 	private RentService rentService;
 	
-	@RequestMapping(value="rentList", method=RequestMethod.GET)
-	public String rentList(Model model, ListInfo listInfo){
-		
+	private void allrent(Model model){
 		
 		List<RentDTO> ar = null;
 		
 		try {
-			ar = rentService.rentList(listInfo);
+			ar = rentService.rentList();
 			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	@RequestMapping(value="rentList", method=RequestMethod.GET)
+	public String rentList(Model model){
+		
+		
+		allrent(model);
 		
 		return "board/rent/rentList";
 		
@@ -40,57 +46,30 @@ public class RentController {
 	
 	
 	@RequestMapping(value="rentListaccessory", method=RequestMethod.GET)
-	public String rentListaccessory(Model model, ListInfo listInfo){
+	public String rentListaccessory(Model model){
 		
 		
-		List<RentDTO> ar = null;
-		
-		try {
-			ar = rentService.rentList(listInfo);
-			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		allrent(model);
 		
 		return "board/rent/rentListaccessory";
 		
 	}
 	
 	@RequestMapping(value="rentListdrone", method=RequestMethod.GET)
-	public String rentListdrone(Model model, ListInfo listInfo){
+	public String rentListdrone(Model model){
 		
 		
-		List<RentDTO> ar = null;
-		
-		try {
-			ar = rentService.rentList(listInfo);
-			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		allrent(model);
 		
 		return "board/rent/rentListdrone";
 		
 	}
 	
 	@RequestMapping(value="rentListlens", method=RequestMethod.GET)
-	public String rentListlens(Model model, ListInfo listInfo){
+	public String rentListlens(Model model){
 		
 		
-		List<RentDTO> ar = null;
-		
-		try {
-			ar = rentService.rentList(listInfo);
-			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		allrent(model);
 		
 		return "board/rent/rentListlens";
 		
@@ -98,19 +77,10 @@ public class RentController {
 	
 	
 	@RequestMapping(value="rentListlight", method=RequestMethod.GET)
-	public String rentListlight(Model model, ListInfo listInfo){
+	public String rentListlight(Model model){
 		
 		
-		List<RentDTO> ar = null;
-		
-		try {
-			ar = rentService.rentList(listInfo);
-			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		allrent(model);
 		
 		return "board/rent/rentListlight";
 		
@@ -118,19 +88,10 @@ public class RentController {
 	
 	
 	@RequestMapping(value="rentListsteadicam", method=RequestMethod.GET)
-	public String rentListsteadicam(Model model, ListInfo listInfo){
+	public String rentListsteadicam(Model model){
 		
 		
-		List<RentDTO> ar = null;
-		
-		try {
-			ar = rentService.rentList(listInfo);
-			model.addAttribute("list", ar);
-			model.addAttribute("listInfo", listInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		allrent(model);
 		
 		return "board/rent/rentListsteadicam";
 		

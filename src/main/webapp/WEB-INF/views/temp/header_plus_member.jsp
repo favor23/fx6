@@ -7,6 +7,12 @@
 li {
 width: 25%;
 }
+#drowdown_id {
+	width: 100px;
+}
+#dd_menu {
+border: 1px solid black;
+}
 </style>
 <div class="header_plus" >
 	<div class="plus_d1"></div>
@@ -22,44 +28,44 @@ width: 25%;
 		<li id="${pageContext.request.contextPath}/member/" dropzone="f" class="header_plus_li">
 				구매한 영화
 		</li>
-		<c:if test="${member.grade ne 'normal'}">
-		<li id="${pageContext.request.contextPath}/member/myPr" dropzone="n" class="header_plus_li normal">
-				나의 프로필
+		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
+				영화 요청 목록
+		</li>	
+		
+		<li id="${pageContext.request.contextPath}/board/note/noteList" dropzone="f" class="header_plus_li">
+				쪽지
 		</li>
-		</c:if>
+		<li id="${pageContext.request.contextPath}/member/dropUserCheck" dropzone="f" class="header_plus_li">
+				회원 탈퇴
+		</li>
+		
+		</ul>
 		<c:if test="${fn:contains(member.grade,'감독')}" >
+		<div class="dropdown" id="dd" style="position:fixed; right: 10px; top:200px;">
+  		<button id="drowdown_id" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">영화인
+  		<span class="caret"></span></button>
+  		<ul class="dropdown-menu" id="dd_menu" style="position: none;">
 		<li id="${pageContext.request.contextPath}/board/cart/cartList" dropzone="f" class="header_plus_li">
 				장바구니
 		</li>
 		<li id="${pageContext.request.contextPath}/board/order_rent/orderList" dropzone="f" class="header_plus_li">
 				장비 요청 목록
 		</li>
+		<c:if test="${member.grade ne 'normal'}">
+		<li id="${pageContext.request.contextPath}/member/myPr" dropzone="n" class="header_plus_li normal">
+				나의 프로필
+		</li>
 		</c:if>
-		<li id="${pageContext.request.contextPath}/board/note/noteList" dropzone="f" class="header_plus_li">
-				쪽지
-		</li>
-		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
-				영화 요청 목록
-		</li>	
-		<li id="${pageContext.request.contextPath}/member/dropUser" dropzone="f" class="header_plus_li">
-				회원 탈퇴
-		</li>
-		
-		
-		
-		</ul>
+  		 
+  		</ul>
+		</div>
+		</c:if>
 		</div>
 	</div>
 </div>
 <!-- header_plus end -->
 <script>
-var grade='${member.grade}';
-if(grade=='normal'){
-	$(".normal").css("display","none");
-	$(".header_plus_li").css("width","25%");
-}else {
 	$(".header_plus_li").css("width","16.5%");
-}
 $(".header_plus_li").click(function() {
 	var path=$(this).attr("id");
 	var vl=$(this).attr("name");

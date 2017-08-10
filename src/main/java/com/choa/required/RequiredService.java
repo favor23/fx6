@@ -13,6 +13,13 @@ public class RequiredService {
 	@Autowired
 	private RequiredDAO requiredDAO;
 	
+	
+	//영화 요청 게시물 전체 불러오기
+	public List<RequiredDTO> requiredListAll() throws Exception{
+		return requiredDAO.requiredListAll();
+	}
+	
+	
 	//list
 	public List<RequiredDTO> requireList(ListInfo listInfo) throws Exception{
 		int result = requiredDAO.requiredCount(listInfo);
