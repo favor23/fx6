@@ -41,7 +41,7 @@ public class ReviewDAO {
 		return sqlSession.update(NAMESPACE+"update", reviewDTO);
 	}
 	
-	public void reviewHit(int num) throws Exception{
-		
+	public int reviewHit(int num) throws Exception{
+		return sqlSession.update(NAMESPACE+"hit", num);
 	}
 }
