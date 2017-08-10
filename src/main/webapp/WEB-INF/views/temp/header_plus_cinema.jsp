@@ -10,13 +10,10 @@
 		<li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_plus_li"> 
 				모든 상영관
 		</li>
-		<li id="${pageContext.request.contextPath}/board/cinema/cinema_hotList" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_hotList" class="header_plus_li normal">
 				추천 상영관
 		</li>
-		<li id="${pageContext.request.contextPath}/board/cinema/cinema_time" class="header_plus_li">
-				상영시간표
-		</li>		
-		<li id="${pageContext.request.contextPath}/board/cinema/cinema_my" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cinema/cinema_my" class="header_plus_li normal">
 				마이 시네마
 		</li>
 		<li id="${pageContext.request.contextPath}/board/cinema/cinema_scheduleList" class="header_plus_li">
@@ -31,6 +28,13 @@
 $(".header_plus_li").click(function() {
 	location.href=$(this).attr("id");
 });
+var grade='${member.grade}';
+if(grade=='admin'){
+	$(".normal").css("display","none");
+	$(".header_plus_li").css("width","50%");
+}else{
+	$(".header_plus_li").css("width","25%");
+}
 
 </script>
 

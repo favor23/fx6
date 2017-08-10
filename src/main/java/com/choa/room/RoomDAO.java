@@ -16,7 +16,6 @@ public class RoomDAO {
 	}
 	
 	public int playtimeUpdate(RoomDTO roomDTO)throws Exception{
-		System.out.println("dao");
 		return sqlSession.update(NAMESPACE+"playtimeUpdate", roomDTO);
 	}
 	

@@ -447,12 +447,9 @@ $("#wr_bt").click(function() {
 	location.href="requiredWrite"
 });
 
-$(".boardtitle").click(function() {
-	var vnum=$(this).attr("id");
-	
 	
 	$.ajax({
-		url : "requiredView?num="+vnum,
+		url : "requiredView?num="+${Qnum},
 		datatype : "get",
 		success : function(data) {
 			
@@ -462,6 +459,24 @@ $(".boardtitle").click(function() {
 
 	});
 });
+
+
+
+$(".boardtitle").click(function() {
+	var vnum=$(this).attr("id");
+	
+	
+	url : "requiredView?num="+vnum,
+	datatype : "get",
+	success : function(data) {
+		
+		$(".first1-1").html(data.trim());
+
+	}
+
+});
+	
+	
 
 
 </script>

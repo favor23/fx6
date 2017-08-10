@@ -33,6 +33,7 @@ public class RequiredController {
 			ar=requiredService.requireList(listInfo);
 			model.addAttribute("list", ar);
 			model.addAttribute("listInfo", listInfo);
+			model.addAttribute("Qnum", 81);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

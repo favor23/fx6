@@ -16,8 +16,8 @@ public class RentDAO {
 	private static final String NAMESPACE = "RentMapper.";
 	
 	
-	public  List<RentDTO> rentList(ListInfo listInfo) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"rentList", listInfo);
+	public  List<RentDTO> rentList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"rentList");
 	}
 	
 	public int rentCount() throws Exception{

@@ -134,7 +134,6 @@ public class CustomerDAO implements MemberDAO{
 	
 	@Override
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
-		System.out.println("이거봐라이거:"+sqlSession);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("customerDTO", memberDTO);
 		sqlSession.selectOne(NAMESPACE+"login", map);

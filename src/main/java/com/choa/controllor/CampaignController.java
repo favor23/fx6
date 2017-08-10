@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.choa.campaign.CampaignDTO;
 import com.choa.campaign.CampaignService;
 import com.choa.file.FileService;
-import com.choa.movie.MovieDTO;
 import com.choa.util.ListInfo;
 
 @Controller
@@ -28,6 +27,11 @@ public class CampaignController {
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.GET)
 	public void campaignSupport(Integer campaign_num, Model model) {
 		model.addAttribute("campaign_num", campaign_num);
+	}
+	
+	@RequestMapping(value = "campaignSupport", method = RequestMethod.POST)
+	public void campaignSupport() {
+		
 	}
 	
 	@RequestMapping(value = "campaignView", method = RequestMethod.GET)

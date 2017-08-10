@@ -55,12 +55,12 @@ public class CinemaController {
 		
 	}
 	@RequestMapping(value="/board/cinema/cinema_my")
-	public String cinema_my(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
+	public String cinema_my(Integer curPage, Model model, HttpSession session, ListInfo listInfo)throws Exception{
 		List<MovieDTO> list = null;
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "../../member/login");
+			model.addAttribute("path", "../board/cinema/cinema_list");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
@@ -70,7 +70,6 @@ public class CinemaController {
 		int [] ticketar = new int[ticket.length];
 		for(int q=0;q<ticketar.length;q++){
 			ticketar[q] = Integer.parseInt(ticket[q]);
-			System.out.println("ticketar : "+ticketar[q]);
 		}
 		try {
 			list = cinemaService.myList(id, listInfo, ticketar);
@@ -78,33 +77,35 @@ public class CinemaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		RoomDTO roomDTO = roomService.playtime(1);
+		model.addAttribute("roomDTO", roomDTO);
+		model.addAttribute("listInfo", listInfo);
 		model.addAttribute("list", list);
 		model.addAttribute("listInfo", listInfo);
 		return "/board/cinema/cinema_my";
 	}
 	
 	@RequestMapping(value="/board/cinema/cinema_hotList")
-	public String cinema_hot(Integer curPage, Model model, HttpSession session, ListInfo listInfo){
+	public String cinema_hot(Integer curPage, Model model, HttpSession session, ListInfo listInfo)throws Exception{
 		List<MovieDTO> list = null;
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(customerDTO==null){
 			model.addAttribute("message", "로그인이 필요한 서비스입니다.");
-			model.addAttribute("path", "../../member/login");
+			model.addAttribute("path", "../board/cinema/cinema_list");
 			return "/commons/result";
 		}
 		String id = customerDTO.getId();
 		String [] genre = customerDTO.getTaste().split(",");
-		System.out.println("asdasd");
 		listInfo.setCurPage(curPage);
 		try {
 			list = cinemaService.hotList(genre, listInfo);
-			System.out.println("컨트롤러 사이즈 : "+list.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		RoomDTO roomDTO = roomService.playtime(1);
+		model.addAttribute("roomDTO", roomDTO);
+		model.addAttribute("listInfo", listInfo);
 		model.addAttribute("ar", genre);
 		model.addAttribute("list", list);
 		model.addAttribute("listInfo", listInfo);

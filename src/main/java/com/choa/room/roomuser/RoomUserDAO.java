@@ -18,7 +18,6 @@ public class RoomUserDAO {
 	
 	//전체리스트
 	public List<RoomUserDTO> selectList(){
-		System.out.println("DAO실행");
 		return sqlSession.selectList(NAMESPACE + "roomUserList");
 	}
 	

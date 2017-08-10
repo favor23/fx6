@@ -37,7 +37,6 @@ public class CinemaService {
 	}
 	
 	public List<MovieDTO> hotList(String [] genre, ListInfo listInfo)throws Exception{
-		System.out.println(genre.length);
 		for(int i =0; i<genre.length;i++){
 			genre[i] = "%"+genre[i]+"%";
 		}

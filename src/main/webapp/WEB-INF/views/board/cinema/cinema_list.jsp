@@ -97,7 +97,7 @@ ul{
 	margin: 0 auto;
 }
 
-#time {
+.time {
 	width: 100%;
 	height: 15%;
 	float: left;
@@ -122,6 +122,27 @@ ul{
 	text-decoration: none;
 }
 
+.modal-body, .modal-header, .modal-footer, .modal-content {
+	width: 800px;
+	height: auto;
+}	
+
+.modal-div2 {
+	width: 380px;
+	height: 400px;
+	float: left;
+}
+
+#pay_btn{
+ margin:5px 0 13px 400px;
+ width:47%;
+ height: 50px;	
+}
+
+#close_location{
+	margin: 10px 5px 0 0;
+	float: right;
+}
 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
@@ -196,12 +217,12 @@ ul{
 								</ul>
 							</div>
 						</nav>
-						<div id="time"> </div>
+						<div class="time"></div>
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success">ticket </button>
-						<button class="btn-primary">후원페이지</button>
+						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
 						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
@@ -222,21 +243,44 @@ ul{
 			</c:if>
 		</div>
 	</section>
-
+	<div id="main_div2"></div>
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
 
 	
+	$(".ticket_li").mouseenter(function() {
+		var num = $(this).attr("accesskey");
+		$.ajax({
+			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_list",
+			type : "GET",
+			success : function(data) {
+				$("#main_div2").html(data);
+			}
+		});
+	});
+	
+	$(".huwon").click(function() {
+		var id = $(this).attr("id");
+		if(${member==null}){
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="${pageContext.request.contextPath}/loginForm";
+		}else{
+			location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
+		}
+	});
 	
 	$(".chat").click(function() {
 		var id = $(this).attr("id");
-		alert(id);
+		if(${member==null}){
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="${pageContext.request.contextPath}/loginForm";
+		}else{
 		$.post("${pageContext.request.contextPath}/chatting/ticket", {
 			movie_num:id
 		},function(data){});
-		alert("fdsa");
 			window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		}
 	});
 	
 	var now = new Date();
@@ -263,14 +307,14 @@ ul{
 	   }
 	   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
 	   if(today >= ${roomDTO.startTime} && today < ${roomDTO.lastTime}){
-		   $("#time").css("background-color", "red");
-		   $("#time").html("상영중입니다.");
+		   $(".time").css("background-color", "red");
+		   $(".time").html("상영중입니다.");
 	   }else if(today < ${roomDTO.startTime}){
-		   $("#time").css("background-color", "green");
-		   $("#time").html("곧 영화가 시작됩니다.");
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
 	   }else if(today > ${roomDTO.lastTime}){
-		   $("#time").css("background-color", "green");
-		   $("#time").html("곧 영화가 시작됩니다.");
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
 	   }
 </script>
 </html>

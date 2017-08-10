@@ -97,6 +97,17 @@ ul{
 	margin: 0 auto;
 }
 
+.time {
+	width: 100%;
+	height: 15%;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	padding-bottom: 0;
+	margin-top: 12px;
+}
+
 #pageing {
 	width: 100%;
 	height: 50px;
@@ -111,6 +122,28 @@ ul{
 	text-decoration: none;
 }
 
+.modal-body, .modal-header, .modal-footer, .modal-content {
+	width: 800px;
+	height: auto;
+}	
+
+.modal-div2 {
+	width: 380px;
+	height: 400px;
+	float: left;
+}
+
+#pay_btn{
+ margin:5px 0 13px 400px;
+ width:47%;
+ height: 50px;	
+}
+
+#close_location{
+	margin: 10px 5px 0 0;
+	float: right;
+}
+
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -122,7 +155,7 @@ ul{
 	<c:import url="../../temp/header_plus_cinema.jsp" />
 	<section id="main_session_default">		
 	
-		<div class="video_list">
+				<div class="video_list">
 			<c:forEach items="${list}" var="dto">
 				<div class="list">
 					<div class="list_poster"><img src="<c:url value="${dto.poster_img}"/>" class="pic-image" alt="Pic"> </div>
@@ -184,11 +217,12 @@ ul{
 								</ul>
 							</div>
 						</nav>
+						<div class="time"></div>
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success">ticket </button>
-						<button class="btn-primary">후원페이지</button>
+						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-primary huwon">후원페이지</button>
 						<button class="btn-danger chat">영화시청</button>
 					</div>
 				</div>
@@ -197,25 +231,80 @@ ul{
 			<div id="pageing">
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="cinema_list?curPage=${listInfo.startNum-1}">[이전]</a>
+				<a href="cinema_hotList?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="cinema_list?curPage=${i}">${i}</a>
+				<a href="cinema_hotList?curPage=${i}">${i}</a>
 			</c:forEach>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="cinema_list?curPage=${listInfo.lastNum+1}">[다음]</a>
+				<a href="cinema_hotList?curPage=${listInfo.lastNum+1}">[다음]</a>
 			</c:if>
 		</div>
-		
+			<div id="main_div2"></div>
 	</section>
 
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
+$(".ticket_li").mouseenter(function() {
+	var num = $(this).attr("accesskey");
+	$.ajax({
+		url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=${pageContext.request.contextPath}/board/cinema/cinema_hotList",
+		type : "GET",
+		success : function(data) {
+			$("#main_div2").html(data);
+		}
+	});
+});
+
+$(".huwon").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="${pageContext.request.contextPath}/loginForm";
+	}else{
+		location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
+	}
+});
+
 	$(".chat").click(function() {
 		window.open("../../chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	});
+	
+	var now = new Date();
+	var year = now.getFullYear(); // 현재시간중 4자리 연도
+	var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
+	if((month+"").length <2){
+	   	month="0"+month; // 달의 숫자가 1자리라면 앞에 0을 붙힘
+	   }
+	   var date = now.getDate(); //현재시간중 날짜.
+	   if((date+"").length <2){
+	   	date="0"+date;
+	   }
+	   hour=now.getHours();
+	   if((hour+"").length<2){
+	   	hour="0"+hour;
+	   }
+	   minute=now.getMinutes();
+	   if((minute+"").length<2){
+	   	minute="0"+minute;
+	   }
+	   second = now.getSeconds();
+	   if((second+"").length<2){
+	   	second="0"+second;
+	   }
+	   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
+	   if(today >= ${roomDTO.startTime} && today < ${roomDTO.lastTime}){
+		   $(".time").css("background-color", "red");
+		   $(".time").html("상영중입니다.");
+	   }else if(today < ${roomDTO.startTime}){
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
+	   }else if(today > ${roomDTO.lastTime}){
+		   $(".time").css("background-color", "green");
+		   $(".time").html("곧 영화가 시작됩니다.");
+	   }
 </script>
 </html>
