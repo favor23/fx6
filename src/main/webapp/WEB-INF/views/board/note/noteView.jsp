@@ -18,8 +18,8 @@
 	}
 	
 	.top_section{
-		width: 150px;
-		height: 40px;
+		/* width: 150px;
+		height: 40px; */
 		/* background-color: yellow; */
 		float: left;
 	}
@@ -50,14 +50,14 @@
 		<div class="top_section2">
 			${view.reg_date }
 		</div>
-		<br>
+		<br style="border-bottom: 1px #503396 solid;">
 		<div class="info_section">
 			${view.contents}		
 		</div>
 	
 	
 	</div>
-	<a href ="noteDelete?num=${view.num}">삭제하기</a> 
+	<%-- <a href ="noteDelete?num=${view.num}">삭제하기</a>  --%>
 
 </body>
 </html>
