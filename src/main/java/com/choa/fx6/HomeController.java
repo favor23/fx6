@@ -71,22 +71,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/index_movielist/m1")
-	public void m1(Model model,int num){
-		//List<MovieDTO> list=movieController.movieList(1);
-		movieController.movieList(1,model);
-		//model.addAttribute("list", list);
+	public void m1(Model model,int num) throws Exception{
+		if(num==1){
+		movieController.movieList2(1,model);
+		}else if(num==2){
+		movieController.movieList4(1,model);
+		}else if(num==3){
+		movieController.movieList3(1,model);
+		}else{
+		movieController.movieList5(model);
+		}
 		model.addAttribute("num",num);
 		
 	}
-	@RequestMapping(value="/index_movielist/m2")
-	public void m2(){}
-	
-	@RequestMapping(value="/index_movielist/m3")
-	public void m3(){}
-	
-	@RequestMapping(value="/index_movielist/m4")
-	public void m4(){}
-	
 	@RequestMapping(value="/index_movielist/modal_ticket")
 	public void modal_ticket(String man,int movie_num,Model model){
 		movieController.movieView(movie_num, model);

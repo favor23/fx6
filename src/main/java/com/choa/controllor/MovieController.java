@@ -81,6 +81,12 @@ public class MovieController {
 		model.addAttribute("totalCount", totalCount);
 	}
 	
+	//상영중인 19세 전체 영화리스트
+	public void movieList5(Model model) throws Exception {
+		List<MovieDTO> list=movieService.movieList5();		
+		model.addAttribute("list", list);
+	}
+	
 	@RequestMapping(value = "getMovieList", method = RequestMethod.GET)
 	public void movieList(Integer curPage, Model model) {
 		List<MovieDTO> list = null;
