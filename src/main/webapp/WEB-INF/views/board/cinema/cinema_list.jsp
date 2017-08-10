@@ -251,17 +251,13 @@ ul{
 	
 	$(".ticket_li").mouseenter(function() {
 		var num = $(this).attr("accesskey");
-		if(${member==null}){
-			alert("로그인이 필요한 서비스입니다.");
-		}else{
 		$.ajax({
 			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_list",
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);
-			}
-		});
 		}
+		});
 	});
 	
 	$(".huwon").click(function() {
@@ -278,7 +274,12 @@ ul{
 	
 	$(".chat").click(function() {
 		var id = $(this).attr("id");
-		
+		if(${member==null}){
+			alert("로그인이 필요한 서비스입니다.");
+			setTimeout(function() {
+				document.querySelector('.cont_form_login').style.opacity = "1";
+			}, 100);
+		}
 		$.post("${pageContext.request.contextPath}/chatting/ticket", {
 			movie_num:id
 		},function(data){});

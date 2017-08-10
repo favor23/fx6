@@ -32,7 +32,7 @@
             style="height: 50px; width: 150px; float: right;">
             <li id="bar_login" class="dropdown-toggle" type="button"
                data-toggle="dropdown"><a href="${pageContext.request.contextPath}/loginForm">로그인</a></li>  
-              <ul class="dropdown-menu"
+              <ul class="dropdown-menu" id="css_Id"
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li style="
     position: absolute;

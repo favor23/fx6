@@ -68,9 +68,15 @@ public class SocketController {
 	   @RequestMapping(value="movie")
 		public String movie(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+			int check2=0;
+			if(customerDTO!=null){
+				check2=1;
+			}
+			
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();
 			int ck=0;
+			int check=0;
 			rDto.setNum(movieRoomNum);
 			String [] playar = customerDTO.getPlayView().split("/");
 			System.out.println("movieroomnum : "+movieRoomNum);
@@ -103,7 +109,6 @@ public class SocketController {
 			model.addAttribute("count", userar.length);
 			model.addAttribute("str", userar);
 			model.addAttribute("list", list);
-			int check=0;
 			String movieNum = String.valueOf(movieRoomNum);
 			for(int i=0; i<playar.length;i++){
 				System.out.println("playar : "+playar[i]);
@@ -116,8 +121,8 @@ public class SocketController {
 					break;
 				}
 			}
-			System.out.println("aaa"+check);
-			if(check==1){
+			System.out.println("aaa : "+check2);
+			if(check2==1){
 				return "/chatting/movie";
 			}else{
 				return "/index";
