@@ -19,6 +19,11 @@ public class RequiredDAO {
 	private static final String NAMESPACE ="RequiredMapper.";
 	
 	
+	//영화 요청 전체 리스트 불러오는것.
+	public List<RequiredDTO> requiredListAll() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"list_id");
+	}
+	
 	public List<RequiredDTO> requiredList(ListInfo listInfo) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"list", listInfo);
 	}

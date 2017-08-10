@@ -29,6 +29,7 @@
 	border-radius: 5px;
 	padding-left: 4px;
 	height: 30px;
+	text-align: left;
 }
 
 #join_box select {
@@ -45,6 +46,7 @@
 
 .jf2 {
 	width: 230px;
+	text-align: left;
 }
 
 #join_box {
@@ -188,6 +190,7 @@
 .info_box {
 	font-size: small;
 	margin-top: 5px;
+	width: 330px;
 
 }
 
@@ -199,6 +202,7 @@ line-height:3;
 .cert {
 	padding-left: 50px;
 	padding-right: 50px;
+	text-align: left;
 }
 
 #certCode {
@@ -227,6 +231,19 @@ border: 0.5px solid black;
 	width:125px;
 }
 
+#yearBox select {
+	width: 70px;
+	font-size: 18px;
+}
+#monthBox select {
+	width: 50px;
+	font-size: 18px;
+}
+#dayBox select {
+	width: 50px;
+	font-size: 18px;
+}
+
 </style>
 </head>
 <body>
@@ -240,7 +257,7 @@ border: 0.5px solid black;
 			<table>
 				<tr>
 					<td class="jf1">아이디</td>
-					<td class="jf2" colspan="2"><br><input type="text" name="id" id="id" class="text">
+					<td class="jf2" colspan="2"><input type="text" name="id" id="id" class="text">
 					<span><input type="button" id="id_check" value="중복체크">
 					<label class="none_pass ic">사용중인 아이디 입니다.</label>
 					<label class="pass ic">사용 가능한 아이디입니다.</label>
@@ -292,6 +309,7 @@ border: 0.5px solid black;
 							<option value="gmail.com">gmail.com</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
+							<option value="nate.com">nate.com</option>
 					</select> <input type="text" id="e3" class="text"> <input type="button" id="certBtn" value="인증번호 발송"></td>
 				</tr>
 				<tr>
@@ -308,11 +326,11 @@ border: 0.5px solid black;
 					<td class="jf1">성별</td>
 					<td class="jf2"><span class="span">남 : <input type="radio"
 							name="sung" value="m" checked="checked"></span></td>
-					<td class="jf3"><span class="span">여 : <input type="radio"
+					<td class="jf3" style="text-align: left;"><span class="span">여 : <input type="radio"
 							name="sung" value="f"></span></td>
 				</tr>
 				<tr>
-				<td class="jf1">선호하는 장르<br><span id="smtext">(5개 선택해주세요)</span></td>
+				<td class="jf1">선호하는 장르<br><span id="smtext">(최소 1개 이상)</span></td>
 					<td colspan="2"  class="jf2">
 						<p class="p_tag">
 						<!-- 뮤지컬, 미스터리, 로맨스(멜로), 공상 과학, 스포츠, 스릴러, 전쟁, 서부극 -->
@@ -623,7 +641,6 @@ var taste_checker="";
 	});
 	
 	$("#chk_certBtn").click(function(){
-		alert(code);
 		var myCode=$("#certCode").val();
 		if(code*1==myCode*1){
 			$("#certTxt").html("인증번호가 일치합니다.");

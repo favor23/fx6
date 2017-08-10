@@ -28,12 +28,7 @@
  	<select id="login" statementType="CALLABLE" parameterType="java.util.Map"> 
  	{ call customer_login(#{customerDTO.id, mode=IN},#{customerDTO.pw, mode=IN},#{customer, mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet, resultMap=CustomerDTO}) }
  	</select>
- 	
- 	
- 	<delete id="delete" statementType="CALLABLE" parameterType="java.util.Map">
- 	{ call member_delete(#{customerDTO.id, mode=IN},#{customerDTO.pw,mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
- 	</delete>
- 	
+ 	 	
  	<update id="update" statementType="CALLABLE" parameterType="java.util.Map">
  	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.taste, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
  	</update>

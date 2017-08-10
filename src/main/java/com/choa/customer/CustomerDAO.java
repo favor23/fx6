@@ -43,7 +43,11 @@ public class CustomerDAO implements MemberDAO{
 	
 	
 	public String gradeChecker(String id)throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"gradeChecker", id);
+		 String grade = sqlSession.selectOne(NAMESPACE+"gradeChecker", id);
+		 if(grade==null){
+			 grade = "null";
+		 }
+		 return grade;
 	}
 	
 	
