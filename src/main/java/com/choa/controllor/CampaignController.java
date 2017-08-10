@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.choa.benefit.BenefitDTO;
 import com.choa.campaign.CampaignDTO;
 import com.choa.campaign.CampaignService;
 import com.choa.campaign.SupportDTO;
@@ -71,11 +72,13 @@ public class CampaignController {
 	public void campaignView(Integer campaign_num, Model model) {
 		CampaignDTO campaignDTO = null;
 		java.util.Date date = new java.util.Date();
+		List<BenefitDTO> list = null;
 		
 		long until_end = 0;
 		
 		try {
 			campaignDTO = campaignService.campaignView(campaign_num);
+			list = campaignService.benefitView(campaign_num);
 			
 			campaignDTO.setPer((int)(((double)campaignDTO.getSupport_price()/campaignDTO.getGoal_price())*100));
 				
@@ -89,6 +92,7 @@ public class CampaignController {
 		}
 		
 		model.addAttribute("dto", campaignDTO);
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "campaignCreate", method = RequestMethod.GET)

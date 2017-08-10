@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.choa.benefit.BenefitDTO;
 import com.choa.util.ListInfo;
 
 @Repository
@@ -13,6 +14,10 @@ public class CampaignDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
+	
+	public List<BenefitDTO> benefitView(int campaign_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "benefitView", campaign_num);
+	}
 	
 	public int campaignUp(int campaign_num) throws Exception {
 		return sqlSession.update(NAMESPACE + "campaignUp", campaign_num);

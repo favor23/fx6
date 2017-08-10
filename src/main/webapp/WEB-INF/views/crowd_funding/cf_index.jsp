@@ -8,6 +8,27 @@
 <title>Insert title here</title>
 <c:import url="../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	header {
+		font-family: 'Noto Sans KR';
+	}
+
 	.main_top {
 		width: 100%;
 		height: 250px;
@@ -15,6 +36,7 @@
 		background-color: #0052cc;
 		z-index: 1;
 		position: relative;
+		font-family: 'Iropke Batang', serif;
 	}
 	
 	.main_top:after {
@@ -39,6 +61,7 @@
 		display: inline-block;
 		z-index: 1;
 		position: relative;
+		font-family: 'Jeju Myeongjo', serif;
 	}
 	
 	.main_middle:after {
@@ -100,11 +123,13 @@
 		height: 500px;
 		float: left;
 		overflow: hidden;
+		font-family: 'Jeju Myeongjo', serif;
 	}
 	
 	.carousel2 {
 		width: 60%;
 		float: left;
+		font-family: 'Noto Sans KR';
 	}
 	
 	.nav_left,
@@ -137,6 +162,7 @@
 		margin-top: 100px;
 		background-image: url("../img/cf-img/banner.png");
 		background-color: #0052cc;
+		font-family: 'Jeju Gothic', sans-serif;
 	}
 	
 	.main_side1 {
@@ -244,6 +270,7 @@
 	.main4_wrap {
 		width: 100%;
 		height: 228px;
+		font-family: 'Noto Sans KR';
 	}
 	
 	.main4_1,
@@ -405,7 +432,7 @@
 			        <img src="<c:url value="${newList.campaign_img}" />" alt="Chicago" class="go_view" style="width:100%; cursor: pointer;" accesskey="${newList.campaign_num}">
 			        <div class="carousel-caption">
 			          <h3>${newList.campaign_title}</h3>
-			          <p>${newList.simple_story}</p>
+			          <p style="font-family: 'Jeju Gothic', sans-serif;">${newList.simple_story}</p>
 			        </div>
 			      </div>
 		      </c:forEach>
