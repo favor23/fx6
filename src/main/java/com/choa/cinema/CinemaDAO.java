@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.choa.customer.CustomerDTO;
 import com.choa.movie.MovieDTO;
 import com.choa.util.ListInfo;
 
@@ -19,6 +20,10 @@ public class CinemaDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "CinemaMapper.";
+	
+	public CustomerDTO myTicket(String id){
+		return sqlSession.selectOne("myTicket", id);
+	}
 	
 	public List<MovieDTO> listAll(ListInfo listInfo)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"listAll", listInfo);

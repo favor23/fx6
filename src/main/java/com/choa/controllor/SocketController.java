@@ -65,8 +65,8 @@ public class SocketController {
 	   }
 	
 	
-	   @RequestMapping(value="aaa")
-		public String aaa(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
+	   @RequestMapping(value="movie")
+		public String movie(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();
@@ -118,16 +118,22 @@ public class SocketController {
 			}
 			System.out.println("aaa"+check);
 			if(check==1){
-				return "/chatting/aaa";
+				return "/chatting/movie";
 			}else{
 				return "/index";
 			}
 		}
 	   
 	   
-		@RequestMapping(value="bbb")
-		public void bbb(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
+		@RequestMapping(value="advertising")
+		public void advertising(HttpServletRequest request,Model model, int movieRoomNum) throws Exception{
 			CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+			int check =0;
+			if(customerDTO==null){
+				check=0;
+			}else{
+				check=1;
+			}
 			RoomUserDTO rDto=new RoomUserDTO();
 			List<RoomUserDTO> list = roomUserService.selectList();	
 			int ck=0;
@@ -172,6 +178,7 @@ public class SocketController {
 
 			RoomDTO roomDTO = new RoomDTO();
 			roomDTO = roomService.playtime(movieRoomNum);
+			model.addAttribute("check", check);
 			model.addAttribute("roomDTO", roomDTO);
 			model.addAttribute("count", userar.length);
 			model.addAttribute("str",userar);

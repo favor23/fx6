@@ -222,8 +222,8 @@ ul{
 					
 					<div id="btn_div">
 						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
-						<button class="btn-primary huwon">후원페이지</button>
-						<button class="btn-danger chat">영화시청</button>
+						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
+						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
 			</c:forEach>
@@ -269,9 +269,18 @@ $(".huwon").click(function() {
 	}
 });
 
-	$(".chat").click(function() {
-		window.open("../../chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
-	});
+$(".chat").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="${pageContext.request.contextPath}/loginForm";
+	}else{
+	$.post("${pageContext.request.contextPath}/chatting/ticket", {
+		movie_num:id
+	},function(data){});
+		window.open("${pageContext.request.contextPath}/chatting/advertising?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+	}
+});
 	
 	var now = new Date();
 	var year = now.getFullYear(); // 현재시간중 4자리 연도
