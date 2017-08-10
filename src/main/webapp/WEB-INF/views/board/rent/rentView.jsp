@@ -29,9 +29,10 @@
 	}
 	
 	.midle_top{
-		width: 100%;
+		width: 900px;
 		height: 400px;
 		/* background-color: gray; */
+		margin: 0 auto;
 	}
 	
 	.img_area{
@@ -129,10 +130,10 @@
 		text-align: right;
 	
 	}
-
-
-
-
+ 
+ 
+ 
+ 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
 </head>
@@ -197,7 +198,7 @@
 		<section class="midle_bottom" style="width: 100%; margin-top: 60px; margin-bottom: :30px; margin-left: 70px;">
 			
 			
-			<img src="<c:url value="${view.contents}"/>" alt="Pic"
+			<img src="<c:url value="${view.contents}"/>" alt="Pic" style="margin-left: 200px; margin-bottom: 100px;"
 				 <c:url value="${view.contents}"/>>
 		
 		
@@ -207,8 +208,8 @@
 	
 	</section>
 <script type="text/javascript">
-
-
+ 
+ 
 	$("#cart_btn").click(function() {
 		$("#cart_frm").submit();
 	});
@@ -218,8 +219,8 @@
 		$("#cart_frm").attr("action" , "../../board/order_rent/order_rentInsert");
 		$("#cart_frm").submit();
 	});
-
-
+ 
+ 
 </script>
 <c:import url="../../temp/footer.jsp"/>
 </body>
