@@ -116,7 +116,7 @@ div{
 
 #seekBar{
 	position: relative;
-	width: 360px;
+	width: 60%;
 	bottom: -96%;
 	left: 200px;
 }
@@ -133,6 +133,8 @@ div{
 #etc{
 	width: 100%;
 	height: 13%;
+	font-size: large;
+	
 }
 
 #d2{
@@ -221,6 +223,7 @@ img{
 					</div>
 				</div>
 			<div id="etc">
+				현재 시청자 수 : ${count}
 			</div>
 		</div>
 
@@ -245,7 +248,7 @@ img{
 	<script src="http://demo.dongledongle.com/Scripts/jquery.signalR-2.2.1.min.js"></script>
 	<script type="text/javascript">
 
-	/* ************************************************* 영화 ***************************************************** */
+	/* ************************************************* 영화 ***************************************************** */	
 	function range() {
 		var range=document.getElementById("volume-range").value;
 		var video = document.getElementById("video");
@@ -321,7 +324,6 @@ img{
         else if (divObj.webkitRequestFullscreen) {
           divObj.webkitRequestFullscreen();
         }
-        fsClass.style.display="none";
         inFullScreen = true;
         return;
       }
@@ -471,10 +473,10 @@ img{
 		   /* alert(today_m);
 		   alert(today_h); */
 		   if(cftime<=0){
-				location.href="${pageContext.request.contextPath}/chatting/aaa?movieRoomNum="+movieRoomNum;
+				location.href="${pageContext.request.contextPath}/chatting/movie?movieRoomNum="+movieRoomNum;
 		   }else{
 				setInterval(function() { 
-		  	  	 	location.href="${pageContext.request.contextPath}/chatting/aaa?movieRoomNum="+movieRoomNum;
+		  	  	 	location.href="${pageContext.request.contextPath}/chatting/movie?movieRoomNum="+movieRoomNum;
 				}, cftime*1000);
 		   }
 			
@@ -551,6 +553,12 @@ img{
 		function htmlEncode(value) {
 			var encodedValue = $('<div />').text(value).html();
 			return encodedValue;
+		}
+		
+		var ck = ${check};
+		if(ck==0){
+			alert("로그인이 필요한 서비스 입니다.");
+			window.close();
 		}
 	</script>
 

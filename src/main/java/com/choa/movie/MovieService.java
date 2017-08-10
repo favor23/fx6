@@ -50,6 +50,10 @@ public class MovieService {
 		return movieDAO.movieList4(listInfo);
 	}
 	
+	public List<MovieDTO> movieList5() throws Exception {	
+		return movieDAO.movieList5();
+	}
+	
 	public int movieCount() throws Exception {
 		return movieDAO.movieCount();
 	}

@@ -5,12 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.choa.benefit.BenefitDTO;
 import com.choa.util.ListInfo;
 
 @Service
 public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
+	
+	public List<BenefitDTO> benefitView(int campaign_num) throws Exception {
+		return campaignDAO.benefitView(campaign_num);
+	}
+	
+	public int campaignUp(int campaign_num) throws Exception {
+		return campaignDAO.campaignUp(campaign_num);
+	}
+	
+	public int campaignHit(int campaign_num) throws Exception {
+		return campaignDAO.campaignHit(campaign_num);
+	}
 	
 	public CampaignDTO campaignView(int campaign_num) throws Exception {
 		return campaignDAO.campaignView(campaign_num);

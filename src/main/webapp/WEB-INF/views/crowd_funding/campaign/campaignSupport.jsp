@@ -9,8 +9,26 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
 	body {
 		background-color: #f5f5f0;
+		font-family: 'Noto Sans KR';
 	}
 	
 	.main_top {
@@ -20,6 +38,7 @@
 		background-color: #0052cc;
 		z-index: 1;
 		position: relative;
+		font-family: 'Iropke Batang', serif;
 	}
 	
 	.main_top:after {
@@ -115,10 +134,13 @@
 	
 	.ben_list {
 		width: 100%;
-		height: 100px;
+		height: 130px;
 		margin-bottom: 10px;
 		box-shadow: 1px 1px 5px #adad85;
 		background-color: #f5f5f0;
+		font-family: 'Hanna', sans-serif;
+		padding: 10px;
+		cursor: pointer;
 	}
 	
 	.ben_list:last-child {
@@ -126,7 +148,7 @@
 	}
 	
 	.ben_list:hover {
-		border: 3px solid #0052cc;
+		border: 1px solid #0052cc;
 	}
 	
 	.ben_choice,
@@ -147,7 +169,8 @@
 			if(count<2) {
 				var total = parseInt($(this).attr("title")) + parseInt($(".add_price").val());
 				
-				$(this).attr("class", "btn btn-warning ben_dis");
+				$(this).attr("style", "background-color: #1f1f14; color: white; position: relative;");
+				$(this).attr("class", "ben_list ben_dis");
 				$(this).val("해제");
 				
 				$(".total1").html($(this).attr("title"));
@@ -164,7 +187,8 @@
 			
 			var total = parseInt($(".add_price").val());
 			
-			$(this).attr("class", "btn btn-info ben_choice");
+			$(this).attr("style", "background-color: #f5f5f0; color: black; position: relative;");
+			$(this).attr("class", "ben_list ben_choice");
 			$(this).val("선택");
 			
 			$(".total1").html("");
@@ -197,21 +221,14 @@
 					$(".bene_list").attr("style", "background-color: white; box-shadow: 0px 0px 0px white;");
 					
 					$(data).each(function() {
-						var benefit_title = this.benefit_title;
-						
-						if(benefit_title.length>=9) {
-							benefit_title = benefit_title.substr(0, 9) + "...";
-						}
-						
-						result += '<div class="ben_list">';
-						result += '<span style="font-size: 1.8em; float: left; margin-left: 5px;">' + benefit_title + '</span>';
-						result += '<input type="button" class="btn btn-info ben_choice" value="선택" id="' + this.benefit_num + '" title="' + this.benefit_price + '" accesskey="' + this.benefit_title + '" style="float: right;">';
-						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">원</span>';
+						result += '<div class="ben_list ben_choice" style="position: relative;" id="' + this.benefit_num + '" title="' + this.benefit_price + '" accesskey="' + this.benefit_title + '">';
+						result += '<div style="width: 100%; font-size: 1.2em;">' + this.benefit_title + '</div>';
+						result += '<div class="ben_bottom" style="width: 100%; font-size: 0.9em; color: #6b6b47;">' + this.benefit_contents + '</div>';
+						result += '<div style="width: 100%; position: absolute; bottom: 10px; right: 10px;"><span style="float: right; margin-top: 10px; margin-right: 5px;">원</span>';
 						result += '<span style="float: right; margin-top: 5px; margin-right: 5px; font-size: 1.5em; color: #0052cc;">' + this.benefit_price + '</span>';
-						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">후원금액</span>';
-						result += '<div class="ben_bottom" style="font-size: 0.9em; color: #6b6b47; float: left; padding: 10px;">' + this.benefit_contents + '</div>';
+						result += '<span style="float: right; margin-top: 10px; margin-right: 5px;">후원금액</span></div>';
 						result += '</div>';
-					});					
+					});
 				} else {
 					result += '<h2 style="text-align: center; vertical-align: middle;">등록된 혜택이 없습니다.</h2>';
 				}

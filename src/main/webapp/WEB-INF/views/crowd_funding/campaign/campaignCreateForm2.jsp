@@ -119,7 +119,7 @@
 	$(function() {
 		$('.simple_story').keyup(function (e){
 	        var content = $(this).val();
-	        $('#counter').html(content.length + '/500');
+	        $('#counter').html(content.length + '/240');
 	    });
 	    
 		$('.simple_story').keyup();
@@ -180,7 +180,7 @@
 						<tr>
 							<td><span style="color: red;">*</span>캠페인 요약</td>
 							<td>
-								<textarea rows="5" cols="54" maxlength="500" class="simple_story" name="simple_story" style="border-radius: 4px; border: 1px solid #b8b894; resize: none;"></textarea>
+								<textarea rows="5" cols="54" maxlength="240" class="simple_story" name="simple_story" style="border-radius: 4px; border: 1px solid #b8b894; resize: none;"></textarea>
 								<span id="counter">###</span>
 								<p>입력하신 내용은 캠페인 카드에 보여집니다.</p>
 							</td>

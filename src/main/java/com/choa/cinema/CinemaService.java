@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.choa.customer.CustomerDTO;
 import com.choa.movie.MovieDAO;
 import com.choa.movie.MovieDTO;
 import com.choa.util.ListInfo;
@@ -16,6 +17,10 @@ public class CinemaService {
 	private CinemaDAO cinemaDAO;
 	@Autowired
 	private MovieDAO movieDAO;
+	
+	public CustomerDTO myTicket(String id){
+		return cinemaDAO.myTicket(id);
+	}
 	
 	public List<MovieDTO> listAll(ListInfo listInfo)throws Exception{
 		int result = cinemaDAO.countAll(listInfo);

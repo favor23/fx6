@@ -1,11 +1,18 @@
 package com.choa.fx6;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -52,8 +59,8 @@ public class HomeController {
 	}
 	//인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!
 	@RequestMapping(value="/index")
-	public void index(Model model){	
-		cfIndex(model);
+	public void index(HttpServletRequest request){		
+		fileLoad(request);
 	}
 	@RequestMapping(value="/defaultPage")
 	public void defaultPage(){		
@@ -71,22 +78,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/index_movielist/m1")
-	public void m1(Model model,int num){
-		//List<MovieDTO> list=movieController.movieList(1);
-		movieController.movieList(1,model);
-		//model.addAttribute("list", list);
+	public void m1(Model model,int num) throws Exception{
+		if(num==1){
+		movieController.movieList2(1,model);
+		}else if(num==2){
+		movieController.movieList4(1,model);
+		}else if(num==3){
+		movieController.movieList3(1,model);
+		}else{
+		movieController.movieList5(model);
+		}
 		model.addAttribute("num",num);
 		
 	}
-	@RequestMapping(value="/index_movielist/m2")
-	public void m2(){}
-	
-	@RequestMapping(value="/index_movielist/m3")
-	public void m3(){}
-	
-	@RequestMapping(value="/index_movielist/m4")
-	public void m4(){}
-	
 	@RequestMapping(value="/index_movielist/modal_ticket")
 	public void modal_ticket(String man,int movie_num,Model model){
 		movieController.movieView(movie_num, model);
@@ -115,4 +119,98 @@ public class HomeController {
 		model.addAttribute("bestList2", list3);
 		model.addAttribute("bestList3", list4);
 	}
+	
+	
+	
+//////////////////시연용파일복사 //////////////////////////////////////////////////////////////////////////////////////
+	
+
+
+	
+private void fileLoad(HttpServletRequest request) {
+
+String path = "C:/spring/springworkspace/movie_fx6/src/main/webapp/resources/upload";
+String path3 = "E:/kh/Spring/workspace/final_fx6/src/main/webapp/resources/upload";
+File dirFile=new File(path);
+File dirFile2=new File(path3);
+File []fileList=dirFile.listFiles();
+File []fileList2=dirFile2.listFiles();
+
+for(File tempFile2 : fileList2) {
+	if(tempFile2.isFile()) {
+		String tempPath = tempFile2.getParent();
+		String tempFileName = tempFile2.getName();
+		String saveDir = request.getSession().getServletContext().getRealPath("upload");
+		File path2 = new File(saveDir);
+		
+		if(!path2.exists()) {
+			path2.mkdirs();
+		}
+		
+		File file = new File(tempPath, tempFileName);
+		File mfile = new File(saveDir, tempFileName);
+		
+		try {
+			copyFile(file, mfile);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+for(File tempFile : fileList) {
+if(tempFile.isFile()) {
+String tempPath=tempFile.getParent();
+String tempFileName=tempFile.getName();
+
+String saveDir = request.getSession().getServletContext().getRealPath("upload");
+
+File path2 = new File(saveDir);
+if(!path2.exists()) {
+	path2.mkdirs();
+}
+
+File file = new File(tempPath, tempFileName);
+File mfile = new File(saveDir, tempFileName);
+
+try {
+copyFile(file, mfile);
+} catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+}
+}
+}
+
+
+private void copyFile(File file, File mfile) throws Exception{
+InputStream inStream = null;
+OutputStream outStream = null;	 	  
+
+
+mfile.createNewFile();
+
+try{
+inStream = new FileInputStream(file); //원본파일
+outStream = new FileOutputStream(mfile); //이동시킬 위치
+
+byte[] buffer = new byte[1024];
+
+int length;
+
+while ((length = inStream.read(buffer)) > 0){
+outStream.write(buffer, 0, length);
+}
+}catch(Exception e){
+e.printStackTrace();
+}finally{
+inStream.close();
+outStream.close();
+}
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

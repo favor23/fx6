@@ -8,13 +8,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.choa.benefit.BenefitDTO;
 import com.choa.campaign.CampaignDTO;
 import com.choa.campaign.CampaignService;
+import com.choa.campaign.SupportDTO;
 import com.choa.file.FileService;
 import com.choa.util.ListInfo;
 
@@ -24,25 +28,57 @@ public class CampaignController {
 	@Autowired
 	private CampaignService campaignService;
 	
+	@RequestMapping(value = "campaignBadge/{campaign_num}", method = RequestMethod.GET)
+	@ResponseBody
+	public CampaignDTO campaignBadge(@PathVariable("campaign_num") Integer campaign_num) {
+		CampaignDTO campaignDTO = null;
+		
+		try {
+			campaignDTO = campaignService.campaignView(campaign_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return campaignDTO;
+	}
+	
+	@RequestMapping(value = "campaignUp", method = RequestMethod.POST)
+	public String campaignUp(Integer campaign_num) {
+		int result = 0;
+		
+		try {
+			result = campaignService.campaignUp(campaign_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "crowd_funding/campaign/campaignView?campaign_num=" + campaign_num;
+	}
+	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.GET)
 	public void campaignSupport(Integer campaign_num, Model model) {
 		model.addAttribute("campaign_num", campaign_num);
 	}
 	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.POST)
-	public void campaignSupport() {
-		
+	public void campaignSupport(SupportDTO supportDTO, HttpSession session) {
+		session.setAttribute("support", supportDTO);
+		// 경로 추가
 	}
 	
 	@RequestMapping(value = "campaignView", method = RequestMethod.GET)
 	public void campaignView(Integer campaign_num, Model model) {
 		CampaignDTO campaignDTO = null;
 		java.util.Date date = new java.util.Date();
+		List<BenefitDTO> list = null;
 		
 		long until_end = 0;
 		
 		try {
 			campaignDTO = campaignService.campaignView(campaign_num);
+			list = campaignService.benefitView(campaign_num);
 			
 			campaignDTO.setPer((int)(((double)campaignDTO.getSupport_price()/campaignDTO.getGoal_price())*100));
 				
@@ -56,6 +92,7 @@ public class CampaignController {
 		}
 		
 		model.addAttribute("dto", campaignDTO);
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "campaignCreate", method = RequestMethod.GET)
@@ -167,6 +204,8 @@ public class CampaignController {
 		
 		try {
 			num = campaignService.numSelect();
+			
+			campaignDTO.setStory(campaignDTO.getStory().replace("\r\n", "<br>"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
