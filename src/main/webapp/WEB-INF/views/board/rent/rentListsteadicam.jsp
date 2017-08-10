@@ -25,7 +25,7 @@ $(".hover").mouseleave(
 	
 				@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
 				figure.snip1436 {
-				  font-family: 'Raleway', Arial, sans-serif;
+				  font-family: '210 OmniGothic 030';
 				  position: relative;
 				  float: left;
 				  overflow: hidden;
@@ -34,11 +34,11 @@ $(".hover").mouseleave(
 				  max-width: 250px;
 				  max-height: 250px;
 				  width: 100%;
-				  color: white;
+				  color: black;
 				  text-align: left;
-				  background-color: black; /* 여기가 배경 바뀌는 부분 */ 
-				  font-size: 17px;
-				 border: 2px #cccccc solid;
+				  background-color: white; /* 여기가 배경 바뀌는 부분 */ 
+				  font-size: 14px;
+				 /* border: 1px #cccccc solid; */
 				 margin-left: 15px;
 				 
 				 
@@ -92,16 +92,16 @@ $(".hover").mouseleave(
 				  margin: 0 0 15px;
 				}
 				figure.snip1436 .read-more {
-				  border: 2px solid white;
+				  border: 2px solid black;
 				  padding: 0.5em 1em;
 				  font-size: 0.8em;
 				  text-decoration: none;
-				  color: white;
+				  color: black;
 				  display: inline-block;
 				}
 				figure.snip1436 .read-more:hover {
-				  background-color: white;
-				  color: black;
+				  background-color: black;
+				  color: white;
 				}
 				figure.snip1436:hover img,
 				figure.snip1436.hover img {
@@ -109,6 +109,7 @@ $(".hover").mouseleave(
 				  animation: snip1436 0.45s linear forwards;
 				  -webkit-animation-iteration-count: 1;
 				  animation-iteration-count: 1;
+				 
 				}
 				figure.snip1436:hover figcaption,
 				figure.snip1436.hover figcaption {
@@ -146,6 +147,10 @@ $(".hover").mouseleave(
 				body {
 				  background-color: #212121;
 				}
+				
+				figure.snip1436:HOVER{
+					 border: 2px solid black;
+				}
 					
 	
 	
@@ -155,7 +160,7 @@ $(".hover").mouseleave(
 	.all{
 		
 		width: 100%;
-		height: 1000px;
+		height: 1300px;
 	
 	}
 	
@@ -205,13 +210,13 @@ $(".hover").mouseleave(
 
 	.pol{
 				
-				/* border : 1px solid black; */
-				webkit-box-shadow : 5px 5px 5px #adad85;
+				
+				/* webkit-box-shadow : 5px 5px 5px #adad85;
         		moz-box-shadow : 5px 5px 5px #adad85;
-      			box-shadow: 3px 3px 3px #d9d9d9;
+      			box-shadow: 3px 3px 3px #d9d9d9; */
       			width: 280px; 
       			height: 380px; 
-      			background-color: #fcfafc; 
+      			/* background-color: #fcfafc;  */
       			float: left; 
       			margin-left: 25px;
 	
@@ -225,6 +230,10 @@ $(".hover").mouseleave(
 		margin: 0 auto;
 		margin-top: 280px;
 		/* font-family: 'HanS Calli 보통'; */
+		
+		
+		
+		 
 	}
 	
 	
@@ -266,6 +275,7 @@ $(".hover").mouseleave(
 	        <img src="<c:url value="/img/rent-img/rentmain7.jpg" />" alt="Los Angeles" style="width:100%; height: 300px; ">
 	        <div class="carousel-caption">
 	         
+
 	        </div>
 	      </div>
 	
@@ -280,10 +290,12 @@ $(".hover").mouseleave(
 	        <img src="<c:url value="/img/rent-img/rentmain5.jpg" />" alt="New York" style="width:100%; height: 300px;">
 	        <div class="carousel-caption">
 	          
+
 	        </div>
 	      </div>
 	  
 	    </div>
+	    
 	
 	    <!-- Left and right controls -->
 	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -295,10 +307,11 @@ $(".hover").mouseleave(
 	      <span class="sr-only">Next</span>
 	    </a>
 	  </div>
+
 	  
-	  <hr>
-  		
-  	
+	  <hr style="border: 1px black solid; width: 95%;">
+	 
+ 	
   	
   	
   	
@@ -311,19 +324,25 @@ $(".hover").mouseleave(
   			<figure class="snip1436">
   				<img src="<c:url value="${dto.list_img}"/>" class="imgTitle" id="${dto.num}" alt="Pic"  >
   				<figcaption>
-    			<h3 style="font-size: 14px;">${dto.product_name}</h3>
-    			<p>${dto.price} won</p><a href="rentView?num=${dto.num}" class="read-more">Read More</a>
+    			<p>${dto.product_info}</p><a href="rentView?num=${dto.num}" class="read-more">Read More</a>
   			</figcaption>
 				</figure>
 				<div>
-					<div class="pol_text">
-						<div>${dto.product_info}</div>
+					<div class="pol_text" style="text-align: center;">
+
+    					<h3 style="font-size: 14px; font-weight: 700">${dto.product_name}</h3>
+						<div style=" font-family:'Raleway', Arial, sans-serif;font-size: 14px; color: #282828;">${dto.price} won</div>
+						<div></div>
+
+					
+
 					</div>
 				</div>
 		</div>		
 				</c:if>
   		</c:forEach>
   	
+  
   		
   	</section>
    </section>
