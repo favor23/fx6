@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<script
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>Insert title here</title>
 <style type="text/css">
 /* ------------------------------------ Click on login and Sign Up to  changue and view the effect
 ---------------------------------------
@@ -12,6 +17,23 @@
 	padding: 0px;
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.cotn_principal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
+	background: #cfd8dc; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #cfd8dc 0%, #607d8b 100%, #b0bec5 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc',
+		endColorstr='#b0bec5', GradientType=1);
+	/* IE6-9 fallback on horizontal gradient */
 }
 
 .cont_centrar {
@@ -39,8 +61,10 @@
 }
 
 .cont_forms {
-	position:relative;
+	position: absolute;
 	overflow: hidden;
+	top: 100px;
+	left: 0px;
 	width: 320px;
 	height: 320px;
 	background-color: #eee;
@@ -49,13 +73,12 @@
 	-ms-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-	z-index: 1;
 }
 
 .cont_forms_active_login {
-	
 	box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
 	height: 420px;
+	top: 20px;
 	left: 0px;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -65,10 +88,65 @@
 }
 
 .cont_forms_active_sign_up {
-position:re;
 	box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
 	height: 420px;
 	top: 20px;
+	left: 320px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.cont_img_back_grey {
+	position: absolute;
+	width: 950px;
+	top: -80px;
+	left: -116px;
+}
+
+.cont_img_back_grey>img {
+	width: 100%;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	opacity: 0.2;
+	animation-name: animar_fondo;
+	animation-duration: 20s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.cont_img_back_ {
+	position: absolute;
+	width: 950px;
+	top: -80px;
+	left: -116px;
+}
+
+.cont_img_back_>img {
+	width: 100%;
+	opacity: 0.3;
+	animation-name: animar_fondo;
+	animation-duration: 20s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.cont_forms_active_login>.cont_img_back_ {
+	top: 0px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.cont_forms_active_sign_up>.cont_img_back_ {
+	top: 0px;
+	left: -435px;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-ms-transition: all 0.5s;
@@ -77,11 +155,11 @@ position:re;
 }
 
 .cont_info_log_sign_up {
-position:relative;
-display:inline-block;
-	width: 260px;
-	height: 1px;
-	z-index: 2;
+	position: absolute;
+	width: 320px;
+	height: 320px;
+	top: 100px;
+	z-index: 1;
 }
 
 .col_md_login {
@@ -152,7 +230,7 @@ background text
 .cont_ba_opcitiy {
 	position: relative;
 	background-color: rgba(120, 144, 156, 0.55);
-	width: 100%;
+	width: 80%;
 	border-radius: 3px;
 	margin-top: 15px;
 	padding: 15px 0px;
@@ -255,6 +333,10 @@ to {
 	transition: all 0.5s;
 }
 
+.cont_forms_active_login {
+	z-index: 2;
+}
+
 .cont_forms_active_login>.cont_form_login {
 	
 }
@@ -317,6 +399,13 @@ to {
 	font-weight: bold;
 }
 </style>
+</head>
+<body>
+
+	<div class="cotn_principal">
+		<div class="cont_centrar">
+
+			<div class="cont_login">
 				<div class="cont_info_log_sign_up">
 					<div class="col_md_login">
 						<div class="cont_ba_opcitiy">
@@ -329,8 +418,21 @@ to {
 					</div>
 				</div>
 
+
+				<div class="cont_back_info">
+					<div class="cont_img_back_grey">
+						<img
+							src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d"
+							alt="" />
+					</div>
+
+				</div>
 				<div class="cont_forms">
-					
+					<div class="cont_img_back_">
+						<img
+							src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d"
+							alt="" />
+					</div>
 					<div class="cont_form_login">
 						<a href="#" onclick="ocultar_login_sign_up()"><i
 							class="material-icons">X</i></a>
@@ -341,12 +443,22 @@ to {
 							type="password" placeholder="Password" id="input_pw" />
 						<button class="btn_login" onclick="cambiar_login(2)">LOGIN</button>
 					</div>
+
 					<div class="cont_form_sign_up">
 						<a href="#" onclick="ocultar_login_sign_up()"><i
 							class="material-icons">X</i></a>
+
 					</div>
 
 				</div>
+
+			</div>
+		</div>
+	</div>
+	<form action="" method="post" id="frm">
+		<input type="hidden" name="id" id="hID" autocomplete="off"> <input
+			type="hidden" name="pw" id="hPW" autocomplete="off">
+	</form>
 	<script type="text/javascript">
 		/* ------------------------------------ Click on login and Sign Up to  changue and view the effect
 		 ---------------------------------------
@@ -374,7 +486,6 @@ to {
 				document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
 				document.querySelector('.cont_form_login').style.display = "block";
 				document.querySelector('.cont_form_sign_up').style.opacity = "0";
-				$(".cont_forms").css("z-index","3");
 			}
 
 			setTimeout(function() {
@@ -397,7 +508,6 @@ to {
 			document.querySelector('.cont_forms').className = "cont_forms";
 			document.querySelector('.cont_form_sign_up').style.opacity = "0";
 			document.querySelector('.cont_form_login').style.opacity = "0";
-			$(".cont_forms").css("z-index","1");
 
 			setTimeout(
 					function() {
@@ -413,6 +523,6 @@ to {
 				location.href=data;		
 			});
 		}
-		
-		
 	</script>
+</body>
+</html>

@@ -182,33 +182,33 @@ width: 250px;
 				<td class="jf1">선호하는 장르</td>
 					<td colspan="2"  class="jf2">
 						<p class="p_tag">
-						<span class="span">액션 : <input type="checkbox" name="taste" value="액션" class="action uc">&nbsp;&nbsp;</span>
-						<span class="span">모험 : <input type="checkbox" name="taste" value="모험" class="adventure uc">&nbsp;&nbsp;</span>
-						<span class="span">추리 : <input type="checkbox" name="taste" value="추리" class="reason uc">&nbsp;&nbsp;</span>
-						<span class="span">전쟁 : <input type="checkbox" name="taste" value="전쟁" class="warfare uc">&nbsp;&nbsp;</span>
+						<span class="span">액션 : <input type="checkbox" name="taste" value="액션" class="액션 uc">&nbsp;&nbsp;</span>
+						<span class="span">모험 : <input type="checkbox" name="taste" value="모험" class="모험 uc">&nbsp;&nbsp;</span>
+						<span class="span">추리 : <input type="checkbox" name="taste" value="추리" class="추리 uc">&nbsp;&nbsp;</span>
+						<span class="span">전쟁 : <input type="checkbox" name="taste" value="전쟁" class="전쟁 uc">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">역사 : <input type="checkbox" name="taste" value="역사" class="history uc">&nbsp;&nbsp;</span>
-						<span class="span">다큐 : <input type="checkbox" name="taste" value="다큐" class="document uc">&nbsp;&nbsp;</span>
-						<span class="span">공포 : <input type="checkbox" name="taste" value="공포" class="horror uc">&nbsp;&nbsp;</span>
-						<span class="span">가족 : <input type="checkbox" name="taste" value="가족" class="family uc">&nbsp;&nbsp;</span>
+						<span class="span">역사 : <input type="checkbox" name="taste" value="역사" class="역사 uc">&nbsp;&nbsp;</span>
+						<span class="span">다큐 : <input type="checkbox" name="taste" value="다큐" class="다큐 uc">&nbsp;&nbsp;</span>
+						<span class="span">공포 : <input type="checkbox" name="taste" value="공포" class="공포 uc">&nbsp;&nbsp;</span>
+						<span class="span">가족 : <input type="checkbox" name="taste" value="가족" class="가족 uc">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">판타지 : <input type="checkbox" name="taste" value="판타지" class="fantasy uc">&nbsp;&nbsp;</span>
-						<span class="span">누아르 : <input type="checkbox" name="taste" value="누아르" class="noir uc">&nbsp;&nbsp;</span>
-						<span class="span">코미디 : <input type="checkbox" name="taste" value="코미디" class="comic uc">&nbsp;&nbsp;</span>
-						<span class="span">드라마 : <input type="checkbox" name="taste" value="드라마" class="drama uc">&nbsp;&nbsp;</span>
+						<span class="span">판타지 : <input type="checkbox" name="taste" value="판타지" class="판타지 uc">&nbsp;&nbsp;</span>
+						<span class="span">누아르 : <input type="checkbox" name="taste" value="누아르" class="누아르 uc">&nbsp;&nbsp;</span>
+						<span class="span">코미디 : <input type="checkbox" name="taste" value="코미디" class="코미디 uc">&nbsp;&nbsp;</span>
+						<span class="span">드라마 : <input type="checkbox" name="taste" value="드라마" class="드라마 uc">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="뮤지컬" class="musical uc">&nbsp;&nbsp;</span>
-						<span class="span">스포츠 : <input type="checkbox" name="taste" value="스포츠" class="sports uc">&nbsp;&nbsp;</span>
-						<span class="span">스릴러 : <input type="checkbox" name="taste" value="스릴러" class="thriller uc">&nbsp;&nbsp;</span>
-						<span class="span">로맨스 : <input type="checkbox" name="taste" value="로맨스" class="romance uc">&nbsp;&nbsp;</span>
+						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="뮤지컬" class="뮤지컬 uc">&nbsp;&nbsp;</span>
+						<span class="span">스포츠 : <input type="checkbox" name="taste" value="스포츠" class="스포츠 uc">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="스릴러" class="스릴러 uc">&nbsp;&nbsp;</span>
+						<span class="span">로맨스 : <input type="checkbox" name="taste" value="로맨스" class="로맨스 uc">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">미스터리 : <input type="checkbox" name="taste" value="미스터리" class="mystery uc">&nbsp;&nbsp;</span>
-						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="애니메이션" class="animation uc">&nbsp;&nbsp;</span>
-						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="SF" class="sf uc">&nbsp;&nbsp;</span>
+						<span class="span">미스터리 : <input type="checkbox" name="taste" value="미스터리" class="미스터리 uc">&nbsp;&nbsp;</span>
+						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="애니메이션" class="애니메이션 uc">&nbsp;&nbsp;</span>
+						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="SF" class="SF uc">&nbsp;&nbsp;</span>
 						</p>
 					</td>
 				</tr>

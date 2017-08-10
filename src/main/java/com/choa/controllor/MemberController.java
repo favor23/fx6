@@ -31,6 +31,8 @@ import com.choa.oauth.NaverService;
 import com.choa.pr.PrDTO;
 import com.choa.prfile.PrFileDTO;
 import com.choa.prfile.PrFileService;
+import com.choa.required.RequiredDTO;
+import com.choa.required.RequiredService;
 import com.choa.taste.TasteDTO;
 import com.choa.util.ListInfo;
 
@@ -40,55 +42,65 @@ public class MemberController {
 
 	@Autowired
 	private CustomerServiceImpl customerService;
-	
+
 	@Autowired
 	private MovieService movieService;
-	
+
 	@Autowired
 	private NaverService naverService;
-	
+
 	@Autowired
 	private AdminServiceImpl adminService;
-	
+
 	@Autowired
 	private PrFileService fileService;
-	
+
 	@Autowired
 	private Hash hash;
-	
+
 	@Autowired
 	private RequiredController requiredController;
-	
+
+	@Autowired
+	private RequiredService requiredService;
+
+
 	@RequestMapping(value="/member/myMovieReq")
-	public void myMovieReq(ListInfo listInfo,Model model){
-		requiredController.requiredList(model, listInfo);
+	public void myMovieReq(Model model)throws Exception{
+		List<RequiredDTO> list = requiredService.requiredListAll();
+		model.addAttribute("list",list);
+
 	}
-	
+
 	@RequestMapping(value="/member/dropUser")
 	public String dropUser(String id)throws Exception{
 		int num = customerService.dropUser(id);
 		return "/commons/thanks";
 	}
+
+	@RequestMapping(value="/member/dropUserCheck",method=RequestMethod.GET)
+	public String dropUserPage()throws Exception {
+		return "/member/dropUser";
+	}
 	
-	
-	@RequestMapping(value="/member/dropUserCheck")
+	@RequestMapping(value="/member/dropUserCheck",method=RequestMethod.POST)
 	public String dropUserCheck(MemberDTO memberDTO,Model model)throws Exception {
 		int num=customerService.dropUserCheck(memberDTO);
 		model.addAttribute("message", num);
 		return "/commons/ajaxResult";
 	}
-	
+
 	@RequestMapping(value="/naverJoin")
 	public String imTester(CustomerDTO customerDTO)throws Exception{
 		naverService.join(customerDTO);
 		return "/commons/thanksToJoin";
 	}
-	
+
 	@RequestMapping(value="/loginForm")
 	public String loginForm()throws Exception{
 		return "/member/login";
 	}
-	
+
 	@RequestMapping(value="member/joinForm",method=RequestMethod.POST)
 	public void readThis(String agree,Model model)throws Exception{
 		if(agree.equals("ok")){
@@ -97,30 +109,30 @@ public class MemberController {
 			model.addAttribute("check",false);
 		}
 	}
-	
+
 	@RequestMapping(value="/member/myGenre",method=RequestMethod.GET)
 	public void callGraphPage(String id,Model model)throws Exception{
-		
+
 	}
-	
+
 	@RequestMapping(value="/member/myGenre",method=RequestMethod.POST)
 	public void graph1(int num,Model model)throws Exception{
 		MovieDTO movieDTO = null;
-		
+
 		try {
 			movieDTO = movieService.movieView(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		model.addAttribute("dto", movieDTO);
 		MovieRcdDTO movieRcdDTO = new MovieRcdDTO();
 		movieRcdDTO = movieService.rcd(num);
 		model.addAttribute("rcd", movieRcdDTO);
 	}
-	
-	
+
+
 	@RequestMapping(value="/member/reportUser",method=RequestMethod.GET)
 	public void reportPage(BanlistDTO banlistDTO,Model model)throws Exception{
 		model.addAttribute("blist", banlistDTO);
@@ -133,11 +145,11 @@ public class MemberController {
 			message="done";
 			model.addAttribute("message", message);
 		}
-			return "/commons/ajaxResult";
+		return "/commons/ajaxResult";
 	}
-	
-	
-	
+
+
+
 	@RequestMapping(value="member/idCheck")
 	public ModelAndView idCheck(String id)throws Exception{
 		CustomerDTO customerDTO = new CustomerDTO();
@@ -160,7 +172,7 @@ public class MemberController {
 		model.addAttribute("path","../member/myPage");
 		return "/commons/result";
 	}
-	
+
 	@RequestMapping(value="member/myPr",method=RequestMethod.GET)
 	public void pr1(CustomerDTO customerDTO,Model model)throws Exception{
 		PrFileDTO fileDTO = new PrFileDTO();
@@ -174,19 +186,19 @@ public class MemberController {
 			model.addAttribute("prDTO", null);
 		}		
 	}
-	
-	
+
+
 	public PrFileDTO fileView(String id)throws Exception{		
 		PrFileDTO fileDTO = fileService.view(id);
 		return fileDTO;
 	}
-	
-	
+
+
 	@RequestMapping(value="member/list")
 	public String test1()throws Exception{
 		return "/member/list";
 	}
-	
+
 	@RequestMapping(value = "member/myGenreList", method = RequestMethod.POST)
 	public void movieList(Integer curPage,String[] ar,Model model) {
 		List<MovieDTO> list = null;
@@ -212,8 +224,8 @@ public class MemberController {
 		}
 		return "/member/myGenreList";
 	}
-	
-	
+
+
 	//join!Form
 	@RequestMapping(value="member/join")
 	public String join()throws Exception{
@@ -226,73 +238,72 @@ public class MemberController {
 		session.invalidate();
 		return "/index";
 	}	
-	
+
 	@RequestMapping(value="member/memberUpdate")
 	public void memberUpdate()throws Exception{
 	}
-	
+
 	@RequestMapping(value="member/myMovie")
 	public String myMovie()throws Exception{
 		return "member/myMovie";
 	}
-	
+
 	@RequestMapping(value="member/memberInfo")
 	public String memberInfo()throws Exception{
 		return "member/memberInfo";
 	}
-	
+
 	@RequestMapping(value="commons/thanksToJoin")
 	public void thanksToJoin()throws Exception{
 	}
-	
+
 	//joinProccess
 	@RequestMapping(value="/member/customerJoin", method=RequestMethod.POST)
 	public String join(CustomerDTO customerDTO)throws Exception{
 		customerDTO.setPw(hash.hashtest(customerDTO));
-		
+
 		customerService.join(customerDTO);
 		return "commons/thanksToJoin";
 	}
-	
+
 	@RequestMapping(value="member/customerUpdate",method=RequestMethod.POST)
 	public String update(CustomerDTO customerDTO,HttpSession session)throws Exception{
 		customerDTO.setPw(hash.hashtest(customerDTO));
 		int num = customerService.update(customerDTO);
 		if(num>0){
-		customerDTO =(CustomerDTO)customerService.login(customerDTO);
+			customerDTO =(CustomerDTO)customerService.login(customerDTO);
 			if(customerDTO!=null){
 				session.setAttribute("member",customerDTO);
 			}
 		}			
 		return "member/myPage";
 	}
-	
+
 
 	//loginProccess
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
 	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
 		memberDTO.setPw(hash.hashtest(memberDTO));
 		String grade = customerService.gradeChecker(memberDTO.getId());
-		String message = "일치하는 아이디와 패스워드가 없습니다.";
-		String path="member/login";//로그인 실패시 경로.
-		if(grade.equals("admin")){
-			memberDTO = adminService.login(memberDTO);
-			if (memberDTO != null) {
-				session.setAttribute("member", memberDTO);
-				path="/index";
+		int message = 0; //로그인에 실패했을 경우. 아이디가 있는데 비밀번호가 틀렸음.
+			if(grade.equals("admin")){
+				memberDTO = adminService.login(memberDTO);
+				if (memberDTO != null) {
+					session.setAttribute("member", memberDTO);
+					message=1; // 로그인에 성공했을 경우.
+				}
+			}else if(grade.equals("null")){
+				message=2;	//아이디가 없을 경우.
+			}else {
+				memberDTO = customerService.login(memberDTO);
+				if(memberDTO != null){
+					session.setAttribute("member",memberDTO);
+					message =1;
+				}
 			}
-		}else {
-			memberDTO = customerService.login(memberDTO);
-			if(memberDTO != null){
-				session.setAttribute("member",memberDTO);
-				message = "success";
-				path="/index";
-			}
-			model.addAttribute("message", message);
-
-
-		}
-		return path;
+		
+		model.addAttribute("message", message);
+		return "/commons/ajaxResult";
 	}
 
 	@RequestMapping(value="member/delete",method=RequestMethod.POST)
@@ -301,27 +312,27 @@ public class MemberController {
 		if(result>0){
 			session.invalidate();
 		}
-			
+
 		return "../commons/thanks";
-		
+
 	}
-	
+
 
 	//마이페이지 나누기 변경
-		@RequestMapping(value="member/myPage")
-		public String myPage(HttpServletRequest request, Model model)throws Exception{
-			MemberDTO memberDTO=(MemberDTO)request.getSession().getAttribute("member");
-			System.out.println(memberDTO.getGrade());
-			if(memberDTO.getGrade().equals("admin")){
-				List<AdminDTO> list=new ArrayList<AdminDTO>();
-				list=adminService.selectlist();
-				model.addAttribute("list", list);
-				return "/admin/adminPage";
-			}
-			else{
-			return "/member/myPage";
-			}
+	@RequestMapping(value="member/myPage")
+	public String myPage(HttpServletRequest request, Model model)throws Exception{
+		MemberDTO memberDTO=(MemberDTO)request.getSession().getAttribute("member");
+		System.out.println(memberDTO.getGrade());
+		if(memberDTO.getGrade().equals("admin")){
+			List<AdminDTO> list=new ArrayList<AdminDTO>();
+			list=adminService.selectlist();
+			model.addAttribute("list", list);
+			return "/admin/adminPage";
 		}
+		else{
+			return "/member/myPage";
+		}
+	}
 
 
 
