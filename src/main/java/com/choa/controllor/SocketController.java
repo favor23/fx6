@@ -73,7 +73,7 @@ public class SocketController {
 			int ck=0;
 			rDto.setNum(movieRoomNum);
 			String [] playar = customerDTO.getPlayView().split("/");
-			
+			System.out.println("movieroomnum : "+movieRoomNum);
 			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");
 			for (int j = 0; j < userar.length; j++) {
 				if(userar[j].equals(customerDTO.getId())){
@@ -104,14 +104,19 @@ public class SocketController {
 			model.addAttribute("str", userar);
 			model.addAttribute("list", list);
 			int check=0;
+			String movieNum = String.valueOf(movieRoomNum);
 			for(int i=0; i<playar.length;i++){
-				if(!playar[i].equals(movieRoomNum)){
+				System.out.println("playar : "+playar[i]);
+				if(!playar[i].equals(movieNum)){
 					check=0;
+					System.out.println("if:"+check);
 				}else{
 					check=1;
+					System.out.println("else:"+check);
 					break;
 				}
 			}
+			System.out.println("aaa"+check);
 			if(check==1){
 				return "/chatting/aaa";
 			}else{
@@ -137,7 +142,9 @@ public class SocketController {
 			
 			String [] userar = list.get(movieRoomNum-1).getUser_array().split("/");
 			
+			
 			for(int q=0;q<userar.length;q++){
+				System.out.println(userar[q]);
 				if(!userar[q].equals(customerDTO.getId())){
 					rDto.setUser_array(list.get(movieRoomNum-1).getUser_array()+"/"+customerDTO.getId());
 					ck=1;
@@ -200,8 +207,10 @@ public class SocketController {
 			}else{
 				if(str.equals("")){
 					str="0";
+					System.out.println("if"+str);
 				}else{
 					str = str+"/"+ticket[i];
+					System.out.println("else : "+str);
 				}
 			}
 		}

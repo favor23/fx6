@@ -18,6 +18,7 @@ import com.choa.paySystem.Bank;
 import com.choa.payment.PaymentDTO;
 import com.choa.payment.movie.PaymentMovieDTO;
 import com.choa.payment.movie.PaymentMovieServiceImpl;
+import com.choa.util.ListInfo;
 
 @Controller
 public class PaymentMovieController {
@@ -26,9 +27,23 @@ public class PaymentMovieController {
 	private PaymentMovieServiceImpl paymentMovieServiceImpl;
 	@Inject
 	private MovieController movieController;
+	@Inject
+	private CinemaController cinemaController;
 	
 	@RequestMapping(value="/paySystem/pay24", method=RequestMethod.POST)
-	public void pay24(MovieDTO movieDTO, HttpSession session, Model model){//가격
+	public String pay24(MovieDTO movieDTO,String man, HttpSession session, Model model,HttpServletRequest request,ListInfo listInfo) throws Exception{//가격
+		CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+		System.out.println(customerDTO.getTicket());
+		System.out.println(movieDTO.getMovie_num());
+		String[] str_arry=customerDTO.getTicket().split("/");		
+		for(int j=0;j<str_arry.length;j++){
+			if(movieDTO.getMovie_num()==Integer.parseInt(str_arry[j])){
+				System.out.println(str_arry[j]);
+				System.out.println(man);
+				cinemaController.cinema_list(1,model,request,listInfo); 
+				return man;
+			}
+		}
 		try {
 			movieDTO=movieController.movieViewdto(movieDTO.getMovie_num(), model);
 		} catch (Exception e) {
@@ -43,6 +58,7 @@ public class PaymentMovieController {
 		}
 		session.setAttribute("list", list);
 		session.setAttribute("totalpay",totalpay);
+		return "/paySystem/pay24";
 	}
 	
 	@RequestMapping(value="/paySystem/pay24")
