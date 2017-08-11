@@ -7,7 +7,7 @@
 <c:import url="temp/bootStrap.jsp" />
 <link href="<c:url value="/css/index.css" />" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화를 찍으시조</title>
 </head>
 <body>
 	<c:import url="temp/header.jsp" />
@@ -134,16 +134,12 @@
 							<div>
 								<img src="<c:url value="/img/index/writer1.jpg" />" style="width:100%">
 							</div>
-							<div>
-								<img src="<c:url value="/img/index/actor1.jpg" />" style="width: 101%">
-							</div>
 						</div>
-						<div class="div3_d2list_2"><div>
-								<img src="<c:url value="/img/index/니가.png" />" style="width: 100%; height: 213px;">
-							</div>
+						<div class="div3_d2list_2">
 							<div>
-								<img src="<c:url value="/img/index/후원기.png" />" style="width: 101%">
+								<img src="<c:url value="/img/index/actor1.jpg" />" style="width: 100%">
 							</div>
+						
 							</div>
 					</div>
 				</div>

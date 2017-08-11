@@ -92,9 +92,8 @@ public class HomeController {
 		
 	}
 	@RequestMapping(value="/index_movielist/modal_ticket")
-	public void modal_ticket(String man,int movie_num,Model model){
+	public void modal_ticket(int movie_num,Model model){
 		movieController.movieView(movie_num, model);
-		model.addAttribute("man", man);
 	}
 	
 	@RequestMapping(value = "/crowd_funding/cf_index")
@@ -120,6 +119,10 @@ public class HomeController {
 		model.addAttribute("bestList3", list4);
 	}
 	
+	@RequestMapping(value="/error/login_go")
+	public void login_go(){
+		
+	}
 	
 	
 //////////////////시연용파일복사 //////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +135,7 @@ private void fileLoad(HttpServletRequest request) {
 	String path = "";
 	String path3 = "";
 	
-	try {
+	try {	
 		path = "C:/spring/springworkspace/movie_fx6/src/main/webapp/resources/upload";
 		path3 = "E:/kh/Spring/workspace/final_fx6/src/main/webapp/resources/upload";
 		

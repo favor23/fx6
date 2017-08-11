@@ -32,7 +32,7 @@
 			</c:if>
 			</ul>
 		</div>
-		<span accesskey="${num}" class="allview_span">+ 전체보기</span>
+		
 		<div id="myCarousel2" class="carousel slide">
 			<!-- Indicators -->
 			<!-- Wrapper for slides -->
@@ -63,7 +63,7 @@
 									<button type="button" class="btn btn-info btn-lg list_a modal_crate1"
 													data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">상세보기</button>
 											<button type="button" class="btn btn-info btn-lg list_a modal_crate2"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button></div>
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">구매하기</button></div>
 							</li>
 						</c:forEach>
 					</ul>
@@ -94,7 +94,7 @@
 									<button type="button" class="btn btn-info btn-lg list_a modal_crate1"
 													data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">상세보기</button>
 											<button type="button" class="btn btn-info btn-lg list_a modal_crate2"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button></div>
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">구매하기</button></div>
 							</li>
 						</c:forEach>
 					</ul>
