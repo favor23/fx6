@@ -5,6 +5,21 @@
 <html>
 <head>
 <style type="text/css">
+/* 기본서체 font-family: 'Noto Sans KR'; */
+   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+   /* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+   /* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+   /* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+   /* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   /* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+body{
+	font-family: 'Jeju Hallasan', cursive;
+}
 #tap {
 	width: 100%;
 	height: 50px;

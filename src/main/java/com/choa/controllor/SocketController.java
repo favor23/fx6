@@ -48,6 +48,8 @@ public class SocketController {
 	private RoomService roomService;
 	@Autowired
 	private ChattingService chattingService;
+	@Autowired
+	private MovieController movieController;
 	private int aaa=0;
 	
 
@@ -103,7 +105,7 @@ public class SocketController {
 			if(movieUploadDTO!=null){
 				model.addAttribute("view", movieUploadDTO);
 			}
-			
+			movieController.movieView(movieRoomNum, model);
 			model.addAttribute("movie_num", movieRoomNum);
 			model.addAttribute("roomDTO", roomDTO);
 			model.addAttribute("count", userar.length);
@@ -181,6 +183,7 @@ public class SocketController {
 			
 			list = roomUserService.selectList();
 
+			movieController.movieView(movieRoomNum, model);
 			RoomDTO roomDTO = new RoomDTO();
 			roomDTO = roomService.playtime(movieRoomNum);
 			model.addAttribute("check", check);
