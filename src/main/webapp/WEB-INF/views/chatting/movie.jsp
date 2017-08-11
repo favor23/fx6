@@ -14,6 +14,9 @@ div{
 	padding: 5px;
 	border: 1px solid black;
 }
+body{
+	background-color: #242424;
+}
 #main-section{
 	width: 1600px;
 	height: 900px;
@@ -24,11 +27,12 @@ div{
 	height: 100%;
 	float: left;
 	
-}
+}	
 
 #movie-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #video-div{
@@ -113,26 +117,30 @@ div{
 	width: 100%;
 	height: 13%;
 	font-size: large;
-	
+	color: white;
 }
 
 #etc > *{
 	margin: 0;
+	color: white;
 }
 
 .etc_p {
 	float: right;
 	display: inline-block;
+	color: white;
 }
 
 .etc_title {
 	float: left;
 	display: inline-block;
+	color: white;
 }
 .etc_genre{
 	float: left;
 	display: block;
 	font-size: small;
+	color: white;
 }
 
 .etc_playtime{
@@ -140,7 +148,7 @@ div{
 	display: inline-block;
 	font-size: small;
 	margin-left: 10px;
-	
+	color: white;
 }
 
 .etc_director{
@@ -148,6 +156,7 @@ div{
 	display: inline-block;
 	font-size: small;
 	margin-left: 10px;
+	color: white;
 }
 
 #exit{
@@ -167,6 +176,7 @@ div{
 #chat-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #chatting-container{
@@ -174,6 +184,8 @@ div{
 	height: 80%;
 	overflow: scroll;
 	overflow-x: hidden;
+	background-color: black;
+	color: white;
 }
 .chatting{
 	width: 100%;
@@ -210,6 +222,12 @@ div{
 	display: inline-block;
 	margin: 0;
 	padding: 0;
+}
+
+#mv_logo{
+	width: 100%;
+	height: 100%;
+	
 }
 
 img{
@@ -260,7 +278,7 @@ img{
 		<!--==================================== 채팅 -->
 	<div id="d2">
 		<div id="chat-info"><img
-         id="bar_logo" class="${pageContext.request.contextPath}/index"
+         id="mv_logo" class="${pageContext.request.contextPath}/index"
          src="<c:url value="/img/index/상영중.PNG"/>"></div>
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">

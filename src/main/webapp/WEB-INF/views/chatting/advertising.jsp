@@ -14,6 +14,9 @@ div{
 	padding: 5px;
 	border: 1px solid black;
 }
+body{
+	background-color: #242424;
+}
 #main-section{
 	width: 1600px;
 	height: 900px;
@@ -29,6 +32,7 @@ div{
 #movie-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #video-div{
@@ -134,7 +138,7 @@ div{
 	width: 100%;
 	height: 13%;
 	font-size: large;
-	
+	background-color: black;
 }
 
 #etc > *{
@@ -144,16 +148,19 @@ div{
 .etc_p {
 	float: right;
 	display: inline-block;
+	color: white;
 }
 
 .etc_title {
 	float: left;
 	display: inline-block;
+	color: white;
 }
 .etc_genre{
 	float: left;
 	display: block;
 	font-size: small;
+	color: white;
 }
 
 .etc_playtime{
@@ -161,7 +168,7 @@ div{
 	display: inline-block;
 	font-size: small;
 	margin-left: 10px;
-	
+	color: white;
 }
 
 .etc_director{
@@ -169,6 +176,7 @@ div{
 	display: inline-block;
 	font-size: small;
 	margin-left: 10px;
+	color: white;
 }
 
 #exit{
@@ -188,6 +196,7 @@ div{
 #chat-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #chatting-container{
@@ -195,6 +204,8 @@ div{
 	height: 80%;
 	overflow: scroll;
 	overflow-x: hidden;
+	background-color: black;
+	color: white;
 }
 .chatting{
 	width: 100%;
@@ -231,6 +242,11 @@ img{
 	height: 30px;
 	overflow: auto;
 }
+#ad_logo{
+	width: 100%;
+	height: 100%;
+}
+
 </style>
 </head>
 <body>
@@ -243,9 +259,9 @@ img{
 	
 	<!--===============================영화  -->
 		<div id="d1">
-			<div id="movie-info"><img
+			<div id="movie-info"><%-- <img
          id="bar_logo" class="${pageContext.request.contextPath}/index"
-         src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"> <input type="hidden" id="movie_num" value="${movie_num}"></div>
+         src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"> --%> <input type="hidden" id="movie_num" value="${movie_num}"></div>
 				<div id="video-div">
 					<div id="video-container">
 					<c:forEach begin="1" end="4" step="1" var="i">
@@ -282,7 +298,7 @@ img{
 		<!--==================================== 채팅 -->
 	<div id="d2">
 		<div id="chat-info"><img
-         id="bar_logo" class="${pageContext.request.contextPath}/index"
+         id="ad_logo" class="${pageContext.request.contextPath}/index"
          src="<c:url value="/img/index/광고중.PNG"/>"></div>
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
@@ -379,6 +395,7 @@ img{
           divObj.webkitRequestFullscreen();
         }
         inFullScreen = true;
+        $("#seekBar").attr("type", "hidden");
         return;
       }
 
@@ -396,6 +413,7 @@ img{
           document.webkitCancelFullScreen();
         }
         inFullScreen = false;
+        $("#seekBar").attr("type", "range");
         return;
       }
       
