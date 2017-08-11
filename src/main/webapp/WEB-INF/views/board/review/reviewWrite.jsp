@@ -171,6 +171,7 @@ $(function(){
 			<div class="text1">제 목</div><div class="text2"><input type="text"  name="title" class="form-control" value="${dto.title}" style="width: 100%; "></div>
 			<div class="text1">별 점</div>			
 			<div class="text3" style="width: 80%; height: 34px; float: left;margin-bottom: 20px; margin-top: -9px;">
+			<input type="hidden" name="stars" id="stars" value="3">
 			<p class="star_rating" style="text-align: left;">
 			    <a href="#" class="vstar on" id="1">★</a>
 			    <a href="#" class="vstar on" id="2">★</a>

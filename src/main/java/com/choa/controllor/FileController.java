@@ -32,16 +32,17 @@ public class FileController {
 	
 	@RequestMapping(value="member/file_upload", method=RequestMethod.POST)
 	public String fileUpload(String id,MultipartFile f1, HttpSession session,Model model) throws Exception{
-		FileService f = new FileService();
+		PrFileService f = new PrFileService();
 		CustomerDTO customerDTO = (CustomerDTO)session.getAttribute("member");
 		if(id.equals(customerDTO.getId())){			
 			String fName=f.fileSave(f1, session);
 			String oName=f1.getOriginalFilename();
 			fileService.upload(id, fName, oName);
-			return "업로드 후 이동할 경로";
+			model.addAttribute("message","사진 업로드 완료");
 		}else {
-			return "본인이 아닐때 이동할 경로";
+			model.addAttribute("message","사진 업로드 실패");
 		}
+		return "/commons/ajaxResult";
 		
 	}
 	

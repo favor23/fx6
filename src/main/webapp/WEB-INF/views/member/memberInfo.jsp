@@ -138,6 +138,12 @@ width: 250px;
 	width: 1000px;
 	margin: 0 auto;
 }
+.member_css {
+	margin: 0px auto;
+	padding: 0px;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
 
 
 </style>
@@ -149,8 +155,9 @@ width: 250px;
 <c:import url="../temp/header.jsp" />
 <div id="tap"></div>
 <c:import url="../temp/header_plus_member.jsp" />
-<div id="main_session_default">
+<div id="main_session_default" class="member_css">
 <p id="title">${member.id } 님의 회원정보 입니다.</p>
+<div id="memberBox">
 	<form action="customerUpdate" id="frm" method="post">
 		<table class="table table-bordered">
 			<tr id="t">
@@ -218,7 +225,7 @@ width: 250px;
 	<input type="hidden" value="" id="email" name="email">
 	</form>
 </div>
-
+</div>
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">

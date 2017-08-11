@@ -99,7 +99,6 @@
 					</div>
 					<form action="${pageContext.request.contextPath}/paySystem/pay24" method="post" style=" margin-bottom: 10px;">
 							<input type="hidden" name="movie_num" value="${dto.movie_num}">
-							<input type="hidden" name="man" value="${man}">
 							<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">구매하기 [${dto.movie_price}]</button>
 					</form>
 

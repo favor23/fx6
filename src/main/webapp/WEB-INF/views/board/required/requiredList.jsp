@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<title>Insert title here</title>
+<title>영화를 찍으시조</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 
 <style type="text/css">
@@ -435,7 +435,9 @@
             
             </ul>
             <span class="wr_bt">
+            	<c:if test="${member.id ne null }">
                <button type="button" id="wr_bt">글작성</button>
+            	</c:if>
             </span>
          </div>
          

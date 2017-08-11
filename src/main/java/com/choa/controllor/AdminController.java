@@ -158,6 +158,31 @@ public class AdminController {
 	public void adminRequest_hi(Model model,ListInfo listInfo) {
 		order_rentController.orderList(model, listInfo);
 	}
+	//펀딩목록
+	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_1", method = RequestMethod.GET)
+	public void adminRequest_hi_1(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);
+		
+	}
+	//대여목록
+	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_2", method = RequestMethod.GET)
+	public void adminRequest_hi_2(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);
+		
+	}
+	
+	//티켓구매목록
+	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_3", method = RequestMethod.GET)
+	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);
+		
+	}
+	
+	//상영방목록
+	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_4", method = RequestMethod.GET)
+	public void adminRequest_hi_4(Model model,ListInfo listInfo) {
+		order_rentController.orderList(model, listInfo);		
+	}
 	
 	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
 	public void admin_list(String department,Model model) {

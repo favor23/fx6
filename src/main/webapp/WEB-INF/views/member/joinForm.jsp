@@ -243,7 +243,20 @@ border: 0.5px solid black;
 	width: 50px;
 	font-size: 18px;
 }
+.jf10 {
+	width: 100%;
+	text-align: center;
+}
 
+#certBtn2 {
+	border: 0.5px solid black;
+	border-radius: 5px;
+	background-color: black;
+	color:white;
+	font-weight: bold;
+	font-size: 15px;
+	width:105px;
+}
 </style>
 </head>
 <body>
@@ -303,21 +316,33 @@ border: 0.5px solid black;
 				</tr>
 				<tr>
 					<td class="jf1">전자우편</td>
-					<td class="jf2"><input type="text" id="e1" class="text"> @</td>
-					<td class="jf3"><select id="e2" onchange="mailing()">
+					<td class="jf2 jf_close"><input type="text" id="e1" class="text"> @</td>
+					<td class="jf3 jf_close">
+					<select id="e2" onchange="mailing()">
 							<option value="self">직접 입력</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
 							<option value="nate.com">nate.com</option>
-					</select> <input type="text" id="e3" class="text"> <input type="button" id="certBtn" value="인증번호 발송"></td>
-				</tr>
-				<tr>
-					<td class="cert" colspan="3" style="padding-left: 158px;">
-					<input type="text" id="certCode"> <input type="button" id="chk_certBtn" value="인증번호확인">
-					 <span id="certTxt"></span>
+					</select> 
+					<input type="text" id="e3" class="text">
+					<input type="button" id="certBtn" value="인증번호 발송">
+					
+					</td>
+					<td class="jf2 jf_open" colspan="2" style="display: none;">
+					<span id="cert_mail"></span>
+					<input type="button" id="certBtn2" value="이메일 수정">
+					 <span id="certTxt1"></span>
 					</td>
 				</tr>
+				
+				<tr class="jf_open2" style="display: none;">
+					<td class="cert" colspan="3" style="padding-left: 158px;">
+					<input type="text" id="certCode"> 
+					<input type="button" id="chk_certBtn" value="인증번호확인">
+					 <span id="certTxt2"></span>
+					</td>
+				</tr>				
 				<tr>
 					<td class="jf1">집주소</td>
 					<td colspan="2" class="jf2"><input type="text" name="address" class="text" style=" width: 79.4%;"></td>
@@ -526,7 +551,7 @@ var taste_checker="";
 				}
 				birthDay = birthDay + '</select>월';
 				$("#dayBox").html(birthDay);
-			} else if (m % 2 == 0) {
+			} else if (m % 2 == 0&&m<8) {
 				var birthDay = '<select id="myDay">';
 				for (var i = 1; i <= 30; i++) {
 					birthDay = birthDay + '<option value="'+i+'" selected>' + i
@@ -534,9 +559,25 @@ var taste_checker="";
 				}
 				birthDay = birthDay + '</select>월';
 				$("#dayBox").html(birthDay);
-			} else {
+			} else if(m % 2 != 0&&m < 8){
 				var birthDay = '<select id="myDay">';
 				for (var i = 1; i <= 31; i++) {
+					birthDay = birthDay + '<option value="'+i+'" selected>' + i
+							+ '</option>';
+				}
+				birthDay = birthDay + '</select>월';
+				$("#dayBox").html(birthDay);
+			} else if(m % 2 == 0&&m > 7){
+				var birthDay = '<select id="myDay">';
+				for (var i = 1; i <= 31; i++) {
+					birthDay = birthDay + '<option value="'+i+'" selected>' + i
+							+ '</option>';
+				}
+				birthDay = birthDay + '</select>월';
+				$("#dayBox").html(birthDay);
+			} else {
+				var birthDay = '<select id="myDay">';
+				for (var i = 1; i <= 30; i++) {
 					birthDay = birthDay + '<option value="'+i+'" selected>' + i
 							+ '</option>';
 				}
@@ -620,6 +661,7 @@ var taste_checker="";
 			$("#e1").removeAttr("readonly");
 			$("#e2").css("display","inherit");
 			$("#e3").removeAttr("readonly");
+			$("#certBtn2").css("display","none");
 		}else {
 			$("#e1").attr("readonly","readonly");
 			$("#e2").css("display","none");
@@ -629,27 +671,55 @@ var taste_checker="";
 	
 	$("#certBtn").click(function(){
 		$("#email").val($("#e1").val() + "@" + $("#e3").val());
-		readonlyCSS(1);
 		var email=$("#email").val();
-		$.post("${pageContext.request.contextPath}/sendMail/auth",{
-			email:email
-		},function(data){
-			code=data*1;
-			$("#certTxt").html("인증번호가 발급되었습니다.");
-			$("#certBtn").attr("value","인증번호 재발송");
-		});
+		if($("#e1").val()!=""&&$("#e3").val()!=""){
+			$("#certTxt1").html("인증번호를 발급하고 있습니다 잠시만 기다려주세요.");
+			$(".jf_open").removeAttr("style");
+			$(".jf_open2").removeAttr("style");
+			$(".jf_close").css("display","none");
+			$("#cert_mail").html(email);
+			$.post("${pageContext.request.contextPath}/sendMail/auth",{
+				email:email
+			},function(data){
+				code=data*1;
+				$("#certTxt1").html("");
+				$("#certTxt2").html("인증번호가 발급되었습니다.").fadeOut(4000);
+				$("#certCode").css("display","inherit");
+				$("#chk_certBtn").css("display","inherit");
+				$("#certBtn").attr("value","인증번호 재발송");
+			});
+		}else {
+			alert("이메일을 입력해주세요");
+		}
 	});
 	
 	$("#chk_certBtn").click(function(){
+		$("#email").val($("#e1").val() + "@" + $("#e3").val());
+		var email=$("#email").val();
 		var myCode=$("#certCode").val();
 		if(code*1==myCode*1){
-			$("#certTxt").html("인증번호가 일치합니다.");
-			$("#certTxt").css("color","green");
+			$("#certTxt1").html("인증번호가 일치합니다.");
+			$("#certTxt1").css("color","green");
+			cert_done();
 		}else {
-			$("#certTxt").html("인증번호가 일치하지않습니다.");
-			$("#certTxt").css("color","red");
+			$("#certTxt1").html("인증번호가 일치하지않습니다.");
+			$("#certTxt1").css("color","red");
 		}
 	});
+	
+	//이메일 인증이 완료되었을 때 처리하는 스크립트
+	function cert_done(){
+		$(".jf_open2").css("display","none");
+	}
+	
+	$("#certBtn2").click(function(){
+		$(".jf_close").removeAttr("style");
+		$(".jf_open").css("display","none");
+		$("#certCode").val("");
+		code="code";
+	});
+	
+	
 	
 </script>
 </body>

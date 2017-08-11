@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/login.css" />">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -96,8 +97,16 @@
    }
 </script>
 <style type="text/css">
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	header {
+		font-family: 'Noto Sans KR';
+	}
+
+
 	body {
 		margin: 0%;
+		font-family: 'Noto Sans KR';
 	}	
 	#hd {
 		width: 100%;
@@ -408,73 +417,105 @@
 		margin-left: 10%;
 		line-height: 50px;
 	}
+	
+	
+	
+	
+	
+	
+	.main_top {
+		width: 100%;
+		height: 250px;
+		margin-top: 50px;
+		background-color: #0052cc;
+		z-index: 1;
+		position: relative;
+		font-family: 'Iropke Batang', serif;
+	}
+	
+	.main_top:after {
+		content: "";
+		background-image: url("../../img/cf-img/main-top.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.4;
+	    z-index: -1;
+	}
+	
+	
+	.top1 {
+		width: 100%;
+		height: 30%;
+		text-align: center;
+		line-height: 100px;
+		font-size: 3.0em;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.top2 {
+		width: 100%;
+		height: 20%;
+		text-align: center;
+		font-size: 1.2em;
+		color: #b3d9ff;
+		margin-top: 45px;
+		
+	}
+	
+	.top3 {
+		width: 100%;
+		height: 30%;
+		text-align: center;
+		font-size: 1.2em;
+		color: white;
+	}
+	
+	.main_section{
+	
+		width: 65%;
+		height: 600px;
+		background-color: yellow;
+		margin: 0 auto;
+		margin-top: 30px;
+	
+	}
+	
+	
 </style>
 </head>
 <body>
 	<c:import url="../../temp/header.jsp"/>
 	
 	<section id="main_section">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	    <!-- Indicators -->
-	    <ol class="carousel-indicators">
-	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	      <li data-target="#myCarousel" data-slide-to="1"></li>
-	      <li data-target="#myCarousel" data-slide-to="2"></li>
-	    </ol>
 	
-	    <!-- Wrapper for slides -->
-	    <div class="carousel-inner">
-	
-	      <div class="item active">
-	        <img src="<c:url value="/img/movie-img/test5.jpg" />" alt="Los Angeles" style="width:100%;">
-	        <div class="carousel-caption">
-	          <h3>Los Angeles</h3>
-	          <p>LA is always so much fun!</p>
-	        </div>
-	      </div>
-	
-	      <div class="item">
-	        <img src="<c:url value="/img/movie-img/test6.jpg" />" alt="Chicago" style="width:100%;">
-	        <div class="carousel-caption">
-	          <h3>Chicago</h3>
-	          <p>Thank you, Chicago!</p>
-	        </div>
-	      </div>
-	    
-	      <div class="item">
-	        <img src="<c:url value="/img/movie-img/test7.jpg" />" alt="New York" style="width:100%;">
-	        <div class="carousel-caption">
-	          <h3>New York</h3>
-	          <p>We love the Big Apple!</p>
-	        </div>
-	      </div>
-	  
-	    </div>
-	
-	    <!-- Left and right controls -->
-	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-	      <span class="glyphicon glyphicon-chevron-left"></span>
-	      <span class="sr-only">Previous</span>
-	    </a>
-	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-	      <span class="glyphicon glyphicon-chevron-right"></span>
-	      <span class="sr-only">Next</span>
-	    </a>
-	  </div>
+		<article class="main_top">
+			<div class="top1">
+				시나리오
+			</div>
+			<hr style="width: 20%; position: absolute; left: 20%;">
+			<span style="position: absolute; left: 45%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<hr style="width: 20%; position: absolute; left: 60%;">
+			<div class="top2">
+				시나리오 업로드를 통해 당신의 작품을 현실화 하세요!
+			</div>
+			<div class="top3">
+				<p>꿈과 아이디어를 가지고 본인의 영화를 실현시키고자 행동하는 사람들을 뜻합니다.</p>
+				<p>당신의 소중한 꿈과 톡톡튀는 아이디어를 영화로 만들어 드립니다.</p>
+			</div>
+		</article>
+		
 	  <article class="art2">
 	  	<div class="sub_wrap">
 	  		<div class="sub1">
 	  			<div class="sub1_con">
 		  			<ul class="sub1_ul">
-		  				<li>
-		  					<a href="#">현재상영작</a>
-		  				</li>
-		  				<li>
-		  					<a href="#">개봉예정작</a>
-		  				</li>
-		  				<li>
-		  					<a href="#">보고싶어요</a>
-		  				</li>
+		  				
 		  			</ul>
 		  		</div>
 	  		</div>
@@ -497,10 +538,29 @@
 	  		</div>
 	  	</div>
 	  </article>
-	  
+
+
+
+		<section class="main_section">
+		
+		
+		
+		
+		
+		
+		
 	  <article class="art">
 	  
 	  </article>
+		
+		
+		
+		
+		
+		</section>
+	
+	   
+	  
 	</section>
 	
 	<c:import url="../../temp/footer.jsp"/>
