@@ -192,7 +192,6 @@ function checkAll(){
 	<c:if test="${member.grade eq 'admin'}">
 		<button type="button" data-toggle="modal" data-target="#sendmessage" class="send_btn">쪽지 보내기</button>
 	</c:if>
-	<button type="button" class="check_send">보낸 쪽지함</button>
 	</div>	
 		
 		

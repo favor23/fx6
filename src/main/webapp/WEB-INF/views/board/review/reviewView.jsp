@@ -7,8 +7,8 @@
 			<div class="container">
 			<div style="margin-top: 25px;" class="top_text" >게시판 > 리뷰게시판</div>
 			<div class="view_btn">
-			<button href="reviewDelete?num=${view.num}" class="view_bt">Delete</button>
-			<button href="reviewUpdate?num=${view.num}" class="view_bt">Update</button>
+			<button class="view_bt bt_del">Delete</button>
+			<button  class="view_bt bt_up">Update</button>
 			</div>
 			<table id="viewtable" style="margin-top:10px;">
 		
@@ -53,8 +53,24 @@
 		</table>
 			
 		</div>
-	
+	<script type="text/javascript">
 	
 	
 
+	$(".bt_del").click(function () {
+		
+		location.href='reviewDelete?num=${view.num}';
+		
+	});
+	
+	
+$(".bt_up").click(function () {
+		
+		location.href='reviewUpdate?num=${view.num}';
+		
+	});
+	
+	</script>
+	
+	
 
