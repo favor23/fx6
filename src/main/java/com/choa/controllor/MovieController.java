@@ -237,6 +237,8 @@ public class MovieController {
 			
 			try {
 				movieDTO = movieService.movieView(movie_num);
+				
+				movieDTO.setSynopsis(movieDTO.getSynopsis().replace("<br>", "\r\n"));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -267,6 +269,7 @@ public class MovieController {
 			fileName = fileService.fileSave(f1, session);
 			
 			movieDTO.setPoster_img("/img/movie-img/" + fileName);
+			movieDTO.setSynopsis(movieDTO.getSynopsis().replace("\r\n", "<br>"));
 			
 			result = movieService.movieWrite(movieDTO);
 		} catch (Exception e) {
@@ -295,6 +298,7 @@ public class MovieController {
 		}
 		
 		movieDTO.setGenre(temp);
+		movieDTO.setSynopsis(movieDTO.getSynopsis().replace("\r\n", "<br>"));
 		
 		try {
 			result = movieService.movieUpdate(movieDTO);

@@ -88,6 +88,7 @@ public class ReviewController {
 		try {
 			
 			reviewDTO = reviewService.reviewView(num);
+			reviewService.reviewHit(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,9 +9,34 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+
+	body {
+		font-family: 'Noto Sans KR';
+	}
+
+	footer {
+		display: flow-root;
+		float: right;
+	}
+	
 	.main_wrap {
 		width: 1020px;
-		height: 1300px;
 		margin: 0 auto;
 		margin-top: 100px;
 	}
@@ -27,12 +52,16 @@
 		height: 350px;
 		float: right;
 		padding: 20px;
+		padding-top: 0px;
+		padding-right: 0px;
 	}
 	
 	.detail_title {
 		font-size: 1.6em;
 		width: 100%;
 		height: 70px;
+		font-family: 'Noto Sans KR';
+		font-weight: 700;
 	}
 	
 	.detail_simple {
@@ -41,11 +70,20 @@
 		width: 100%;
 		height: 100px;
 		margin-top: 10px;
+		font-family: 'Jeju Gothic', sans-serif;
 	}
 	
 	.detail_name {
 		font-weight: bold;
 		margin-top: 10px;
+	}
+	
+	.detail_bot {
+		font-family: 'Hanna', sans-serif;
+	}
+	
+	.detail_bot2 {
+		font-family: 'Hanna', sans-serif;
 	}
 	
 	.progress-box { 
@@ -56,6 +94,7 @@
 		border-radius:4px 4px 0 0; 
 		-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05); 
 		box-shadow:0 1px 1px rgba(0,0,0,.05);
+		font-family: 'Hanna', sans-serif;
 	} 
 	
 	.progress-box-default {
@@ -98,32 +137,167 @@
 	
 	.main {
 		width: 600px;
-		height: 950px;
 		float: left;
-		background-color: lime;
 	}
 	
 	.ben {
 		width: 420px;
-		height: 950px;
 		float: right;
-		background-color: red;
+		margin-bottom: 100px;
 	}
 	
 	body {
 	    position: relative; 
 	}
 	
-	#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-	#section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-	#section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+	#section1 {padding-top:30px; padding-left: 0px;}
+	#section2 {padding-top:30px; padding-left: 0px;}
+	#section3 {padding-top:30px; padding-left: 0px;}
+	
+	.sup,
+	.thumbs_up {
+		width: 195px;
+		height: 50px;
+		float: right;
+	}
+	
+	.sup {
+		margin-right: 10px;
+		background-color: #1a75ff;
+	}
+	
+	.section1_contents,
+	.section2_contents {
+		padding-top: 30px;
+	}
+	
+	.section1_contents {
+		line-height: 40px;
+	}
+	
+	.section2_contents {
+		color: #8a8a5c;
+		font-size: 1.5em;
+	}
+	
+	.ben_title {
+		width: 100%;
+		height: 50px;
+		float: right;
+		padding-left: 20px;
+		margin-top: 50px;
+		margin-bottom: 30px;
+	}
+	
+	.title {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		color: #8a8a5c;
+		font-size: 1.1em;
+		border-bottom: 1px solid #e0e0d1;
+		font-family: 'Hanna', sans-serif;
+	}
+	
+	.ben_con {
+		width: 100%;
+		float: right;
+		padding-left: 20px;
+	}
+	
+	.ben_wrap {
+		width: 100%;
+		height: 100%;
+		float: right;
+	}
+	
+	.ben_list {
+		width: 100%;
+		float: right;
+		margin-bottom: 20px;
+		padding: 15px;
+		border: 1px solid #e0e0d1;
+		font-family: 'Hanna', sans-serif;
+	}
+	
+	.ben_list:hover {
+		border: 1px solid #1a75ff;
+		cursor: pointer;
+	}
+	
+	.main {
+		margin-bottom: 100px;
+	}
+	
+	.list_price {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		font-size: 1.7em;
+		font-weight: bold;
+	}
+	
+	.list_title {
+		width: 100%;
+		margin-top: 10px;
+	}
+	
+	.list_contents {
+		width: 100%;
+		color: #8a8a5c;
+		font-size: 0.8em;
+		margin-top: 10px;
+	}
+	
+	.list_sup {
+		width: 40%;
+		color: #8a8a5c;
+		font-size: 0.8em;
+		margin-top: 10px;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
 		$(".sup").click(function() {
 			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
 		});
+		
+		$(".thumbs_up").click(function() {
+			var campaign_num = ${dto.campaign_num};
+			
+			thumbs_up(campaign_num);
+			badge(campaign_num);
+		});
+		
+		$(".ben_list").click(function() {
+			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+		});
 	});
+	
+	function thumbs_up(campaign_num) {
+		$.ajax({
+			url:"campaignUp",
+			type:"POST",
+			data:{
+				campaign_num:campaign_num
+			},
+			success:function(data) {
+				
+			}
+		});
+	}
+	
+	function badge(campaign_num) {
+		$.ajax({
+			url:"campaignBadge/" + campaign_num,
+			type:"GET",
+			success:function(data) {
+				$(".badge").html(data.thumbs_up);
+			}
+		});
+	}
 </script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -132,7 +306,7 @@
 	<section id="main_section">
 		<article class="main_wrap">
 			<div class="youtube">
-				<iframe width="600" height="350" src="https://www.youtube.com/embed/Jq55NTFaqVk?ecver=1" frameborder="0" allowfullscreen></iframe>
+				<iframe width="600" height="350" src="${dto.main_video}" frameborder="0" allowfullscreen></iframe>
 			</div>
 			<div class="detail">
 				<div class="detail_title">
@@ -179,16 +353,14 @@
 				    <div class="navbar-header">
 				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				          <span class="icon-bar"></span>
-				          <span class="icon-bar"></span>
-				          <span class="icon-bar"></span>                        
+				          <span class="icon-bar"></span>                    
 				      </button>
 				    </div>
 				    <div>
 				      <div class="collapse navbar-collapse" id="myNavbar">
 				        <ul class="nav navbar-nav">
 				          <li><a href="#section1">스토리</a></li>
-				          <li><a href="#section2">Section 2</a></li>
-				          <li><a href="#section3">Section 3</a></li>
+				          <li><a href="#section2">후원자</a></li>
 				        </ul>
 				      </div>
 				    </div>
@@ -196,21 +368,50 @@
 				</nav>    
 				
 				<div id="section1" class="container-fluid">
-				  ${dto.story}
+					<div class="title">
+						캠페인 스토리
+					</div>
+					<div class="section1_contents">
+						${dto.story}
+					</div>
 				</div>
 				<div id="section2" class="container-fluid">
-				  <h1>Section 2</h1>
-				  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-				  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-				</div>
-				<div id="section3" class="container-fluid">
-				  <h1>Section 3</h1>
-				  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-				  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+				    <div class="title">
+						후원자
+					</div>
+				    <div class="section2_contents">
+						현재 후원한 사람이 없습니다!
+					</div>
 				</div>
 			</div>
 			<div class="ben">
+				<button type="button" class="btn btn-danger thumbs_up">추천하기&nbsp;&nbsp;<span class="badge">${dto.thumbs_up}</span></button>
 				<input type="button" class="btn btn-info sup" value="후원하기">
+				<div class="ben_title">
+					<div class="title">
+						캠페인 혜택
+					</div>
+				</div>
+				<div class="ben_con">
+					<div class="ben_wrap">
+						<c:forEach items="${list}" var="benList">
+							<div class="ben_list">
+								<div class="list_price">
+									<fmt:formatNumber value="${benList.benefit_price}" pattern="#,###"></fmt:formatNumber><span style="font-size: 0.6em; font-weight: normal; color: #8a8a5c;">&nbsp;원을 후원 해주시는 분들께는</span>							
+								</div>
+								<div class="list_title">
+									${benList.benefit_title}
+								</div>
+								<div class="list_contents">
+									${benList.benefit_contents}
+								</div>
+								<div class="list_sup">
+									<span style="display: inline-block; width: 40px; height: 20px; background-color: #ffa31a; color: white; border-radius: 3px; font-size: 1.4em; text-align: center;">${benList.benefit_hit}</span>&nbsp;명 후원하였습니다.
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
 		</article>
 	</section>

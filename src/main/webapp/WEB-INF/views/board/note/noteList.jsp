@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	
+	
+	body{
+	
+	font-family: 'Noto Sans KR';
+	}
 	
 	.note_main{
 	
@@ -186,7 +193,7 @@ function checkAll(){
 				    
 				      <!-- Modal content-->
 				      <div class="modal-content" style="color:black; background-color: white;"><!-- 여기가 모달 창 조정 부분 -->
-				        <div class="modal-header">
+				        <div class="modal-header" style="border-bottom: #503396 solid 2px; background-color: #ddd;">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">수신쪽지</h4>
 				        </div>
