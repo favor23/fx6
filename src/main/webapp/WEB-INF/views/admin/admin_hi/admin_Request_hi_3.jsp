@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 			
-			<div accesskey="펀딩목록" class="select_department">펀딩목록</div>
-			<div accesskey="물품 대여요청 목록" class="select_department">물품 대여요청 목록</div>
-			<div id="action" accesskey="티켓구매 목록" class="select_department">티켓구매 목록</div>
-			<div accesskey="상영방 목록" class="select_department">상영방 목록</div>
+			<div accesskey="1" class="select_department">펀딩목록</div>
+			<div accesskey="2" class="select_department">물품 대여요청 목록</div>
+			<div id="action" accesskey="3" class="select_department">티켓구매 목록</div>
+			<div accesskey="4" class="select_department">상영방 목록</div>
 			
 <table class="table">
 			
