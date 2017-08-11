@@ -12,7 +12,7 @@
 						<nav class="navbar navbar-inverse">
 									<div class="container-fluid">
 										<div class="navbar-header c_white">
-											<a class="navbar-brand c_white">영화 예매하기</a>											
+											<a class="navbar-brand c_white">영화 구매하기</a>											
 										</div>	
 										<button id="close_location"type="button" class="btn btn-default" data-dismiss="modal">Close</button>																				
 									</div>
@@ -100,7 +100,7 @@
 					<form action="${pageContext.request.contextPath}/paySystem/pay24" method="post" style=" margin-bottom: 10px;">
 							<input type="hidden" name="movie_num" value="${dto.movie_num}">
 							<input type="hidden" name="man" value="${man}">
-							<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">예매하기 [${dto.movie_price}]</button>
+							<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">구매하기 [${dto.movie_price}]</button>
 					</form>
 
 

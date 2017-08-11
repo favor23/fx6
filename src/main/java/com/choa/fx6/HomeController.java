@@ -132,7 +132,7 @@ private void fileLoad(HttpServletRequest request) {
 	String path = "";
 	String path3 = "";
 	
-	try {
+	try {	
 		path = "C:/spring/springworkspace/movie_fx6/src/main/webapp/resources/upload";
 		path3 = "E:/kh/Spring/workspace/final_fx6/src/main/webapp/resources/upload";
 		
