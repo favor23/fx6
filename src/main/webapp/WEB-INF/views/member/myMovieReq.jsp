@@ -152,7 +152,6 @@ width: 250px;
 <div id="main_session_default">
 <p id="title">${member.id } 님의 영화 요청 목록입니다.</p>
 <c:forEach items="${list }" var="list">
-<br>
 	<c:if test="${list.writer eq member.id}">
 		${list.num }
 	</c:if>

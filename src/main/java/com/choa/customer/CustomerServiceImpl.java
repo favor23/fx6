@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.choa.banList.BanlistDTO;
+import com.choa.dropuser.DropUserDTO;
 import com.choa.member.MemberDTO;
 import com.choa.member.MemberService;
 import com.choa.movie.MovieDTO;
@@ -23,8 +24,8 @@ public class CustomerServiceImpl implements MemberService{
 
 
 	//유저 탈퇴
-	public int dropUser(String id)throws Exception{
-		return customerDAO.dropUser(id);
+	public int dropUser(DropUserDTO dropUserDTO)throws Exception{
+		return customerDAO.dropUser(dropUserDTO);
 	}
 
 	//탈퇴하려는 유저의 비밀번호가 일치하는지 조회.

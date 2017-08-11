@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.choa.banList.BanlistDTO;
+import com.choa.dropuser.DropUserDTO;
 import com.choa.member.MemberDAO;
 import com.choa.member.MemberDTO;
 import com.choa.movie.MovieDTO;
@@ -27,16 +28,22 @@ public class CustomerDAO implements MemberDAO{
 	
 	
 	//유저 탈퇴
-	public int dropUser(String id)throws Exception{
-		return sqlSession.delete(NAMESPACE+"dropuser", id);
+	public int dropUser(DropUserDTO dropUserDTO)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		int num = sqlSession.insert(NAMESPACE+"dropuser_group", dropUserDTO);
+		String id=dropUserDTO.getId();
+		map.put("drop", id);
+		return sqlSession.delete(NAMESPACE+"dropuser", map);
 	}
 	
 	//탈퇴하려는 유저의 비밀번호가 일치하는지 조회.
 	public int dropUserCheck(MemberDTO memberDTO)throws Exception{
 		String id=sqlSession.selectOne(NAMESPACE+"findPw", memberDTO);
 		int num=0;
-		if(id.equals(memberDTO.getId())){
+		if(id!=null&&id.equals(memberDTO.getId())){
 			num=1;
+		}else {
+			num=0;
 		}
 		return num;
 	}

@@ -26,7 +26,7 @@
 	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
 
 	body {
-		background-color: #f2e6ff;
+		background-color: #f5f5f0;
 		font-family: 'Noto Sans KR';
 	}
 	
@@ -86,7 +86,7 @@
 	}
 	
 	.art {
-		width: 80%;
+		width: 90%;
 		margin: 0 auto;
 		display: table;
 		margin-bottom: 80px;
@@ -465,7 +465,7 @@
 				캠페인 둘러보기
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 45%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				수많은 사람들의 꿈이 녹아 들어간 캠페인들을 만나보세요.

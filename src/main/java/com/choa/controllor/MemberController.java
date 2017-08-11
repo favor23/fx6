@@ -20,6 +20,7 @@ import com.choa.admin.AdminServiceImpl;
 import com.choa.banList.BanlistDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.customer.CustomerServiceImpl;
+import com.choa.dropuser.DropUserDTO;
 import com.choa.file.FileDTO;
 import com.choa.file.FileService;
 import com.choa.member.Hash;
@@ -72,24 +73,33 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value="/member/dropUser")
-	public String dropUser(String id)throws Exception{
-		int num = customerService.dropUser(id);
+	@RequestMapping(value="/member/dropUserForm",method=RequestMethod.POST)
+	public void dropUserForm()throws Exception{
+	}
+	
+	@RequestMapping(value="/member/dropUser",method=RequestMethod.POST)
+	public String dropUser(DropUserDTO dropUserDTO)throws Exception{
+		int num = customerService.dropUser(dropUserDTO);
 		return "/commons/thanks";
 	}
 
-	@RequestMapping(value="/member/dropUserCheck",method=RequestMethod.GET)
-	public String dropUserPage()throws Exception {
-		return "/member/dropUser";
+	@RequestMapping(value="/member/memberUpdate",method=RequestMethod.POST)
+	public void memberUpdate()throws Exception{
 	}
 	
-	@RequestMapping(value="/member/dropUserCheck",method=RequestMethod.POST)
-	public String dropUserCheck(MemberDTO memberDTO,Model model)throws Exception {
+	@RequestMapping(value="/member/findPw",method=RequestMethod.GET)
+	public void findPwForm(int val,Model model)throws Exception{
+		model.addAttribute("val", val);//0이면 수정, 1이면 탈퇴
+	}
+	
+	@RequestMapping(value="/member/findPw2",method=RequestMethod.POST)
+	public String findPw(MemberDTO memberDTO,Model model)throws Exception{
+		memberDTO.setPw(hash.hashtest(memberDTO));
 		int num=customerService.dropUserCheck(memberDTO);
 		model.addAttribute("message", num);
 		return "/commons/ajaxResult";
 	}
-
+	
 	@RequestMapping(value="/naverJoin")
 	public String imTester(CustomerDTO customerDTO)throws Exception{
 		naverService.join(customerDTO);
@@ -239,9 +249,7 @@ public class MemberController {
 		return "/index";
 	}	
 
-	@RequestMapping(value="member/memberUpdate")
-	public void memberUpdate()throws Exception{
-	}
+	
 
 	@RequestMapping(value="member/myMovie")
 	public String myMovie()throws Exception{

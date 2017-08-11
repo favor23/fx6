@@ -8,11 +8,49 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	body {
+		font-family: 'Noto Sans KR';
+	}
+	
 	.main_top {
 		width: 100%;
 		height: 250px;
 		margin-top: 50px;
+		z-index: 1;
+		position: relative;
 		background-color: #0052cc;
+		font-family: 'Iropke Batang', serif;
+	}
+	
+	.main_top:after {
+		content: "";
+		background-image: url("../../img/cf-img/main-top2.jpg");
+		background-position: center center;
+		display: block;
+		position: absolute;
+		top: 0;
+   		left: 0;
+   		width: 100%;
+	    height: 100%;
+	    opacity : 0.4;
+	    z-index: -1;
 	}
 	
 	.nav_left,
@@ -55,14 +93,14 @@
 	.top2_wrap {
 		width: 60%;
 		height: 40%;
-		margin-top: 50px;
-		margin-left: 20%;
+		margin-top: 60px;
+		margin-left: 24.5%;
 	}
 	
 	.top2_wrap img {
 		cursor: pointer;
 		opacity: 0.8;
-		margin-right: 40px;
+		margin-right: 10px;
 	}
 	
 	.top2_wrap img:first-child {
@@ -269,7 +307,7 @@
 				캠페인 시작하기
 			</div>
 			<hr style="width: 15%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 36%; top: 133px; color: white; font-size: 1.4em;">우리와 함께 아이디어와 목표, 꿈을 나누시기 바랍니다.</span>
+			<span style="position: absolute; left: 38.5%; top: 83px; color: white; font-size: 1.4em;">우리와 함께 아이디어와 목표, 꿈을 나누시기 바랍니다.</span>
 			<hr style="width: 15%; position: absolute; left: 65%;">
 			<div class="top2_wrap">
 				<img class="top1_img" alt="" src="<c:url value="/img/cf-img/top1-1.png" />">

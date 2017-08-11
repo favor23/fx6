@@ -36,6 +36,27 @@
 	});
 </script>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	
 	#main_section {
 		width: 100%;
 	}
@@ -233,7 +254,7 @@
 			</article>
 			<article class="main_art2">
 				<div class="main_wrap2">
-					<input type="button" class="btn btn-info" value="추가하기">
+					<input type="button" class="btn btn-warning" value="추가하기" style="width: 120px;">
 				</div>
 			</article>
 		</form>

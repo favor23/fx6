@@ -34,24 +34,16 @@
                data-toggle="dropdown">로그인</li>  
               <ul class="dropdown-menu" id="css_Id"
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
-               <li style="
-    position: absolute;
-    right: 500px;
-">
+               <li style="position: absolute;right: 500px;">
                <div class="cont_forms">
-					
 					<div class="cont_form_login">
-						<a href="#" onclick="ocultar_login_sign_up()"><i
-							class="material-icons" style="font-size: 20px;">X</i></a>
-							
 						<h2>LOGIN</h2>
 					<span id="redCode"></span>
 						<input type="text" placeholder="ID" id="input_id" /> <input
-							type="password" placeholder="Password" id="input_pw" />
-						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-						<button class="btn_login2" onclick="naver_login()">네이버 아이디로 로그인</button>
+							type="password" placeholder="Password" id="input_pw" onkeypress="keycheck(event)"/>
+						<button class="btn_login_s" onclick="cambiar_login()">LOGIN</button>
+						<button class="btn_login_s2" onclick="naver_login()">네이버 아이디로 로그인</button>
 						<button class="btn_sign_up" onclick="cambiar_sign_up()">아직 회원이 아니신가요?</button>
-						
 					</div>
 					<div class="cont_form_sign_up">
 						<a href="#" onclick="ocultar_login_sign_up()">
@@ -66,8 +58,8 @@
       </c:if> <c:if test="${!empty member}">
          <div class="dropdown"
             style="height: 50px; width: 150px; float: right;">
-            <li id="bar_login" class="dropdown-toggle" type="button"
-               data-toggle="dropdown">${member.name}님반갑습니다.</li>
+            <li id="bar_login" class="dropdown-toggle" type="button" data-toggle="dropdown"
+            style="width: 220px;">${member.name}님반갑습니다.</li>
                <c:if test="${member.grade ne 'admin'}">
             <ul class="dropdown-menu"
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
@@ -104,9 +96,8 @@ $(".header_li").click(function() {
 })
 
 $("#bar_login").click(function(){
-	setTimeout(function() {
-		document.querySelector('.cont_form_login').style.opacity = "1";
-	}, 100);
+	$("#css_Id").toggle();
+	document.querySelector('.cont_form_login').style.opacity = "1";
 });
 
 
@@ -123,6 +114,7 @@ $("#bar_login").click(function(){
 				},function(data){
 					if(data==0){
 						$("#redCode").html("비밀번호를 다시 확인해주세요.");
+						$("#input_pw").val("");
 					}else if(data==1){
 						location.href="${pageContext.request.contextPath}/index";
 					}else {
@@ -133,20 +125,21 @@ $("#bar_login").click(function(){
 				
 			
 
-			setTimeout(function() {
-				document.querySelector('.cont_form_login').style.opacity = "1";
-			}, 400);
+			//setTimeout("dropDown()", 400);
 
-			setTimeout(function() {
+			/* setTimeout(function() {
 						document.querySelector('.cont_form_sign_up').style.display = "none";
-					}, 200);
+					}, 200); */
 		}
 
 		function cambiar_sign_up() {
 			location.href = "${pageContext.request.contextPath}/member/join";
 
 		}
-
+		
+		/* function dropDown(){
+			document.querySelector('.cont_form_login').style.opacity = "1";
+		} */
 		
 		
 		function naver_login(){
@@ -155,6 +148,15 @@ $("#bar_login").click(function(){
 				location.href=data;		
 			});
 		}
+		
+		function keycheck(evt){
+		    var keyCode = evt.which?evt.which:event.keyCode;
+		    if(keyCode==13){
+		    	cambiar_login();
+		    }
+		}
+		
+		
 
 
 </script>
