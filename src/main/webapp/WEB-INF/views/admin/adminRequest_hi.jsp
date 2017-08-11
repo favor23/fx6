@@ -22,6 +22,14 @@
 	height: 700px;
 	width: 100%;
 }
+#action{
+	background-image: url(/fx6/img/index/짙은회색.PNG);
+}
+.action_gray{
+	background-image: url(/fx6/img/index/짙은회색.PNG);
+	color: white;
+	font-weight: 900;
+}
 </style>
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap_black.jsp" />
@@ -34,38 +42,16 @@
 <c:import url="../temp/header_plus_admin.jsp" />
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
-<div class="d2_a">
-		<c:if test="${member.department eq '인사부'}">
-			<div id="action" accesskey="인사부" class="select_department">펀딩목록</div>
-			<div accesskey="물품 대여요청 목록" class="select_department">물품 대여요청 목록</div>
-			<div accesskey="티켓구매 목록" class="select_department">티켓구매 목록</div>
-			<div accesskey="상영방 목록" class="select_department">상영방 목록</div>
-			</c:if>
-			<c:if test="${member.department eq '회계부'}">
-			<div accesskey="인사부" class="select_department">펀딩목록</div>
-			<div id="action" accesskey="물품 대여요청 목록" class="select_department">물품 대여요청 목록</div>
-			<div accesskey="티켓구매 목록" class="select_department">티켓구매 목록</div>
-			<div accesskey="상영방 목록" class="select_department">상영방 목록</div>
-			</c:if>
-			<c:if test="${member.department eq '후원부'}">
-			<div accesskey="인사부" class="select_department">펀딩목록</div>
-			<div accesskey="물품 대여요청 목록" class="select_department">물품 대여요청 목록</div>
-			<div id="action" accesskey="티켓구매 목록" class="select_department">티켓구매 목록</div>
-			<div accesskey="상영방 목록" class="select_department">상영방 목록</div>
-			</c:if>
-			<c:if test="${member.department eq '매니저'}">
-			<div accesskey="인사부" class="select_department">펀딩목록</div>
-			<div accesskey="물품 대여요청 목록" class="select_department">물품 대여요청 목록</div>
-			<div accesskey="티켓구매 목록" class="select_department">티켓구매 목록</div>
-			<div id="action" accesskey="상영방 목록" class="select_department">상영방 목록</div>
-			</c:if>			
-		</div>	
-		<div class="d1_b">
+	<div class="d2_a">		
+			<div  accesskey="1" class="select_department">펀딩목록</div>
+			<div id="action" accesskey="2" class="select_department">물품 대여요청 목록</div>
+			<div accesskey="3" class="select_department">티켓구매 목록</div>
+			<div accesskey="4" class="select_department">상영방 목록</div>
 			<table class="table">
 			<tr>
-			<td>번호</td><td>아이디</td><td>시작날짜</td><td>반납날짜</td><td>현재상황</td></tr>
+			<td>번호</td><td>아이디</td><td>물품</td><td>시작날짜</td><td>반납날짜</td><td>현재상황</td></tr>
 			<c:forEach items="${list}" var="dto">
-				<tr><td>${dto.num}</td><td>${dto.id }</td><td>${dto.start_date}</td>
+				<tr><td>${dto.num}</td><td>${dto.id }</td><td>${dto.product_name}</td><td>${dto.start_date}</td>
 				<td>${dto.end_date}</td>
 				<c:if test="${dto.permission eq 'approved'}">
 					<td>승인 완료</td>
@@ -101,13 +87,42 @@
 			</c:if>
 			</li>
 
-			</ul>
-				<span>
-					<button type="button" id="wr_bt" class="reviewWrite" >글작성</button>
-				</span>
+			</ul>				
 			</div>
-		</div>			
-	</div>
+	</div>				
+</div>
 <c:import url="../temp/footer.jsp" />
 </body>
+<script type="text/javascript">
+$(".d2_a").on("mousemove", ".select_department", function() {
+	$(this).attr("class", "select_department action_gray");
+});
+$(".d2_a").on("mouseleave", ".select_department", function() {
+	$(this).attr("class", "select_department");
+});
+
+$(".d2_a").on("click", ".select_department", function() {
+	var key = $(this).attr("accesskey");
+	var url_href="";
+	if(key=='1'){
+		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_1";
+	}else if(key=='2'){
+		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_2";
+	}else if(key=='3'){
+		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_3";
+	}
+	else{
+		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_4";
+	}
+	alert(url_href);
+	$.ajax({
+		url : url_href,
+		type : "GET",
+		success : function(data) {
+			alert("가자");
+			$(".d2_a").html(data);
+		}
+	});
+});
+</script>
 </html>
