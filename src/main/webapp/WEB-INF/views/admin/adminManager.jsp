@@ -60,16 +60,16 @@
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
 	<div id="Manager_table">	
-	<h2>@@부서 팀장만 사용가능</h2>
+	<h2>${member.department} 부장만 사용가능</h2>
 	<p>부서내 사원들에게 업무 부여가능</p>	
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
-		<button type="button" class="btn btn-info btn-lg btn_insert" data-toggle="modal" data-target="#myModal_ins">추가</button>
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">수정</button>
-		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">정보</button>
+		<button type="button" class="btn btn-info btn-lg btn_insert" data-toggle="modal" data-target="#myModal_ins">업무추가</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">업무수정</button>
+		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">업무정보</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="start()">새로고침</button>
-		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">삭제</button>
+		<button type="button" class="btn btn-info btn-lg" onclick="removeIt()">업무삭제</button>
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"	onclick="removeIt()">삭제</a>
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="dbupdatesave()">저장</a> -->
 	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="cancel()">취소</a>  -->

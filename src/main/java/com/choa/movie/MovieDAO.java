@@ -30,6 +30,10 @@ public class MovieDAO {
 		return sqlSession.selectList(NAMESPACE + "movieList4", listInfo);
 	}
 	
+	public List<MovieDTO> movieList5() throws Exception {
+		return sqlSession.selectList(NAMESPACE + "movieList5");
+	}
+	
 	public int movieCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "movieCount");
 	}

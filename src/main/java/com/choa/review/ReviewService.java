@@ -44,4 +44,8 @@ public class ReviewService {
 	public int reviewUpdate(ReviewDTO reviewDTO) throws Exception{
 		return reviewDAO.reviewUpdate(reviewDTO);
 	}
+	
+	public int reviewHit(int num) throws Exception{
+		return reviewDAO.reviewHit(num);
+	}
 }

@@ -29,6 +29,7 @@ public class RequiredController {
 		
 		List<RequiredDTO> ar = null;
 		
+		
 		try {
 			ar=requiredService.requireList(listInfo);
 			model.addAttribute("list", ar);
@@ -87,6 +88,7 @@ public class RequiredController {
 		
 		try {
 			requiredDTO = requiredService.requiredView(num);
+			requiredService.requiredHit(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
