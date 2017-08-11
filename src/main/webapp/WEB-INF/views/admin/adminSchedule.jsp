@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>영화를 찍으시조</title>
 <meta charset='utf-8' />
 <link href="<c:url value="/calendar/fullcalendar.min.css" />" rel="stylesheet"/>
 <link href="<c:url value="/calendar/fullcalendar.print.min.css" />" rel='stylesheet' media='print'/>

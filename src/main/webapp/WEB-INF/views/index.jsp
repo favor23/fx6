@@ -7,7 +7,7 @@
 <c:import url="temp/bootStrap.jsp" />
 <link href="<c:url value="/css/index.css" />" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화를 찍으시조</title>
 </head>
 <body>
 	<c:import url="temp/header.jsp" />
