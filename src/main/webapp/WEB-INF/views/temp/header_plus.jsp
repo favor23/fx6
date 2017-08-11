@@ -7,9 +7,9 @@
 	<div class="plus_d2">
 		<div class="plus_d2_list">
 		<ul>
-		<li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
+		<%-- <li id="${pageContext.request.contextPath}/board/movie/movieList" class="header_plus_li">
 				영화
-		</li><!-- 목록ㄱㄱ -->		
+		</li> --%><!-- 목록ㄱㄱ -->		
 		</ul>
 		</div>
 	</div>
