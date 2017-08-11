@@ -130,34 +130,42 @@ public class HomeController {
 private void fileLoad(HttpServletRequest request) {
 
 String path = "C:/spring/springworkspace/movie_fx6/src/main/webapp/resources/upload";
-String path3 = "E:/kh/Spring/workspace/final_fx6/src/main/webapp/resources/upload";
-File dirFile=new File(path);
-File dirFile2=new File(path3);
-File []fileList=dirFile.listFiles();
-File []fileList2=dirFile2.listFiles();
+String path3 = "";
 
-for(File tempFile2 : fileList2) {
-	if(tempFile2.isFile()) {
-		String tempPath = tempFile2.getParent();
-		String tempFileName = tempFile2.getName();
-		String saveDir = request.getSession().getServletContext().getRealPath("upload");
-		File path2 = new File(saveDir);
-		
-		if(!path2.exists()) {
-			path2.mkdirs();
-		}
-		
-		File file = new File(tempPath, tempFileName);
-		File mfile = new File(saveDir, tempFileName);
-		
-		try {
-			copyFile(file, mfile);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+try {
+	path3 = "E:/kh/Spring/workspace/final_fx6/src/main/webapp/resources/upload";
+	
+	File dirFile2=new File(path3);
+	File []fileList2=dirFile2.listFiles();
+	
+	for(File tempFile2 : fileList2) {
+		if(tempFile2.isFile()) {
+			String tempPath = tempFile2.getParent();
+			String tempFileName = tempFile2.getName();
+			String saveDir = request.getSession().getServletContext().getRealPath("upload");
+			File path2 = new File(saveDir);
+			
+			if(!path2.exists()) {
+				path2.mkdirs();
+			}
+			
+			File file = new File(tempPath, tempFileName);
+			File mfile = new File(saveDir, tempFileName);
+			
+			try {
+				copyFile(file, mfile);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
+} catch (Exception e) {
+	// TODO: handle exception
 }
+File dirFile=new File(path);
+
+File []fileList=dirFile.listFiles();
 
 for(File tempFile : fileList) {
 if(tempFile.isFile()) {

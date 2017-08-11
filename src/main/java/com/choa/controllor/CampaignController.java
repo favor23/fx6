@@ -63,9 +63,10 @@ public class CampaignController {
 	}
 	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.POST)
-	public void campaignSupport(SupportDTO supportDTO, HttpSession session) {
+	public String campaignSupport(SupportDTO supportDTO, HttpSession session) {
 		session.setAttribute("support", supportDTO);
 		// 경로 추가
+		return "paySystem/pay24_s";
 	}
 	
 	@RequestMapping(value = "campaignView", method = RequestMethod.GET)
