@@ -132,10 +132,10 @@
 					<div class="div3_d2list">
 						<div class="div3_d2list_2">
 							<div>
-								<img src="<c:url value="/img/index/시나리오.jpg" />" style="width:100%">
+								<img src="<c:url value="/img/index/writer1.jpg" />" style="width:100%">
 							</div>
 							<div>
-								<img src="<c:url value="/img/index/작시.jpg" />" style="width: 101%">
+								<img src="<c:url value="/img/index/actor1.jpg" />" style="width: 101%">
 							</div>
 						</div>
 						<div class="div3_d2list_2"><div>
