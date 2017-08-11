@@ -10,29 +10,29 @@
 			<li id="action" class="mouse_action" accesskey="1">박스오피스</li>
 						<li class="mouse_action" accesskey="2">최신개봉작</li>
 						<li class="mouse_action" accesskey="3">상영예정작</li>
-						<li class="mouse_action" accesskey="4">큐레이션</li>
+						<li class="mouse_action" accesskey="4">청소년관람불가</li>
 			</c:if>
 			<c:if test="${num eq 2}">
 				<li  class="mouse_action" accesskey="1">박스오피스</li>
 						<li id="action" class="mouse_action" accesskey="2">최신개봉작</li>
 						<li class="mouse_action" accesskey="3">상영예정작</li>
-						<li class="mouse_action" accesskey="4">큐레이션</li>
+						<li class="mouse_action" accesskey="4">청소년관람불가</li>
 			</c:if>
 			<c:if test="${num eq 3}">
 				<li  class="mouse_action" accesskey="1">박스오피스</li>
 						<li class="mouse_action" accesskey="2">최신개봉작</li>
 						<li id="action" class="mouse_action" accesskey="3">상영예정작</li>
-						<li class="mouse_action" accesskey="4">큐레이션</li>
+						<li class="mouse_action" accesskey="4">청소년관람불가</li>
 			</c:if>
 			<c:if test="${num eq 4}">
 			<li  class="mouse_action" accesskey="1">박스오피스</li>
 						<li  class="mouse_action" accesskey="2">최신개봉작</li>
 						<li class="mouse_action" accesskey="3">상영예정작</li>
-						<li id="action" class="mouse_action" accesskey="4">큐레이션</li>
+						<li id="action" class="mouse_action" accesskey="4">청소년관람불가</li>
 			</c:if>
 			</ul>
 		</div>
-		<span accesskey="${num}" class="allview_span">+ 전체보기</span>
+		
 		<div id="myCarousel2" class="carousel slide">
 			<!-- Indicators -->
 			<!-- Wrapper for slides -->
@@ -63,7 +63,7 @@
 									<button type="button" class="btn btn-info btn-lg list_a modal_crate1"
 													data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">상세보기</button>
 											<button type="button" class="btn btn-info btn-lg list_a modal_crate2"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button></div>
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">구매하기</button></div>
 							</li>
 						</c:forEach>
 					</ul>
@@ -94,7 +94,7 @@
 									<button type="button" class="btn btn-info btn-lg list_a modal_crate1"
 													data-toggle="modal" data-target="#myModal" accesskey="${dto.movie_num}">상세보기</button>
 											<button type="button" class="btn btn-info btn-lg list_a modal_crate2"
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button></div>
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">구매하기</button></div>
 							</li>
 						</c:forEach>
 					</ul>

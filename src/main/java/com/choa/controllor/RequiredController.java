@@ -29,6 +29,7 @@ public class RequiredController {
 		
 		List<RequiredDTO> ar = null;
 		
+		
 		try {
 			ar=requiredService.requireList(listInfo);
 			model.addAttribute("list", ar);
@@ -62,6 +63,8 @@ public class RequiredController {
 		
 		
 		try {
+			
+			requiredDTO.setContents(requiredDTO.getContents().replace("\r\n", "<br>"));
 			result = requiredService.requiredWrite(requiredDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -87,6 +90,7 @@ public class RequiredController {
 		
 		try {
 			requiredDTO = requiredService.requiredView(num);
+			requiredService.requiredHit(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +137,7 @@ public class RequiredController {
 		RequiredDTO requiredDTO = null;
 		try {
 			requiredDTO = requiredService.requiredView(num);
+			requiredDTO.setContents(requiredDTO.getContents().replace("<br>", "\r\n"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

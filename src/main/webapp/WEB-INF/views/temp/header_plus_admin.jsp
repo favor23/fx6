@@ -19,12 +19,12 @@
 		<li id="${pageContext.request.contextPath}/admin/adminRequest_hi" class="header_plus_li">
 				요청관리 
 		</li>
-		<%-- <li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
-				조직도
-		</li> --%>		
+		<li id="${pageContext.request.contextPath}/board/note/noteList" class="header_plus_li">
+				쪽지
+		</li>		
 	<c:if test="${member.position eq '부장'}">
 			<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
-					관리자메뉴
+					<img src="<c:url value="/img/admin/관리자.png"/>">
 			</li>
 		</c:if>
 		</ul>

@@ -210,20 +210,19 @@
 #div3_d3 {
 	width: 330px;
 	height: 90%;
+	
+	border: 0.3px solid #d9d9d9;
 	float: left;
-	border: 1px solid black;
 }
 
 .div3_d2list {
 	height: 50%;
 	width: 100%;
-	border: 1px solid black;
 }
 
 .div3_d2list_2 {
 	width: 50%;
 	height: 100%;
-	border: 1px solid black;
 	float: left;
 }
 

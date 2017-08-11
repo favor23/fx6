@@ -17,7 +17,7 @@
             style="line-height: 49px; text-align: center; border-right: 1px solid #e5e5e5; float: left; font-weight: bold; height: 49px; width: 130px; cursor: pointer;">
             게시판</li>
          <ul class="dropdown-menu"
-            style="position: absolute; width: 100px; top: 48px; left: 420px; background-color: white; border: 0.1px solid #e5e5e5;">
+            style="position: absolute; width: 100px; top: 48px; left: 470px; background-color: white; border: 0.1px solid #e5e5e5;">
             <li><a href="${pageContext.request.contextPath}/board/required/requiredList">요청게시판</a></li>
             <li><a href="${pageContext.request.contextPath}/board/review/reviewList">리뷰게시판</a></li>
             <li><a href="#">매칭게시판</a></li>
@@ -30,7 +30,8 @@
       <c:if test="${empty member}">
       <div class="dropdown"
             style="height: 50px; width: 150px; float: right;">
-            <li id="bar_login" class="dropdown-toggle" type="button"data-toggle="dropdown">로그인</li>
+            <li id="bar_login" class="dropdown-toggle" type="button"
+               data-toggle="dropdown">로그인</li>  
               <ul class="dropdown-menu" id="css_Id"
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li style="position: absolute;right: 500px;">
@@ -74,7 +75,7 @@
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li><a href="${pageContext.request.contextPath}/member/myPage">사원 마이페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
-               <li><a href="${pageContext.request.contextPath}/member/myPage">업무페이지</a></li>
+               <li><a href="${pageContext.request.contextPath}/admin/adminBusiness">업무페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>               
             </ul>
             </c:if>

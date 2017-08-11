@@ -32,16 +32,17 @@ public class PaymentMovieController {
 	
 	@RequestMapping(value="/paySystem/pay24", method=RequestMethod.POST)
 	public String pay24(MovieDTO movieDTO,String man, HttpSession session, Model model,HttpServletRequest request,ListInfo listInfo) throws Exception{//가격
-		CustomerDTO customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
-		System.out.println(customerDTO.getTicket());
-		System.out.println(movieDTO.getMovie_num());
+		CustomerDTO customerDTO=null;
+		try{
+				customerDTO=(CustomerDTO)request.getSession().getAttribute("member");
+		}catch (Exception e) {
+			return "/error/login_go";
+		}
 		String[] str_arry=customerDTO.getTicket().split("/");		
 		for(int j=0;j<str_arry.length;j++){
 			if(movieDTO.getMovie_num()==Integer.parseInt(str_arry[j])){
-				System.out.println(str_arry[j]);
-				System.out.println(man);
 				cinemaController.cinema_list(1,model,request,listInfo); 
-				return man;
+				return "/error/is_this";
 			}
 		}
 		try {

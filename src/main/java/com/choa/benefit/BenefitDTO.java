@@ -6,6 +6,14 @@ public class BenefitDTO {
 	private int benefit_price;
 	private String benefit_contents;
 	private int campaign_num;
+	private int benefit_hit;
+	
+	public int getBenefit_hit() {
+		return benefit_hit;
+	}
+	public void setBenefit_hit(int benefit_hit) {
+		this.benefit_hit = benefit_hit;
+	}
 	public int getBenefit_num() {
 		return benefit_num;
 	}

@@ -71,14 +71,14 @@ ul{
 	clear: both;
 }
 
-#info_1{
+.info_1{
 	width: 100%;
 	height: 85%;
 	margin: 0 auto;
 }
 
-#info_1 li{
-	margin-left: 10px;
+.info_1 li{
+	margin-left: 40px;
 	font-size: large;
 	color: black;
 }
@@ -91,7 +91,7 @@ ul{
 	
 }
 
-#info_1 span{
+.info_1 span{
 	color: black;
 	font-size: large;
 	margin: 0 auto;
@@ -162,7 +162,7 @@ ul{
 					
 					<div id="info">
 						<nav>
-							<div id="info_1">
+							<div class="info_1">
 								<div>
 									<span>상영기간	[${dto.release_date} ~ ${dto.release_end}]</span>
 								</div>
@@ -256,7 +256,7 @@ ul{
 			type : "GET",
 			success : function(data) {
 				$("#main_div2").html(data);
-			}
+		}
 		});
 	});
 	
@@ -264,7 +264,9 @@ ul{
 		var id = $(this).attr("id");
 		if(${member==null}){
 			alert("로그인이 필요한 서비스입니다.");
-			location.href="${pageContext.request.contextPath}/loginForm";
+			setTimeout(function() {
+				document.querySelector('.cont_form_login').style.opacity = "1";
+			}, 100);
 		}else{
 			location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
 		}
@@ -274,13 +276,15 @@ ul{
 		var id = $(this).attr("id");
 		if(${member==null}){
 			alert("로그인이 필요한 서비스입니다.");
-			location.href="${pageContext.request.contextPath}/loginForm";
-		}else{
+			setTimeout(function() {
+				document.querySelector('.cont_form_login').style.opacity = "1";
+			}, 100);
+		}
 		$.post("${pageContext.request.contextPath}/chatting/ticket", {
 			movie_num:id
 		},function(data){});
-			window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
-		}
+			window.open("${pageContext.request.contextPath}/chatting/advertising?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		
 	});
 	
 	var now = new Date();

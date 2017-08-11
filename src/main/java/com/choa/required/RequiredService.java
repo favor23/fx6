@@ -55,5 +55,9 @@ public class RequiredService {
 	public int requiredReply(RequiredDTO requiredDTO) throws Exception{
 		return requiredDAO.requiredReply(requiredDTO);
 	}
+	
+	public int requiredHit(int num) throws Exception{
+		return requiredDAO.requiredHit(num);
+	}
 
 }

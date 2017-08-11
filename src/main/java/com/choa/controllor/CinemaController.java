@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.choa.cinema.CinemaService;
 import com.choa.customer.CustomerDTO;
@@ -23,6 +24,7 @@ import com.choa.movie.MovieDTO;
 import com.choa.room.RoomDTO;
 import com.choa.room.RoomService;
 import com.choa.util.ListInfo;
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 @Controller
 public class CinemaController {
@@ -36,10 +38,12 @@ public class CinemaController {
 
 	
 	@RequestMapping(value="/board/cinema/cinema_list")
-	public void cinema_list(Integer curPage, Model model, HttpServletRequest request, ListInfo listInfo) throws Exception{
+	public void cinema_list(@RequestParam(defaultValue="1")Integer curPage, Model model, HttpServletRequest request, ListInfo listInfo) throws Exception{
+		
 		movieController.movieList(curPage, model);
 		
 		cinemaService.listAll(listInfo);
+		
 		
 		RoomDTO roomDTO = roomService.playtime(1);
 		model.addAttribute("roomDTO", roomDTO);

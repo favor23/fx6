@@ -473,7 +473,9 @@
 
 			</ul>
 				<span>
+					<c:if test="${member.id ne null }">
 					<button type="button" id="wr_bt" class="reviewWrite" >글작성</button>
+					</c:if>
 				</span>
 			</div>
 	

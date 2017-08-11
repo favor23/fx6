@@ -7,7 +7,7 @@
 <c:import url="temp/bootStrap.jsp" />
 <link href="<c:url value="/css/index.css" />" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화를 찍으시조</title>
 </head>
 <body>
 	<c:import url="temp/header.jsp" />
@@ -32,10 +32,10 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<c:url value="/img/index/스파이더맨1.jpg"/>">
+					<img src="<c:url value="/img/index/경찰.jpg"/>">
 					<div class="carousel-caption">
-						<h3>Los Angeles</h3>
-						<p>LA is always so much fun!</p>
+						<h3>청년경찰</h3>
+						<p>파릇파릇한 놈들의 혈기왕성 실전수사</p>
 					</div>
 				</div>
 
@@ -92,10 +92,7 @@
 
 
 		<section id="main_div3">
-			<div id="div3_d1">
-				<div id="div3_title">
-					<h3>새로운 펀딩 정보</h3>
-				</div>
+			<div id="div3_d1">				
 				<div id="div3_d2">
 					<div class="div3_d2list">
 						<div id="myCarousel3" class="carousel slide" data-ride="carousel">
@@ -133,11 +130,20 @@
 						</div>
 					</div>
 					<div class="div3_d2list">
-						<div class="div3_d2list_2"></div>
-						<div class="div3_d2list_2"></div>
+						<div class="div3_d2list_2">
+							<div>
+								<img src="<c:url value="/img/index/writer1.jpg" />" style="width:100%">
+							</div>
+						</div>
+						<div class="div3_d2list_2">
+							<div>
+								<img src="<c:url value="/img/index/actor1.jpg" />" style="width: 100%">
+							</div>
+						
+							</div>
 					</div>
 				</div>
-				<div id="div3_d3"></div>
+				<div id="div3_d3"><img src="<c:url value="/img/index/예술은.jpg" />" style="width: 100%"></div>
 			</div>
 		</section>
 		<div id="modal_div2"></div>

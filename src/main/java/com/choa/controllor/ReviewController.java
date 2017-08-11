@@ -63,6 +63,8 @@ public class ReviewController {
 		
 		
 		try {
+			
+			reviewDTO.setContents(reviewDTO.getContents().replace("\r\n", "<br>"));
 			 result = reviewService.reviewWrite(reviewDTO);
 			
 		} catch (Exception e) {
@@ -88,6 +90,7 @@ public class ReviewController {
 		try {
 			
 			reviewDTO = reviewService.reviewView(num);
+			reviewService.reviewHit(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,7 +136,10 @@ public class ReviewController {
 		
 		ReviewDTO reviewDTO=null;
 		try {
+			
 			reviewDTO = reviewService.reviewView(num);
+			reviewDTO.setContents(reviewDTO.getContents().replace("<br>", "\r\n"));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

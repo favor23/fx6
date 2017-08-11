@@ -6,15 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<c:import url="../../temp/bootStrap.jsp"></c:import>
+<c:import url="../../temp/bootStrap_black.jsp" />
+<link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
+
 <style type="text/css">
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 	
+	body{
+	
+	font-family: 'Noto Sans KR';
+	}
+	
+	#tap {
+	width: 100%;
+	height: 50px;
+	}
+	#main_session_default {
+	height: 400px;
+	width: 1000px;
+	margin: 0 auto;
+	}	
+
 	.note_main{
 	
 	width : 800px;
 	height: auto;
 	margin: 0 auto;
-	padding: 100px 0 100px 0;
+	padding: 0 0 100px 0;
 	/* background-color: yellow;	 */
 	}
 	
@@ -111,6 +129,7 @@
 
 
 </style>
+
 <script type="text/javascript">
 
 function checkAll(){
@@ -126,8 +145,12 @@ function checkAll(){
 </head>
 <body>
 <c:import url="../../temp/header.jsp"/>
+<div id="tap"></div>
+<c:import url="../../temp/header_plus_admin.jsp" />
+<div id="main_session_default">
+<c:import url="../../admin/admin_one.jsp" />
+</div>	
 	<article class="note_main">
-	
 	
 		
 		<table class="table">
@@ -142,7 +165,7 @@ function checkAll(){
 				<c:if test="${dto.addressee eq member.id }">
 			<tr>
 				<td><input type="checkbox" value="${dto.num}" name="checkOne"></td>
-				<td>${dto.addressee}</td>
+				<td>${dto.sender}</td>
 				<td><div class="contentsView" id="${dto.num}" data-toggle="modal" data-target="#viewModal">${dto.contents}</div></td>
 				<td>${dto.reg_date}</td>
 			</tr>
@@ -186,7 +209,7 @@ function checkAll(){
 				    
 				      <!-- Modal content-->
 				      <div class="modal-content" style="color:black; background-color: white;"><!-- 여기가 모달 창 조정 부분 -->
-				        <div class="modal-header">
+				        <div class="modal-header" style="border-bottom: #503396 solid 2px; background-color: #ddd;">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">수신쪽지</h4>
 				        </div>

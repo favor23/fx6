@@ -99,6 +99,12 @@ public class MatchingController {
 			MatchingDTO matchingDTO = null;
 			
 			try {
+				
+				
+				matchingDTO.setScenario(matchingDTO.getScenario().replace("<br>", "\r\n"));
+				matchingDTO.setStory(matchingDTO.getStory().replace("<br>", "\r\n"));
+				matchingDTO.setNotice(matchingDTO.getNotice().replace("<br>", "\r\n"));
+				
 				matchingDTO = matchingService.matchingView(matching_num);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -133,6 +139,12 @@ public class MatchingController {
 			fileName = fileMatchingService.fileSave(f1, session);
 			
 			matchingDTO.setMatching_img("/img/matching-img/" +fileName);
+			
+			
+			
+			matchingDTO.setScenario(matchingDTO.getScenario().replace("\r\n", "<br>"));
+			matchingDTO.setStory(matchingDTO.getStory().replace("\r\n", "<br>"));
+			matchingDTO.setNotice(matchingDTO.getNotice().replace("\r\n", "<br>"));
 			
 			result = matchingService.matchingWrite(matchingDTO);
 			

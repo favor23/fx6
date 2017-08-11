@@ -224,8 +224,8 @@ ul{
 					
 					<div id="btn_div">
 						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
-						<button class="btn-primary huwon">후원페이지</button>
-						<button class="btn-danger chat">영화시청</button>
+						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
+						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
 				</div>
 			</c:forEach>
@@ -280,7 +280,7 @@ $(".chat").click(function() {
 	$.post("${pageContext.request.contextPath}/chatting/ticket", {
 		movie_num:id
 	},function(data){});
-		window.open("${pageContext.request.contextPath}/chatting/bbb?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+		window.open("${pageContext.request.contextPath}/chatting/advertising?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
 	}
 });
 

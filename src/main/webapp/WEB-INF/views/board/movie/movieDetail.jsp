@@ -442,19 +442,19 @@
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
 						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0 or stars==1.0}">
-							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
+							<p><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></p>
 						</c:if>
 						<c:if test="${stars>1.0 and stars<2.0 or stars==2.0}">
-							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star2.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${stars>2.0 and stars<3.0 or stars==3.0}">
-							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star3.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${stars>3.0 and stars<4.0 or stars==4.0}">
-							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star4.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${stars>4.0 and stars<5.0 or stars==5.0}">
-							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></p>		
 						</c:if>
 					</p>
 					<p>
@@ -463,19 +463,19 @@
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
 						<c:if test="${srStars>0.0 and srStars<1.0 or srStars==0.0 or srStars==1.0}">
-							<p><img src="<c:url value="/img/reviewimg/star1.JPG"/>"></p>
+							<p><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></p>
 						</c:if>
 						<c:if test="${srStars>1.0 and srStars<2.0 or srStars==2.0}">
-							<p><img src="<c:url value="/img/reviewimg/star2.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star2.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>2.0 and srStars<3.0 or srStars==3.0}">
-							<p><img src="<c:url value="/img/reviewimg/star3.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star3.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>3.0 and srStars<4.0 or srStars==4.0}">
-							<p><img src="<c:url value="/img/reviewimg/star4.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star4.jpg"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>4.0 and srStars<5.0 or srStars==5.0}">
-							<p><img src="<c:url value="/img/reviewimg/star5.JPG"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></p>		
 						</c:if>
 					</p>
 					<button type="button" class="btn btn-primary list_a modal_crate2 btn1" 
