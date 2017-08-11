@@ -477,7 +477,7 @@
 	
 	.main_section{
 	
-		width: 65%;
+		width: 80%;
 		height: 600px;
 		background-color: yellow;
 		margin: 0 auto;
