@@ -32,4 +32,8 @@ public class PaymentSupportController {
 		model.addAttribute("message", message);
 		return "/paySystem/pay_result";		 
 	}
+	@RequestMapping(value="/paySystem/pay24_s", method=RequestMethod.POST)
+	public void pay24_s(){
+		
+	}
 }
