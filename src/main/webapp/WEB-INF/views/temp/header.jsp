@@ -83,7 +83,7 @@
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li><a href="${pageContext.request.contextPath}/member/myPage">사원 마이페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
-               <li><a href="${pageContext.request.contextPath}/member/myPage">업무페이지</a></li>
+               <li><a href="${pageContext.request.contextPath}/admin/adminBusiness">업무페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>               
             </ul>
             </c:if>

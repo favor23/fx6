@@ -32,7 +32,7 @@
 			</c:if>
 			</ul>
 		</div>
-		<span accesskey="${num}" class="allview_span">+ 전체보기</span>
+		
 		<div id="myCarousel2" class="carousel slide">
 			<!-- Indicators -->
 			<!-- Wrapper for slides -->
