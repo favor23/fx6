@@ -95,7 +95,7 @@ div{
 
 #seekBar{
 	position: relative;
-	width: 360px;
+	width: 60%;
 	bottom: -96%;
 	left: 200px;
 }

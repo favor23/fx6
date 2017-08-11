@@ -2,9 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
 <html>
 <head>
+
 <style type="text/css">
+/* 기본서체 font-family: 'Noto Sans KR'; */
+   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+   /* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+   /* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+   /* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+   /* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   /* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+body{
+	font-family: 'Jeju Hallasan', cursive;
+}
 #tap {
 	width: 100%;
 	height: 50px;
@@ -221,7 +238,7 @@ ul{
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">ticket </button>
+						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">티켓 구매 </button>
 						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
 						<button class="btn-danger chat" id="${dto.movie_num}">영화시청</button>
 					</div>
@@ -248,17 +265,28 @@ ul{
 </body>
 <script type="text/javascript">
 
+$(".ticket_li").mouseenter(function() {
+	var num = $(this).attr("accesskey");
 	
-	$(".ticket_li").mouseenter(function() {
-		var num = $(this).attr("accesskey");
-		$.ajax({
-			url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_list",
-			type : "GET",
-			success : function(data) {
-				$("#main_div2").html(data);
-		}
-		});
+	$.ajax({
+		url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_list",
+		type : "GET",
+		success : function(data) {
+			$("#main_div2").html(data);
+	}
 	});
+});
+
+$(".ticket_li").click(function() {
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		setTimeout(function() {
+			document.querySelector('.cont_form_login').style.opacity = "1";
+		}, 100);
+	}else{
+		
+	}
+});
 	
 	$(".huwon").click(function() {
 		var id = $(this).attr("id");
@@ -279,12 +307,12 @@ ul{
 			setTimeout(function() {
 				document.querySelector('.cont_form_login').style.opacity = "1";
 			}, 100);
-		}
+		}else{
 		$.post("${pageContext.request.contextPath}/chatting/ticket", {
 			movie_num:id
 		},function(data){});
 			window.open("${pageContext.request.contextPath}/chatting/advertising?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
-		
+		}//else끝
 	});
 	
 	var now = new Date();
