@@ -8,6 +8,27 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	body {
+		font-family: 'Noto Sans KR';
+	}
+	
 	.main_top {
 		width: 100%;
 		height: 250px;
@@ -15,6 +36,7 @@
 		background-color: #0052cc;
 		z-index: 1;
 		position: relative;
+		font-family: 'Iropke Batang', serif;
 	}
 	
 	.main_top:after {
@@ -96,11 +118,13 @@
 		font-size: 1.6em;
 		margin-top: 20px;
 		margin-bottom: 30px;
+		font-family: 'Nanum Gothic', sans-serif;
 	}
 	
 	.main3_wrap {
 		width: 100%;
 		height: 230px;
+		font-family: 'Jeju Gothic', sans-serif;
 	}
 	
 	.main3_1,
@@ -215,7 +239,7 @@
 				캠페인 만들기
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 45%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				우리의 캠페인을 통해 그 기회를 만들어 보세요!

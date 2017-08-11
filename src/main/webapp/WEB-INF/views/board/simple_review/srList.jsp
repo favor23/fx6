@@ -4,7 +4,23 @@
 <c:forEach items="${list}" var="srList">
 <div class="list">
 	<div class="list_left">
-		<h3>${srList.sr_stars}</h3><span>별점</span>
+		<span style="font-size: 1.5em;">${srList.sr_stars}
+						<c:if test="${srList.sr_stars>0.0 and srList.sr_stars<1.0 or srList.sr_stars==0.0 or srList.sr_stars==1.0}">
+							<img src="<c:url value="/img/reviewimg/star1.jpg"/>">
+						</c:if>
+						<c:if test="${srList.sr_stars>1.0 and srList.sr_stars<2.0 or srList.sr_stars==2.0}">
+							<img src="<c:url value="/img/reviewimg/star2.jpg"/>">	
+						</c:if>
+						<c:if test="${srList.sr_stars>2.0 and srList.sr_stars<3.0 or srList.sr_stars==3.0}">
+							<img src="<c:url value="/img/reviewimg/star3.jpg"/>">		
+						</c:if>
+						<c:if test="${srList.sr_stars>3.0 and srList.sr_stars<4.0 or srList.sr_stars==4.0}">
+							<img src="<c:url value="/img/reviewimg/star4.jpg"/>">	
+						</c:if>
+						<c:if test="${srList.sr_stars>4.0 and srList.sr_stars<5.0 or srList.sr_stars==5.0}">
+							<img src="<c:url value="/img/reviewimg/star5.jpg"/>">		
+						</c:if>
+		</span>
 	</div>
 	<div class="list_right">
 		<p>${srList.contents}</p>
