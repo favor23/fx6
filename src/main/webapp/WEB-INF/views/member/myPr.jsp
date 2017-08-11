@@ -73,7 +73,7 @@
 	width: 150px;
 	height: 200px;
 	cursor: pointer;
-	background-size: auto;
+	background-size: contain;
 	background-repeat: no-repeat;
 }
 #form {
@@ -175,14 +175,15 @@ border-radius:3px;
 </style>
 <c:import url="../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js"/>" charset="utf-8"></script>
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../temp/header.jsp" />
 <div id="tap"></div>
 <c:import url="../temp/header_plus_member.jsp" />
-<div id="main_session_default">
-<div id="prBox">
+<div id="main_session_default" style="height: auto;">
+<div id="prBox" style="height: 1313px;">
 		<p class="p_title">"${member.id }" 님의 PR입니다.</p>
 		<div id="dialog_box">
 		<c:if test="${!empty file }">
@@ -205,7 +206,7 @@ border-radius:3px;
 							</c:if>
 							<c:if test="${empty file }">
 								<td class="pic" id="pic_upload" rowspan="4" 
-								style="background-image: url('<c:url value="/img/icon/nonepic.png" />');">
+								style="background-image: url('${pageContext.request.contextPath}/img/icon/nonepic.png');">
 								</td>
 							</c:if>
 						</tr>
@@ -306,7 +307,7 @@ border-radius:3px;
 	<input type="hidden" id="path" value='<c:url value="/se2/SmartEditor2Skin.html"/>'>
 
 </div>
-<c:import url="temp/footer.jsp" />
+<c:import url="../temp/footer.jsp" />
 <script type="text/javascript">
 $("#don").css("display","none");
 

@@ -8,8 +8,12 @@
  <resultMap type="com.choa.movie.MovieDTO" id="MovieDTO"></resultMap>
 
 	
-	<delete id="dropuser" parameterType="com.choa.member.MemberDTO">
-		{ call dropuser(#{id, mode=IN} #{result, mode=OUT, javaType=int, jdbcType=INTEGER} }
+	<insert id="dropuser_group" parameterType="com.choa.dropuser.DropUserDTO">
+		insert into dropuser_group values(drop_seq.nextval,#{id},#{reason},#{etc_reason},sysdate)
+	</insert>
+	
+	<delete id="dropuser" statementType="CALLABLE" parameterType="java.util.Map">
+		{ call dropuser(#{drop, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
 	</delete>
 
 	<select id="findPw" parameterType="com.choa.member.MemberDTO" resultType="java.lang.String">

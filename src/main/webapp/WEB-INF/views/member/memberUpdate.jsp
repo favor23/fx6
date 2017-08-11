@@ -42,13 +42,17 @@
 	text-align: right;
 	font-weight: bold;
 	width: 120px;
+	margin: 0px auto;
+	padding: 0px;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .red {
 	color: red;
 }
 
-.input {
+#frm input {
 	border: 0.5px solid gray;
 	border-radius: 5px;
 	padding-left: 5px;
@@ -85,9 +89,14 @@ color: red;
 	color: green;
 }
 .jf2 {
-width: 250px;
+width: 180px;
 
 }
+
+.jf2 input {
+	width: 145px;
+}
+
 .p_tag {
 	margin-top: 10px;
 	height: 30px;
@@ -108,6 +117,38 @@ width: 250px;
 	height: 1200px;
 	width: 1000px;
 	margin: 0 auto;
+}
+
+.cert {
+	padding-left: 50px;
+	padding-right: 50px;
+	text-align: left;
+}
+
+#certCode {
+border: 0.5px solid black;
+	border-radius: 5px;
+	padding-left: 4px;
+	height: 30px;
+}
+
+#certBtn {
+	border: 0.5px solid black;
+	border-radius: 5px;
+	background-color: green;
+	color:white;
+	font-weight: bold;
+	font-size: 13px;
+	width:100px;
+}
+
+#chk_certBtn {
+	border: 0.5px solid black;
+	border-radius: 5px;
+	background-color: #ccff33;
+	font-weight: bold;
+	font-size: 15px;
+	width:125px;
 }
 
 
@@ -143,27 +184,30 @@ width: 250px;
 			</tr> 
 			<tr>
 				<td class="jf1">이름</td>
-				<td colspan="2"><input type="text" name="name" value="${member.name }" class="input"></td>
+				<td colspan="2"><input type="text" name="name" value="${member.name }" class="input" style="width: 145px;"></td>
 			</tr>
 			<tr>
 				<td class="jf1">휴대전화</td>
-				<td><input type="text" name="phone" value="${member.phone }" class="input"></td>
+				<td><input type="text" name="phone" value="${member.phone }" class="input" style="width: 145px;"></td>
 				<td>하이픈('-') 없이 입력해주세요</td>
 			</tr>
 			<tr>
-			<!-- @기준으로 앞위로 잘라서 넣어야함. -->
-				<td class="jf1">전자우편</td>
-				<td><input type="text" id="e1" value="" class="input">@</td>
-				<td><select id="e2" onchange="mailing()">
-						<option value="self">직접 입력</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="naver.com">naver.com</option>
-						<option value="daum.net">daum.net</option>
-				</select>
-				
-				 <input type="text" id="e3" class="input">
-				</td>
-			</tr>
+					<td class="jf1">전자우편</td>
+					<td class="jf2"><input type="text" id="e1" class="text"> @</td>
+					<td class="jf3"><select id="e2" onchange="mailing()" style="width: 105px;height: 25px;">
+							<option value="self">직접 입력</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="naver.com">naver.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="nate.com">nate.com</option>
+					</select> <input type="text" id="e3" class="text" style="width: 135px;"> <input type="button" id="certBtn" value="인증번호 발송"></td>
+				</tr>
+				<tr>
+					<td class="cert" colspan="3" style="padding-left: 128px;">
+					<input type="text" id="certCode" style="height: 25px;width: 135px;"> <input type="button" id="chk_certBtn" value="인증번호확인">
+					 <span id="certTxt"></span>
+					</td>
+				</tr>
 			<tr>
 				<td class="jf1">집주소</td>
 				<td colspan="2"><input type="text" name="address" value="${member.address }" class="input address"></td>
@@ -172,34 +216,33 @@ width: 250px;
 				<td class="jf1">선호하는 장르</td>
 					<td colspan="2"  class="jf2">
 						<p class="p_tag">
-						<!-- 뮤지컬, 미스터리, 로맨스(멜로), 공상 과학, 스포츠, 스릴러, 전쟁, 서부극 -->
-						<span class="span">액션 : <input type="checkbox" name="taste" value="action" class="action">&nbsp;&nbsp;</span>
-						<span class="span">모험 : <input type="checkbox" name="taste" value="adventure" class="adventure">&nbsp;&nbsp;</span>
-						<span class="span">추리 : <input type="checkbox" name="taste" value="reason" class="reason">&nbsp;&nbsp;</span>
-						<span class="span">전쟁 : <input type="checkbox" name="taste" value="warfare" class="warfare">&nbsp;&nbsp;</span>
+						<span class="span">액션 : <input type="checkbox" name="taste" value="액션" class="액션">&nbsp;&nbsp;</span>
+						<span class="span">모험 : <input type="checkbox" name="taste" value="모험" class="모험">&nbsp;&nbsp;</span>
+						<span class="span">추리 : <input type="checkbox" name="taste" value="추리" class="추리">&nbsp;&nbsp;</span>
+						<span class="span">전쟁 : <input type="checkbox" name="taste" value="전쟁" class="전쟁">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">역사 : <input type="checkbox" name="taste" value="history" class="history">&nbsp;&nbsp;</span>
-						<span class="span">다큐 : <input type="checkbox" name="taste" value="document" class="document">&nbsp;&nbsp;</span>
-						<span class="span">공포 : <input type="checkbox" name="taste" value="horror" class="horror">&nbsp;&nbsp;</span>
-						<span class="span">가족 : <input type="checkbox" name="taste" value="family" class="family">&nbsp;&nbsp;</span>
+						<span class="span">역사 : <input type="checkbox" name="taste" value="역사" class="역사">&nbsp;&nbsp;</span>
+						<span class="span">다큐 : <input type="checkbox" name="taste" value="다큐" class="다큐">&nbsp;&nbsp;</span>
+						<span class="span">공포 : <input type="checkbox" name="taste" value="공포" class="공포">&nbsp;&nbsp;</span>
+						<span class="span">가족 : <input type="checkbox" name="taste" value="가족" class="가족">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">판타지 : <input type="checkbox" name="taste" value="fantasy" class="fantasy">&nbsp;&nbsp;</span>
-						<span class="span">누아르 : <input type="checkbox" name="taste" value="noir" class="noir">&nbsp;&nbsp;</span>
-						<span class="span">코미디 : <input type="checkbox" name="taste" value="comic" class="comic">&nbsp;&nbsp;</span>
-						<span class="span">드라마 : <input type="checkbox" name="taste" value="drama" class="drama">&nbsp;&nbsp;</span>
+						<span class="span">판타지 : <input type="checkbox" name="taste" value="판타지" class="판타지">&nbsp;&nbsp;</span>
+						<span class="span">누아르 : <input type="checkbox" name="taste" value="누아르" class="누아르">&nbsp;&nbsp;</span>
+						<span class="span">코미디 : <input type="checkbox" name="taste" value="코미디" class="코미디 ">&nbsp;&nbsp;</span>
+						<span class="span">드라마 : <input type="checkbox" name="taste" value="드라마" class="드라마">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="musical" class="musical">&nbsp;&nbsp;</span>
-						<span class="span">스포츠 : <input type="checkbox" name="taste" value="sports" class="sports">&nbsp;&nbsp;</span>
-						<span class="span">스릴러 : <input type="checkbox" name="taste" value="thriller" class="thriller">&nbsp;&nbsp;</span>
-						<span class="span">로맨스 : <input type="checkbox" name="taste" value="romance" class="romance">&nbsp;&nbsp;</span>
+						<span class="span">뮤지컬 : <input type="checkbox" name="taste" value="뮤지컬" class="뮤지컬">&nbsp;&nbsp;</span>
+						<span class="span">스포츠 : <input type="checkbox" name="taste" value="스포츠" class="스포츠">&nbsp;&nbsp;</span>
+						<span class="span">스릴러 : <input type="checkbox" name="taste" value="스릴러" class="스릴러">&nbsp;&nbsp;</span>
+						<span class="span">로맨스 : <input type="checkbox" name="taste" value="로맨스" class="로맨스">&nbsp;&nbsp;</span>
 						</p>
 						<p class="p_tag">
-						<span class="span">미스터리 : <input type="checkbox" name="taste" value="mystery" class="mystery">&nbsp;&nbsp;</span>
-						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="animation" class="animation">&nbsp;&nbsp;</span>
-						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="sf" class="sf">&nbsp;&nbsp;</span>
+						<span class="span">미스터리 : <input type="checkbox" name="taste" value="미스터리" class="미스터리">&nbsp;&nbsp;</span>
+						<span class="span">애니메이션 : <input type="checkbox" name="taste" value="애니메이션" class="애니메이션">&nbsp;&nbsp;</span>
+						<span class="span">공상과학(SF) : <input type="checkbox" name="taste" value="SF" class="SF">&nbsp;&nbsp;</span>
 						</p>
 					</td>
 				</tr>
@@ -219,6 +262,8 @@ width: 250px;
 </div>
 <c:import url="../temp/footer.jsp" />
 <script type="text/javascript">
+var code="code";
+var code_checker="";
 var pw_checker = "";
 var test = '${member.email}';
 test = test.split("@");
@@ -252,10 +297,13 @@ for(var i in taste){
 
 		$("#email").val($("#e1").val()+"@"+$("#e3").val());
 		
-		if(pw!=""&&pwc!=""&&pw==pwc){
+		if(pw!=""&&pwc!=""&&pw==pwc&&code_checker!=""){
 			$("#frm").submit();				
+		}else if(code_checker==""){
+			alert("이메일 인증을 진행해주세요");
 		}else {
 			alert("입력하신 정보가 맞는지 다시 확인 바랍니다.");
+			
 		}
 
 	});
@@ -301,6 +349,30 @@ for(var i in taste){
 			$(".sText3").css("display","none");
 		}			
 	}
+	
+	$("#certBtn").click(function(){
+		$("#email").val($("#e1").val() + "@" + $("#e3").val());
+		readonlyCSS(1);
+		var email=$("#email").val();
+		$.post("${pageContext.request.contextPath}/sendMail/auth",{
+			email:email
+		},function(data){
+			code=data*1;
+			$("#certTxt").html("인증번호가 발급되었습니다.");
+			$("#certBtn").attr("value","인증번호 재발송");
+		});
+	});
+	
+	$("#chk_certBtn").click(function(){
+		var myCode=$("#certCode").val();
+		if(code*1==myCode*1){
+			$("#certTxt").html("인증번호가 일치합니다.");
+			$("#certTxt").css("color","green");
+		}else {
+			$("#certTxt").html("인증번호가 일치하지않습니다.");
+			$("#certTxt").css("color","red");
+		}
+	});
 	
 
 

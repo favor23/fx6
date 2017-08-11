@@ -22,22 +22,27 @@ border: 1px solid black;
 		<li id="${pageContext.request.contextPath}/member/memberInfo" dropzone="f" class="header_plus_li">
 				회원 정보 보기
 		</li>
-		<li id="${pageContext.request.contextPath}/member/memberUpdate" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/member/findPw" dropzone="a" class="header_plus_li">
 				회원 정보 수정
 		</li>
-		<li id="${pageContext.request.contextPath}/member/" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/member/#" dropzone="f" class="header_plus_li">
 				구매한 영화
 		</li>
 		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
 				영화 요청 목록
 		</li>	
+		<li id="${pageContext.request.contextPath}/member/findPw" dropzone="b" class="header_plus_li">
+				회원 탈퇴
+		</li>
 		
 		<li id="${pageContext.request.contextPath}/board/note/noteList" dropzone="f" class="header_plus_li">
 				쪽지
 		</li>
-		<li id="${pageContext.request.contextPath}/member/dropUserCheck" dropzone="f" class="header_plus_li">
-				회원 탈퇴
+		<c:if test="${member.grade ne 'normal'}">
+		<li id="${pageContext.request.contextPath}/member/myPr" dropzone="n" class="header_plus_li normal">
+				나의 프로필
 		</li>
+		</c:if>
 		
 		</ul>
 		<c:if test="${fn:contains(member.grade,'감독')}" >
@@ -50,13 +55,7 @@ border: 1px solid black;
 		</li>
 		<li id="${pageContext.request.contextPath}/board/order_rent/orderList" dropzone="f" class="header_plus_li">
 				장비 요청 목록
-		</li>
-		<c:if test="${member.grade ne 'normal'}">
-		<li id="${pageContext.request.contextPath}/member/myPr" dropzone="n" class="header_plus_li normal">
-				나의 프로필
-		</li>
-		</c:if>
-  		 
+		</li>  		 
   		</ul>
 		</div>
 		</c:if>
@@ -65,12 +64,21 @@ border: 1px solid black;
 </div>
 <!-- header_plus end -->
 <script>
+var grade="${member.grade}";
+if(grade!='normal'){
+	$(".header_plus_li").css("width","14%");
+}else {
 	$(".header_plus_li").css("width","16.5%");
+}
 $(".header_plus_li").click(function() {
 	var path=$(this).attr("id");
-	var vl=$(this).attr("name");
-	if(vl=='f'){
+	var vl=$(this).attr("dropzone");
+	if(vl=='f'){		
 		location.href=path;
+	}else if(vl=='a') {
+		location.href=path+"?val="+0;
+	}else if(vl=='b') {
+		location.href=path+"?val="+1;
 	}else {
 		var id='${member.id}';
 		location.href=path+"?id="+id;
