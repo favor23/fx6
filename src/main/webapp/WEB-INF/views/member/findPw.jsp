@@ -37,8 +37,15 @@
 	font-size: 15px; 
 }
 
+.member_css {
+	margin: 0px auto;
+	padding: 0px;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+
 </style>
-<c:import url="../temp/bootStrap.jsp" />
+<c:import url="../temp/bootStrap_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -46,29 +53,53 @@
 <c:import url="../temp/header.jsp" />
 <div id="tap"></div>
 <c:import url="../temp/header_plus_member.jsp" />
-<div id="main_session_default">
+<div id="main_session_default" class="member_css">
 	<div class="dropBox">
-	<p>회원 확인을 위해 비밀번호를 입력해주세요</p>
+	<c:if test="${val eq 0}">
+	<p>회원 정보 수정을 위해 비밀번호를 입력해주세요</p>
+	</c:if>
+	<c:if test="${val eq 1}">
+	<p>회원 탈퇴를 위해 비밀번호를 입력해주세요</p>	
+	</c:if>
 	<input type="password" id="pw" onkeypress="keycheck(event)">
-	<button class="btn btn-success" id="next">확인</button>
+	<button class="btn btn-success" id="next" onclick="active()">확인</button>
 	</div>
 
-
+<form action="" method="post" id="findPw" style="">
+</form>
 
 </div>
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
+var val=${val};
+
 function keycheck(evt){
     var keyCode = evt.which?evt.which:event.keyCode;
     if(keyCode==13){
-    	
+    	active();
     }
 }
 
 
 function active(){
 	var pw=$("#pw").val();
+	var id='${member.id}';
+	$.post("${pageContext.request.contextPath}/member/findPw2",{
+		id:id,
+		pw:pw
+	},function(data){
+		if(data==1){
+			if(val==1){
+				$("#findPw").attr("action","${pageContext.request.contextPath}/member/dropUserForm");
+			}else {
+				$("#findPw").attr("action","${pageContext.request.contextPath}/member/memberUpdate");
+			}
+			$("#findPw").submit();
+		}else {
+			alert("비밀번호가 일치하지않습니다.");
+		}
+	});	
 }
 
 

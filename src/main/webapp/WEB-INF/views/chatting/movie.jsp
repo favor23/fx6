@@ -14,6 +14,9 @@ div{
 	padding: 5px;
 	border: 1px solid black;
 }
+body{
+	background-color: #242424;
+}
 #main-section{
 	width: 1600px;
 	height: 900px;
@@ -24,11 +27,12 @@ div{
 	height: 100%;
 	float: left;
 	
-}
+}	
 
 #movie-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #video-div{
@@ -95,7 +99,7 @@ div{
 
 #seekBar{
 	position: relative;
-	width: 360px;
+	width: 60%;
 	bottom: -96%;
 	left: 200px;
 }
@@ -112,6 +116,55 @@ div{
 #etc{
 	width: 100%;
 	height: 13%;
+	font-size: large;
+	color: white;
+}
+
+#etc > *{
+	margin: 0;
+	color: white;
+}
+
+.etc_p {
+	float: right;
+	display: inline-block;
+	color: white;
+}
+
+.etc_title {
+	float: left;
+	display: inline-block;
+	color: white;
+}
+.etc_genre{
+	float: left;
+	display: block;
+	font-size: small;
+	color: white;
+}
+
+.etc_playtime{
+	float: left;
+	display: inline-block;
+	font-size: small;
+	margin-left: 10px;
+	color: white;
+}
+
+.etc_director{
+	float: left;
+	display: inline-block;
+	font-size: small;
+	margin-left: 10px;
+	color: white;
+}
+
+#exit{
+	width: 100px;
+	height: 50px;
+	float: right;
+	margin-top: 32px;
+	margin-right: -50px;
 }
 
 #d2{
@@ -123,6 +176,7 @@ div{
 #chat-info{
 	width: 100%;
 	height: 7%;
+	background-color: black;
 }
 
 #chatting-container{
@@ -130,6 +184,8 @@ div{
 	height: 80%;
 	overflow: scroll;
 	overflow-x: hidden;
+	background-color: black;
+	color: white;
 }
 .chatting{
 	width: 100%;
@@ -168,6 +224,12 @@ div{
 	padding: 0;
 }
 
+#mv_logo{
+	width: 100%;
+	height: 100%;
+	
+}
+
 img{
 	width: 30px;
 	height: 30px;
@@ -200,12 +262,24 @@ img{
 						<img src="../movie/fullScreen.PNG" id="fullScreen">
 					</div>
 				</div>
-			<div id="etc"></div>
+			<div id="etc">
+				<p class="etc_title">영화 제목 : ${dto.movie_title}</p>
+				<p class="etc_p"><img alt="" src="../movie/eye.PNG"> ${count}</p>
+				<br>
+				<p class="etc_genre">장르 : ${dto.genre}</p>
+				<button class="btn" id="exit">나가기</button>
+				<br>
+				<p class="etc_director">감독 : ${dto.director}</p>
+				<br>
+				<p class="etc_playtime">상영시간 : ${dto.restricted}세 관람가</p>
+			</div>
 		</div>
 
 		<!--==================================== 채팅 -->
 	<div id="d2">
-		<div id="chat-info"><span class="rep_list">신고내역</span><span class="rep_count">0</span></div>
+		<div id="chat-info"><img
+         id="mv_logo" class="${pageContext.request.contextPath}/index"
+         src="<c:url value="/img/index/상영중.PNG"/>"></div>
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
@@ -481,7 +555,9 @@ img{
 			return encodedValue;
 		}
 		
-		
+		$("#exit").click(function() {
+			window.close();
+		});
 		
 		
 		//sinhojeong====================================================

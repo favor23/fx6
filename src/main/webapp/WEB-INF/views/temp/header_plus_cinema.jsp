@@ -29,7 +29,7 @@ $(".header_plus_li").click(function() {
 	location.href=$(this).attr("id");
 });
 var grade='${member.grade}';
-if(grade=='admin'){
+if(grade=='admin' || ${member==null}){
 	$(".normal").css("display","none");
 	$(".header_plus_li").css("width","50%");
 }else{

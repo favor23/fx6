@@ -57,6 +57,7 @@
 		width: 100%;
 		height: 250px;
 		margin-top: 70px;
+		padding-left: 30px;
 		background-color: #0052cc;
 		display: inline-block;
 		z-index: 1;
@@ -249,14 +250,14 @@
 	
 	.carousel-caption {
 		width: 100%;
-		bottom: 350px;
+		bottom: 500px;
 		opacity: 0.9;
 		left: 0;
 	}
 	
 	.carousel-caption p,
 	.carousel-caption h3 {
-		background-color: #ff1a8c;
+		background-color: #1f027e;
 	}
 	
 	.carousel-caption h3 {
@@ -391,7 +392,7 @@
 				크라우드 펀딩
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 45%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				우리의 캠페인을 통해 그 기회를 만들어 보세요!

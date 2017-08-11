@@ -39,7 +39,7 @@
 	position:relative;
 	overflow: hidden;
 	width: 320px;
-	height: 445px;
+	height: 473px;
 	background-color: #eee;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -48,7 +48,7 @@
 	transition: all 0.5s;
 	z-index: 1;   
 	left: 587px;
-	top:-6px;
+	top:-2px;
 }
 
 .cont_forms_active_login {
@@ -104,11 +104,12 @@ display:inline-block;
 	color: #37474F;
 }
 
-.btn_login {
+.btn_login_s {
 	background-color: #26C6DA;
 	border: none;
 	padding: 10px;
-	width: 200px;
+	width: 260px;
+	margin-left:10px;
 	border-radius: 3px;
 	box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
 	color: #fff;
@@ -117,15 +118,16 @@ display:inline-block;
 	font-weight: bold;
 }
 
-.btn_login2 {
+.btn_login_s2 {
 	background-color: #009900;
 	border: none;
 	padding: 10px;
-	width: 200px;
+	width: 260px;
+	margin-left:10px;
 	border-radius: 3px;
 	box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
 	color: #fff;
-	margin-top: 20px;
+	margin-top: 10px;
 	cursor: pointer;
 	font-weight: bold;
 }
@@ -163,11 +165,12 @@ background text
 	background-color: #ef5350;
 	border: none;
 	padding: 10px;
-	width: 200px;
+	width: 260px;
+	margin-left:10px;
 	border-radius: 3px;
 	box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
 	color: #fff;
-	margin-top: 35px;
+	margin-top: 25px;
 	cursor: pointer;
 	font-weight: bold;
 }
@@ -322,4 +325,8 @@ to {
 	padding-right: 170px;
 	width: 757px;
 	margin-left:300px;
+}
+.welcome {
+	width: 150px;
+	
 }

@@ -8,16 +8,57 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+		background-color: #f5f5f0;
+	}
+	
+	header {
+		font-family: 'Noto Sans KR';
+	}
+	
 	.main_art1 {
 		width: 60%;
-		height: 500px;
+		height: 540px;
 		float: left;
+		margin-top: 80px;
+		background-color: white;
+		padding: 20px;
+		box-shadow: 1px 1px 5px #adad85;
 	}
 	
 	.main_art2 {
 		width: 60%;
-		height: 50px;
-		display: table;
+		margin: 0 auto;
+		margin-top: 650px;
+		margin-bottom: 100px;
+		background-color: white;
+		box-shadow: 1px 1px 5px #adad85;
+	}
+	
+	.tab-content {
+		padding: 20px;
+	}
+	
+	#home {
+		line-height: 35px;
 	}
 	
 	.art1_div1 {
@@ -52,7 +93,7 @@
 		width: 100%;
 		height: 160px;
 		margin: 0 auto;
-		margin-top: 80px;
+		margin-top: 100px;
 	}
 	
 	.film_rate {
@@ -109,11 +150,12 @@
 	    background: none repeat scroll 0 0 #222222;
 	    border: 4px solid #FFFFFF;
 	    border-radius: 23px 23px 23px 23px;
-	    margin-top: 45px;
+	    margin-top: 75px;
+	    color: white;
 	}
 	
 	.row {
-		margin-right: -280px;
+		margin-right: -350px;
 	}
 	
 	.btn1 {
@@ -208,6 +250,28 @@
 		position: absolute;
 		left: 0px;
 	}
+	
+	.btn1 {
+		width: 120px;
+	}
+	
+	.star_div {
+		width: 154px;
+		height: 30px;
+		margin-left: 19px;
+	}
+	
+	.sd1, .sd3, .sd5 {
+		width: 20%;
+		height: 100%;
+		float: left;
+	}
+	
+	.sd2, .sd4 {
+		width: 20%;
+		height: 100%;
+		float: left;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -285,6 +349,26 @@
 		
 		$(document).on("click", ".rotation2", function() {
 			getRList(1, $(".btn1").attr("accesskey"));
+		});
+		
+		$(".sd1").mouseenter(function() {
+			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star1.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		});
+		
+		$(".sd2").mouseenter(function() {
+			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star2.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		});
+		
+		$(".sd3").mouseenter(function() {
+			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star3.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		});
+		
+		$(".sd4").mouseenter(function() {
+			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star4.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		});
+		
+		$(".sd5").mouseenter(function() {
+			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star5.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
 		});
 	});
 	
@@ -442,19 +526,19 @@
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
 						<c:if test="${stars>0.0 and stars<1.0 or stars==0.0 or stars==1.0}">
-							<p><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></p>
+							<p><img src="<c:url value="/img/reviewimg/sr_stars2.png"/>"></p>
 						</c:if>
 						<c:if test="${stars>1.0 and stars<2.0 or stars==2.0}">
-							<p><img src="<c:url value="/img/reviewimg/star2.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars3.png"/>"></p>		
 						</c:if>
 						<c:if test="${stars>2.0 and stars<3.0 or stars==3.0}">
-							<p><img src="<c:url value="/img/reviewimg/star3.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars4.png"/>"></p>		
 						</c:if>
 						<c:if test="${stars>3.0 and stars<4.0 or stars==4.0}">
-							<p><img src="<c:url value="/img/reviewimg/star4.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars5.png"/>"></p>		
 						</c:if>
 						<c:if test="${stars>4.0 and stars<5.0 or stars==5.0}">
-							<p><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars6.png"/>"></p>		
 						</c:if>
 					</p>
 					<p>
@@ -463,27 +547,27 @@
 							<h3 style="color: red;">등록된 별점이 없습니다.</h3>
 						</c:if>
 						<c:if test="${srStars>0.0 and srStars<1.0 or srStars==0.0 or srStars==1.0}">
-							<p><img src="<c:url value="/img/reviewimg/star1.jpg"/>"></p>
+							<p><img src="<c:url value="/img/reviewimg/sr_stars2.png"/>"></p>
 						</c:if>
 						<c:if test="${srStars>1.0 and srStars<2.0 or srStars==2.0}">
-							<p><img src="<c:url value="/img/reviewimg/star2.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars3.png"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>2.0 and srStars<3.0 or srStars==3.0}">
-							<p><img src="<c:url value="/img/reviewimg/star3.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars4.png"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>3.0 and srStars<4.0 or srStars==4.0}">
-							<p><img src="<c:url value="/img/reviewimg/star4.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars5.png"/>"></p>		
 						</c:if>
 						<c:if test="${srStars>4.0 and srStars<5.0 or srStars==5.0}">
-							<p><img src="<c:url value="/img/reviewimg/star5.jpg"/>"></p>		
+							<p><img src="<c:url value="/img/reviewimg/sr_stars6.png"/>"></p>		
 						</c:if>
 					</p>
-					<button type="button" class="btn btn-primary list_a modal_crate2 btn1" 
-													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">예매하기</button>
+					<button type="button" class="btn btn-warning list_a modal_crate2 btn1" 
+													data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">구매하기</button>
 				</div>
 			</div>
 			<div class="art1_div2">
-				<img style="width: 90%; float: right; margin-top: 15px;" src="<c:url value="${dto.poster_img}"/>">
+				<img style="width: 74%; float: right; margin-top: 15px;" src="<c:url value="${dto.poster_img}"/>">
 			</div>
 		</article>
 		<article class="main_art2">
@@ -509,6 +593,14 @@
 			      		<div class="menu3_wrap">
 			      			<div class="sr_write">
 			      				<div class="write_left">
+			      					<div class="star_ch" style="position: relative;"><img src="<c:url value="/img/reviewimg/star5.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;"></div>
+			      					<div class="star_div">
+			      						<div class="sd1"></div>
+			      						<div class="sd2"></div>
+			      						<div class="sd3"></div>
+			      						<div class="sd4"></div>
+			      						<div class="sd5"></div>
+			      					</div>
 			      					<input type="number" name="sr_stars" placeholder="별점(1~5)" min="1" max="5" step="1" style="width: 99%; height: 20px;">
 			      				</div>
 			      				<div class="write_middle">
