@@ -147,7 +147,7 @@
 							</div>
 					</div>
 				</div>
-				<div id="div3_d3"></div>
+				<div id="div3_d3"><img src="<c:url value="/img/index/예술은.jpg" />" style="width: 100%"></div>
 			</div>
 		</section>
 		<div id="modal_div2"></div>
