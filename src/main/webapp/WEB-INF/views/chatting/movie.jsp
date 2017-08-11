@@ -112,6 +112,50 @@ div{
 #etc{
 	width: 100%;
 	height: 13%;
+	font-size: large;
+	
+}
+
+#etc > *{
+	margin: 0;
+}
+
+.etc_p {
+	float: right;
+	display: inline-block;
+}
+
+.etc_title {
+	float: left;
+	display: inline-block;
+}
+.etc_genre{
+	float: left;
+	display: block;
+	font-size: small;
+}
+
+.etc_playtime{
+	float: left;
+	display: inline-block;
+	font-size: small;
+	margin-left: 10px;
+	
+}
+
+.etc_director{
+	float: left;
+	display: inline-block;
+	font-size: small;
+	margin-left: 10px;
+}
+
+#exit{
+	width: 100px;
+	height: 50px;
+	float: right;
+	margin-top: 32px;
+	margin-right: -50px;
 }
 
 #d2{
@@ -200,12 +244,24 @@ img{
 						<img src="../movie/fullScreen.PNG" id="fullScreen">
 					</div>
 				</div>
-			<div id="etc"></div>
+			<div id="etc">
+				<p class="etc_title">영화 제목 : ${dto.movie_title}</p>
+				<p class="etc_p"><img alt="" src="../movie/eye.PNG"> ${count}</p>
+				<br>
+				<p class="etc_genre">장르 : ${dto.genre}</p>
+				<button class="btn" id="exit">나가기</button>
+				<br>
+				<p class="etc_director">감독 : ${dto.director}</p>
+				<br>
+				<p class="etc_playtime">상영시간 : ${dto.restricted}세 관람가</p>
+			</div>
 		</div>
 
 		<!--==================================== 채팅 -->
 	<div id="d2">
-		<div id="chat-info"><span class="rep_list">신고내역</span><span class="rep_count">0</span></div>
+		<div id="chat-info"><img
+         id="bar_logo" class="${pageContext.request.contextPath}/index"
+         src="<c:url value="/img/index/상영중.PNG"/>"></div>
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
@@ -481,7 +537,9 @@ img{
 			return encodedValue;
 		}
 		
-		
+		$("#exit").click(function() {
+			window.close();
+		});
 		
 		
 		//sinhojeong====================================================

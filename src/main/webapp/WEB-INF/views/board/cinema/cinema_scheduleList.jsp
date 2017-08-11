@@ -41,7 +41,8 @@ body{
 	height: 250px;
 	margin: 0 auto;
 	margin-bottom: 30px;
-	background-color: gray;
+	background-color: #363636;
+	border-radius: 8px;
 }
 
 .list_poster{
@@ -63,19 +64,22 @@ body{
 	height: 100%;
 	float: left;
 	display: inline-block;
+	color: white;
 }
 
-.btn_div{
+#btn_div{
 	width: 30%;
 	height: 100%;
 	float: right;
 	display: inline-block;
 }
 
-.btn_div > button{
-	width: 100%;
-	height: 50%;
+#btn_div > button{
+	width: 99%;
+	height: 45%;
 	display: inline-block;
+	margin-top: 8px;
+	margin-left: -1px;
 }
 
 ul > li {
@@ -86,16 +90,16 @@ ul{
 	clear: both;
 }
 
-#info_1{
+.info_1{
 	width: 100%;
-	height: 100%;
+	height: 85%;
 	margin: 0 auto;
 }
 
-#info_1 li{
-	margin-left: 10px;
+.info_1 li{
+	margin-left: 40px;
 	font-size: large;
-	color: black;
+	color: #EDEDED;
 }
 
 #release{
@@ -106,10 +110,36 @@ ul{
 	
 }
 
-#info_1 span{
-	color: black;
+.info_1 span{
+	color: #EDEDED;
 	font-size: large;
 	margin: 0 auto;
+}
+
+.time {
+	width: 100%;
+	height: 15%;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	padding-bottom: 0;
+	margin-top: 12px;
+	border-radius: 12px;
+}
+
+#pageing {
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+	padding-bottom: 0;
+	font-size: medium;
+}
+
+#pageing > a{
+	text-decoration: none;
 }
 
 .modal-body, .modal-header, .modal-footer, .modal-content {
@@ -133,6 +163,7 @@ ul{
 	margin: 10px 5px 0 0;
 	float: right;
 }
+
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -151,7 +182,7 @@ ul{
 					
 					<div id="info">
 						<nav>
-							<div id="info_1">
+							<div class="info_1">
 								<div>
 									<span>상영기간	[${dto.release_date} ~ ${dto.release_end}]</span>
 								</div>
@@ -208,12 +239,26 @@ ul{
 						</nav>
 					</div>
 					
-					<div class="btn_div">
-						<button class="btn-success ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">티켓 구매 </button>
-						<button class="btn-primary huwon" id="${dto.movie_num}">후원페이지</button>
+					<div id="btn_div">
+						<button class="btn btn-success btn-lg ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">티켓 구매 </button>
+						<button class="btn btn-primary btn-lg huwon" id="${dto.movie_num}">후원페이지</button>
 					</div>
 				</div>
 			</c:forEach>
+		</div>
+		<div id="pageing">
+			<c:if test="${listInfo.curBlock>1}">
+				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.startNum-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
+				<%-- <span class="go" id="${i}">${i}</span> --%>
+				<a href="cinema_list?curPage=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.lastNum+1}">[다음]</a>
+			</c:if>
 		</div>
 	</section>
 		<div id="main_div2"></div>
