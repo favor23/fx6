@@ -232,23 +232,12 @@
 		position: relative;
 	}
 	
-	.btns span:last-child {
-		position: absolute;
-		right: 0px;
-	}
-	
-	.btns span:first-child {
-		position: absolute;
-		right: 80px;
+	.btns {
+		float: right;
 	}
 	
 	.menu4_con {
 		width: 100%;
-	}
-	
-	.btns2 span:first-child {
-		position: absolute;
-		left: 0px;
 	}
 	
 	.btn1 {
@@ -271,6 +260,27 @@
 		width: 20%;
 		height: 100%;
 		float: left;
+	}
+	.modal-body, .modal-header, .modal-footer, .modal-content {
+	   width: 800px;
+	   height: auto;
+	}   
+	
+	.modal-div2 {
+	   width: 380px;
+	   height: 400px;
+	   float: left;
+	}
+	
+	#pay_btn{
+	 margin:5px 0 13px 400px;
+	 width:47%;
+	 height: 50px;   
+	}
+	
+	#close_location{
+	   margin: 10px 5px 0 0;
+	   float: right;
 	}
 </style>
 <script type="text/javascript">
@@ -405,7 +415,7 @@
 	
 	function modal_ticket_crate(num) {
 		$.ajax({
-			url : "../../index_movielist/modal_ticket?num="+num,
+			url : "../../index_movielist/modal_ticket?movie_num="+num,
 			type : "GET",
 			success : function(data) {
 				$("#modal_div2").html(data);
