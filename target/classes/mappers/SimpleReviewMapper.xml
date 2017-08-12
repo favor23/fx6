@@ -6,7 +6,7 @@
 	<select id="srList" resultType="com.choa.sr.SimpleReviewDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, s.* from 
-		(select * from simple_review where movie_num=#{movie_num} order by num asc) s)
+		(select * from simple_review where movie_num=#{movie_num} order by num desc) s)
 		where r between #{startRow} and #{lastRow} 
 	</select>
 	<select id="srCount" resultType="java.lang.Integer">

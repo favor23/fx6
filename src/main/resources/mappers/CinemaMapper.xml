@@ -10,7 +10,7 @@
   	</select>
   	
   	<select id="listAll" resultType="com.choa.movie.MovieDTO">
-  		select * from movie
+  		select * from movie where release_date <![CDATA[ < ]]> SYSDATE and release_end > SYSDATE
   	</select>
   
   	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo" >
@@ -29,6 +29,7 @@
   		<foreach collection="genre" item="type" separator="or genre like">
     	  #{type}
      	</foreach>
+     	and release_date <![CDATA[ < ]]> sysdate and release_end > sysdate
   	</select>
   
   	<select id="myList" parameterType="java.util.Map" resultType="com.choa.movie.MovieDTO">
@@ -53,7 +54,7 @@
 	<select id="hotList" parameterType="java.util.Map" resultType="com.choa.movie.MovieDTO">
       select * from 
       (select rownum r, m.* from 
-      (select * from movie where genre like 
+      (select s.* from (select * from movie where release_date <![CDATA[ < ]]> sysdate and release_end > sysdate) s where genre like 
       <foreach collection="genre" item="type" index="index" separator="or genre like">
     	  #{type}
       </foreach>

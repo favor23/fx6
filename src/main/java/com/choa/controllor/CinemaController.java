@@ -39,14 +39,15 @@ public class CinemaController {
 	
 	@RequestMapping(value="/board/cinema/cinema_list")
 	public void cinema_list(@RequestParam(defaultValue="1")Integer curPage, Model model, HttpServletRequest request, ListInfo listInfo) throws Exception{
-		
+
 		movieController.movieList(curPage, model);
 		
-		cinemaService.listAll(listInfo);
 		
+		List<MovieDTO> list = cinemaService.listAll(listInfo);
+		RoomDTO roomDTO = null;
+			roomDTO = roomService.playtime(1);			
+			model.addAttribute("roomDTO", roomDTO);
 		
-		RoomDTO roomDTO = roomService.playtime(1);
-		model.addAttribute("roomDTO", roomDTO);
 		model.addAttribute("listInfo", listInfo);
 	}
 	

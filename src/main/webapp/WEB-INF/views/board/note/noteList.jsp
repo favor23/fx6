@@ -7,8 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap_black.jsp" />
+<c:if test="${member.grade eq 'admin'}">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-
+</c:if>
 <style type="text/css">
 	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 	
@@ -146,10 +147,17 @@ function checkAll(){
 <body>
 <c:import url="../../temp/header.jsp"/>
 <div id="tap"></div>
+<c:if test="${member.grade ne 'admin'}">
+<c:import url="../../temp/header_plus_member.jsp" />
+</c:if>
+<c:if test="${member.grade eq 'admin'}">
 <c:import url="../../temp/header_plus_admin.jsp" />
+</c:if>
+<c:if test="${member.grade eq 'admin'}">
 <div id="main_session_default">
 <c:import url="../../admin/admin_one.jsp" />
 </div>	
+</c:if>
 	<article class="note_main">
 	
 		
@@ -192,6 +200,7 @@ function checkAll(){
 	<c:if test="${member.grade eq 'admin'}">
 		<button type="button" data-toggle="modal" data-target="#sendmessage" class="send_btn">쪽지 보내기</button>
 	</c:if>
+	<button type="button" class="check_send">보낸 쪽지함</button>
 	</div>	
 		
 		
@@ -233,16 +242,17 @@ function checkAll(){
 			    
 			      <!-- Modal content-->
 			      <div class="modal-content">
-			        <div class="modal-header">
+			        <div class="modal-header" style="border-bottom: #503396 solid 2px; background-color: #ddd;">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          <h4 class="modal-title">쪽지 보내기</h4>
 			        </div>
 			        <div class="modal-body">
 			         <form action="noteWrite" method="post" id="frm">
 			          	<input type="hidden"  name="sender" value="${member.id}">
-			          	받는 사람 : <input type="text" name="addressee" class="form-control" style="width:180px; height: 30px;" placeholder="아이디를 입력해주세요.">
+			          	
+			          	<div style="float: left; width: 30%; ">받는 사람 </div> <input type="text" name="addressee" class="form-control" style="width:70%; height: 30px; float: right;" placeholder="아이디를 입력해주세요." >
 			        	<textarea rows="20" cols="54" class="form-control" name="contents" style="resize: none;"></textarea> 
-			        	</form> 
+			        </form> 
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal" id="message">보내기</button>

@@ -4,8 +4,14 @@
 <h3>조회순 리뷰</h3>
 <span style="float: left;">총 ${totalCount}건</span>
 <span style="float: right;"><a href="../review/reviewList">more...</a></span>
-<table class="table">
+<table class="table" style="border-top: 2px solid #b31aff;">
     <tbody>
+    <tr style="background-color: #f2e6ff">
+      	<td>title</td>
+      	<td>writer</td>
+      	<td>date</td>
+      	<td>hit</td>
+    </tr>
     <c:forEach items="${list}" var="rList">
       <tr>
         <td>${rList.title}</td>

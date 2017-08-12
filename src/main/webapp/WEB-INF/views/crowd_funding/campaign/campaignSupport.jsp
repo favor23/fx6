@@ -191,14 +191,20 @@
 			$(this).attr("class", "ben_list ben_choice");
 			$(this).val("선택");
 			
-			$(".total1").html("");
+			$(".total1").html("0");
 			$(".total").html($(".add_price").val());
 			$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
 			$(".hidden_space2").html("");
 		});
 		
 		$(".add_price").blur(function() {
-			var total = parseInt($(".ben_dis").attr("title")) + parseInt($(".add_price").val());
+			var total = 0;
+			
+			if($(".ben_dis").attr("title")!=null&&$(".ben_dis").attr("title")!="") {
+				total = parseInt($(".ben_dis").attr("title")) + parseInt($(".add_price").val());
+			} else {
+				total = parseInt($(".add_price").val());
+			}
 			
 			$(".total2").html($(this).val());
 			$(".total").html(total);
@@ -248,7 +254,7 @@
 				캠페인 후원하기
 			</div>
 			<hr style="width: 20%; position: absolute; left: 20%;">
-			<span style="position: absolute; left: 44%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
+			<span style="position: absolute; left: 45%; top: 80px; color: white; font-size: 1.7em;">꿈을 가진 영화인들</span>
 			<hr style="width: 20%; position: absolute; left: 60%;">
 			<div class="top2">
 				마음에 드는 캠페인에 후원해보세요!
@@ -289,8 +295,8 @@
 						<tr>
 							<td>결제 금액</td>
 							<td>
-						        후원 혜택금액&nbsp;<span class="total1" style="color: #0052cc; font-size: 2.0em;"></span>&nbsp;+&nbsp;후원 금액<span class="total2" style="color: #0052cc; font-size: 2.0em;"></span>
-						        <p>=&nbsp;총 결제금액&nbsp;<span class="total" style="color: #0052cc; font-size: 2.5em;"></span></p>
+						        후원 혜택금액&nbsp;<span class="total1" style="color: #0052cc; font-size: 2.0em; font-family: 'Hanna', sans-serif;">0</span>&nbsp;+&nbsp;후원 금액<span class="total2" style="color: #0052cc; font-size: 2.0em; font-family: 'Hanna', sans-serif;">0</span>
+						        <p>=&nbsp;총 결제금액&nbsp;<span class="total" style="color: #0052cc; font-size: 2.5em; font-family: 'Hanna', sans-serif;">0</span></p>
 							</td>
 						</tr>
 					</table>

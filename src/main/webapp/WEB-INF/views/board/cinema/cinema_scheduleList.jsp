@@ -5,6 +5,21 @@
 <html>
 <head>
 <style type="text/css">
+/* 기본서체 font-family: 'Noto Sans KR'; */
+   @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+   /* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+   /* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+   /* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+   @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+   /* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+   /* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+   @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+body{
+	font-family: 'Jeju Hallasan', cursive;
+}
 #tap {
 	width: 100%;
 	height: 50px;
@@ -26,7 +41,8 @@
 	height: 250px;
 	margin: 0 auto;
 	margin-bottom: 30px;
-	background-color: gray;
+	background-color: #363636;
+	border-radius: 8px;
 }
 
 .list_poster{
@@ -48,6 +64,7 @@
 	height: 100%;
 	float: left;
 	display: inline-block;
+	color: white;
 }
 
 #btn_div{
@@ -58,9 +75,11 @@
 }
 
 #btn_div > button{
-	width: 100%;
-	height: 33%;
+	width: 99%;
+	height: 45%;
 	display: inline-block;
+	margin-top: 8px;
+	margin-left: -1px;
 }
 
 ul > li {
@@ -71,16 +90,16 @@ ul{
 	clear: both;
 }
 
-#info_1{
+.info_1{
 	width: 100%;
-	height: 100%;
+	height: 85%;
 	margin: 0 auto;
 }
 
-#info_1 li{
-	margin-left: 10px;
+.info_1 li{
+	margin-left: 40px;
 	font-size: large;
-	color: black;
+	color: #EDEDED;
 }
 
 #release{
@@ -91,12 +110,59 @@ ul{
 	
 }
 
-#info_1 span{
-	color: black;
+.info_1 span{
+	color: #EDEDED;
 	font-size: large;
 	margin: 0 auto;
 }
 
+.time {
+	width: 100%;
+	height: 15%;
+	float: left;
+	margin: 0 auto;
+	text-align: center;
+	color: white;
+	padding-bottom: 0;
+	margin-top: 12px;
+	border-radius: 12px;
+}
+
+#pageing {
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: black;
+	padding-bottom: 0;
+	font-size: medium;
+}
+
+#pageing > a{
+	text-decoration: none;
+}
+
+.modal-body, .modal-header, .modal-footer, .modal-content {
+	width: 800px;
+	height: auto;
+}	
+
+.modal-div2 {
+	width: 380px;
+	height: 400px;
+	float: left;
+}
+
+#pay_btn{
+ margin:5px 0 13px 400px;
+ width:47%;
+ height: 50px;	
+}
+
+#close_location{
+	margin: 10px 5px 0 0;
+	float: right;
+}
 
 </style>
 <c:import url="../../temp/bootStrap.jsp" />
@@ -116,7 +182,7 @@ ul{
 					
 					<div id="info">
 						<nav>
-							<div id="info_1">
+							<div class="info_1">
 								<div>
 									<span>상영기간	[${dto.release_date} ~ ${dto.release_end}]</span>
 								</div>
@@ -174,18 +240,65 @@ ul{
 					</div>
 					
 					<div id="btn_div">
-						<button class="btn-primary">후원페이지</button>
+						<button class="btn btn-success btn-lg ticket_li modal_crate2" data-toggle="modal" data-target="#myModal2" accesskey="${dto.movie_num}">티켓 구매 </button>
+						<button class="btn btn-primary btn-lg huwon" id="${dto.movie_num}">후원페이지</button>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+		<div id="pageing">
+			<c:if test="${listInfo.curBlock>1}">
+				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.startNum-1}">[이전]</a>
+			</c:if>
+			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
+				<%-- <span class="go" id="${i}">${i}</span> --%>
+				<a href="cinema_list?curPage=${i}">${i}</a>
+			</c:forEach>
+			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
+				<a href="cinema_list?curPage=${listInfo.lastNum+1}">[다음]</a>
+			</c:if>
+		</div>
 	</section>
+		<div id="main_div2"></div>
 
 	<c:import url="../../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
-	$(".chat").click(function() {
-		window.open("../../chatting/bbb", "", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+$(".ticket_li").mouseenter(function() {
+	var num = $(this).attr("accesskey");
+	$.ajax({
+		url : "${pageContext.request.contextPath}/index_movielist/modal_ticket?movie_num="+num+"&man=/board/cinema/cinema_scheduleList",
+		type : "GET",
+		success : function(data) {
+			$("#main_div2").html(data);
+		}
 	});
+});
+
+$(".ticket_li").click(function() {
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		setTimeout(function() {
+			document.querySelector('.cont_form_login').style.opacity = "1";
+		}, 100);
+	}else{
+		
+	
+	}
+});
+
+$(".huwon").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		setTimeout(function() {
+			document.querySelector('.cont_form_login').style.opacity = "1";
+		}, 100);
+	}else{
+		location.href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num="+id;
+	}
+});
 </script>
 </html>

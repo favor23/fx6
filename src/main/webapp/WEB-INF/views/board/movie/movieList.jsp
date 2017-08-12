@@ -93,8 +93,26 @@
 	}
 </script>
 <style type="text/css">
+	/* 기본서체 font-family: 'Noto Sans KR'; */
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	/* 숫자에 이쁨 font-family: 'Hanna', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	/* 토속적인 느낌 font-family: 'Jeju Hallasan', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+	/* 손글씨 font-family: 'Nanum Pen Script', cursive; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	/* 본문말고 다른데 써 font-family: 'Jeju Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	/* 할아버지 주판 느낌 font-family: 'Jeju Myeongjo', serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+	/* 나눔고딕 font-family: 'Nanum Gothic', sans-serif; */
+	@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+	/* 이롭게 바탕체? font-family: 'Iropke Batang', serif; */
+	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
+	
 	body {
 		margin: 0%;
+		font-family: 'Noto Sans KR';
 	}	
 	#hd {
 		width: 100%;
@@ -218,7 +236,7 @@
 	    -o-backface-visibility: hidden;
 	    -ms-backface-visibility: hidden;
 	    backface-visibility: hidden;
-	    
+	    font-family: 'Jeju Gothic', sans-serif;
 	
 	}
 	
@@ -232,7 +250,7 @@
 	    -moz-transform-style: preserve-3d;
 	    -o-transform-style: preserve-3d;
 	    -ms-transform-style: preserve-3d;
-	    transform-style: preserve-3d
+	    transform-style: preserve-3d;
 	}
 	
 	.pic-caption {
