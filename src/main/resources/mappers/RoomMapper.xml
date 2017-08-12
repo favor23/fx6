@@ -15,5 +15,13 @@
   	<update id="playtimeUpdate" parameterType="com.choa.room.RoomDTO">
   		update room set starttime=#{startTime}, lasttime=#{lastTime} where num=#{num}
   	</update>
-  
+  	
+  	<!-- 전체리스트 -->
+  	<select id="roomList" resultType="com.choa.room.RoomDTO" parameterType="com.choa.util.ListInfo">
+		select * from
+  		(select rownum R, N.* from
+  		(select * from room) N)
+  		where R between #{startRow} and #{lastRow}
+  		
+  	</select>
   </mapper>
