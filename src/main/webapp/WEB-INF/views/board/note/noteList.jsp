@@ -7,8 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap_black.jsp" />
+<c:if test="${member.grade eq 'admin'}">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-
+</c:if>
 <style type="text/css">
 	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 	
@@ -146,10 +147,17 @@ function checkAll(){
 <body>
 <c:import url="../../temp/header.jsp"/>
 <div id="tap"></div>
+<c:if test="${member.grade ne 'admin'}">
+<c:import url="../../temp/header_plus_member.jsp" />
+</c:if>
+<c:if test="${member.grade eq 'admin'}">
 <c:import url="../../temp/header_plus_admin.jsp" />
+</c:if>
+<c:if test="${member.grade eq 'admin'}">
 <div id="main_session_default">
 <c:import url="../../admin/admin_one.jsp" />
 </div>	
+</c:if>
 	<article class="note_main">
 	
 		
