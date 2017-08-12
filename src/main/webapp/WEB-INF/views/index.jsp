@@ -33,51 +33,47 @@
 			<div class="carousel-inner">
 				<div class="item active">
 					<img src="<c:url value="/img/index/경찰.jpg"/>">
-					<div class="carousel-caption">
-						<h3>청년경찰</h3>
+					<div class="carousel-caption" >
+						<h1>청년경찰</h1>
+						<p>Midnight Runners</p>
+						<hr class="carousel-caption_hr" >
 						<p>파릇파릇한 놈들의 혈기왕성 실전수사</p>
 					</div>
 				</div>
-
 				<div class="item">
-					<img src="<c:url value="/img/index/스파이더맨2.jpg"/>">
+					<img src="<c:url value="/img/index/독립영화들1.jpg"/>">
 					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
+					</div>
+				</div>					
+				<div class="item">
+					<img src="<c:url value="/img/index/독립영화들4.jpg"/>">
+					<div class="carousel-caption">
 					</div>
 				</div>
-
 				<div class="item">
-					<img src="<c:url value="/img/index/박열.jpg"/>">
+					<img src="<c:url value="/img/index/독립영화들5.jpg"/>">
 					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
 					</div>
 				</div>
-
 				<div class="item">
-					<img src="<c:url value="/img/index/스페인소.jpg"/>">
-					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
+					<img src="<c:url value="/img/index/박열2.jpg"/>">
+					<div class="carousel-caption" >
+						<h1>박열</h1>
+						<hr class="carousel-caption_hr" >
+						<p>조선최고의 불량 청년</p>
+						<p>일본 제국을 가지고 놀다</p>
 					</div>
 				</div>
-
 				<div class="item">
-					<img src="<c:url value="/img/index/스포츠카.jpg"/>">
+					<img src="<c:url value="/img/index/택시기사.jpg"/>">
 					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
+						<h1>택시운전사</h1>
+						<hr class="carousel-caption_hr" >
+						<p>송강호/유해진/류준열이 그리는</p>
+						<p>1980년 5월의 광주</p>
 					</div>
 				</div>
-
-				<div class="item">
-					<img src="<c:url value="/img/index/광고.jpg"/>">
-					<div class="carousel-caption">
-						<h3>New York</h3>
-						<p>We love the Big Apple!</p>
-					</div>
-				</div>
+							
 			</div>
 
 			<!-- Left and right controls -->
