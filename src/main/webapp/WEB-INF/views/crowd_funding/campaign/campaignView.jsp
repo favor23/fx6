@@ -260,8 +260,21 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var end = new Date('${dto.campaign_end}');
+		var today = new Date();
+		var date = today.getTime() - end.getTime();
+		
+		if(date>0) {
+			$(".sup").val("마감되었습니다.");
+			$(".sup").attr("style", "background-color: grey; border-color: grey;");
+		}
+		
 		$(".sup").click(function() {
-			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+			if(date<=0) {
+				location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};				
+			} else {
+				alert("종료된 캠페인입니다. 아쉽지만 다른 캠페인에 후원해주세요!");
+			}
 		});
 		
 		$(".thumbs_up").click(function() {
@@ -272,7 +285,11 @@
 		});
 		
 		$(".ben_list").click(function() {
-			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+			if(date<=0) {
+				location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};				
+			} else {
+				alert("종료된 캠페인입니다. 아쉽지만 다른 캠페인에 후원해주세요!");
+			}
 		});
 	});
 	
