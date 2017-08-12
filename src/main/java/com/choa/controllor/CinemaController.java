@@ -69,11 +69,15 @@ public class CinemaController {
 		}
 		String id = customerDTO.getId();
 		String [] ticket = customerDTO.getTicket().split("/");
+		String [] ticket2 =customerDTO.getPlayView().split("/");
+		String [] ticket3=new String[ticket.length+ticket2.length];
+		System.arraycopy(ticket, 0, ticket3, 0, ticket.length);
+		System.arraycopy(ticket2, 0, ticket3, ticket.length, ticket2.length);
 		
 		listInfo.setCurPage(curPage);
-		int [] ticketar = new int[ticket.length];
+		int [] ticketar = new int[ticket3.length];
 		for(int q=0;q<ticketar.length;q++){
-			ticketar[q] = Integer.parseInt(ticket[q]);
+			ticketar[q] = Integer.parseInt(ticket3[q]);
 		}
 		try {
 			list = cinemaService.myList(id, listInfo, ticketar);

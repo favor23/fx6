@@ -25,7 +25,7 @@ border: 1px solid black;
 		<li id="${pageContext.request.contextPath}/member/findPw" dropzone="a" class="header_plus_li">
 				회원 정보 수정
 		</li>
-		<li id="${pageContext.request.contextPath}/member/#" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/member/myMovieList?curPage=1" dropzone="f" class="header_plus_li">
 				구매한 영화
 		</li>
 		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
