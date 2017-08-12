@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -59,7 +60,9 @@ public class HomeController {
 	}
 	//인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!인덱스~!!!!!!!!!!!!!
 	@RequestMapping(value="/index")
-	public void index(HttpServletRequest request){		
+	public void index(HttpServletRequest request,Model model) throws Exception{
+		List<CampaignDTO> list=campaignService.campaignNew();
+		model.addAttribute("newList", list);
 		fileLoad(request);
 	}
 	@RequestMapping(value="/defaultPage")

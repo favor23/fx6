@@ -462,7 +462,7 @@
 #mf {
 	
 }
-.carousel-caption{
+.main_setting{
 	    position: relative;
     top: -300px;
     left: -300px;
@@ -470,4 +470,8 @@
 }
 .carousel-caption_hr{
 	width: 400px;
+}
+.main_div_href{
+	cursor: pointer;
+	
 }
