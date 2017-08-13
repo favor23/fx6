@@ -42,6 +42,7 @@ public class PaymentMovieController {
 		for(int j=0;j<str_arry.length;j++){
 			if(movieDTO.getMovie_num()==Integer.parseInt(str_arry[j])){
 				cinemaController.cinema_list(1,model,request,listInfo); 
+				System.out.println("됌?");
 				return "/error/is_this";
 			}
 		}
