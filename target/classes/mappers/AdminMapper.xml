@@ -5,6 +5,11 @@
   
  <mapper namespace="AdminMapper"> 
 
+<select id="workers" resultType="java.lang.String">
+select persons from works where begin <![CDATA[ <= ]]> sysdate and end<![CDATA[ >= ]]>sysdate
+</select>
+
+
  	<select id="admin_login" parameterType="com.choa.admin.AdminDTO" resultType="com.choa.admin.AdminDTO"> 
  		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID and M.ID=#{id} and M.PW=#{pw}
  	</select>

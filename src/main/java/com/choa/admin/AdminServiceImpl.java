@@ -20,6 +20,9 @@ public class AdminServiceImpl implements MemberService{
 	@Autowired
 	private AdminDAOImpl adminDAO;
 
+	public List<String> workers()throws Exception{
+	   return adminDAO.workers();
+	}
 	
 	public int totalCount(String id)throws Exception{
 		return adminDAO.totalCount(id);
