@@ -16,7 +16,7 @@ public class PaymentSupportDAOImpl implements PaymentDAO{
 
 	@Inject
 	private SqlSession sqlSession;
-	private final String NAMESPACE="PaymentSupportMapper.";
+	private static final String NAMESPACE="PaymentSupportMapper.";
 	
 	@Override
 	public int pay_start(PaymentDTO paymentDTO) throws Exception {

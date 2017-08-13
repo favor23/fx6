@@ -42,6 +42,7 @@ public class PaymentMovieController {
 		for(int j=0;j<str_arry.length;j++){
 			if(movieDTO.getMovie_num()==Integer.parseInt(str_arry[j])){
 				cinemaController.cinema_list(1,model,request,listInfo); 
+				System.out.println("됌?");
 				return "/error/is_this";
 			}
 		}
@@ -67,7 +68,7 @@ public class PaymentMovieController {
 	}
 	
 	@RequestMapping(value="/paySystem/movie_bank", method=RequestMethod.POST)
-	public String bank(PaymentMovieDTO paymentMovieDTO,String cardNum1, String cardNum2, String cardNum3, String cardNum4, Model model, HttpServletRequest request) throws Exception{		
+	public String bank(PaymentMovieDTO paymentMovieDTO,String cardNum1, String cardNum2, String cardNum3, String cardNum4, Model model) throws Exception{		
 		 String str = cardNum1 + cardNum2 + cardNum3 + cardNum4;		
 		 System.out.println(str);
 		 
@@ -90,7 +91,7 @@ public class PaymentMovieController {
 			}
 		 }
 		model.addAttribute("message", message);
-		return "/paySystem/pay_result";		 
+		return "/paySystem/paysuccess2";		 
 	}
 	
 	@RequestMapping(value="/paySystem/movie_bank_0", method=RequestMethod.POST)
@@ -104,6 +105,6 @@ public class PaymentMovieController {
 			else{
 				model.addAttribute("message", "결제실패");				
 			}
-		return "/paySystem/pay_result";		 
+		 return "/paySystem/paysuccess2"; 
 	}
 }

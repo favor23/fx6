@@ -35,7 +35,7 @@ public class Bank {
 	      } else {
 	         message="잘못된 카드번호";
 	      }
-	      
+	      System.out.println(message);
 	      return message;
 	   }
 }

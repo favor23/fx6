@@ -65,8 +65,6 @@
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li><a href="${pageContext.request.contextPath}/member/memberInfo">마이페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
-               <li><a href="${pageContext.request.contextPath}/board/order_rent/orderList">장바구니</a></li>
-               <li><a href="${pageContext.request.contextPath}/member/myPage">티켓구매 현황</a></li>
                <li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>               
             </ul>
             </c:if>
@@ -82,9 +80,31 @@
          </div>
       </c:if> </ui>
    </div>
+   <div>
+   </div>
+   <div id="remote_area"></div>
 </header>
 <!-- header end -->
 <script>
+var r_m = '${member.grade}';
+if(r_m!=""&&r_m=="admin"){
+	var id='${member.id}';
+	$.get("${pageContext.request.contextPath}/admin/worker?id="+id,function(chk){
+		chk=chk.trim();
+		if(chk=="work"){
+			remote();
+		}
+	});
+	
+	
+}
+
+function remote(){
+	$.get("${pageContext.request.contextPath}/temp/remote",function(data){
+		$("#remote_area").html(data);
+	});
+}
+
 $("#bar_logo").click(function() {
    location.href=$(this).attr("class");
 })

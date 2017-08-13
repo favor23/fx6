@@ -17,7 +17,7 @@ public class PaymentMovieDAOImpl implements PaymentDAO{
 
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="PaymentMovieMapper.";
+	private static final String NAMESPACE="PaymentMovieMapper.";
 	
 	@Override
 	public int pay_start(PaymentDTO paymentDTO) throws Exception {

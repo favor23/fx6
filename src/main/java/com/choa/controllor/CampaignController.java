@@ -1,6 +1,7 @@
 package com.choa.controllor;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,30 @@ import com.choa.util.ListInfo;
 public class CampaignController {
 	@Autowired
 	private CampaignService campaignService;
+	
+	@RequestMapping(value = "campaignDone/{support_price}/{campaign_num}/{benefit_num}", method = RequestMethod.GET)
+	@ResponseBody
+	public int campaignDone(@PathVariable("support_price") Integer support_price, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("benefit_num") Integer benefit_num) {
+		int result = 0;
+		
+		CampaignDTO campaignDTO = new CampaignDTO();
+		
+		campaignDTO.setSupport_price(support_price);
+		campaignDTO.setCampaign_num(campaign_num);
+		
+		try {
+			result = campaignService.campaignDone(campaignDTO);
+			
+			if(result>0) {
+				result = campaignService.campaignDone2(benefit_num);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 	@RequestMapping(value = "campaignBadge/{campaign_num}", method = RequestMethod.GET)
 	@ResponseBody
@@ -57,14 +82,36 @@ public class CampaignController {
 		return "crowd_funding/campaign/campaignView?campaign_num=" + campaign_num;
 	}
 	
+	@RequestMapping(value = "campaignDown", method = RequestMethod.POST)
+	public String campaignDown(Integer campaign_num) {
+		int result = 0;
+		
+		try {
+			result = campaignService.campaignDown(campaign_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "crowd_funding/campaign/campaignView?campaign_num=" + campaign_num;
+	}
+	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.GET)
 	public void campaignSupport(Integer campaign_num, Model model) {
 		model.addAttribute("campaign_num", campaign_num);
 	}
 	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.POST)
-	public String campaignSupport(SupportDTO supportDTO, HttpSession session) {
+	public String campaignSupport(SupportDTO supportDTO,Model model, HttpSession session) {
 		session.setAttribute("support", supportDTO);
+		CampaignDTO campaignDTO=new CampaignDTO();
+		try {
+			campaignDTO=campaignService.campaignView(supportDTO.getCampaign_num());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		session.setAttribute("psupport", campaignDTO);
 		// 경로 추가
 		return "paySystem/pay24_s";
 	}
@@ -117,7 +164,7 @@ public class CampaignController {
 	
 	@RequestMapping(value = "getCampaignList", method = RequestMethod.POST)
 	public void campaignList(Integer curPage, String dual, Model model) {
-		List<CampaignDTO> list = null;
+		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
 		ListInfo listInfo = new ListInfo();
 		java.util.Date date = new java.util.Date();
 		

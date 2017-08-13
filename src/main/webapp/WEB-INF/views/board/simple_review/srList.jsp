@@ -27,16 +27,13 @@
 		<span style="margin-right: 15px;">${srList.writer}</span>
 		<span style="margin-right: 15px;">${srList.reg_date}</span>
 		<div class="btns btns2">
-		<!-- 
-			<c:if test="${srList.writer eq member.id or member.grade eq 'admin'}">
-				<span><a href="#" onclick="return false;" class="srDel" accesskey="${srList.num}">삭제</a></span>
+		 	<c:if test="${srList.writer eq member.id or member.grade eq 'admin'}">
+				<span><a href="#" onclick="return false;" class="srDel btn btn-danger" accesskey="${srList.num}" style="margin-left: 3px; height: 36px;">삭제</a></span>
 			</c:if>
-		 -->
-			<span><a href="#" onclick="return false;" class="srDel" accesskey="${srList.num}">삭제</a></span>
 		</div>
 		<div class="btns">
-			<span><input type="button" class="good" value="공감" accesskey="${srList.num}">${srList.good}</span>
-			<span><input type="button" class="bad" value="비공감" accesskey="${srList.num}">${srList.bad}</span>
+			<span><button type="button" class="good btn btn-info" accesskey="${srList.num}">공감&nbsp;<span class="badge">${srList.good}</span></button></span>
+			<span><button type="button" class="bad btn btn-warning" accesskey="${srList.num}">비공감&nbsp;<span class="badge">${srList.bad}</span></button></span>
 		</div>
 	</div>
 </div>

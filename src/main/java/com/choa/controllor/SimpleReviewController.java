@@ -40,7 +40,7 @@ public class SimpleReviewController {
 	@RequestMapping(value = "srWrite", method = RequestMethod.POST)
 	public String srWrite(SimpleReviewDTO simpleReviewDTO, Model model) {
 		int result = 0;
-		String message = "한줄평 등록 실패! 자세한 사항은 담당자에게 문의하세요.";
+		String message = "Fail!";
 		
 		try {
 			result = simpleReviewService.srWrite(simpleReviewDTO);
@@ -50,7 +50,7 @@ public class SimpleReviewController {
 		}
 		
 		if(result>0) {
-			message = "한줄평 등록 성공! 리스트에서 확인하세요.";
+			message = "Success!";
 		}
 		
 		model.addAttribute("message", message);

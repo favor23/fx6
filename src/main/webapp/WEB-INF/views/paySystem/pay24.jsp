@@ -131,7 +131,7 @@ a{
 <script type="text/javascript">
 var qqq=0;
 $.ajax({
-	url:"./g1",
+	url:"${pageContext.request.contextPath}/paySystem/g1",
 	type:"GET",
 	success:function(data){
 		$("#ajax_g").html(data);
@@ -142,7 +142,7 @@ $.ajax({
 		
 $("#ajax_g").on("click","#card_go",function(){		
 	$.ajax({
-		url:"./g4",
+		url:"${pageContext.request.contextPath}/paySystem/g4",
 		type:"GET",
 		success:function(data){
 			$("#div_good").html(data);

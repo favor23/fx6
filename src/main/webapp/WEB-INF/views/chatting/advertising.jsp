@@ -311,6 +311,10 @@ img{
 			<input type="hidden" name="grade" id="grade" value="${member.grade}">
 			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
 			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
+			<div id="banTextBox">
+				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>
+			
+			</div>
 		</div>
 	</div>
 </div>
@@ -588,8 +592,7 @@ img{
 					var message = htmlEncode(message);
 					for (var i = 1; i <= count; i++) {
 						if ($("#roomUser" + i).val() == name) {
-							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
-							
+							$('#discussion' + room).append('<li><strong class="ted" dropzone="'+htmlEncode(message)+'" name='+htmlEncode(name)+'>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
 							$.post("chch",{
 								num:'${movie_num}',
 								writer:htmlEncode(name),
@@ -636,6 +639,100 @@ img{
 		$("#exit").click(function() {
 			window.close();
 		});
+		
+		//sinhojeong====================================================
+		setInterval("setting()",5000);
+		
+		$(".chatting").on("click","strong",function(){ //채팅창의 닉네임 눌렀을때.
+		var rn = '${movie_num}';
+		var ted = $(this).attr("name");
+		var tedChat = $(this).attr("dropzone");
+		var ted2 = confirm(ted+"을(를) 신고하시겠습니까?");
+		if(ted2){
+				var date;
+					window.open("../member/reportUser?targetId="+ted
+							+"&senderId="+'${member.id}'
+							+"&roomNum="+rn,
+							/* +"&reg_date="+, */
+							"userReport","width=270,height=235,resizeable=0,left=1000,top=5");
+			}
+		});	
+			
+			
+			function resetting() {
+				$(".message").css("display", "inline-block");
+				$(".btn").css("display", "inline-block");
+				$("#banTextBox").css("display", "none");
+				$.get("reset?id=" + '${member.id}', function(chk) {
+					chk=chk.trim();
+					if(chk>0){
+						val=0;
+					}
+				});
+			}
+
+			
+			function setting() {
+				$.ajax({
+					type : 'POST',
+					url : 'chkBan',
+					data : "id=" + '${member.id}',
+					async : true,
+					success : function(data) {
+						data=data.trim();
+						if(data>0){
+							interChk(data);
+						}
+					}	
+				});
+			}
+			
+			
+			function interChk(data){
+				if(data!=val){
+					val=data;
+					$(".message").css("display", "none");
+					$(".btn").css("display", "none");
+					$("#banTextBox").css("display", "inline-block");
+					//1000ms = 1초, 300000ms = 5분, 1200000ms = 20분
+					//3600000ms = 1시간
+					var tset;//000생략
+					if (data * 1 == 1) {
+						tset = 3000;
+					} else if (data * 1 == 2) {
+						tset = 5000;
+					} else if (data * 1 == 3) {
+						tset = 10000;
+					}
+					setTimeout("resetting()", tset);
+				}
+			}
+			
+			
+			function showKeyCode(event) {
+				$.ajax({
+					type : 'POST',
+					url : 'chkBan',
+					data : "id=" + '${member.id}',
+					async : true,
+					success : function(data) {
+						data=data.trim();
+						ban=data;
+					}
+				});
+						
+				event = event || window.event;
+				var keyID = (event.which) ? event.which : event.keyCode;
+				if (keyID == 13&&ban==0) {
+					sendMessage();
+					$("#message" + room).val("");
+					moveScroll();
+				}else if(ban>0){
+					setting(ban);
+				}
+			}
+			
+	//sinhojeong end=============================================
 		
 		
 	</script>

@@ -4,7 +4,14 @@ public class SupportDTO {
 	private int campaign_num;
 	private String benefit_title;
 	private int total_price;
+	private int benefit_num;
 	
+	public int getBenefit_num() {
+		return benefit_num;
+	}
+	public void setBenefit_num(int benefit_num) {
+		this.benefit_num = benefit_num;
+	}
 	public int getCampaign_num() {
 		return campaign_num;
 	}

@@ -232,45 +232,53 @@
 		position: relative;
 	}
 	
-	.btns span:last-child {
-		position: absolute;
-		right: 0px;
-	}
-	
-	.btns span:first-child {
-		position: absolute;
-		right: 80px;
+	.btns {
+		float: right;
 	}
 	
 	.menu4_con {
 		width: 100%;
 	}
 	
-	.btns2 span:first-child {
-		position: absolute;
-		left: 0px;
-	}
-	
 	.btn1 {
 		width: 120px;
 	}
 	
-	.star_div {
-		width: 154px;
-		height: 30px;
-		margin-left: 19px;
+	.star_rating {font-size:0; letter-spacing:-4px; margin-left: 22px;}
+	
+	
+	.star_rating a {
+   		font-size:25px;
+    	letter-spacing:0;
+    	display:inline-block;
+    	margin-left:5px;
+   		color:#ccc;
+    	text-decoration:none;
+	}
+
+	.star_rating a:first-child {margin-left:0;}
+	.star_rating a.on {color:#ffd11a;}
+	
+	.modal-body, .modal-header, .modal-footer, .modal-content {
+	   width: 800px;
+	   height: auto;
+	}   
+	
+	.modal-div2 {
+	   width: 380px;
+	   height: 400px;
+	   float: left;
 	}
 	
-	.sd1, .sd3, .sd5 {
-		width: 20%;
-		height: 100%;
-		float: left;
+	#pay_btn{
+	 margin:5px 0 13px 400px;
+	 width:47%;
+	 height: 50px;   
 	}
 	
-	.sd2, .sd4 {
-		width: 20%;
-		height: 100%;
-		float: left;
+	#close_location{
+	   margin: 10px 5px 0 0;
+	   float: right;
 	}
 </style>
 <script type="text/javascript">
@@ -328,11 +336,19 @@
 		});
 		
 		$(document).on("click", ".good", function() {
-			srGood($(this).attr("accesskey"));
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				srGood($(this).attr("accesskey"));				
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(document).on("click", ".bad", function() {
-			srBad($(this).attr("accesskey"));
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				srBad($(this).attr("accesskey"));				
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(document).on("click", ".srDel", function() {
@@ -351,24 +367,16 @@
 			getRList(1, $(".btn1").attr("accesskey"));
 		});
 		
-		$(".sd1").mouseenter(function() {
-			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star1.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		$( ".star_rating a" ).click(function() {
+		    $(this).parent().children("a").removeClass("on");
+		    $(this).addClass("on").prevAll("a").addClass("on");
+		    return false;
 		});
 		
-		$(".sd2").mouseenter(function() {
-			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star2.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
-		});
-		
-		$(".sd3").mouseenter(function() {
-			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star3.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
-		});
-		
-		$(".sd4").mouseenter(function() {
-			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star4.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
-		});
-		
-		$(".sd5").mouseenter(function() {
-			$(".star_ch").html('<img src="<c:url value="/img/reviewimg/star5.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;">');
+		$(".vstar").click(function() {
+		 	var star = $(this).attr("id");
+		 	
+		 	$("#stars").val(star);
 		});
 	});
 	
@@ -405,7 +413,7 @@
 	
 	function modal_ticket_crate(num) {
 		$.ajax({
-			url : "../../index_movielist/modal_ticket?num="+num,
+			url : "../../index_movielist/modal_ticket?movie_num="+num,
 			type : "GET",
 			success : function(data) {
 				$("#modal_div2").html(data);
@@ -593,15 +601,15 @@
 			      		<div class="menu3_wrap">
 			      			<div class="sr_write">
 			      				<div class="write_left">
-			      					<div class="star_ch" style="position: relative;"><img src="<c:url value="/img/reviewimg/star5.jpg"/>" style="margin-left: 19px; position: absolute; top: 0px;"></div>
-			      					<div class="star_div">
-			      						<div class="sd1"></div>
-			      						<div class="sd2"></div>
-			      						<div class="sd3"></div>
-			      						<div class="sd4"></div>
-			      						<div class="sd5"></div>
-			      					</div>
-			      					<input type="number" name="sr_stars" placeholder="별점(1~5)" min="1" max="5" step="1" style="width: 99%; height: 20px;">
+			      					<p class="star_rating" style="text-align: left;">
+									    <a href="#" class="vstar on" id="1">★</a>
+									    <a href="#" class="vstar on" id="2">★</a>
+									    <a href="#" class="vstar on" id="3">★</a>
+									    <a href="#" class="vstar" id="4">★</a>
+									    <a href="#" class="vstar" id="5">★</a>
+									</p>
+									<p style="margin-left: 22px; font-size: 1.5em;">별점주기</p>
+			      					<input type="hidden" name="sr_stars" id="stars" value="3">
 			      				</div>
 			      				<div class="write_middle">
 			      					<textarea rows="" cols="" name="contents" placeholder="스포일러성 한줄평은 삭제될 수 있습니다." style="width: 100%; height: 100%;"></textarea>

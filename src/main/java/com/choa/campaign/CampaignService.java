@@ -13,12 +13,24 @@ public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
 	
+	public int campaignDone2(int benefit_num) throws Exception {
+		return campaignDAO.campaignDone2(benefit_num);
+	}
+	
+	public int campaignDone(CampaignDTO campaignDTO) throws Exception {
+		return campaignDAO.campaignDone(campaignDTO);
+	}
+	
 	public List<BenefitDTO> benefitView(int campaign_num) throws Exception {
 		return campaignDAO.benefitView(campaign_num);
 	}
 	
 	public int campaignUp(int campaign_num) throws Exception {
 		return campaignDAO.campaignUp(campaign_num);
+	}
+	
+	public int campaignDown(int campaign_num) throws Exception {
+		return campaignDAO.campaignDown(campaign_num);
 	}
 	
 	public int campaignHit(int campaign_num) throws Exception {

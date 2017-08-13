@@ -5,6 +5,6 @@
   
  <mapper namespace="PaymentSupportMapper"> 
  	<insert id="insert" statementType="CALLABLE" parameterType="java.util.Map">
- 		{ call paysupport_insert(#{dto.id, mode=IN}, #{dto.money, mode=IN}, #{dto.type, mode=IN}, #{dto.present, mode=IN}, #{dto.address, mode=IN}, #{dto.project_num, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER})  }
+ 		{ call paysupport_insert(#{dto.id, mode=IN}, #{dto.money, mode=IN}, #{dto.type, mode=IN}, #{dto.present, mode=IN}, #{dto.address, mode=IN}, #{dto.project_num, mode=IN}, #{dto.card_num, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER})  }
  	</insert> 
  </mapper> 

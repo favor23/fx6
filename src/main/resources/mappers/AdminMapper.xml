@@ -5,6 +5,11 @@
   
  <mapper namespace="AdminMapper"> 
 
+<select id="workers" resultType="java.lang.String">
+select persons from works where begin <![CDATA[ <= ]]> sysdate and end<![CDATA[ >= ]]>sysdate
+</select>
+
+
  	<select id="admin_login" parameterType="com.choa.admin.AdminDTO" resultType="com.choa.admin.AdminDTO"> 
  		select M.*,A.DEPARTMENT,A.POSITION,A.PHONE,A.EMAIL,A.PICTURE from admin A,MEMBER M where M.ID=A.ID and M.ID=#{id} and M.PW=#{pw}
  	</select>
@@ -20,12 +25,29 @@
  update customer set ban=0 where id=#{id}
  </update>
  
+ <select id="totalCount" resultType="java.lang.Integer">
+	select count(nvl(num,0)) from banlist where proccess='o'
+</select>
+
+<select id="totalCount2" resultType="java.lang.Integer" parameterType="java.lang.String">
+	select count(nvl(num,0)) from banlist where proccess='o' and adminid=#{id}
+</select>
+ 
  <select id="callBanList" resultType="com.choa.banList.BanlistDTO">
  	select * from banlist where proccess='x'
  </select>
  
- <select id="callBanList2" resultType="com.choa.banList.BanlistDTO">
- 	select * from banlist where proccess='o'
+ <select id="callBanListAll" parameterType="java.util.Map" resultType="com.choa.banList.BanlistDTO">
+ 	select * from 
+ 	(select rownum r, b.* from 
+ 	(select * from banlist where proccess='o' order by num desc) b) 
+ 	where r between #{listInfo.startRow} and #{listInfo.lastRow}
+ </select>
+ <select id="callBanListSearch" resultType="com.choa.banList.BanlistDTO">
+ 	select * from 
+ 	(select rownum r, b.* from 
+ 	(select * from banlist where proccess='o' and adminid=#{id} order by num desc) b) 
+ 	where r between #{listInfo.startRow} and #{listInfo.lastRow}
  </select>
  
  <select id="banCount" resultType="java.lang.Integer">

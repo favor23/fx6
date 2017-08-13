@@ -11,6 +11,7 @@ import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.MemberDTO;
 import com.choa.member.MemberService;
+import com.choa.util.ListInfo;
 
 
 @Service
@@ -19,9 +20,20 @@ public class AdminServiceImpl implements MemberService{
 	@Autowired
 	private AdminDAOImpl adminDAO;
 
+	public List<String> workers()throws Exception{
+	   return adminDAO.workers();
+	}
 	
-	public List<BanlistDTO> banProccessList()throws Exception{
-		return adminDAO.banProccessList();
+	public int totalCount(String id)throws Exception{
+		return adminDAO.totalCount(id);
+	}
+	
+	public List<BanlistDTO> banProccessListAll(ListInfo listInfo)throws Exception{
+		return adminDAO.banProccessListAll(listInfo);
+	}
+	
+	public List<BanlistDTO> banProccessListSearch(ListInfo listInfo,String id)throws Exception{
+		return adminDAO.banProccessListSearch(listInfo, id);
 	}
 	
 	public List<ChattingDTO> chatLog(String id)throws Exception{

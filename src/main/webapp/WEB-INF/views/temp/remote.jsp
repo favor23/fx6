@@ -6,15 +6,16 @@
 	border: 1px solid gray;
 	border-radius:5px;
 	position: fixed;
-	right:30;
-	top:200;
+	right:30px;
+	top:600px;
+	background-color: white;
 }
 #remote_box .ctl_box {
 	
 }
 .remote_btn1{
 	width: 80px;
-	height: 28px;
+	height: 36px;
 	background-color: black;
 	color:white;
 	font-weight: bold;
@@ -33,7 +34,8 @@
 }
 
 .remote_btn2{
-	width: 132px;
+border:none;
+	width: 131px;
 	height: 50px;
 	background-color: gray;
 	color:white;
@@ -53,7 +55,7 @@
     line-height: 30px;
     position: fixed;
 	right:35px;
-	top:230px;
+	top:632px;
 	background-color: white;
 }
 #remote_box .title {
@@ -76,10 +78,10 @@
 </div>
 <script type="text/javascript">
 
-//setInterval("banCount()",1500);
+setInterval("banCount()",1500);
 
 function banCount(){
-	$.get("admin/getBanCount",function(number){
+	$.get("${pageContext.request.contextPath}/admin/getBanCount",function(number){
 		number=number.trim();
 		if(number*1>0){
 			$(".remote_count").css({"background-color":"red","color":"white"});
@@ -89,8 +91,14 @@ function banCount(){
 }
 
 $(".remote_btn1").click(function(){
-	window.open("admin/list","doWork!","width=1000,height=600");
-	//열고있는동안 인터벌 스탑...이건 CSS할때 구현해보자
+	window.open("${pageContext.request.contextPath}/admin/list","doWork!","width=1000,height=600");
+	
 });
+
+$(".remote_btn2").click(function(){
+	location.href="${pageContext.request.contextPath}/admin/banProccessList";
+});
+
+
 
 </script>

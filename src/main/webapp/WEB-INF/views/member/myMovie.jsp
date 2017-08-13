@@ -28,20 +28,8 @@ border: 1px solid black;
 	<div>
 		<p>구매 내역</p>
 		<div id="my1">
-			<c:forEach items="${member.ticket }" var="t">
-				<label><!-- 영화 이름이 들어감 --></label>
-			</c:forEach>
-		</div>
-		<p>관람한 내역</p>
-		<div id="my2">
-			<c:forEach items="${member.ticket }" var="t">
-				<label><!-- 영화 이름이 들어감 --></label>
-			</c:forEach>
-		</div>
-		<p>리뷰 내역</p>
-		<div id="my3">
-			<c:forEach items="${member.ticket }" var="t">
-				<label><!-- 영화 이름이 들어감 --></label>
+			<c:forEach items="${list}" var="t">
+			${t.movie_title }
 			</c:forEach>
 		</div>
 	</div> 

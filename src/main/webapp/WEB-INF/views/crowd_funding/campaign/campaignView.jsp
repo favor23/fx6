@@ -260,19 +260,70 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var end = new Date('${dto.campaign_end}');
+		var today = new Date();
+		var date = today.getTime() - end.getTime();
+		var count = 0;
+		
+		supporterList('${dto.campaign_num}');
+		
+		if(date>0) {
+			$(".sup").val("마감되었습니다.");
+			$(".sup").attr("style", "background-color: grey; border-color: grey;");
+		}
+		
 		$(".sup").click(function() {
-			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+			if(date<=0) {
+				if('${member.id}'!=null&&'${member.id}'!="") {
+					location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};									
+				} else {
+					alert("로그인이 필요한 서비스입니다.");
+				}
+			} else {
+				alert("종료된 캠페인입니다. 아쉽지만 다른 캠페인에 후원해주세요!");
+			}
 		});
 		
 		$(".thumbs_up").click(function() {
-			var campaign_num = ${dto.campaign_num};
-			
-			thumbs_up(campaign_num);
-			badge(campaign_num);
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				var campaign_num = ${dto.campaign_num};
+
+				if(count==0) {	
+					thumbs_up(campaign_num);
+					badge(campaign_num);
+					
+					$(this).attr("style", "background-color: gray; border-color: gray;");
+					
+					count++;
+				} else {
+					thumbs_down(campaign_num);
+					badge(campaign_num);
+					
+					$(this).removeAttr("style", "background-color: gray; border-color: gray;");
+					
+					count--;
+				}
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(".ben_list").click(function() {
-			location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+			if(date<=0) {
+				if('${member.id}'!=null&&'${member.id}'!="") {
+					location.href = "campaignSupport?campaign_num=" + ${dto.campaign_num};
+				} else {
+					alert("로그인이 필요한 서비스입니다.");
+				}
+			} else {
+				alert("종료된 캠페인입니다. 아쉽지만 다른 캠페인에 후원해주세요!");
+			}
+		});
+		
+		$(".go_email").click(function() {
+			if(date>0) {
+				go_email('${dto.campaign_num}');
+			}
 		});
 	});
 	
@@ -289,12 +340,63 @@
 		});
 	}
 	
+	function thumbs_down(campaign_num) {
+		$.ajax({
+			url:"campaignDown",
+			type:"POST",
+			data:{
+				campaign_num:campaign_num
+			},
+			success:function(data) {
+				
+			}
+		});
+	}
+	
 	function badge(campaign_num) {
 		$.ajax({
 			url:"campaignBadge/" + campaign_num,
 			type:"GET",
 			success:function(data) {
 				$(".badge").html(data.thumbs_up);
+			}
+		});
+	}
+	
+	function go_email(campaign_num) {
+		$.post("${pageContext.request.contextPath}/sendMail/campaign", 
+			{
+				campaign_num:campaign_num
+			}, function(data) {
+				alert(data.trim());
+			}
+		);
+	}
+	
+	function supporterList(campaign_num) {
+		$.ajax({
+			url: "${pageContext.request.contextPath}/supporter/supporterList/" + campaign_num,
+			type:"GET",
+			success:function(data) {
+				var result = "";
+				
+				if(data!=null&&data!="") {
+					$(".section2_contents").attr("style", "color: black; font-size: 1.0em;")
+					
+					result += '<table class="table" style="border-top: 2px solid #b31aff;>';
+					result += '<tr style="background-color: #f2e6ff;">';
+					result += '<td>id(name)</td><td>date</td><td>support</td></tr>';
+					$(data).each(function() {
+						result += '<tr style="color: #808080;"><td>' + this.id + '(' + this.name + ')</td>';
+						result += '<td>' + this.reg_date + '</td>';
+						result += '<td>' + this.support_price + '원</td></tr>';
+					});
+					result += '</table>';
+				} else {
+					result = "현재 등록된 후원자가 없습니다.";
+				}
+				
+				$(".supporter_list").html(result);
 			}
 		});
 	}
@@ -380,7 +482,9 @@
 						후원자
 					</div>
 				    <div class="section2_contents">
-						현재 후원한 사람이 없습니다!
+						<div class="supporter_list">
+						
+						</div>
 					</div>
 				</div>
 			</div>
@@ -410,6 +514,9 @@
 								</div>
 							</div>
 						</c:forEach>
+						<c:if test="${member.grade eq 'admin'}">
+							<button class="go_email btn btn-warning" style="width: 100%; height: 40px;">마감된 캠페인 이메일 전송</button>
+						</c:if>
 					</div>
 				</div>
 			</div>

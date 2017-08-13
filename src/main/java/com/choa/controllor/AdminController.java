@@ -22,7 +22,11 @@ import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.Hash;
 import com.choa.member.MemberDTO;
+import com.choa.room.RoomDTO;
+import com.choa.room.RoomService;
 import com.choa.util.ListInfo;
+import com.choa.util.MakePage;
+import com.choa.util.PageMaker;
 
 @Controller
 public class AdminController {
@@ -35,12 +39,71 @@ public class AdminController {
 	private Hash hash;
 	@Autowired
 	private Order_rentController order_rentController; 
+	@Autowired
+	private RoomService roomservice;
 
+
+	@RequestMapping(value="admin/worker")
+	public String test(String id,Model model)throws Exception{
+		List<String> list = adminService.workers();
+		String message="not";
+		boolean chk=false;
+		for(int i=0;i<list.size();i++){
+			String [] ar = list.get(i).split("/");
+			for(int j=0;j<ar.length;j++){
+				if(ar[j].equals(id)){
+					chk=true;
+					break;
+				}else {
+					chk=false;
+				}	
+			}
+			
+		}
+		if(chk){
+			message="work";
+		}
+		model.addAttribute("message", message);
+		return "/commons/ajaxResult";
+	}
+	
+	@RequestMapping(value="/temp/remote")
+	public void remote()throws Exception{
+		
+	}
+	
 	
 	@RequestMapping(value="admin/banProccessList")
-	public void banProccessList(Model model)throws Exception{
-		List<BanlistDTO> list = adminService.banProccessList();
+	public void bpl()throws Exception{}
+	
+	
+	
+	@RequestMapping(value="admin/banProccessListAll")
+	public String banProccessListAll(int curPage,String id,Model model)throws Exception{
+		int totalCount = adminService.totalCount(id);
+		ListInfo lf = new ListInfo();
+		lf.setCurPage(curPage);
+		lf.makePage(totalCount);
+		lf.setRow();
+		List<BanlistDTO> list = adminService.banProccessListAll(lf);
 		model.addAttribute("banList", list);
+		model.addAttribute("listInfo", lf);
+		model.addAttribute("verf", "all");
+		return "/admin/bplAjax";
+	}
+	
+	@RequestMapping(value="admin/banProccessListSearch")
+	public String banProccessListSearch(int curPage,String id,Model model)throws Exception{
+		int totalCount = adminService.totalCount(id);
+		ListInfo lf = new ListInfo();
+		lf.setCurPage(curPage);
+		lf.makePage(totalCount);
+		lf.setRow();
+		List<BanlistDTO> list = adminService.banProccessListSearch(lf,id);
+		model.addAttribute("banList", list);
+		model.addAttribute("listInfo", lf);
+		model.addAttribute("verf", id);
+		return "/admin/bplAjax";
 	}
 	
 	@RequestMapping(value="member/log",method=RequestMethod.GET)
@@ -161,8 +224,7 @@ public class AdminController {
 	//펀딩목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_1", method = RequestMethod.GET)
 	public void adminRequest_hi_1(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);
-		
+				
 	}
 	//대여목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_2", method = RequestMethod.GET)
@@ -174,14 +236,20 @@ public class AdminController {
 	//티켓구매목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_3", method = RequestMethod.GET)
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);
-		
+				
 	}
 	
 	//상영방목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_4", method = RequestMethod.GET)
 	public void adminRequest_hi_4(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);		
+		List<RoomDTO> list=new ArrayList<RoomDTO>();
+				try {
+					list= roomservice.roomList(listInfo);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
