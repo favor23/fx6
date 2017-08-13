@@ -602,9 +602,12 @@ var taste_checker="";
 				//중복체크를 했는지, 패스워드가 조건에 맞는지, 패스워드와 패스워드 확인과 일치하는지 확인해줌.
 				if (id_checker != "" && pw_checker != ""&&taste_checker!=""&&code_checker!="") {
 					$("#join_frm").submit();
-				} else if(id_checker == "" && pw_checker == ""){
-					alert("다시 확인하세요.");
+				} else if(id_checker == ""){
+					alert("아이디 중복 체크를 진행하셔야 합니다.");
+				}else if(pw_checker == ""){
+					alert("비밀번호를 확인해주세요");
 				}else if(taste_checker==""){
+				
 					alert("선호하는 장르를 다시 확인해주세요.");
 				}else if(code_checker==""){
 					alert("이메일 인증을 다시 진행해 주세요");
