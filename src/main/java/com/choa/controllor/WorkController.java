@@ -151,4 +151,12 @@ public class WorkController {
 			map.put("schedullist", list2);
 			return map;
 		}
+		
+		public void works_m(Model model){
+			WorkDTO workDTO=workService.listone();
+			String []str=workDTO.getPersons().split("/");
+			workDTO.setPersons(str[0]);
+			System.out.println(workDTO.getId());
+			model.addAttribute("work_m", workDTO);
+		}
 }

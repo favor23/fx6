@@ -15,6 +15,13 @@ public class CampaignDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
 	
+	//승인
+	public int approved_go(CampaignDTO campaignDTO){
+		return sqlSession.update(NAMESPACE+"approved_go", campaignDTO);
+	}
+	
+	
+	
 	public int campaignDone2(int benefit_num) throws Exception {
 		return sqlSession.update(NAMESPACE + "campaignDone2", benefit_num);
 	}
@@ -61,6 +68,10 @@ public class CampaignDAO {
 	
 	public List<CampaignDTO> campaignList5(ListInfo listInfo) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "campaignList5", listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList6(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList6", listInfo);
 	}
 	
 	public int campaignCount() throws Exception {

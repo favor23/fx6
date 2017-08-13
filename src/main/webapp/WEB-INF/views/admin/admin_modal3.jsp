@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td colspan="3">프로젝트 참여인원<span class="badge">${jbAry_count-1}</span><input type="hidden" id="persons_mod" name="persons" value="${str_plus}">
+							<td colspan="3"><label>프로젝트 참여인원</label><span class="badge">${jbAry_count-1}</span><input type="hidden" id="persons_mod" name="persons" value="${str_plus}">
 							<input type="hidden" id="persons" name="persons" value="${str_plus}"></td>
 							
 						</tr>

@@ -13,6 +13,14 @@ public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
 	
+	
+	//승인
+		public int approved_go(CampaignDTO campaignDTO){
+			return campaignDAO.approved_go(campaignDTO);
+		}
+	
+	
+	
 	public int campaignDone2(int benefit_num) throws Exception {
 		return campaignDAO.campaignDone2(benefit_num);
 	}
@@ -88,6 +96,15 @@ public class CampaignService {
 		listInfo.setRow();
 		
 		return campaignDAO.campaignList5(listInfo);
+	}
+	
+	public List<CampaignDTO> campaignList6(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList6(listInfo);
 	}
 	
 	public int campaignCount() throws Exception {

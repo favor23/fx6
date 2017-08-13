@@ -97,7 +97,7 @@ if(r_m!=""&&r_m=="admin"){
 	});
 	
 	
-}
+} 
 
 function remote(){
 	$.get("${pageContext.request.contextPath}/temp/remote",function(data){

@@ -29,6 +29,14 @@ public class CampaignController {
 	@Autowired
 	private CampaignService campaignService;
 	
+	
+	
+	public void approved_go(CampaignDTO campaignDTO){
+		campaignService.approved_go(campaignDTO);
+	}
+	
+	
+	
 	@RequestMapping(value = "campaignDone/{support_price}/{campaign_num}/{benefit_num}", method = RequestMethod.GET)
 	@ResponseBody
 	public int campaignDone(@PathVariable("support_price") Integer support_price, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("benefit_num") Integer benefit_num) {
@@ -201,7 +209,7 @@ public class CampaignController {
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
+/*	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
 	public String campaignPermit(Integer curPage, Model model) {
 		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
 		ListInfo listInfo = new ListInfo();
@@ -226,7 +234,35 @@ public class CampaignController {
 		model.addAttribute("listInfo", listInfo);
 		
 		return "admin/admin_hi/admin_Request_hi_1";
+	}*/
+	//이거 경로도 달라졋긴한데 음...ㅠㅠ
+	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
+	public String campaignPermit(Integer curPage, Model model) {
+		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
+		ListInfo listInfo = new ListInfo();
+		
+		int totalCount = 0;
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			totalCount = campaignService.campaignCount();
+
+			listInfo.makePage(totalCount);
+			listInfo.setRow();
+			
+			list = campaignService.campaignList6(listInfo);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+		
+		return "admin/admin_Request_hi_1";
 	}
+	
 	
 	@RequestMapping(value = "campaignWrite", method = RequestMethod.GET)
 	public String campaignWrite() {
@@ -279,8 +315,6 @@ public class CampaignController {
 		
 		try {
 			num = campaignService.numSelect();
-			
-			campaignDTO.setStory(campaignDTO.getStory().replace("\r\n", "<br>"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -315,6 +349,7 @@ public class CampaignController {
 		String message = "캠페인 생성 실패! 자세한 사항은 담당자에게 문의하세요.";
 		
 		campaignDTO.setCampaign_num(campaignDTO.getCampaign_num()-1);
+		campaignDTO.setStory(campaignDTO.getStory().replace("\r\n", "<br>"));
 		
 		try {
 			result = campaignService.campaignComplete(campaignDTO);

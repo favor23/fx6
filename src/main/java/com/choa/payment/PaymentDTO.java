@@ -1,5 +1,7 @@
 package com.choa.payment;
 
+import java.sql.Date;
+
 public class PaymentDTO {
 
 	private int num;
@@ -7,7 +9,17 @@ public class PaymentDTO {
 	private int money;
 	private String type;
 	private int refund;
+	private Date reg_date;
 	private String card_num;
+
+	
+	
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
 	
 	
 	

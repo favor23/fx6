@@ -33,6 +33,8 @@
 		DELETE FROM works WHERE id=#{id}
 	</delete>
 	
-	
+	<select id="work_m" resultType="com.choa.admin.work.WorkDTO">
+		select * FROM works where begin <![CDATA[ <= ]]> sysdate and name='상영관관리'
+	</select>
 	
  </mapper> 

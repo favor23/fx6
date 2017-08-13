@@ -7,19 +7,29 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title well">${member.department}업무 추가</h4>
+				<h4 class="modal-title well"><label>${member.department}업무 추가</label></h4>
 			</div>
 			<div class="modal-body">
 				<input type="hidden" id="iconcls" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name" value=""> <br> 시작날짜<input
-						type="date" id="begin" value=""> <br>~<br> 끝 날짜<input
-						type="date" id="end" value="">
+												 <div class="mat-div">
+    <label for="name" class="mat-label">프로젝트명</label>
+    <input type="text" class="mat-input" id="name">
+  </div>
+  <div class="mat-div">
+    <label for="begin" class="mat-label">시작날짜</label>
+    <input type="date" class="mat-input"  id="begin">
+  </div>
+  <div class="mat-div">
+    <label for="end" class="mat-label">끝 날짜</label>
+    <input type="date" class="mat-input"  id="end">
+  </div>
+  
 				</div>
 				<div class="modal_d2 well" style="overflow: auto">
 					<table class="table" width="100%" border="0" cellspacing="0"
 						cellpadding="0">
-						<tr><td colspan="3">${member.department} 명단 리스트</td></tr>
+						<tr><td colspan="3"><label>${member.department} 명단 리스트</label></td></tr>
 						<tr>
 							<td></td>
 							<td>이름</td>
@@ -46,7 +56,7 @@
 					<table class="table" width="100%" border="0" cellspacing="0"
 						cellpadding="0">
 						<tr>
-							<td colspan="3">프로젝트 참여인원</td>							
+							<td colspan="3"><label>프로젝트 참여인원</label></td>							
 						</tr>						
 					</table>
 				</div>

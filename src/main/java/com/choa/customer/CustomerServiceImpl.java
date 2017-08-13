@@ -22,6 +22,14 @@ public class CustomerServiceImpl implements MemberService{
 	@Autowired
 	private CustomerDAO customerDAO;
 
+	public void admin_update_set(CustomerDTO customerDTO){
+		customerDAO.admin_update_set(customerDTO);		
+	}
+	
+	
+	public CustomerDTO adminselect_c(MemberDTO memberDTO){
+		return customerDAO.adminselect_c(memberDTO);
+	}
 
 	//유저 탈퇴
 	public int dropUser(DropUserDTO dropUserDTO)throws Exception{
