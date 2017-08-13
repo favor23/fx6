@@ -8,7 +8,7 @@
       <li id="bar_logo" class="${pageContext.request.contextPath}/index"><img
          id="bar_logo" class="${pageContext.request.contextPath}/index"
          style="cursor: pointer;"
-         src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"></li>
+         src="<c:url value="/img/index/로고2.jpg"/>"></li>
       <li id="${pageContext.request.contextPath}/board/movie/movieList"
          class="header_li">영화</li>
       <li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_li">상영관</li>

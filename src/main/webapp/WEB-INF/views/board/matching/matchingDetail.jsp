@@ -8,64 +8,127 @@
 <title>Insert title here</title>
 <c:import url="../../temp/bootStrap.jsp"></c:import>
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+body{
+	font-family: 'Noto Sans KR'; 
+
+}
+
 #main_section {
-	width: 60%;
+	width: 1020px;
 	height: 1000px;
-	background-color: yellow;
+	/* background-color: yellow; */
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 80px;
 }
 
 .img_section {
-	width: 70%;
+	width: 60%;
 	height: 300px;
-	background-color: red;
+	/* background-color: red; */
 	float: left;
 }
 
 .profile_section {
-	width: 30%;
-	height: 300px;
-	background-color: blue;
+	width: 40%;
+	height: 342px;
+	/* background-color: blue; */
 	float: right;
+	border-bottom: 1px #d9d9d9 solid;
 }
 
 .main_area {
-	width: 70%;
+	width: 60%;
 	height: 700px;
-	background-color: gray;
+	/* background-color: gray; */
 	float: left;
 }
 
 .apply_area {
-	width: 30%;
+	width: 40%;
 	height: 700px;
-	background-color: purple;
+	/* background-color: purple; */
 	float: right;
 }
 
 .button {
-	width: 80%;
+	width: 100%;
+	height: 30px;
+	margin-top: 5%;
+	margin-left: 5%;
+	background-color: white;
+	color: black;
+	border: 1px black solid;
+	
+	
+}
+
+.button:HOVER{
+	
+	background-color: red;
+	color: white;
+
+}
+
+
+.button2{
+
+	width: 90%;
 	height: 30px;
 	margin-top: 5%;
 	margin-left: 10%;
+	background-color: white;
+	color: black;
+	border: 1px black solid;
+
 }
+
+.button2:HOVER{
+	
+	background-color: #1a75ff;
+	color: white;
+	border: none;
+	
+	
+
+}
+
 
 .writer_pro {
 	width: 90%;
 	height: 75%;
 	background-color: white;
-	margin-left: 5%;
+	margin-left: 10%;
 	margin-top: 3%;
 }
 
 .writer_pro2 {
 	width: 90%;
 	height: 23%;
-	background-color: orange;
+	/* background-color: orange; */
 	margin-left: 5%;
 	margin-top: 2%;
 }
+
+
+.title_text{
+
+	font-size: 1.6em;
+    width: 100%;
+    height: 70px;
+    font-family: 'Noto Sans KR';
+    font-weight: 700;
+
+}
+
+
+	.text1{
+	
+	color: #6b6b47;
+	font-size: 12px;
+	}
 </style>
 </head>
 <body>
@@ -83,14 +146,14 @@
 
 		<div class="profile_section">
 			<div class="writer_pro">
-				<p>감독 : ${dto.writer}</p>
-				<p>장르 : ${dto.genre}</p>
-				<p>형식 : ${dto.form}</p>
-				<p>줄거리 : ${dto.story}</p>
-				<p>작성일 : ${dto.reg_date}</p>
+				<p class="title_text">${dto.title}</p>
+				<p class="text1">장르 : ${dto.genre}</p>
+				<p class="text1">형식 : ${dto.form}</p>
+				
+				<p class="text1">작성일 : ${dto.reg_date}</p>
 			</div>
 			<div class="writer_pro2">
-				<input type="button" value="작가 프로필" class="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#writerPr">
+				<input type="button" value="작가 프로필" class="button btn btn-danger" class="btn btn-info btn-lg" data-toggle="modal" data-target="#writerPr">
 			</div>
 			
 			<div class="modal fade" id="writerPr" role="dialog">
@@ -110,7 +173,7 @@
 							<p>작품활동 : ${prDTO.activity }</p>
 				          </c:if>
 				          <c:if test="${empty prDTO}">
-							[아직 자기소개를 작성하지 않으셨습니다.]				
+							아직 자기소개를 작성하지 않으셨습니다.				
 							</c:if>	
 				          
 				          
@@ -142,21 +205,21 @@
 			</ul>
 
 			<div class="tab-content">
-				<div id="home" class="tab-pane fade in active">
-					<h3>시나리오</h3>
-					<p>${dto.scenario }</p>
+				<div id="home" class="tab-pane fade in active" style="padding: 30px;">
+					
+					<p >${dto.scenario }</p>
 				</div>
-				<div id="menu1" class="tab-pane fade">
+				<div id="menu1" class="tab-pane fade"  style="padding: 30px;">
 					<div id="menu1_form"></div>
 					
 				</div>
-				<div id="menu2" class="tab-pane fade">
+				<div id="menu2" class="tab-pane fade"  style="padding: 30px;">
 						<div id="menu2_form"></div>
 				</div>
-				<div id="menu3" class="tab-pane fade">
+				<div id="menu3" class="tab-pane fade"  style="padding: 30px;">
 						<div id="menu3_form"></div>
 				</div>
-				<div id="menu4" class="tab-pane fade">
+				<div id="menu4" class="tab-pane fade"  style="padding: 30px;">
 					<h3>공지사항</h3>
 					<p>${dto.notice}</p>
 				</div>
@@ -169,7 +232,7 @@
 
 
 			<!-- 감독 지원/모달 -->
-			<button type="button" class="button" data-toggle="modal" data-target="#directorModal">감독 지원하기</button>
+			<button type="button" class="button2 btn btn-info" data-toggle="modal" data-target="#directorModal">감독 지원하기</button>
 			
 			<form id="director_frm" method="post" action="applyWrite">
 			<div class="modal fade" id="directorModal" role="dialog">
@@ -202,7 +265,7 @@
 			</form>
 			
 			<!-- 배우 지원/모달 -->
-			<button type="button" class="button" data-toggle="modal" data-target="#actorModal">배우 지원하기</button>
+			<button type="button" class="button2 btn btn-info" data-toggle="modal" data-target="#actorModal">배우 지원하기</button>
 			
 			<form id="actor_frm" method="post" action="applyWrite">
 			<div class="modal fade" id="actorModal" role="dialog">
@@ -211,7 +274,7 @@
 					<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<button type="button" class="close " data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">배우 지원하기</h4>
 						</div>
 						<div class="modal-body">
@@ -236,7 +299,7 @@
 			
 			
 			<!-- 스텝 지원/모달 -->
-			<button type="button" class="button" data-toggle="modal" data-target="#staffModal">스텝 지원하기</button>
+			<button type="button" class="button2 btn btn-info" data-toggle="modal" data-target="#staffModal">스텝 지원하기</button>
 			<form id="staff_frm" method="post" action="applyWrite">
 			<div class="modal fade" id="staffModal" role="dialog">
 				<div class="modal-dialog">
