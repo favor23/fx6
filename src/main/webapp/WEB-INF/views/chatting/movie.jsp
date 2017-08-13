@@ -516,7 +516,7 @@ img{
 					var message = htmlEncode(message);
 					for (var i = 1; i <= count; i++) {
 						if ($("#roomUser" + i).val() == name) {
-							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
+							$('#discussion' + room).append('<li><strong class="ted" dropzone="'+htmlEncode(message)+'" name='+htmlEncode(name)+'>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
 							$.post("chch",{
 								num:'${movie_num}',
 								writer:htmlEncode(name),

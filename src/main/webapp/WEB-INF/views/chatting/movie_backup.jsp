@@ -27,7 +27,7 @@ body{
 	height: 100%;
 	float: left;
 	
-}
+}	
 
 #movie-info{
 	width: 100%;
@@ -49,13 +49,13 @@ body{
 	padding: 0 0 0 0;
 	border: 0;
 }
-/* .video{
+.video{
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	overflow: hidden;
-} */
-#video1{
+}
+#video{
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -63,27 +63,6 @@ body{
 	display: inline-block;
 }
 
-#video2{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	overflow: hidden;
-	display: none;
-}
-#video3{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	overflow: hidden;
-	display: none;
-}
-#video4{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	overflow: hidden;
-	display: none;
-}
 
 #volume-container{
 	z-index: 999;
@@ -138,11 +117,12 @@ body{
 	width: 100%;
 	height: 13%;
 	font-size: large;
-	background-color: black;
+	color: white;
 }
 
 #etc > *{
 	margin: 0;
+	color: white;
 }
 
 .etc_p {
@@ -217,6 +197,13 @@ body{
 	height: 13%;
 }
 
+#banTextBox {
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: black;
+}
+
 #frm {
 	width: 100%;
 	height: 100%;
@@ -237,43 +224,36 @@ body{
 	padding: 0;
 }
 
+#mv_logo{
+	width: 100%;
+	height: 100%;
+	
+}
+
 img{
 	width: 30px;
 	height: 30px;
 	overflow: auto;
 }
-#ad_logo{
-	width: 100%;
-	height: 100%;
+#hidden_box {
+	display: none;
 }
-
 </style>
 </head>
 <body>
 
-<c:if test="${member == null}">
-	<input type="hidden" onload="close()">
-</c:if>
 
 <div id="main-section">
 	
 	<!--===============================영화  -->
 		<div id="d1">
-			<div id="movie-info"><%-- <img
-         id="bar_logo" class="${pageContext.request.contextPath}/index"
-         src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"> --%> <input type="hidden" id="movie_num" value="${movie_num}"></div>
+			<div id="movie-info"></div>
 				<div id="video-div">
 					<div id="video-container">
-					<c:forEach begin="1" end="4" step="1" var="i">
-						<video class="video" id="video${i}" onmouseenter="play()">
-							<source src='../movie/${i}.mp4'>
-							<%-- <source src='<c:url value="/movie/${view.fname}"/>'> --%>
+						<video class="video" id="video" autoplay="autoplay">
+							<source src='<c:url value="../movie/${view.oname}"/>'>
 						</video>
-					</c:forEach>
-						<video class="video" id="video2">
-							<source src="../movie/spider.mp4">
-						</video>
-						<input type="range" id="seekBar" value="0" disabled="disabled">
+						<input type="range" id="seekBar" disabled="disabled">
 						<div id="volume-container" onmouseover="enter()">
 							<img src="../movie/volume.png" id="volume">
 							<img src="../movie/mute.PNG" id="mute">
@@ -284,7 +264,7 @@ img{
 				</div>
 			<div id="etc">
 				<p class="etc_title">영화 제목 : ${dto.movie_title}</p>
-				<p class="etc_p"><img alt="" src="../movie/eye.PNG"> ${count-1}</p>
+				<p class="etc_p"><img alt="" src="../movie/eye.PNG"> ${count}</p>
 				<br>
 				<p class="etc_genre">장르 : ${dto.genre}</p>
 				<button class="btn" id="exit">나가기</button>
@@ -298,19 +278,19 @@ img{
 		<!--==================================== 채팅 -->
 	<div id="d2">
 		<div id="chat-info"><img
-         id="ad_logo" class="${pageContext.request.contextPath}/index"
-         src="<c:url value="/img/index/광고중.PNG"/>"></div>
+         id="mv_logo" class="${pageContext.request.contextPath}/index"
+         src="<c:url value="/img/index/상영중.PNG"/>"></div>
 		<div id="chatting-container">
 			<c:forEach items="${str}" var="roomUser" varStatus="status">
 					<input type="hidden" id="roomUser${status.count}" value="${roomUser}" />
-			</c:forEach>
-			<ul id="discussion${movie_num}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
+				</c:forEach>
+				<ul id="discussion${movie_num}" title="chat" class="chatting"	onchange="moveScroll()"></ul>
 		</div>
 		<div id="messageCon">
 			<input type="hidden" id="userid${movie_num}" width="500" style="width: 100%;" placeholder="Input User ID"	value="${member.id}">
 			<input type="hidden" name="grade" id="grade" value="${member.grade}">
 			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
-			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
+			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기"/> <br />
 			<div id="banTextBox">
 				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>
 			
@@ -322,7 +302,38 @@ img{
 	<script src="http://demo.dongledongle.com/Scripts/jquery.signalR-2.2.1.min.js"></script>
 	<script type="text/javascript">
 
-	/* ************************************************* 영화 ***************************************************** */	
+
+      /* 동영상 연속재생 */
+      
+      
+  	var playtime = "${roomDTO.play_Time}";
+  	var starttime = "${roomDTO.startTime}";
+  	var lasttime = "${roomDTO.lastTime}";		
+  	var now = new Date();
+      
+  	/* ************************************************ range가 재생시간에 맞게 움직임 ***************************************************** */
+
+      var seekBar = document.querySelector("#seekBar");
+	  var video = document.querySelector("#video");
+
+	
+	
+	//************************************************** 전체화면 *******************************************************
+ 	  var inFullScreen = false; // flag to show when full screen
+
+      var fsClass = document.getElementById("fullScreen");
+      var videoC = document.getElementById("video-container");
+      var video = document.querySelector("#video");
+      
+   
+	
+	/* 영화 중간 재생 되는곳 값 구하는 곳 */
+	
+		/* "${roomDTO.play_Time}" */
+	
+	/* ************************************************* 영화 ***************************************************** */
+	
+	
 	function range() {
 		var range=document.getElementById("volume-range").value;
 		var video = document.getElementById("video");
@@ -330,23 +341,14 @@ img{
 		if(range==0){
 			$("#volume").css("display", "none");
 			$("#mute").css("display", "inline-block");
-			video1.muted = !video1.muted;
-			video2.muted = !video2.muted;
-			video3.muted = !video3.muted;
-			video4.muted = !video4.muted;
+			video.muted = !video.muted;
 		}else{
 			if(video.muted == true){
-				video1.muted = !video1.muted;
-				video2.muted = !video2.muted;
-				video3.muted = !video3.muted;
-				video4.muted = !video4.muted;
+				video.muted = !video.muted;
 			}
 			$("#volume").css("display", "inline-block");
 			$("#mute").css("display", "none");
-			video1.volume=range;
-			video2.volume=range;
-			video3.volume=range;
-			video4.volume=range;
+			video.volume=range;
 		}
 	}
 	
@@ -356,14 +358,8 @@ img{
 	
 	$("#volume-container").mouseout(function() {
 		$("#volume-range").css("display", "none");
-	});
-	
-	//************************************************** 전체화면 *******************************************************
-	
- 	  var inFullScreen = false; // flag to show when full screen
-
-      var fsClass = document.getElementById("fullScreen");
-      var videoC = document.getElementById("video-container");
+	});	
+      
       fsClass.addEventListener("click", function (evt) {
           if (inFullScreen == false) {
            	  makeFullScreen(videoC); // open to full screen
@@ -373,9 +369,9 @@ img{
 			  reset();
           } 
         }, false);
-      
-      videoC.addEventListener("dblclick", function (evt) {
-          if (inFullScreen == false) {
+
+      video.addEventListener("dblclick", function(evt) {
+    	  if (inFullScreen == false) {
            	  makeFullScreen(videoC); // open to full screen
 			  videoC.style.display = "block";
 			  videoC.style.width = "100%";
@@ -383,7 +379,6 @@ img{
 			  reset();
           } 
         }, false);
-
   
       function makeFullScreen(divObj) {
         if (divObj.requestFullscreen) {
@@ -399,7 +394,6 @@ img{
           divObj.webkitRequestFullscreen();
         }
         inFullScreen = true;
-        $("#seekBar").attr("type", "hidden");
         return;
       }
 
@@ -417,151 +411,78 @@ img{
           document.webkitCancelFullScreen();
         }
         inFullScreen = false;
-        $("#seekBar").attr("type", "range");
         return;
-      }
-      
-  	/* ************************************************ range가 재생시간에 맞게 움직임 ***************************************************** */
-
-      var seekBar = document.querySelector("#seekBar");
-
+      }  
 	  
 	  /* video.currentTime = parseInt(video.duration * (90 / 100), 90); */
 	  
 /* 	  seekBar.addEventListener("mouseup", function(e){
 		    video.play();
 	  });
-*/
+ */
+      video.addEventListener("timeupdate", function(){
+          if(video.paused){
+              return;
+          }
 
-
-		var videoclass = $(".video");
-		var video1 = document.querySelector("#video1");
-		var video2 = document.querySelector("#video2");
-		var video3 = document.querySelector("#video3");
-		var video4 = document.querySelector("#video4");
-
-		video1.addEventListener("timeupdate", function() {
-			if (video1.paused) {
-				return;
-			}
-			seekBar.value = (100 / video1.duration) * video1.currentTime;
-		});
-
-		video2.addEventListener("timeupdate", function() {
-			if (video2.paused) {
-				return;
-			}
-
-			seekBar.value = (100 / video2.duration) * video2.currentTime;
-		});
-
-		video3.addEventListener("timeupdate", function() {
-			if (video3.paused) {
-				return;
-			}
-
-			seekBar.value = (100 / video3.duration) * video3.currentTime;
-		});
-
-		video4.addEventListener("timeupdate", function() {
-			if (video4.paused) {
-				return;
-			}
-
-			seekBar.value = (100 / video4.duration) * video4.currentTime;
-		});
-
-		/* 	for(var q=0;q < videoclass.size();q++){
-				$("#video"+(q+1)).onended = function() {
-				video+(q+1).pause();
-				video+(q+1).style.display="none";
-				$("#video"+(q+2)).css("display", "inline-block");
-				video+(q+2).play();
-			}
-			} */
-		/* 동영상 연속재생 */
-
-		video1.onended = function() {
-			video1.pause();
-			video1.style.display = "none";
-			$("#video2").css("display", "inline-block");
-			video2.play();
-		}
-		video2.onended = function() {
-			video2.pause();
-			video2.style.display = "none";
-			$("#video3").css("display", "inline-block");
-			video3.play();
-		}
-		video3.onended = function() {
-			video3.pause();
-			video3.style.display = "none";
-			$("#video4").css("display", "inline-block");
-			video4.play();
-		}
-		video4.onended = function() {
-			video4.pause();
-			video4.style.display = "none";
-			$("#video1").css("display", "inline-block");
-			video1.play();
-		}
+          seekBar.value = (100 / video.duration) * video.currentTime;
+      });	
+	   
+    video.onended = function() {
+		video.pause();
+		$.post("playtimeUpdate", {
+			num:'${roomDTO.num}',
+			play_Time:'${roomDTO.play_Time}',
+			startTime:'${roomDTO.startTime}',
+			lastTime:'${roomDTO.lastTime}'
+		},function(){});
+		$.post("playview", {
+			movie_num:'${roomDTO.num}'
+		}, function(){});
+		alert("영화가 끝났습니다.");
+		window.close();
+    }
 		
-		/* ************************************************ 몇시에 동영상 시작되는지 ***************************************************** */
+	   var year = now.getFullYear(); // 현재시간중 4자리 연도
+	   var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
+	   if((month+"").length <2){
+	   	month="0"+month; // 달의 숫자가 1자리라면 앞에 0을 붙힘
+	   }
+	   var date = now.getDate(); //현재시간중 날짜.
+	   if((date+"").length <2){
+	   	date="0"+date;
+	   }
+	   hour=now.getHours();
+	   if((hour+"").length<2){
+	   	hour="0"+hour;
+	   }
+	   minute=now.getMinutes();
+	   if((minute+"").length<2){
+	   	minute="0"+minute;
+	   }
+	   second = now.getSeconds();
+	   if((second+"").length<2){
+	   	second="0"+second;
+	   }
+	   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
+	   var yy =0;
+	   var starttime_s=starttime.substring(12,14);
+	   var today_s=today.substring(12,14);
+	   var starttime_m=starttime.substring(10,12);
+	   var today_m=today.substring(10,12);
 
-		var playtime = "${roomDTO.play_Time}";
-		var starttime = "${roomDTO.startTime}";
-		var lasttime = "${roomDTO.lastTime}";		
-		var now = new Date();
-		   
-		   var year = now.getFullYear(); // 현재시간중 4자리 연도
-		   var month = now.getMonth()+1; // 현재시간 중 달, 달은 0부터 시작하기 때문에 +1
-		   if((month+"").length <2){
-		   	month="0"+month; // 달의 숫자가 1자리라면 앞에 0을 붙힘
-		   }
-		   var date = now.getDate(); //현재시간중 날짜.
-		   if((date+"").length <2){
-		   	date="0"+date;
-		   }
-		   hour=now.getHours();
-		   if((hour+"").length<2){
-		   	hour="0"+hour;
-		   }
-		   minute=now.getMinutes();
-		   if((minute+"").length<2){
-		   	minute="0"+minute;
-		   }
-		   second = now.getSeconds();
-		   if((second+"").length<2){
-		   	second="0"+second;
-		   }
-		   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
-		 
-		   var yy =0;
-		   var starttime_s=starttime.substring(12,14);
-		   var today_s=today.substring(12,14);
-		   var starttime_m=starttime.substring(10,12);
-		   var today_m=today.substring(10,12);
-		   var starttime_h=starttime.substring(8,10);
-		   var today_h=today.substring(8,10);
-		   var movieRoomNum=$("#movie_num").val();
-		   	 		   
-		   var cftime = (starttime_h*1-today_h*1)*60*24+(starttime_m*1-today_m*1)*60+(starttime_s*1-today_s*1);/* 초 */
-		   /* alert(today_m);
-		   alert(today_h); */
-		   if(cftime<=0){
-				location.href="${pageContext.request.contextPath}/chatting/movie?movieRoomNum="+movieRoomNum;
-		   }else{
-				setInterval(function() { 
-		  	  	 	location.href="${pageContext.request.contextPath}/chatting/movie?movieRoomNum="+movieRoomNum;
-				}, cftime*1000);
-		   }
-			
-		/* ************************************************* 채팅 ***************************************************** */
- 		var connection = $.hubConnection('http://demo.dongledongle.com/');
+  	if(today>starttime){
+            video.currentTime=((starttime_m*1-today_m*1)*60+(starttime_s*1-today_s*1))*-1;
+            seekBar.value = (100 / video.duration) * video.currentTime;
+  	}
+	
+	/* ************************************************* 채팅 ***************************************************** */
+		var connection = $.hubConnection('http://demo.dongledongle.com/');
 		var chat = connection.createHubProxy('chatHub');
 		var room = ${movie_num};
 		var count = ${count};
 		var ttt;
+
 		function showKeyCode(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
@@ -576,23 +497,26 @@ img{
 			var scr = document.getElementById("chatting-container");
 			scr.scrollTop = scr.scrollHeight;
 		}
-
+		
 		//정규식 (채팅칸에 빈칸이면 전송 안되게 하기)
-		var message = $("#message" + room).val();
+	    var message = $("#message" + room).val();
 		var regex = /^[a-zA-Z]{1}[a-zA-Z0-9_]{5,11}$/;
 		var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		var eng = /^[A-Za-z0-9-]+$/
 		var chk = message.match(kor);
 		var chk2 = message.match(eng);
-
+	  	var ban; //sinhojeong script	val
+	  	var val; //sinhojeong script	val
+		
 		$(document).ready(
 				function() {
+
 				chat.on('addNewMessageToPage', function(name, message, grade) {
 					var nowName = name;
 					var message = htmlEncode(message);
 					for (var i = 1; i <= count; i++) {
 						if ($("#roomUser" + i).val() == name) {
-							$('#discussion' + room).append('<li><strong class="ted" dropzone="'+htmlEncode(message)+'" name='+htmlEncode(name)+'>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
+							$('#discussion' + room).append('<li><strong>'+ htmlEncode(name) + '</strong>: ' + htmlEncode(message) + '</li>');
 							$.post("chch",{
 								num:'${movie_num}',
 								writer:htmlEncode(name),
@@ -617,6 +541,7 @@ img{
 					});
 				});
 
+		
 		//스페이스는 32
 		function sendMessage() {
 			if ($("#message" + room).val() != "" /* && chk || chk2 */) {
@@ -630,15 +555,10 @@ img{
 			return encodedValue;
 		}
 		
-		var ck = ${check};
-		if(ck==0){
-			alert("로그인이 필요한 서비스 입니다.");
-			window.close();
-		}
-		
 		$("#exit").click(function() {
 			window.close();
 		});
+		
 		
 		//sinhojeong====================================================
 		setInterval("setting()",5000);
@@ -652,7 +572,7 @@ img{
 				var date;
 					window.open("../member/reportUser?targetId="+ted
 							+"&senderId="+'${member.id}'
-							+"&roomNum="+rn,
+							+"&roomNum="+'${member.playView}',
 							/* +"&reg_date="+, */
 							"userReport","width=270,height=235,resizeable=0,left=1000,top=5");
 			}
@@ -733,8 +653,6 @@ img{
 			}
 			
 	//sinhojeong end=============================================
-		
-		
 	</script>
 
 </body>
