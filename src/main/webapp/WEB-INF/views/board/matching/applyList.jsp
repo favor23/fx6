@@ -2,20 +2,21 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-			<h3>감독 지원 현황</h3>
-					
-						<table>
-						<c:forEach items="${list}" var="apply">
+			<c:forEach items="${list}" var="apply">
+							
+							
+							
 							<c:if test="${apply.apply_roll eq '감독'}">
-							<tr>
-								<td>${apply.apply_num}</td>
-								<td>${apply.id}</td>
-								<td>${apply.name}</td>						
-													
-							</tr>
-							<tr>
-								<td colspan="3">${apply.towriter}</td>						
-							</tr>
-							</c:if>
-						</c:forEach>
-					</table>
+							<div class="media">
+    						<div class="media-left">
+      						<img src="../../img/matching-img/img_avatar1.png" class="media-object" style="width:60px">
+    							</div>
+    						<div class="media-body">
+      						<h4 class="media-heading">${apply.name}(${apply.id})</h4>
+      						
+      						<p>${apply.towriter}</p>
+   							 </div>
+  								</div>
+  								<hr>
+  								</c:if>
+							</c:forEach>
