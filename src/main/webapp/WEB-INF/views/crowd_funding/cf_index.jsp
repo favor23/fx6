@@ -250,7 +250,7 @@
 	
 	.carousel-caption {
 		width: 100%;
-		bottom: 500px;
+		bottom: 430px;
 		opacity: 0.9;
 		left: 0;
 	}
@@ -362,7 +362,11 @@
 <script type="text/javascript">
 	$(function() {
 		$(".main4_2").click(function() {
-			location.href = "campaign/campaignCreate";
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				location.href = "campaign/campaignCreate";				
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(".thumbnail img").mouseover(function() {

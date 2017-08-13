@@ -24,8 +24,8 @@
 		</li>		
 	<c:if test="${member.position eq '부장'}">
 			<li id="${pageContext.request.contextPath}/admin/adminManager" class="header_plus_li">
-					<img src="<c:url value="/img/admin/관리자.png"/>">
-			</li>
+					<img src="<c:url value="/img/admin/관리자.png"/>" style="cursor: pointer;">
+			</li> 
 		</c:if>
 		</ul>
 		</div>

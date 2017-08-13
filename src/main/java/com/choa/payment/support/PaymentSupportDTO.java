@@ -7,13 +7,15 @@ public class PaymentSupportDTO extends PaymentDTO{
 	private int num_p;
 	private String present;
 	private String address;
+	private int project_num;
+	
+	
 	public int getProject_num() {
 		return project_num;
 	}
 	public void setProject_num(int project_num) {
 		this.project_num = project_num;
 	}
-	private int project_num;
 	
 	public int getNum_p() {
 		return num_p;

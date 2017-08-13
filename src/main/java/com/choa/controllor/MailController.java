@@ -1,5 +1,6 @@
 package com.choa.controllor;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -14,12 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.choa.certification.MailService;
 import com.choa.certification.MailServiceImpl;
+import com.choa.supporter.SupporterDTO;
+import com.choa.supporter.SupporterService;
 
 @Controller
 public class MailController { 
 	//private UserService userService;
 	@Autowired
     private MailServiceImpl mailService;
+	@Autowired
+	private SupporterService supporterService;
  /*
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -51,6 +56,43 @@ public class MailController {
         	message="인증번호 발급에 실패했습니다.";
         }
         model.addAttribute("message", message);
+        return "commons/ajaxResult";
+    }
+    
+    @RequestMapping(value = "/sendMail/campaign", method = RequestMethod.POST, produces = "application/json")
+    public String sendMailCampaign(HttpSession session, Integer campaign_num, Model model) {
+        String subject = "[영화를 찍으시조]후원 캠페인 종료에 따른 안내 메일입니다.";
+        StringBuilder sb = new StringBuilder();
+        List<SupporterDTO> list = null;
+        
+        String message="";
+        boolean chk = false;
+        
+		try {
+			list = supporterService.supporterList(campaign_num);
+			
+			for(SupporterDTO dto: list) {
+				sb.delete(0, sb.length());
+		        sb.append(dto.getName() + " 귀하께서 후원해주신 캠페인 종료에 따라<br><br>");
+		        sb.append("다음과 같은 혜택이 제공될 예정입니다.<br><br>");
+		        sb.append("**" + dto.getBenefit_title() + "<br><br>");
+		        sb.append("저희에 대한 무한한 관심에 감사드리며 앞으로도 최선을 다하겠습니다.");
+		        
+		        chk=mailService.send(subject, sb.toString(), "lu.nyang4505@gmail.com", dto.getEmail(), null);    
+	        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        if(chk){
+        	message="메일 전송 성공!";
+        }else {
+        	message="메일 전송 실패!";
+        }
+        
+        model.addAttribute("message", message);
+        
         return "commons/ajaxResult";
     }
     /*
