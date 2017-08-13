@@ -43,7 +43,7 @@
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
 	<div class="d2_a">		
-				<div id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
+			<div id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_2?curPage=1" class="select_department">물품 대여요청 목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=1" class="select_department">티켓구매 목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
@@ -70,7 +70,7 @@
 			<li>
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
 			</c:if>
 			</li>
 			
@@ -78,14 +78,14 @@
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
 				var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}" class="active">${i}</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}" class="active">${i}</a>
 			</c:forEach>
 			</li>
 			
 			<li>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
 			</c:if>
 			</li>
 
