@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.choa.admin.AdminDTO;
 import com.choa.admin.AdminServiceImpl;
 import com.choa.banList.BanlistDTO;
+import com.choa.campaign.CampaignDTO;
 import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.customer.CustomerServiceImpl;
@@ -98,6 +99,12 @@ public class AdminController {
 		}
 		return admin/admin_;		
 	}*/
+	@RequestMapping(value="admin/campaign_approved")
+	public String campaign_approved(Model model,CampaignDTO campaignDTO){
+		campaignController.approved_go(campaignDTO);
+		campaignController.campaignPermit(1, model);
+		return "/admin/admin_Request_hi_1";		
+	}
 	@RequestMapping(value="admin/approved")
 	public String order_rentapproved(Order_rentDTO order_rentDTO,Model model,ListInfo listInfo) throws Exception{
 		order_rentService.order_rentapproved(order_rentDTO);
@@ -306,6 +313,7 @@ public class AdminController {
 	//상영방목록
 	@RequestMapping(value = "admin/admin_Request_hi_4", method = RequestMethod.GET)
 	public void adminRequest_hi_4(Model model,ListInfo listInfo) {
+		workController.works_m(model);
 		List<RoomDTO> list=new ArrayList<RoomDTO>();
 				try {
 					list= roomservice.roomList(listInfo);

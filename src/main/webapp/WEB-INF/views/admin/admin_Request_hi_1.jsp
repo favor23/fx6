@@ -53,13 +53,18 @@
 				</tr>
 				<c:forEach items="${list}" var="dto">
 					<tr class="${dto.campaign_num} permit">
-						<td>${dto.campaign_num}</td><td>${dto.id}</td><td>${dto.campaign_title}</td><td>${dto.campaign_start}</td>
+						<td>${dto.campaign_num}</td><td>${dto.id}</td><td><a href="${pageContext.request.contextPath}/crowd_funding/campaign/campaignView?campaign_num=${dto.campaign_num}">${dto.campaign_title}</a></td><td>${dto.campaign_start}</td>
 						<td>${dto.campaign_end}</td>
 						<c:if test="${dto.permission eq 'approved'}">
 							<td>승인 완료</td>
 						</c:if>
 						<c:if test="${dto.permission eq 'unapproved'}">
-							<td>승인 대기중</td>
+							<c:if test="${member.department eq '후원부'}">
+							<td><input id="${dto.campaign_num}" type="button" class="campaign_go" value="승인 대기중"></td>
+							</c:if>
+							<c:if test="${member.department ne '후원부'}">
+							<td>후원부만 가능합니다.</td>
+							</c:if>
 						</c:if>				
 					</tr>
 				</c:forEach>
@@ -105,5 +110,10 @@ $(".select_department").mouseleave(function() {
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
 });
+$("#campaign_go").click(function() {	
+	if(confirm("승인하시겠습니까?"))
+	{location.href="${pageContext.request.contextPath}/admin/campaign_approved?campaign_num="+$(this).attr("id");}
+	
+})
 </script>
 </html>

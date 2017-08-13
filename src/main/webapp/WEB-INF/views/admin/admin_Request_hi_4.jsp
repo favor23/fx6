@@ -55,14 +55,20 @@
             <td>${list.num}</td>
             <td>${list.play_Time}</td>
             <td>${list.startTime}</td>
-            <td>${list.lastTime}</td>         
+            <td>${list.lastTime}</td>
+            <c:if test="${work_m.persons ne member.id }">      
+            <td>근무자만 볼수있습니다.</td>  
+            </c:if>  
+            <c:if test="${work_m.persons eq member.id }"> 
             <td><input id="${list.num}" type="button" class="btn-warning" onclick="cambiar_login()" value="상영관 들어가기"></td>            
-            </tr>\
+            </c:if>
+            </tr>
 			
 			</c:forEach>	
 </table>
    <input type="hidden" id="input_id" value="admin" >
-            <input type="hidden" id="input_pw" value="admin" >
+            <input type="hidden" id="input_pw" value="tkrlzoflr1" >
+              
 			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
 				<ul class="pagination pagination-sm" style="margin-top: -1px;">
 			

@@ -14,7 +14,10 @@ public class CampaignService {
 	private CampaignDAO campaignDAO;
 	
 	
-	
+	//승인
+		public int approved_go(CampaignDTO campaignDTO){
+			return campaignDAO.approved_go(campaignDTO);
+		}
 	
 	
 	

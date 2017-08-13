@@ -90,4 +90,7 @@
 		(select * from campaign where permission='approved' order by thumbs_up desc) c) 
 		where r between 9 and 12
 	</select>
+	<update id="approved_go" parameterType="com.choa.campaign.CampaignDTO">
+		update campaign set permission='approved' where campaign_num=#{campaign_num}
+	</update>
 </mapper>

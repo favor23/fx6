@@ -29,6 +29,14 @@ public class CampaignController {
 	@Autowired
 	private CampaignService campaignService;
 	
+	
+	
+	public void approved_go(CampaignDTO campaignDTO){
+		campaignService.approved_go(campaignDTO);
+	}
+	
+	
+	
 	@RequestMapping(value = "campaignDone/{support_price}/{campaign_num}/{benefit_num}", method = RequestMethod.GET)
 	@ResponseBody
 	public int campaignDone(@PathVariable("support_price") Integer support_price, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("benefit_num") Integer benefit_num) {

@@ -15,7 +15,10 @@ public class CampaignDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "CampaignMapper.";
 	
-	
+	//승인
+	public int approved_go(CampaignDTO campaignDTO){
+		return sqlSession.update(NAMESPACE+"approved_go", campaignDTO);
+	}
 	
 	
 	

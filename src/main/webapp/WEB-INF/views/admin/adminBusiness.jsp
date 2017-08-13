@@ -51,7 +51,7 @@
 <link href="<c:url value="/css/input.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/input2.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
-<c:import url="../temp/bootStrap_api_crash_black_position.jsp" />
+<c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영화를 찍으시조</title>
 </head>
@@ -62,8 +62,8 @@
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
 	<div id="Manager_table">	
-	<h2>${member.department} 부장만 사용가능</h2>
-	<p>부서내 사원들에게 업무 부여가능</p>	
+	<h2>${member.department} 사원</h2>
+	<p>사원 업무확인과 퍼센트 수정가능</p>	
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
