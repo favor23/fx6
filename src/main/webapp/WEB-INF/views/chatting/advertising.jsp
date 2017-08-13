@@ -312,8 +312,7 @@ img{
 			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
 			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
 			<div id="banTextBox">
-				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>
-			
+				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>			
 			</div>
 		</div>
 	</div>

@@ -56,7 +56,7 @@
             <td>${list.play_Time}</td>
             <td>${list.startTime}</td>
             <td>${list.lastTime}</td>
-            <td></td>            
+            <td><input id="${list.num}" type="button" class="btn-warning chat" value="상영관 들어가기"></td>            
             </tr>
 
 			
@@ -102,6 +102,21 @@ $(".select_department").mouseleave(function() {
 })
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
+});
+
+$(".chat").click(function() {
+	var id = $(this).attr("id");
+	if(${member==null}){
+		alert("로그인이 필요한 서비스입니다.");
+		setTimeout(function() {
+			document.querySelector('.cont_form_login').style.opacity = "1";
+		}, 100);
+	}else{
+	$.post("${pageContext.request.contextPath}/chatting/ticket_admin", {
+		movie_num:id
+	},function(data){});
+		window.open("${pageContext.request.contextPath}/chatting/advertising_admin?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
+	}//else끝
 });
 </script>
 </html>

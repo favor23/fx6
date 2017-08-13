@@ -22,6 +22,14 @@ public class CustomerServiceImpl implements MemberService{
 	@Autowired
 	private CustomerDAO customerDAO;
 
+	//어드민영화봐야지
+	public CustomerDTO adminselect_c(){
+		return customerDAO.adminselect_c();		
+	}
+	
+	public MemberDTO adminselect_m(){
+		return customerDAO.adminselect_m();		
+	}
 
 	//유저 탈퇴
 	public int dropUser(DropUserDTO dropUserDTO)throws Exception{

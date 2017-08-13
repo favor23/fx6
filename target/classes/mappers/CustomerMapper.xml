@@ -85,6 +85,11 @@
 	<insert id="intoBan" parameterType="com.choa.banList.BanlistDTO"><!-- adminid ban reg_date -->
 		insert into banlist values(#{targetId},#{reason},'nothing',#{senderId},#{roomNum},'x',ban_num.nextval,'없음',0,sysdate)
 	</insert>
-	
+	<select id="adminselect_m" resultType="com.choa.member.MemberDTO">
+		select * from member where id='admin'
+	</select>
+	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO">
+		select * from customer where id='admin'
+	</select>
 <!-- 영화가 종료될때 playview 번호를 가져와서 해당 playView를 가진 사람의 ban을 0으로 바꿔주기. -->
  </mapper> 

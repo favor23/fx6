@@ -26,6 +26,7 @@ import com.choa.chat.EchoHandler;
 import com.choa.chatting.ChattingDTO;
 import com.choa.chatting.ChattingService;
 import com.choa.customer.CustomerDTO;
+import com.choa.customer.CustomerServiceImpl;
 import com.choa.member.MemberDTO;
 import com.choa.movieupload.MovieUploadDTO;
 import com.choa.movieupload.MovieUploadService;
@@ -51,6 +52,8 @@ public class SocketController {
 	@Autowired
 	private MovieController movieController;
 	private int aaa=0;
+	@Autowired
+	private CustomerServiceImpl customerService;
 	
 
 	   @RequestMapping(value="chch", method=RequestMethod.POST)
@@ -193,6 +196,7 @@ public class SocketController {
 			model.addAttribute("list", list);
 			model.addAttribute("movie_num", movieRoomNum);
 		}
+		
 	
 	@RequestMapping(value="aaa1")
 	public String aaa1(){

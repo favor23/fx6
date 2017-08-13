@@ -13,6 +13,11 @@ public class CampaignService {
 	@Autowired
 	private CampaignDAO campaignDAO;
 	
+	
+	
+	
+	
+	
 	public int campaignDone2(int benefit_num) throws Exception {
 		return campaignDAO.campaignDone2(benefit_num);
 	}

@@ -27,6 +27,14 @@ public class CustomerDAO implements MemberDAO{
 	private final String NAMESPACE="CustomerMapper.";
 	
 	
+	public CustomerDTO adminselect_c(){
+		return sqlSession.selectOne(NAMESPACE + "adminselect_c");		
+	}
+	
+	public MemberDTO adminselect_m(){
+		return sqlSession.selectOne(NAMESPACE + "adminselect_m");		
+	}
+	
 	//유저 탈퇴
 	public int dropUser(DropUserDTO dropUserDTO)throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
