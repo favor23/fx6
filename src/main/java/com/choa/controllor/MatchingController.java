@@ -42,21 +42,25 @@ public class MatchingController {
 		model.addAttribute("totalCount", totalCount);
 	}
 	
-	@RequestMapping(value ="getMatchingList", method = RequestMethod.GET)
-	public void matchingList(Integer curPage, Model model){
-		List<MatchingDTO> list = null;
-		ListInfo listInfo = new ListInfo();
+	@RequestMapping(value ="matchingList", method = RequestMethod.GET)
+	public String matchingList(ListInfo listInfo, Model model){
+		List<MatchingDTO> ar = null;
 		
-		listInfo.setCurPage(curPage);
+		
+		
+		
 		
 		try {
-			list = matchingService.matchingList(listInfo);
+			ar= matchingService.matchingList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("list", list);
+		return "board/matching/matchingList";
 		
 	}
 	

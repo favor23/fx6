@@ -89,6 +89,19 @@
 		background-color: #503396 !important;
 		color: white;
 		float: right;
+		margin-right: 10px;
+	}
+	
+	
+	.check_send{
+	
+	border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	
+	
 	}
 
 
@@ -186,7 +199,7 @@ function checkAll(){
 	<div class=" button_lab">
 	
 
-			 <c:if test="${listInfo.curBlock>1}">
+			 <%-- <c:if test="${listInfo.curBlock>1}">
 				<a href="noteList?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
@@ -194,13 +207,15 @@ function checkAll(){
 			</c:forEach>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<a href="noteList?curPage=${listInfo.lastNum+1}">[다음]</a>
-			</c:if>
+			</c:if> --%>
 	
 	<button type="button" value="삭제" id="delete_sel" class="del_btn">삭제</button>
 	<c:if test="${member.grade eq 'admin'}">
 		<button type="button" data-toggle="modal" data-target="#sendmessage" class="send_btn">쪽지 보내기</button>
 	</c:if>
+	<c:if test="${member.grade eq 'admin'}">
 	<button type="button" class="check_send">보낸 쪽지함</button>
+	</c:if>
 	</div>	
 		
 		
@@ -273,6 +288,12 @@ function checkAll(){
 			
 	</article>
 	<script type="text/javascript">
+	
+	$(".check_send").click(function() {
+		location.href="noteList2";
+		
+	});
+	
 	
 	$("#message").click(function () {			
 		$("#frm").submit();
