@@ -279,8 +279,6 @@ public class CampaignController {
 		
 		try {
 			num = campaignService.numSelect();
-			
-			campaignDTO.setStory(campaignDTO.getStory().replace("\r\n", "<br>"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -315,6 +313,7 @@ public class CampaignController {
 		String message = "캠페인 생성 실패! 자세한 사항은 담당자에게 문의하세요.";
 		
 		campaignDTO.setCampaign_num(campaignDTO.getCampaign_num()-1);
+		campaignDTO.setStory(campaignDTO.getStory().replace("\r\n", "<br>"));
 		
 		try {
 			result = campaignService.campaignComplete(campaignDTO);

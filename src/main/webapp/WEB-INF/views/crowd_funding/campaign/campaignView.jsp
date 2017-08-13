@@ -323,6 +323,8 @@
 		$(".go_email").click(function() {
 			if(date>0) {
 				go_email('${dto.campaign_num}');
+			} else {
+				alert("마감되지 않은 캠페인입니다.");
 			}
 		});
 	});

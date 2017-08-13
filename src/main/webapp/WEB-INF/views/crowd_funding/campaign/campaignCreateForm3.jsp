@@ -329,7 +329,7 @@
 					<input type="hidden" name="campaign_img" value="${dto.campaign_img}">
 					<input type="hidden" name="simple_story" value="${dto.simple_story}">
 					<input type="hidden" name="main_video" value="${dto.main_video}">
-					<input type="hidden" name="story" value="${dto.story}">
+					<input type="hidden" name="story" value="${dto.story}" class="story">
 					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
 					<table class="table">
 						<tr>
