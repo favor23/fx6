@@ -57,7 +57,7 @@
 	<context:component-scan base-package="com.choa.cinema" />
 	<beans:bean id="naverLoginBO" class="com.choa.oauth.NaverLoginBO" />
 	<context:component-scan base-package="com.choa.oauth" />
-	
+	<context:component-scan base-package="com.choa.supporter"></context:component-scan>
 	
 </beans:beans>
 
