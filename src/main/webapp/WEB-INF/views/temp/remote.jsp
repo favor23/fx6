@@ -7,7 +7,8 @@
 	border-radius:5px;
 	position: fixed;
 	right:30px;
-	top:200px;
+	top:600px;
+	background-color: white;
 }
 #remote_box .ctl_box {
 	
@@ -54,7 +55,7 @@ border:none;
     line-height: 30px;
     position: fixed;
 	right:35px;
-	top:230px;
+	top:632px;
 	background-color: white;
 }
 #remote_box .title {

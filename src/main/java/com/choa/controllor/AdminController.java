@@ -43,21 +43,35 @@ public class AdminController {
 	private RoomService roomservice;
 
 
-	@RequestMapping(value="admin/hi")
-	public void test(String id,Model model)throws Exception{
+	@RequestMapping(value="admin/worker")
+	public String test(String id,Model model)throws Exception{
 		List<String> list = adminService.workers();
+		String message="not";
 		boolean chk=false;
 		for(int i=0;i<list.size();i++){
 			String [] ar = list.get(i).split("/");
-			if(ar[i].equals(id)){
-				chk=true;
-				break;
-			}else {
-				chk=false;
+			for(int j=0;j<ar.length;j++){
+				if(ar[j].equals(id)){
+					chk=true;
+					break;
+				}else {
+					chk=false;
+				}	
 			}
+			
 		}
-		System.out.println(chk);
+		if(chk){
+			message="work";
+		}
+		model.addAttribute("message", message);
+		return "/commons/ajaxResult";
 	}
+	
+	@RequestMapping(value="/temp/remote")
+	public void remote()throws Exception{
+		
+	}
+	
 	
 	@RequestMapping(value="admin/banProccessList")
 	public void bpl()throws Exception{}

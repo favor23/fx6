@@ -193,21 +193,9 @@ border: 0.5px solid black;
 			</tr>
 			<tr>
 					<td class="jf1">전자우편</td>
-					<td class="jf2"><input type="text" id="e1" class="text"> @</td>
-					<td class="jf3"><select id="e2" onchange="mailing()" style="width: 105px;height: 25px;">
-							<option value="self">직접 입력</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="nate.com">nate.com</option>
-					</select> <input type="text" id="e3" class="text" style="width: 135px;"> <input type="button" id="certBtn" value="인증번호 발송"></td>
-				</tr>
-				<tr>
-					<td class="cert" colspan="3" style="padding-left: 128px;">
-					<input type="text" id="certCode" style="height: 25px;width: 135px;"> <input type="button" id="chk_certBtn" value="인증번호확인">
-					 <span id="certTxt"></span>
-					</td>
-				</tr>
+					<td class="jf2" colspan="2">${member.email }</td>
+			</tr>
+				
 			<tr>
 				<td class="jf1">집주소</td>
 				<td colspan="2"><input type="text" name="address" value="${member.address }" class="input address"></td>
