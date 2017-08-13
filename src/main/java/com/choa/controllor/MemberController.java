@@ -64,8 +64,18 @@ public class MemberController {
 
 	@Autowired
 	private RequiredService requiredService;
+	
+	@Autowired
+	private CinemaController cinemaController;
 
 
+	@RequestMapping(value="/member/myMovieList")
+	public String myMovieList(int curPage,Model model, HttpSession session, ListInfo listInfo)throws Exception{
+		cinemaController.cinema_my(curPage, model, session, listInfo);
+		return "/member/myMovie";
+	}
+	
+	
 	@RequestMapping(value="/member/myMovieReq")
 	public void myMovieReq(Model model)throws Exception{
 		List<RequiredDTO> list = requiredService.requiredListAll();
