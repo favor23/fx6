@@ -34,4 +34,7 @@ public class paySystemController {
 	@RequestMapping(value="paysuccess")
 	public void paysucccess(){		
 	}	
+	@RequestMapping(value="paysuccess2")
+	public void paysucccess2(){		
+	}	
 }
