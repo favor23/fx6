@@ -24,4 +24,8 @@
   		where R between #{startRow} and #{lastRow}
   		
   	</select>
+  	
+  	<select id="roomcount" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo" >
+  		select nvl(count(num), 0) from room
+  	</select>
   </mapper>

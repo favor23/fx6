@@ -15,8 +15,11 @@ public class RoomService {
 	private RoomDAO roomDAO;
 	
 	//전체리스트
-	public List<RoomDTO> playtimeList(ListInfo listInfo)throws Exception{
-		return roomDAO.playtimeList(listInfo);
+	public List<RoomDTO> roomList(ListInfo listInfo)throws Exception{
+		int result = roomDAO.roomCount(listInfo);
+		listInfo.makePage(result);
+		listInfo.setRow();
+		return roomDAO.roomList(listInfo);
 	}
 	
 	public RoomDTO playtime(Integer num)throws Exception{

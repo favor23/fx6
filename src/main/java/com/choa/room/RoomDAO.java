@@ -23,6 +23,10 @@ public class RoomDAO {
 		return sqlSession.update(NAMESPACE+"playtimeUpdate", roomDTO);
 	}
 	
+	public int roomCount(ListInfo listInfo)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"roomcount", listInfo);
+	}
+	
 	public List<RoomDTO> roomList(ListInfo listInfo)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"roomList", listInfo);
 	}

@@ -22,6 +22,8 @@ import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.Hash;
 import com.choa.member.MemberDTO;
+import com.choa.room.RoomDTO;
+import com.choa.room.RoomService;
 import com.choa.util.ListInfo;
 
 @Controller
@@ -35,7 +37,11 @@ public class AdminController {
 	private Hash hash;
 	@Autowired
 	private Order_rentController order_rentController; 
+	@Autowired
+	private RoomService roomservice;
 
+	
+	
 	
 	@RequestMapping(value="admin/banProccessList")
 	public void banProccessList(Model model)throws Exception{
@@ -161,8 +167,7 @@ public class AdminController {
 	//펀딩목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_1", method = RequestMethod.GET)
 	public void adminRequest_hi_1(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);
-		
+				
 	}
 	//대여목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_2", method = RequestMethod.GET)
@@ -174,14 +179,20 @@ public class AdminController {
 	//티켓구매목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_3", method = RequestMethod.GET)
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);
-		
+				
 	}
 	
 	//상영방목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_4", method = RequestMethod.GET)
 	public void adminRequest_hi_4(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);		
+		List<RoomDTO> list=new ArrayList<RoomDTO>();
+				try {
+					list= roomservice.roomList(listInfo);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				model.addAttribute("list", list);
 	}
 	
 	@RequestMapping(value = "admin/admin_list", method = RequestMethod.GET)
