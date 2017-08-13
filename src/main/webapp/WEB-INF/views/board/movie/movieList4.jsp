@@ -10,7 +10,9 @@
 <script type="text/javascript">
 	$(function() {
 		var count = 0;
-		var curPage = 0;
+		var curPage = 1;
+		
+		getList(curPage);
 		
 		//스크롤 이벤트 발생 시
 		$(document).scroll(function() {
