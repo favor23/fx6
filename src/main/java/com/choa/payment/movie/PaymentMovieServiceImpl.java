@@ -14,6 +14,17 @@ public class PaymentMovieServiceImpl implements PaymentService {
 	@Autowired
 	private PaymentMovieDAOImpl paymentMovieDAOImpl;
 	
+	
+	public int refund(PaymentDTO paymentDTO){
+		return paymentMovieDAOImpl.refund(paymentDTO);	
+	}
+	
+	
+	public int refund_set(PaymentDTO paymentDTO){
+		return paymentMovieDAOImpl.refund(paymentDTO);
+	}
+	
+	
 	@Override
 	public int insert(PaymentDTO paymentDTO) throws Exception {
 		System.out.println("서비스");

@@ -13,6 +13,9 @@ public class Order_rentService {
 	@Autowired
 	private Order_rentDAO order_rentDAO;
 	
+	public int order_rentapproved(Order_rentDTO order_rentDTO) throws Exception{
+		return order_rentDAO.order_rentapproved(order_rentDTO);
+	}
 	
 	public int order_rentInsert(Order_rentDTO order_rentDTO) throws Exception{
 		return order_rentDAO.order_rentInsert(order_rentDTO);

@@ -6,5 +6,11 @@
  <mapper namespace="PaymentMovieMapper"> 
 	<insert id="insert" statementType="CALLABLE" parameterType="java.util.Map">
  		{ call payMovie_insert(#{dto.id, mode=IN}, #{dto.money, mode=IN}, #{dto.type, mode=IN}, #{dto.movie_num, mode=IN}, #{dto.card_num, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER})  }
- 	</insert> 
+ 	</insert>
+ 	<update id="refund" parameterType="com.choa.payment.PaymentDTO">
+  			update payment set refund=1 where num=#{num}
+  		</update>
+  		<update id="refund_set" parameterType="com.choa.payment.PaymentDTO">
+  			update payment set refund=2 where num=#{num}
+  		</update>
  </mapper> 

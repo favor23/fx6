@@ -48,6 +48,8 @@
 	padding: 0px 0px 0px 0px;"
 }
 </style>
+<link href="<c:url value="/css/input.css" />" type="text/css" rel="stylesheet">
+<link href="<c:url value="/css/input2.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap_api_crash_black_position.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -108,16 +110,29 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
-				<h4 class="modal-title well">${member.department}업무 수정</h4>
+				<h4 class="modal-title well"><label>${member.department}업무 수정</label></h4>
 			</div>
 			<div class="modal-body">
 				<input	type="hidden" id="id_mod" value="">
 				<input type="hidden" id="iconcls_mod" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name_mod" value=""> <br> 
-					시작날짜<input 	type="date" id="begin_mod" value=""> <br>~<br> 
-						끝 날짜<input	type="date" id="end_mod" value="">						
-				퍼센트<input type="number" id="progress_mod"	value="">
+				 <div class="mat-div">
+    <label for="name_mod" class="mat-label">프로젝트명</label>
+    <input type="text" class="mat-input" id="name_mod">
+  </div>
+  <div class="mat-div">
+    <label for="begin_mod" class="mat-label">시작날짜</label>
+    <input type="date" class="mat-input" id="begin_mod">
+  </div>
+  <div class="mat-div">
+    <label for="end_mod" class="mat-label">끝 날짜</label>
+    <input type="date" class="mat-input" id="end_mod">
+  </div>
+  <div class="mat-div">
+    <label for="progress_mod" class="mat-label">퍼센트</label>
+    <input type="number" class="mat-input" id="progress_mod">
+  </div>
+				
 				</div>
 				<!-- div2 div3 ajax로 가져오기 -->
 				<div class="modal_mod_tt">	
@@ -142,17 +157,28 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
-				<h4 class="modal-title well">${member.department}업무 수정</h4>
+				<h4 class="modal-title well"><label>${member.department}업무 수정</label></h4>
 			</div>
 			<div class="modal-body">
 				<input	type="hidden" id="id_view" value="">
 				<input type="hidden" id="iconcls_view" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name_view" value="" readonly="readonly"> <br> 
-					시작날짜<input 	type="date" id="begin_view" value="" readonly="readonly"> <br>~<br> 
-						끝 날짜<input	type="date" id="end_view" value="" readonly="readonly">						
-				퍼센트<input type="number" id="progress_view"	value="" readonly="readonly">
-				</div>
+								 <div class="mat-div">
+    <label for="name_view" class="mat-label">프로젝트명</label>
+    <input type="text" class="mat-input" readonly="readonly" id="name_view">
+  </div>
+  <div class="mat-div">
+    <label for="begin_view" class="mat-label">시작날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="begin_view">
+  </div>
+  <div class="mat-div">
+    <label for="end_view" class="mat-label">끝 날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="end_view">
+  </div>
+  <div class="mat-div">
+    <label for="progress_view" class="mat-label">퍼센트</label>
+    <input type="number" class="mat-input" readonly="readonly" id="progress_view">
+  </div></div>
 				<!-- div2 div3 ajax로 가져오기 -->
 				<div class="modal_view well" style="overflow: auto">
 					<button class="btn_view">참여인원 보기</button>											
@@ -476,6 +502,15 @@
 		del="del";
 		persons2="";
 	}
+	$(".mat-input").focus(function(){
+		  $(this).parent().addClass("is-active is-completed");
+		});
+
+		$(".mat-input").focusout(function(){
+		  if($(this).val() === "")
+		    $(this).parent().removeClass("is-completed");
+		  $(this).parent().removeClass("is-active");
+		})
 
 </script>
 </html>

@@ -22,6 +22,10 @@ import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
 import com.choa.member.Hash;
 import com.choa.member.MemberDTO;
+import com.choa.order_rent.Order_rentDTO;
+import com.choa.order_rent.Order_rentService;
+import com.choa.payment.PaymentDTO;
+import com.choa.payment.movie.PaymentMovieServiceImpl;
 import com.choa.room.RoomDTO;
 import com.choa.room.RoomService;
 import com.choa.util.ListInfo;
@@ -43,8 +47,38 @@ public class AdminController {
 	private RoomService roomservice;
 	@Autowired
 	private CampaignController campaignController;
+	@Autowired
+	private PaymentMovieServiceImpl payMovieService;
+	@Autowired
+	private Order_rentService order_rentService;
 
-
+	
+	@RequestMapping(value="admin/refund")
+	public String refund(PaymentDTO paymentDTO){
+		int result=payMovieService.refund(paymentDTO);
+		if(result>0){
+			
+		}
+		return null;		
+	}
+	
+	/*@RequestMapping(value="admin/refund_set")
+	public String refund_set(PaymentDTO paymentDTO,HttpServletRequest request){
+		int result=payMovieService.refund_set(paymentDTO);		
+		if(result>0){
+			
+		}
+		return admin/admin_;		
+	}*/
+	@RequestMapping(value="admin/approved")
+	public String order_rentapproved(Order_rentDTO order_rentDTO,Model model,ListInfo listInfo) throws Exception{
+		order_rentService.order_rentapproved(order_rentDTO);
+		order_rentController.orderList(model, listInfo);
+		return "/admin/admin_Request_hi_2";
+	}
+	
+	
+	
 	@RequestMapping(value="admin/worker")
 	public String test(String id,Model model)throws Exception{
 		List<String> list = adminService.workers();
@@ -220,29 +254,29 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "admin/adminRequest_hi", method = RequestMethod.GET)
-	public void adminRequest_hi(Model model,ListInfo listInfo) {
-		order_rentController.orderList(model, listInfo);
+	public void adminRequest_hi(Model model,Integer curPage) {
+		campaignController.campaignPermit(curPage, model);
 	}
 	//펀딩목록
-	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_1", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/admin_Request_hi_1", method = RequestMethod.GET)
 	public void adminRequest_hi_1(Integer curPage, Model model) {
 		campaignController.campaignPermit(curPage, model);
 	}
 	//대여목록
-	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_2", method = RequestMethod.GET)
-	public void adminRequest_hi_2(Model model,ListInfo listInfo) {
+	@RequestMapping(value = "admin/admin_Request_hi_2", method = RequestMethod.GET)
+	public void adminRequest_hi_2(Model model,ListInfo listInfo) {		
 		order_rentController.orderList(model, listInfo);
 		
 	}
 	
 	//티켓구매목록
-	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_3", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/admin_Request_hi_3", method = RequestMethod.GET)
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
 				
 	}
 	
 	//상영방목록
-	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_4", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/admin_Request_hi_4", method = RequestMethod.GET)
 	public void adminRequest_hi_4(Model model,ListInfo listInfo) {
 		List<RoomDTO> list=new ArrayList<RoomDTO>();
 				try {

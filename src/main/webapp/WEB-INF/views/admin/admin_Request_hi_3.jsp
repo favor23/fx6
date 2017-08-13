@@ -43,34 +43,31 @@
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
 	<div class="d2_a">		
-				<div id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
+			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_2?curPage=1" class="select_department">물품 대여요청 목록</div>
-			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=1" class="select_department">티켓구매 목록</div>
+			<div id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=1" class="select_department">티켓구매 목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
-			<table class="table">			
-				<tr>
-					<td>번호</td><td>아이디</td><td>캠페인명</td><td>시작날짜</td><td>종료날짜</td><td>현재상황</td>
-				</tr>
-				<c:forEach items="${list}" var="dto">
-					<tr class="${dto.campaign_num} permit">
-						<td>${dto.campaign_num}</td><td>${dto.id}</td><td>${dto.campaign_title}</td><td>${dto.campaign_start}</td>
-						<td>${dto.campaign_end}</td>
-						<c:if test="${dto.permission eq 'approved'}">
-							<td>승인 완료</td>
-						</c:if>
-						<c:if test="${dto.permission eq 'unapproved'}">
-							<td>승인 대기중</td>
-						</c:if>				
-					</tr>
-				</c:forEach>
-			</table>
+			
+<table class="table">
+			<tr><td>방번호</td><td>영화시간</td><td>영화시작시간</td><td>끝나는 시간</td><td>상영상황</td></tr>	
+			<c:forEach items="${list}" var="list">
+			<tr>
+			<td>${list.num}</td>
+			<td>${list.play_Time}</td>
+			<td>${list.startTime}</td>
+			<td>${list.lastTime}</td>
+			<td></td>			
+			</tr>
+			
+			</c:forEach>	
+</table>
 			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
 				<ul class="pagination pagination-sm" style="margin-top: -1px;">
 			
 			<li>
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">[이전]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			</li>
 			
@@ -78,14 +75,14 @@
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
 				var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}" class="active">${i}</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${i}">${i}</a>
 			</c:forEach>
 			</li>
 			
 			<li>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">[다음]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${listInfo.lastNum+1}">[다음]</a>
 			</c:if>
 			</li>
 
