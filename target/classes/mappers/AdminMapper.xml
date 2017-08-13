@@ -20,12 +20,29 @@
  update customer set ban=0 where id=#{id}
  </update>
  
+ <select id="totalCount" resultType="java.lang.Integer">
+	select count(nvl(num,0)) from banlist where proccess='o'
+</select>
+
+<select id="totalCount2" resultType="java.lang.Integer" parameterType="java.lang.String">
+	select count(nvl(num,0)) from banlist where proccess='o' and adminid=#{id}
+</select>
+ 
  <select id="callBanList" resultType="com.choa.banList.BanlistDTO">
  	select * from banlist where proccess='x'
  </select>
  
- <select id="callBanList2" resultType="com.choa.banList.BanlistDTO">
- 	select * from banlist where proccess='o'
+ <select id="callBanListAll" parameterType="java.util.Map" resultType="com.choa.banList.BanlistDTO">
+ 	select * from 
+ 	(select rownum r, b.* from 
+ 	(select * from banlist where proccess='o' order by num desc) b) 
+ 	where r between #{listInfo.startRow} and #{listInfo.lastRow}
+ </select>
+ <select id="callBanListSearch" resultType="com.choa.banList.BanlistDTO">
+ 	select * from 
+ 	(select rownum r, b.* from 
+ 	(select * from banlist where proccess='o' and adminid=#{id} order by num desc) b) 
+ 	where r between #{listInfo.startRow} and #{listInfo.lastRow}
  </select>
  
  <select id="banCount" resultType="java.lang.Integer">

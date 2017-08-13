@@ -336,11 +336,19 @@
 		});
 		
 		$(document).on("click", ".good", function() {
-			srGood($(this).attr("accesskey"));
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				srGood($(this).attr("accesskey"));				
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(document).on("click", ".bad", function() {
-			srBad($(this).attr("accesskey"));
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				srBad($(this).attr("accesskey"));				
+			} else {
+				alert("로그인이 필요한 서비스입니다.");
+			}
 		});
 		
 		$(document).on("click", ".srDel", function() {

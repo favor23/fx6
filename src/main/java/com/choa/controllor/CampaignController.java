@@ -58,6 +58,20 @@ public class CampaignController {
 		return "crowd_funding/campaign/campaignView?campaign_num=" + campaign_num;
 	}
 	
+	@RequestMapping(value = "campaignDown", method = RequestMethod.POST)
+	public String campaignDown(Integer campaign_num) {
+		int result = 0;
+		
+		try {
+			result = campaignService.campaignDown(campaign_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "crowd_funding/campaign/campaignView?campaign_num=" + campaign_num;
+	}
+	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.GET)
 	public void campaignSupport(Integer campaign_num, Model model) {
 		model.addAttribute("campaign_num", campaign_num);

@@ -25,6 +25,8 @@ import com.choa.member.MemberDTO;
 import com.choa.room.RoomDTO;
 import com.choa.room.RoomService;
 import com.choa.util.ListInfo;
+import com.choa.util.MakePage;
+import com.choa.util.PageMaker;
 
 @Controller
 public class AdminController {
@@ -40,13 +42,38 @@ public class AdminController {
 	@Autowired
 	private RoomService roomservice;
 
-	
-	
-	
+
 	@RequestMapping(value="admin/banProccessList")
-	public void banProccessList(Model model)throws Exception{
-		List<BanlistDTO> list = adminService.banProccessList();
+	public void bpl()throws Exception{}
+	
+	
+	
+	@RequestMapping(value="admin/banProccessListAll")
+	public String banProccessListAll(int curPage,String id,Model model)throws Exception{
+		int totalCount = adminService.totalCount(id);
+		ListInfo lf = new ListInfo();
+		lf.setCurPage(curPage);
+		lf.makePage(totalCount);
+		lf.setRow();
+		List<BanlistDTO> list = adminService.banProccessListAll(lf);
 		model.addAttribute("banList", list);
+		model.addAttribute("listInfo", lf);
+		model.addAttribute("verf", "all");
+		return "/admin/bplAjax";
+	}
+	
+	@RequestMapping(value="admin/banProccessListSearch")
+	public String banProccessListSearch(int curPage,String id,Model model)throws Exception{
+		int totalCount = adminService.totalCount(id);
+		ListInfo lf = new ListInfo();
+		lf.setCurPage(curPage);
+		lf.makePage(totalCount);
+		lf.setRow();
+		List<BanlistDTO> list = adminService.banProccessListSearch(lf,id);
+		model.addAttribute("banList", list);
+		model.addAttribute("listInfo", lf);
+		model.addAttribute("verf", id);
+		return "/admin/bplAjax";
 	}
 	
 	@RequestMapping(value="member/log",method=RequestMethod.GET)

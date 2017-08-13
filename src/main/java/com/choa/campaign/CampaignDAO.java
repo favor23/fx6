@@ -23,6 +23,10 @@ public class CampaignDAO {
 		return sqlSession.update(NAMESPACE + "campaignUp", campaign_num);
 	}
 	
+	public int campaignDown(int campaign_num) throws Exception {
+		return sqlSession.update(NAMESPACE + "campaignDown", campaign_num);
+	}
+	
 	public int campaignHit(int campaign_num) throws Exception {
 		return sqlSession.update(NAMESPACE + "campaignHit", campaign_num);
 	}

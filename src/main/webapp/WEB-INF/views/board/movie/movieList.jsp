@@ -487,6 +487,7 @@
 	  
 	  <c:import url="../../temp/header_plus_movie.jsp"></c:import>
 	  
+	  <c:if test="${member.grade eq 'admin'}">
 	  <article class="art2">
 	  	<div class="sub_wrap">
 	  		<div class="sub1">
@@ -515,6 +516,7 @@
 	  		</div>
 	  	</div>
 	  </article>
+	  </c:if>
 	  <article class="art">
 	  
 	  </article>

@@ -212,7 +212,12 @@
 		});
 		
 		$(".go_payment").click(function() {
-			$("#frm").submit();
+			if('${member.id}'!=null&&'${member.id}'!="") {
+				$("#frm").submit();				
+			} else {
+				alert("로그인이 만료되었습니다. 첫 화면으로 돌아갑니다.");
+				location.href = "../../index";
+			}
 		});
 	});
 	

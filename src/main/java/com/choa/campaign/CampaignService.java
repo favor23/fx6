@@ -21,6 +21,10 @@ public class CampaignService {
 		return campaignDAO.campaignUp(campaign_num);
 	}
 	
+	public int campaignDown(int campaign_num) throws Exception {
+		return campaignDAO.campaignDown(campaign_num);
+	}
+	
 	public int campaignHit(int campaign_num) throws Exception {
 		return campaignDAO.campaignHit(campaign_num);
 	}
