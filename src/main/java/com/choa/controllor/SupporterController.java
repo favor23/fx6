@@ -32,4 +32,28 @@ public class SupporterController {
 		
 		return list;
 	}
+	
+	@RequestMapping(value = "/supporter/supporterWrite/{id}/${name}/${campaign_num}/${support_price}/${benefit_num}/${email}/${benefit_title}", method = RequestMethod.GET)
+	public int supporterWrite(@PathVariable("id") String id, @PathVariable("name") String name, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("support_price") Integer support_price, @PathVariable("benefit_num") Integer benefit_num, @PathVariable("email") String email, @PathVariable("benefit_title") String benefit_title) {
+		int result = 0;
+		
+		SupporterDTO supporterDTO = new SupporterDTO();
+		
+		supporterDTO.setId(id);
+		supporterDTO.setName(name);
+		supporterDTO.setCampaign_num(campaign_num);
+		supporterDTO.setSupport_price(support_price);
+		supporterDTO.setBenefit_num(benefit_num);
+		supporterDTO.setEmail(email);
+		supporterDTO.setBenefit_title(benefit_title);
+		
+		try {
+			result = supporterService.supporterWrite(supporterDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
