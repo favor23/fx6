@@ -27,31 +27,31 @@
 	<select id="campaignList" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select * from campaign order by campaign_num asc) c) 
+		(select * from campaign where permission='approved' order by campaign_num asc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
 	<select id="campaignList2" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select * from campaign order by support_hit desc) c) 
+		(select * from campaign where permission='approved' order by support_hit desc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
 	<select id="campaignList3" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select * from campaign order by support_price desc) c) 
+		(select * from campaign where permission='approved' order by support_price desc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
 	<select id="campaignList4" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select * from campaign order by campaign_end asc) c) 
+		(select * from campaign where permission='approved' order by campaign_end asc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
 	<select id="campaignList5" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select * from campaign order by campaign_start desc) c) 
+		(select * from campaign where permission='approved' order by campaign_start desc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
 	<select id="campaignCount" resultType="java.lang.Integer">

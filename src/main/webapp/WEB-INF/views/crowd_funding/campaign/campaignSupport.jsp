@@ -177,7 +177,7 @@
 				$(".total").html(total);
 				$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
 				$(".hidden_space2").html('<input type="hidden" name="benefit_title" value="' + $(this).attr("accesskey") + '">');
-				$(".hidden_space3").html('<input type="hidden" name="benefit_num" value"' + $(this).attr("id") + '">');
+				$(".hidden_space3").html('<input type="hidden" name="benefit_num" value="' + $(this).attr("id") + '">');
 			} else {
 				alert("혜택은 하나만 선택해주세요.");
 			}

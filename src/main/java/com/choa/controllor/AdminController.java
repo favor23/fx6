@@ -41,6 +41,8 @@ public class AdminController {
 	private Order_rentController order_rentController; 
 	@Autowired
 	private RoomService roomservice;
+	@Autowired
+	private CampaignController campaignController;
 
 
 	@RequestMapping(value="admin/hi")
@@ -209,8 +211,8 @@ public class AdminController {
 	}
 	//펀딩목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_1", method = RequestMethod.GET)
-	public void adminRequest_hi_1(Model model,ListInfo listInfo) {
-				
+	public void adminRequest_hi_1(Integer curPage, Model model) {
+		campaignController.campaignPermit(curPage, model);
 	}
 	//대여목록
 	@RequestMapping(value = "admin/admin_hi/admin_Request_hi_2", method = RequestMethod.GET)

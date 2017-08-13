@@ -105,7 +105,7 @@ $(".d2_a").on("click", ".select_department", function() {
 	var key = $(this).attr("accesskey");
 	var url_href="";
 	if(key=='1'){
-		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_1";
+		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_1?curPage=1";
 	}else if(key=='2'){
 		url_href="${pageContext.request.contextPath}/admin/admin_hi/admin_Request_hi_2";
 	}else if(key=='3'){
