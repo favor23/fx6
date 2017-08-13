@@ -30,12 +30,8 @@ public class CustomerDAO implements MemberDAO{
 		sqlSession.update(NAMESPACE + "admin_update_set",customerDTO);		
 	}
 	
-	public CustomerDTO adminselect_c(){
-		return sqlSession.selectOne(NAMESPACE + "adminselect_c");		
-	}
-	
-	public MemberDTO adminselect_m(){
-		return sqlSession.selectOne(NAMESPACE + "adminselect_m");		
+	public CustomerDTO adminselect_c(MemberDTO memberDTO){
+		return sqlSession.selectOne(NAMESPACE + "adminselect_c",memberDTO);		
 	}
 	
 	//유저 탈퇴

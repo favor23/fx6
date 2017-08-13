@@ -30,6 +30,15 @@ public class PaymentMovieController {
 	@Inject
 	private CinemaController cinemaController;
 	
+	
+	public void paymentMovieList(ListInfo listInfo, Model model){		
+		List<PaymentMovieDTO> list=paymentMovieServiceImpl.pmList(listInfo);
+		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+	}
+	
+	
+	
 	@RequestMapping(value="/paySystem/pay24", method=RequestMethod.POST)
 	public String pay24(MovieDTO movieDTO,String man, HttpSession session, Model model,HttpServletRequest request,ListInfo listInfo) throws Exception{//가격
 		CustomerDTO customerDTO=null;

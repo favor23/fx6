@@ -1,6 +1,7 @@
 package com.choa.payment.movie;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.choa.payment.PaymentDAO;
 import com.choa.payment.PaymentDTO;
+import com.choa.util.ListInfo;
 
 @Repository
 public class PaymentMovieDAOImpl implements PaymentDAO{
@@ -20,8 +22,12 @@ public class PaymentMovieDAOImpl implements PaymentDAO{
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="PaymentMovieMapper.";
 	
-	
-	
+	public List<PaymentMovieDTO> pmList(ListInfo listInfo){
+		return sqlSession.selectList(NAMESPACE+"paymentList",listInfo);
+	}
+	public int count(){
+		return sqlSession.selectOne(NAMESPACE+"count");
+	}
 	public int refund(PaymentDTO paymentDTO){
 		return sqlSession.update(NAMESPACE+"refund",paymentDTO);	
 	}
@@ -53,5 +59,7 @@ public class PaymentMovieDAOImpl implements PaymentDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
 	
 }

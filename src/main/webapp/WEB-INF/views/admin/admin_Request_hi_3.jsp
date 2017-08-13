@@ -49,14 +49,27 @@
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
 			
 <table class="table">
-			<tr><td>방번호</td><td>영화시간</td><td>영화시작시간</td><td>끝나는 시간</td><td>상영상황</td></tr>	
+			<tr><td>주문번호</td><td>티켓번호</td><td>금액</td>
+			<td>구매날짜</td><td>카드번호</td><td>환불요청</td></tr>	
 			<c:forEach items="${list}" var="list">
 			<tr>
 			<td>${list.num}</td>
-			<td>${list.play_Time}</td>
-			<td>${list.startTime}</td>
-			<td>${list.lastTime}</td>
-			<td></td>			
+			<td>${list.movie_num}</td>
+			<td>${list.money}</td>
+			<td>${list.reg_date}</td>
+			<td>${list.card_num}</td>
+			<c:if test="${list.refund eq '0'}">
+			<td></td>	
+			</c:if>	
+			<c:if test="${list.refund eq '1'}">
+			<td><input id="${list.num}" type="button" class="btn-danger refund_go" value="환불요청"></td>	
+			</c:if>	
+			<c:if test="${list.refund eq '2'}">
+			<td><input  type="button" class="" value="환불완료"></td>
+			</c:if>		
+			<c:if test="${list.refund eq '3'}">
+			<td><input  type="button" class="" value="환불불가"></td>
+			</c:if>	
 			</tr>
 			
 			</c:forEach>	
@@ -102,5 +115,9 @@ $(".select_department").mouseleave(function() {
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
 });
+$(".refund_go").click(function() {
+	if(confirm("승인하시겠습니까?"))
+	{location.href="${pageContext.request.contextPath}/admin/refund_go?num="+$(this).attr("id");}
+})
 </script>
 </html>

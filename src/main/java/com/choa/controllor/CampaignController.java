@@ -209,7 +209,7 @@ public class CampaignController {
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
+/*	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
 	public String campaignPermit(Integer curPage, Model model) {
 		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
 		ListInfo listInfo = new ListInfo();
@@ -234,7 +234,35 @@ public class CampaignController {
 		model.addAttribute("listInfo", listInfo);
 		
 		return "admin/admin_hi/admin_Request_hi_1";
+	}*/
+	//이거 경로도 달라졋긴한데 음...ㅠㅠ
+	@RequestMapping(value = "campaignPermit", method = RequestMethod.POST)
+	public String campaignPermit(Integer curPage, Model model) {
+		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
+		ListInfo listInfo = new ListInfo();
+		
+		int totalCount = 0;
+		
+		listInfo.setCurPage(curPage);
+		
+		try {
+			totalCount = campaignService.campaignCount();
+
+			listInfo.makePage(totalCount);
+			listInfo.setRow();
+			
+			list = campaignService.campaignList6(listInfo);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+		
+		return "admin/admin_Request_hi_1";
 	}
+	
 	
 	@RequestMapping(value = "campaignWrite", method = RequestMethod.GET)
 	public String campaignWrite() {

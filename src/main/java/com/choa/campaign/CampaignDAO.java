@@ -70,6 +70,10 @@ public class CampaignDAO {
 		return sqlSession.selectList(NAMESPACE + "campaignList5", listInfo);
 	}
 	
+	public List<CampaignDTO> campaignList6(ListInfo listInfo) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "campaignList6", listInfo);
+	}
+	
 	public int campaignCount() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "campaignCount");
 	}

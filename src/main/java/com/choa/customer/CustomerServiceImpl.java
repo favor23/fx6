@@ -26,13 +26,9 @@ public class CustomerServiceImpl implements MemberService{
 		customerDAO.admin_update_set(customerDTO);		
 	}
 	
-	//어드민영화봐야지
-	public CustomerDTO adminselect_c(){
-		return customerDAO.adminselect_c();		
-	}
 	
-	public MemberDTO adminselect_m(){
-		return customerDAO.adminselect_m();		
+	public CustomerDTO adminselect_c(MemberDTO memberDTO){
+		return customerDAO.adminselect_c(memberDTO);
 	}
 
 	//유저 탈퇴

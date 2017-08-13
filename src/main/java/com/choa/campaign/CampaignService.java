@@ -98,6 +98,15 @@ public class CampaignService {
 		return campaignDAO.campaignList5(listInfo);
 	}
 	
+	public List<CampaignDTO> campaignList6(ListInfo listInfo) throws Exception {
+		int totalCount = campaignDAO.campaignCount();
+		
+		listInfo.makePage(totalCount);
+		listInfo.setRow();
+		
+		return campaignDAO.campaignList6(listInfo);
+	}
+	
 	public int campaignCount() throws Exception {
 		return campaignDAO.campaignCount();
 	}

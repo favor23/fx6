@@ -28,6 +28,7 @@ import com.choa.member.MemberDTO;
 import com.choa.order_rent.Order_rentDTO;
 import com.choa.order_rent.Order_rentService;
 import com.choa.payment.PaymentDTO;
+import com.choa.payment.movie.PaymentMovieDTO;
 import com.choa.payment.movie.PaymentMovieServiceImpl;
 import com.choa.room.RoomDTO;
 import com.choa.room.RoomService;
@@ -58,7 +59,8 @@ public class AdminController {
 	private Order_rentService order_rentService;
 	@Autowired
 	private CustomerServiceImpl customerService;
-	
+	@Autowired
+	private PaymentMovieController paymentMovieController;
 	@Inject
 	private RoomUserService roomUserService;
 	
@@ -85,20 +87,28 @@ public class AdminController {
 	@RequestMapping(value="admin/refund")
 	public String refund(PaymentDTO paymentDTO){
 		int result=payMovieService.refund(paymentDTO);
-		if(result>0){
-			
-		}
 		return null;		
 	}
 	
-	/*@RequestMapping(value="admin/refund_set")
-	public String refund_set(PaymentDTO paymentDTO,HttpServletRequest request){
-		int result=payMovieService.refund_set(paymentDTO);		
-		if(result>0){
-			
+	@RequestMapping(value="admin/refund_go")
+	public String refund_go(MemberDTO memberDTO, PaymentMovieDTO paymentMovieDTO,HttpServletRequest request,Model model, ListInfo listInfo) throws Exception{
+		CustomerDTO customerDTO=customerService.adminselect_c(memberDTO);
+		String []str=customerDTO.getTicket().split("/");
+		String ticket="";
+		for(int i=0;i<str.length;i++){
+			if(str[i].equals(paymentMovieDTO.getMovie_num())){
+				
+			}
+			else{
+				ticket+=str[i]+"/";
+			}
 		}
-		return admin/admin_;		
-	}*/
+		customerDTO.setTicket(ticket);
+		customerService.update(customerDTO);
+		int result=payMovieService.refund_set(paymentMovieDTO);
+		paymentMovieController.paymentMovieList(listInfo, model);
+		return "admin/admin_Request_hi_3";		
+	}
 	@RequestMapping(value="admin/campaign_approved")
 	public String campaign_approved(Model model,CampaignDTO campaignDTO){
 		campaignController.approved_go(campaignDTO);
@@ -307,7 +317,8 @@ public class AdminController {
 	//티켓구매목록
 	@RequestMapping(value = "admin/admin_Request_hi_3", method = RequestMethod.GET)
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
-				
+		paymentMovieController.paymentMovieList(listInfo, model);
+		
 	}
 	
 	//상영방목록

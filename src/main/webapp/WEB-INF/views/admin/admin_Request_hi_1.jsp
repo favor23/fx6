@@ -60,7 +60,7 @@
 						</c:if>
 						<c:if test="${dto.permission eq 'unapproved'}">
 							<c:if test="${member.department eq '후원부'}">
-							<td><input id="${dto.campaign_num}" type="button" class="campaign_go" value="승인 대기중"></td>
+							<td><input id="${dto.campaign_num}" type="button" class="btn-info campaign_go" value="승인 대기중"></td>
 							</c:if>
 							<c:if test="${member.department ne '후원부'}">
 							<td>후원부만 가능합니다.</td>
@@ -110,7 +110,7 @@ $(".select_department").mouseleave(function() {
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
 });
-$("#campaign_go").click(function() {	
+$(".campaign_go").click(function() {	
 	if(confirm("승인하시겠습니까?"))
 	{location.href="${pageContext.request.contextPath}/admin/campaign_approved?campaign_num="+$(this).attr("id");}
 	

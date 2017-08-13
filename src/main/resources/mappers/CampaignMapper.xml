@@ -54,6 +54,12 @@
 		(select * from campaign where permission='approved' order by campaign_start desc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
+	<select id="campaignList6" resultType="com.choa.campaign.CampaignDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, c.* from 
+		(select * from campaign order by campaign_num asc) c) 
+		where r between #{startRow} and #{lastRow}
+	</select>
 	<select id="campaignCount" resultType="java.lang.Integer">
 		select nvl(count(campaign_num), 0) from campaign
 	</select>
