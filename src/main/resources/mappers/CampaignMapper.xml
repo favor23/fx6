@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="CampaignMapper">
+	<update id="campaignDone2" parameterType="java.lang.Integer">
+		update benefit set benefit_hit=benefit_hit+1 where benefit_num=#{benefit_num}
+	</update>
+	<update id="campaignDone" parameterType="com.choa.campaign.CampaignDTO">
+		update campaign set support_price=support_price+#{support_price}, support_hit=support_hit+1 where campaign_num=#{campaign_num}
+	</update>
 	<select id="benefitView" parameterType="java.lang.Integer" resultType="com.choa.benefit.BenefitDTO">
 		select * from benefit where campaign_num=#{campaign_num}
 	</select>

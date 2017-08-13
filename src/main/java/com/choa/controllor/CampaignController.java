@@ -29,6 +29,30 @@ public class CampaignController {
 	@Autowired
 	private CampaignService campaignService;
 	
+	@RequestMapping(value = "campaignDone/{support_price}/{campaign_num}/{benefit_num}", method = RequestMethod.GET)
+	@ResponseBody
+	public int campaignDone(@PathVariable("support_price") Integer support_price, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("benefit_num") Integer benefit_num) {
+		int result = 0;
+		
+		CampaignDTO campaignDTO = new CampaignDTO();
+		
+		campaignDTO.setSupport_price(support_price);
+		campaignDTO.setCampaign_num(campaign_num);
+		
+		try {
+			result = campaignService.campaignDone(campaignDTO);
+			
+			if(result>0) {
+				result = campaignService.campaignDone2(benefit_num);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	@RequestMapping(value = "campaignBadge/{campaign_num}", method = RequestMethod.GET)
 	@ResponseBody
 	public CampaignDTO campaignBadge(@PathVariable("campaign_num") Integer campaign_num) {

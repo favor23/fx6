@@ -177,6 +177,7 @@
 				$(".total").html(total);
 				$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
 				$(".hidden_space2").html('<input type="hidden" name="benefit_title" value="' + $(this).attr("accesskey") + '">');
+				$(".hidden_space3").html('<input type="hidden" name="benefit_num" value"' + $(this).attr("id") + '">');
 			} else {
 				alert("혜택은 하나만 선택해주세요.");
 			}
@@ -195,6 +196,7 @@
 			$(".total").html($(".add_price").val());
 			$(".hidden_space").html('<input type="hidden" name="total_price" value="' + total + '">');
 			$(".hidden_space2").html("");
+			$(".hidden_space3").html("");
 		});
 		
 		$(".add_price").blur(function() {
@@ -277,6 +279,7 @@
 				<form action="campaignSupport" id="frm" method="post">
 					<div class="hidden_space"></div>
 					<div class="hidden_space2"></div>
+					<div class="hidden_space3"></div>
 					<input type="hidden" name="campaign_num" value="${campaign_num}">
 					<span style="color: red;">*</span><span style="font-size: 0.8em;">은 필수 입력 항목입니다.</span>
 					<table class="table">
