@@ -86,8 +86,8 @@
 		insert into banlist values(#{targetId},#{reason},'nothing',#{senderId},#{roomNum},'x',ban_num.nextval,'없음',0,sysdate)
 	</insert>
 	
-	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO" parameterType="com.choa.customer.CustomerDTO">
-		select M.*, C.* from customer C,member M where id=#{id}
+	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO" parameterType="com.choa.member.MemberDTO">
+		select M.*, C.* from member M,customer C where M.id=#{id} and M.id =C.id
 	</select>
 	<update id="admin_update_set" parameterType="com.choa.customer.CustomerDTO">
 		update customer set ticket=#{ticket} where id=#{id}
