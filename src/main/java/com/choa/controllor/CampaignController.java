@@ -1,6 +1,7 @@
 package com.choa.controllor;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -63,8 +64,16 @@ public class CampaignController {
 	}
 	
 	@RequestMapping(value = "campaignSupport", method = RequestMethod.POST)
-	public String campaignSupport(SupportDTO supportDTO, HttpSession session) {
+	public String campaignSupport(SupportDTO supportDTO,Model model, HttpSession session) {
 		session.setAttribute("support", supportDTO);
+		CampaignDTO campaignDTO=new CampaignDTO();
+		try {
+			campaignDTO=campaignService.campaignView(supportDTO.getCampaign_num());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		session.setAttribute("psupport", campaignDTO);
 		// 경로 추가
 		return "paySystem/pay24_s";
 	}
@@ -117,7 +126,7 @@ public class CampaignController {
 	
 	@RequestMapping(value = "getCampaignList", method = RequestMethod.POST)
 	public void campaignList(Integer curPage, String dual, Model model) {
-		List<CampaignDTO> list = null;
+		List<CampaignDTO> list = new ArrayList<CampaignDTO>();
 		ListInfo listInfo = new ListInfo();
 		java.util.Date date = new java.util.Date();
 		

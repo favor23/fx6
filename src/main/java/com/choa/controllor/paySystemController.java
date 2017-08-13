@@ -21,6 +21,9 @@ public class paySystemController {
 	@RequestMapping(value="g4")
 	public void g4(){		
 	}
+	@RequestMapping(value="g5")
+	public void g5(){		
+	}
 	
 	@RequestMapping(value="paypost")
 	public void paypost(){		

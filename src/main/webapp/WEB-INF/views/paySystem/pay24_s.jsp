@@ -72,31 +72,46 @@ a{
 	<section class="main_wrap">
 		<img src="<c:url value="/img/jsimg/pay2img.PNG"/>">
 		<form id="frm" method="post">
-		<table class="table">
-		<tr><td>상품정보</td><td>상품 금액</td><td>할인</td><td>총금액</td></tr>
-		<tr>
-		<td style="width: 400px;">
-			<%-- <c:forEach items="${sessionScope.list}" var="dto">	 --%>
-			<c:forEach items="${sessionScope.list}" var="dto">
-					<div class="item_jb"><img src="<c:url value="${dto.poster_img}"/>"></div> 
-					<div class="item_jb" style="margin-left: 30px;">${dto.movie_title}<br>	${dto.genre} ${dto.restricted}세 ${dto.running_time}분</div>					
-			</c:forEach>
-		</td>				
-		<td style="width: 200px;">
-			<c:forEach items="${sessionScope.list}" var="dto">					
-					${dto.movie_price}	<br>		
-			</c:forEach>
-		</td>
-		<td style="width: 200px;"></td><td style="width: 200px;">
-						
-							${totalpay}
-	<input type="hidden" id="totalpay" name="totalpay" value="${totalpay}">
-			</td>		
-		</tr>		
-		</table>
-		
-        </table>
-		</div>
+				<table class="table">
+					<tr>
+						<td>상품정보</td>
+						<td>상품 금액</td>
+						<td>총금액</td>
+					</tr>
+					<tr>
+						<td style="width: 600px;">
+							<div class="item_jb">
+								<img src="<c:url value="${psupport.campaign_img}"/>">
+									
+							</div>
+							<div class="item_jb" style="margin-left: 30px;">
+								[${psupport.campaign_title}]<br>${support.benefit_title}</div>
+
+						</td>
+						<td style="width: 200px;">${support.total_price} <br>
+						</td>
+						<td style="width: 200px;">${support.total_price} 
+							<input type="hidden" id="totalpay" name="totalpay"
+							value="${support.total_price}">
+						</td>
+					</tr>
+				</table>
+				<table class="table">
+				<tr>
+					<td>이름</td>
+					<td>${member.name}</td>
+				</tr>
+				<tr>
+					<td>집 주소</td>
+					<td colspan="3"><input type="text" name="address"
+						value="${member.address}"></td>
+				</tr>
+				<tr>
+					<td>전화번호</td>
+					<td colspan="3"><input type="text" name="phone" value="${member.phone}"></td>
+				</tr>
+				</table>
+				</div>
 		<div id="ajax_g">		
 		<nav class="navbar navbar-inverse">
   		<div class="container-fluid">
@@ -118,7 +133,7 @@ a{
 <script type="text/javascript">
 var qqq=0;
 $.ajax({
-	url:"./g1",
+	url:"${pageContext.request.contextPath}/paySystem/g1",
 	type:"GET",
 	success:function(data){
 		$("#ajax_g").html(data);
@@ -129,7 +144,7 @@ $.ajax({
 		
 $("#ajax_g").on("click","#card_go",function(){		
 	$.ajax({
-		url:"./g4",
+		url:"${pageContext.request.contextPath}/paySystem/g5",
 		type:"GET",
 		success:function(data){
 			$("#div_good").html(data);

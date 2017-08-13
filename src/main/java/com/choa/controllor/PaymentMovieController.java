@@ -67,7 +67,7 @@ public class PaymentMovieController {
 	}
 	
 	@RequestMapping(value="/paySystem/movie_bank", method=RequestMethod.POST)
-	public String bank(PaymentMovieDTO paymentMovieDTO,String cardNum1, String cardNum2, String cardNum3, String cardNum4, Model model, HttpServletRequest request) throws Exception{		
+	public String bank(PaymentMovieDTO paymentMovieDTO,String cardNum1, String cardNum2, String cardNum3, String cardNum4, Model model) throws Exception{		
 		 String str = cardNum1 + cardNum2 + cardNum3 + cardNum4;		
 		 System.out.println(str);
 		 
