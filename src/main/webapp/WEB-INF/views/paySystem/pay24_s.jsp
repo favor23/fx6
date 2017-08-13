@@ -94,20 +94,7 @@ a{
 			</td>		
 		</tr>		
 		</table>
-		<hr>
-	<%-- 	<div class="div_1">
-		<h3>주문금액 - 할인금액 = 최종결제금액</h3>
-		<div id="sum_pay" class="alert alert-success">
-		<p><h2>${sessionScope.totalprice} - 0 &nbsp;&nbsp;= ${sessionScope.totalprice}</h2><p>
-		<input type="hidden" id="totalpay" name="totalpay" value="${dto.movie_price}">
-		</div>		
-		<hr>
-		<p>상품금액 : ${sessionScope.totalprice}</p>
-		상품할인/포인트 할인
-		<input type="number" id="sum_point" name="use_point">		
-		<input type="button" id="btn_point" value="포인트적용"><!-- <span id="btn_point_x">[X]</span> -->
-		(상품할인 건/포인트 보유 P)
-		</div> --%>		
+		
         </table>
 		</div>
 		<div id="ajax_g">		
