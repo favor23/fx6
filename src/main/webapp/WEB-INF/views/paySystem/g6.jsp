@@ -54,7 +54,7 @@
 		</div>		
 		
 		
-<%-- 				<!-- Modal -->
+				<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -63,19 +63,19 @@
     
       <div class="modal-body">
         <form id="frm3" action="" method="post">
-	<input type="hidden" name="name" value="${param.name}">
+	<%-- <input type="hidden" name="name" value="${param.name}">
 	<input type="hidden" name="address" value="${param.address}">
 	<input type="hidden" name="phone" value="${param.phone}">
 	<input type="hidden" name="req" value="${param.req}">
-	<input type="hidden" name="select2" value="${param.select2}">
-	<input type="hidden" name="totalpay" value="${totalpay}">
+	<input type="hidden" name="select2" value="${param.select2}"> --%>
+	<%-- <input type="hidden" name="totalpay" value="${totalpay}"> --%>
 	<input type="hidden" name="id" value="${member.id}">
 		<input type="hidden" name="type" value="support">
 					<input type="hidden" name="present" value="${support.benefit_title}">
 					<input type="hidden" name="address" value="${member.address}">
 					<input type="hidden" name="project_num" value="${psupport.campaign_num}">
 					<input type="hidden" name="money" value="${support.total_price}">
-	<input type="hidden" name="use_point" value="${param.use_point}"> 
+	<%-- <input type="hidden" name="use_point" value="${param.use_point}"> --%> 
 	<div id="post_d1">
 		<!-- <img id="im_bank"src="../img/main_jisoo/bank_222.PNG"> 카드를 이용해주셔서 감사합니다. -->
 		<div>
@@ -138,8 +138,8 @@
       </div>     
     </div>
   </div>
-</div>	 --%>
-<!-- <script type="text/javascript">
+</div>	
+<script type="text/javascript">
 var date = new Date();
 var year = date.getFullYear(); //년도
 var month = date.getMonth()+1; //월
@@ -180,5 +180,5 @@ $("#btn_pay2").click(function () {
 	$("#frm4").attr("action","/fx6/support_bank");
 	$("#frm4").submit();	
 })
-</script> -->
+</script>
 	
