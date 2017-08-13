@@ -27,7 +27,7 @@
 <div id="tap"></div>
 <c:import url="../temp/header_plus.jsp" />
 <div id="main_session_default">
-<img src="<c:url value="/img/index/결제완료_후.PNG"/>">
+<img src="<c:url value="/img/index/결제완료_영.PNG"/>">
 
 
 </div>

@@ -91,7 +91,7 @@ public class PaymentMovieController {
 			}
 		 }
 		model.addAttribute("message", message);
-		return "/paySystem/pay_result";		 
+		return "/paySystem/paysuccess2";		 
 	}
 	
 	@RequestMapping(value="/paySystem/movie_bank_0", method=RequestMethod.POST)
@@ -105,6 +105,6 @@ public class PaymentMovieController {
 			else{
 				model.addAttribute("message", "결제실패");				
 			}
-		return "/paySystem/pay_result";		 
+		 return "/paySystem/paysuccess2"; 
 	}
 }

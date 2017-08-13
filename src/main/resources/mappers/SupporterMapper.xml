@@ -6,4 +6,7 @@
 	<select id="supporterList" parameterType="java.lang.Integer" resultType="com.choa.supporter.SupporterDTO">
 		select * from supporter where campaign_num=#{campaign_num}
 	</select>
+	<insert id="supporterWrite" parameterType="com.choa.supporter.SupporterDTO">
+		insert into supporter values(supporter_seq.nextval, #{id}, #{name}, #{campaign_num}, #{support_price}, #{benefit_num}, sysdate, #{email}, #{benefit_title})
+	</insert>
 </mapper>
