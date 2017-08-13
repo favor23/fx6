@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import com.choa.admin.AdminServiceImpl;
 import com.choa.banList.BanlistDTO;
 import com.choa.chatting.ChattingDTO;
 import com.choa.customer.CustomerDTO;
+import com.choa.customer.CustomerServiceImpl;
 import com.choa.member.Hash;
 import com.choa.member.MemberDTO;
 import com.choa.order_rent.Order_rentDTO;
@@ -28,6 +30,8 @@ import com.choa.payment.PaymentDTO;
 import com.choa.payment.movie.PaymentMovieServiceImpl;
 import com.choa.room.RoomDTO;
 import com.choa.room.RoomService;
+import com.choa.room.roomuser.RoomUserDTO;
+import com.choa.room.roomuser.RoomUserService;
 import com.choa.util.ListInfo;
 import com.choa.util.MakePage;
 import com.choa.util.PageMaker;
@@ -51,7 +55,31 @@ public class AdminController {
 	private PaymentMovieServiceImpl payMovieService;
 	@Autowired
 	private Order_rentService order_rentService;
-
+	@Autowired
+	private CustomerServiceImpl customerService;
+	
+	@Inject
+	private RoomUserService roomUserService;
+	
+	public void admin_update_set(){
+		CustomerDTO customerDTO=new CustomerDTO();		
+		List<RoomUserDTO> list=new ArrayList<RoomUserDTO>();
+		try {
+			list=roomUserService.selectList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String ticket="";
+		for(int i=0;i<list.size();i++){
+			ticket+=list.get(i).getNum()+"/";
+		}
+		customerDTO.setId("admin");
+		customerDTO.setTicket(ticket);
+		System.out.println("ticket="+ticket);
+		customerService.admin_update_set(customerDTO);		
+	}
 	
 	@RequestMapping(value="admin/refund")
 	public String refund(PaymentDTO paymentDTO){

@@ -68,6 +68,8 @@ public class MemberController {
 	@Autowired
 	private CinemaController cinemaController;
 
+	@Autowired
+	private AdminController adminController;
 
 	@RequestMapping(value="/member/myMovieList")
 	public String myMovieList(int curPage,Model model, HttpSession session, ListInfo listInfo)throws Exception{
@@ -301,6 +303,7 @@ public class MemberController {
 	//loginProccess
 	@RequestMapping(value="member/customerLogin", method=RequestMethod.POST)
 	public String login(MemberDTO memberDTO,HttpSession session,Model model)throws Exception{
+		System.out.println("로그인");
 		memberDTO.setPw(hash.hashtest(memberDTO));
 		String grade = customerService.gradeChecker(memberDTO.getId());
 		int message = 0; //로그인에 실패했을 경우. 아이디가 있는데 비밀번호가 틀렸음.

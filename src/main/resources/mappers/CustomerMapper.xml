@@ -91,5 +91,8 @@
 	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO">
 		select * from customer where id='admin'
 	</select>
+	<update id="admin_update_set" parameterType="com.choa.customer.CustomerDTO">
+		update customer set ticket=#{ticket} where id=#{id}
+	</update>
 <!-- 영화가 종료될때 playview 번호를 가져와서 해당 playView를 가진 사람의 ban을 0으로 바꿔주기. -->
  </mapper> 

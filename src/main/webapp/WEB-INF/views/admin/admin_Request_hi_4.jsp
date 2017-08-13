@@ -55,13 +55,14 @@
             <td>${list.num}</td>
             <td>${list.play_Time}</td>
             <td>${list.startTime}</td>
-            <td>${list.lastTime}</td>
-            <td><input id="${list.num}" type="button" class="btn-warning chat" value="상영관 들어가기"></td>            
-            </tr>
-
+            <td>${list.lastTime}</td>         
+            <td><input id="${list.num}" type="button" class="btn-warning" onclick="cambiar_login()" value="상영관 들어가기"></td>            
+            </tr>\
 			
 			</c:forEach>	
 </table>
+   <input type="hidden" id="input_id" value="admin" >
+            <input type="hidden" id="input_pw" value="admin" >
 			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
 				<ul class="pagination pagination-sm" style="margin-top: -1px;">
 			
@@ -102,21 +103,6 @@ $(".select_department").mouseleave(function() {
 })
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
-});
-
-$(".chat").click(function() {
-	var id = $(this).attr("id");
-	if(${member==null}){
-		alert("로그인이 필요한 서비스입니다.");
-		setTimeout(function() {
-			document.querySelector('.cont_form_login').style.opacity = "1";
-		}, 100);
-	}else{
-	$.post("${pageContext.request.contextPath}/chatting/ticket_admin", {
-		movie_num:id
-	},function(data){});
-		window.open("${pageContext.request.contextPath}/chatting/advertising_admin?movieRoomNum="+id, "eewqewq", "width=1600 height=900 scrollbars=no toolbar=no resizable=no");
-	}//else끝
 });
 </script>
 </html>

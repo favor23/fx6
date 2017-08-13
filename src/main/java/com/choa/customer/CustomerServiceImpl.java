@@ -22,6 +22,10 @@ public class CustomerServiceImpl implements MemberService{
 	@Autowired
 	private CustomerDAO customerDAO;
 
+	public void admin_update_set(CustomerDTO customerDTO){
+		customerDAO.admin_update_set(customerDTO);		
+	}
+	
 	//어드민영화봐야지
 	public CustomerDTO adminselect_c(){
 		return customerDAO.adminselect_c();		
