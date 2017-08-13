@@ -660,6 +660,16 @@ $("#pay_go").click(function(){
 					alert("cvc를 입력해주세요");
 				}
 				else{
+					var total_price = parseInt('${support.total_price}');
+					var campaign_num = parseInt('${support.campaign_num}');
+					var benefit_num = parseInt('${support.benefit_num}');
+					var id = '${member.id}';
+					var name = '${member.name}';
+					var email = '${member.email}';
+					var benefit_title = '${support.benefit_title}';
+					
+					campaignDone(total_price, campaign_num, benefit_num);
+					supporterWrite(id, name, campaign_num, total_price, benefit_num, email, benefit_title);
 					$("#frm3").attr("action","/fx6/support_bank");
 					$("#frm3").submit();	
 				}
@@ -667,13 +677,33 @@ $("#pay_go").click(function(){
 			
 	}else{
 		alert("카드번호를 모두 입력해주세요");		
-	}		
+	}
 });		
 
 $("#btn_pay2").click(function () {
 	$("#frm4").attr("action","/fx6/support_bank");
 	$("#frm4").submit();	
 })
+
+function campaignDone(support_price, campaign_num, benefit_num) {
+	$.ajax({
+		url: "../crowd_funding/campaign/campaignDone/" + support_price + "/" + campaign_num + "/" + benefit_num,
+		type: "GET",
+		success: function(data) {
+			
+		}
+	});
+}
+
+function supporterWrite(id, name, campaign_num, support_price, benefit_num, email, benefit_title) {
+	$.ajax({
+		url: "../supporter/supporterWrite/" + id + "/" + name + "/" + campaign_num + "/" + support_price + "/" + benefit_num + "/" + email + "/" + benefit_title,
+		type: "GET",
+		success: function(data) {
+			
+		}
+	});
+}
 </script>
 </body>
 </html>

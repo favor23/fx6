@@ -15,4 +15,8 @@ public class SupporterDAO {
 	public List<SupporterDTO> supporterList(int campaign_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "supporterList", campaign_num);
 	}
+	
+	public int supporterWrite(SupporterDTO supporterDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "supporterWrite", supporterDTO);
+	}
 }
