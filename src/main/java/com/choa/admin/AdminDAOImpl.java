@@ -25,6 +25,13 @@ public class AdminDAOImpl implements MemberDAO{
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="AdminMapper.";
 	
+	
+	public List<String> workers()throws Exception{
+		List<String> list = sqlSession.selectList(NAMESPACE+"workers");
+		return list;
+	}
+	
+	
 	public int totalCount(String id)throws Exception{
 		int totalCount=0;
 		if(id.equals("n")){

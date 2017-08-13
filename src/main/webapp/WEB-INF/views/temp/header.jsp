@@ -83,7 +83,7 @@
       </c:if> </ui>
    </div>
    <div>
-   <c:import url="../temp/remote.jsp"/>
+   
    </div>
 </header>
 <!-- header end -->
