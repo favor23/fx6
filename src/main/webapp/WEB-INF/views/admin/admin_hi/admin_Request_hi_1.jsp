@@ -7,11 +7,21 @@
 			<div accesskey="3" class="select_department">티켓구매 목록</div>
 			<div accesskey="4" class="select_department">상영방 목록</div>			
 			<table class="table">			
-			
-			
-			
-			
-					
+				<tr>
+					<td>번호</td><td>아이디</td><td>캠페인명</td><td>시작날짜</td><td>종료날짜</td><td>현재상황</td>
+				</tr>
+				<c:forEach items="${list}" var="dto">
+					<tr class="${dto.campaign_num} permit">
+						<td>${dto.campaign_num}</td><td>${dto.id}</td><td>${dto.campaign_title}</td><td>${dto.campaign_start}</td>
+						<td>${dto.campaign_end}</td>
+						<c:if test="${dto.permission eq 'approved'}">
+							<td>승인 완료</td>
+						</c:if>
+						<c:if test="${dto.permission eq 'unapproved'}">
+							<td>승인 대기중</td>
+						</c:if>				
+					</tr>
+				</c:forEach>
 			</table>
 			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
 				<ul class="pagination pagination-sm" style="margin-top: -1px;">

@@ -33,7 +33,7 @@ public class SupporterController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/supporter/supporterWrite/{id}/${name}/${campaign_num}/${support_price}/${benefit_num}/${email}/${benefit_title}", method = RequestMethod.GET)
+	@RequestMapping(value = "/supporter/supporterWrite/{id}/{name}/{campaign_num}/{support_price}/{benefit_num}/{email}/{benefit_title}", method = RequestMethod.GET)
 	public int supporterWrite(@PathVariable("id") String id, @PathVariable("name") String name, @PathVariable("campaign_num") Integer campaign_num, @PathVariable("support_price") Integer support_price, @PathVariable("benefit_num") Integer benefit_num, @PathVariable("email") String email, @PathVariable("benefit_title") String benefit_title) {
 		int result = 0;
 		
@@ -46,9 +46,11 @@ public class SupporterController {
 		supporterDTO.setBenefit_num(benefit_num);
 		supporterDTO.setEmail(email);
 		supporterDTO.setBenefit_title(benefit_title);
-		
+		System.out.println(supporterDTO.getSupport_price());
+		System.out.println(supporterDTO.getEmail());
 		try {
 			result = supporterService.supporterWrite(supporterDTO);
+			System.out.println(result+"==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
