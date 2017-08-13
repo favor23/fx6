@@ -9,6 +9,9 @@
 	<update id="campaignUp" parameterType="java.lang.Integer">
 		update campaign set thumbs_up=thumbs_up+1 where campaign_num=#{campaign_num}
 	</update>
+	<update id="campaignDown" parameterType="java.lang.Integer">
+		update campaign set thumbs_up=thumbs_up-1 where campaign_num=#{campaign_num}
+	</update>
 	<update id="campaignHit" parameterType="java.lang.Integer">
 		update campaign set support_hit=support_hit+1 where campaign_num=#{campaign_num}
 	</update>
