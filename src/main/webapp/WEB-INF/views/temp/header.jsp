@@ -65,8 +65,6 @@
                style="background-color: white; margin: 0 0 0 0; border: 0.1px solid #e5e5e5;">
                <li><a href="${pageContext.request.contextPath}/member/memberInfo">마이페이지</a></li>
                <li><a href="${pageContext.request.contextPath}/board/note/noteList">쪽지</a></li>
-               <li><a href="${pageContext.request.contextPath}/board/order_rent/orderList">장바구니</a></li>
-               <li><a href="${pageContext.request.contextPath}/member/myPage">티켓구매 현황</a></li>
                <li><a href="${pageContext.request.contextPath}/member/logOut">로그아웃</a></li>               
             </ul>
             </c:if>
