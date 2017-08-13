@@ -13,4 +13,8 @@ public class SupporterService {
 	public List<SupporterDTO> supporterList(int campaign_num) throws Exception {
 		return supporterDAO.supporterList(campaign_num);
 	}
+	
+	public int supporterWrite(SupporterDTO supporterDTO) throws Exception {
+		return supporterDAO.supporterWrite(supporterDTO);
+	}
 }
