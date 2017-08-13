@@ -41,6 +41,10 @@ public class CampaignService {
 		return campaignDAO.campaignView(campaign_num);
 	}
 	
+	public List<CampaignDTO> campaignPermit(ListInfo listInfo) throws Exception {
+		return campaignDAO.campaignList(listInfo);
+	}
+	
 	public List<CampaignDTO> campaignList(ListInfo listInfo) throws Exception {
 		int totalCount = campaignDAO.campaignCount();
 		
