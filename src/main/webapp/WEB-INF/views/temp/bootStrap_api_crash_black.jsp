@@ -6,7 +6,7 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="<c:url value="/css/header.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/footer.css" />" type="text/css" rel="stylesheet">
-
+<link href="<c:url value="/css/font.css" />" type="text/css" rel="stylesheet">
 <c:if test="${empty member}">
 <script type="text/javascript">
 alert("로그인이 필요합니다.");

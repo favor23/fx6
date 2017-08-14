@@ -646,7 +646,7 @@
 			<tr >
 				<td>${dto.writer}</td>
 				<td><a href="matchingDetail?matching_num=${dto.matching_num}">${dto.title}</a></td>
-				<td>${dto.genre}</td>
+				<td>${dto.genre}노멀</td>
 				<td>${dto.form}</td>
 				<td>${dto.reg_date}</td>
 				<td><button  class="btn btn-info btn-lg story_Bt" data-toggle="modal" data-target="#${dto.matching_num}" value="스토리"> </button></td>

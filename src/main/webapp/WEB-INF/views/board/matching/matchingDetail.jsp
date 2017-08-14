@@ -285,7 +285,7 @@ body{
 		
 		<div class="profile_section">
 			<div class="writer_pro">
-				<p class="title_text" style="font-size: 2.6em">${dto.title}</p>
+				<p class="title_text" style="font-size: 2.0em">${dto.title}</p>
 				
 				<p class="text1">스토리 : ${dto.story}</p>
 				<p class="text1">장르 : ${dto.genre}드라마</p>
