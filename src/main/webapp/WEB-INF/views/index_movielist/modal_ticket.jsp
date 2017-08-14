@@ -101,6 +101,12 @@
 				<c:if test="${dto.restricted > member.age}">
 				<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">연령제한에 걸리셨습니다.</button>
 				</c:if>
+					<c:if test="${empty dto.restricted}">
+					<form action="${pageContext.request.contextPath}/paySystem/pay24" method="post" style=" margin-bottom: 10px;">
+							<input type="hidden" name="movie_num" value="${dto.movie_num}">
+							<button id="pay_btn" class="btn btn-warning" style="height: 63.988636px;">구매하기 [${dto.movie_price}]</button>
+					</form>
+					</c:if>
 				<c:if test="${dto.restricted <= member.age}">
 					<form action="${pageContext.request.contextPath}/paySystem/pay24" method="post" style=" margin-bottom: 10px;">
 							<input type="hidden" name="movie_num" value="${dto.movie_num}">

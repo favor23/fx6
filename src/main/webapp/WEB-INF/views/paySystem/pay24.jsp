@@ -661,8 +661,7 @@ $("#pay_go").click(function(){
 		alert("카드번호를 모두 입력해주세요");		
 	}		
 });		
-
-$("#btn_pay2").click(function () {
+$("#ajax_g").on("click","#btn_pay2",function(){
 	$("#frm4").attr("action","movie_bank_0");
 	$("#frm4").submit();	
 })

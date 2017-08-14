@@ -45,7 +45,7 @@
 					<input type="hidden" name="movie_num" value="${dto.movie_num}">
 					<input type="hidden" name="money" value="${totalpay}">					
 					</c:forEach>		
-		<input type="button" id="btn_pay2" class="btn-danger dtn_go_size" value="결제하기">
+		<input type="button" id="btn_pay2" class="btn-danger dtn_go_size" value="결제하기[0]">
 		</form>
 		</c:if>
 		<c:if test="${totalpay != 0}">
