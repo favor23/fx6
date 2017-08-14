@@ -204,7 +204,7 @@ public class MemberController {
 			message="작성 완료";
 		}
 		model.addAttribute("message", message);
-		model.addAttribute("path","../member/myPage");
+		model.addAttribute("path","/member/memberInfo");
 		return "/commons/result";
 	}
 
