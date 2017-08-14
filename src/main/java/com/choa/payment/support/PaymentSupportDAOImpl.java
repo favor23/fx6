@@ -21,7 +21,7 @@ public class PaymentSupportDAOImpl implements PaymentDAO{
 	private static final String NAMESPACE="PaymentSupportMapper.";
 	
 	public List<PaymentSupportDTO> psList(ListInfo listInfo){
-		return sqlSession.selectList(NAMESPACE+"", listInfo);
+		return sqlSession.selectList(NAMESPACE+"psList", listInfo);
 	}
 	
 	public int count(){

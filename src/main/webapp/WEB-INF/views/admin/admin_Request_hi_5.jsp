@@ -51,15 +51,18 @@
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
 			
 <table class="table">
-			<tr><td>주문번호</td><td>티켓번호</td><td>금액</td>
-			<td>구매날짜</td><td>카드번호</td></tr>	
+			<tr><td>주문번호</td><td>아이디</td>
+			<td>프로젝트번호</td><td>금액</td>
+			<td>구매날짜</td><td>카드번호</td><td>상품</td></tr>	
 			<c:forEach items="${list}" var="list">
 			<tr>
 			<td>${list.num}</td>
-			<td>${list.movie_num}</td>
+			<td>${list.id}</td>
+			<td>${list.project_num}</td>
 			<td>${list.money}</td>
 			<td>${list.reg_date}</td>
 			<td>${list.card_num}</td>
+			<td>${list.present}</td>
 			</tr>			
 			</c:forEach>	
 </table>
@@ -69,7 +72,7 @@
 			<li>
 			<c:if test="${listInfo.curBlock>1}">
 				<%-- <span class="go" id="${listInfo.startNum-1}">[이전]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${listInfo.startNum-1}">[이전]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_5?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			</li>
 			
@@ -77,14 +80,14 @@
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
 				var="i">
 				<%-- <span class="go" id="${i}">${i}</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${i}">${i}</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_5?curPage=${i}">${i}</a>
 			</c:forEach>
 			</li>
 			
 			<li>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<%-- <span class="go" id="${listInfo.lastNum+1}">[다음]</span> --%>
-				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=${listInfo.lastNum+1}">[다음]</a>
+				<a href="${pageContext.request.contextPath}/admin/admin_Request_hi_5?curPage=${listInfo.lastNum+1}">[다음]</a>
 			</c:if>
 			</li>
 
