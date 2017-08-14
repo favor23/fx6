@@ -129,13 +129,13 @@
 					      <tr>
 					        <td>줄거리</td>
 					        <td>
-					        	<textarea rows="8" cols="80" name="story" placeholder="300자 이내로 작성해주십시요." maxlength="4000">${dto.story}</textarea>					        	
+					        	<textarea rows="8" cols="80" name="story"  maxlength="8000">${dto.story}</textarea>					        	
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>시나리오</td>
 					       <td>
-					        	<textarea rows="8" cols="80" name="scenario" maxlength="4000">${dto.scenario}</textarea>					        	
+					        	<textarea rows="8" cols="80" name="scenario" maxlength="8000">${dto.scenario}</textarea>					        	
 					        </td>
 					      </tr>
 					      <tr>
