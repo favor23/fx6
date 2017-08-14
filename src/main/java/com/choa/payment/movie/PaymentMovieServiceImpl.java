@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.choa.payment.PaymentDTO;
 import com.choa.payment.PaymentService;
+import com.choa.payment.support.PaymentSupportDTO;
 import com.choa.util.ListInfo;
 
 @Service
@@ -16,6 +17,8 @@ public class PaymentMovieServiceImpl implements PaymentService {
 
 	@Autowired
 	private PaymentMovieDAOImpl paymentMovieDAOImpl;
+	
+	
 	
 	public List<PaymentMovieDTO> pmList(ListInfo listInfo){
 		int totalCount = paymentMovieDAOImpl.count();

@@ -7,4 +7,13 @@
  	<insert id="insert" statementType="CALLABLE" parameterType="java.util.Map">
  		{ call paysupport_insert(#{dto.id, mode=IN}, #{dto.money, mode=IN}, #{dto.type, mode=IN}, #{dto.present, mode=IN}, #{dto.address, mode=IN}, #{dto.project_num, mode=IN}, #{dto.card_num, mode=IN}, #{result, mode=OUT, javaType=int, jdbcType=INTEGER})  }
  	</insert> 
+ 		<select id="psList" resultType="com.choa.payment.support.PaymentSupportDTO" parameterType="com.choa.util.ListInfo">
+		select * from 
+		(select rownum r, c.* from 
+		(select P.*, PS.present, PS.address, PS.project_num from payment P, payment_support PS where PS.num_p=P.num order by num desc) c) 
+		where r between #{startRow} and #{lastRow}
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+  			select nvl(count(num_p), 0) from payment_support
+  		</select>
  </mapper> 

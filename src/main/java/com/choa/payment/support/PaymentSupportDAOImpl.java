@@ -1,6 +1,7 @@
 package com.choa.payment.support;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.choa.payment.PaymentDAO;
 import com.choa.payment.PaymentDTO;
+import com.choa.util.ListInfo;
 
 @Repository
 public class PaymentSupportDAOImpl implements PaymentDAO{
@@ -17,6 +19,14 @@ public class PaymentSupportDAOImpl implements PaymentDAO{
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="PaymentSupportMapper.";
+	
+	public List<PaymentSupportDTO> psList(ListInfo listInfo){
+		return sqlSession.selectList(NAMESPACE+"", listInfo);
+	}
+	
+	public int count(){
+		return sqlSession.selectOne(NAMESPACE+"count");
+	}
 	
 	@Override
 	public int pay_start(PaymentDTO paymentDTO) throws Exception {

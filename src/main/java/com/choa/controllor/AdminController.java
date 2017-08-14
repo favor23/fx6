@@ -63,6 +63,8 @@ public class AdminController {
 	private PaymentMovieController paymentMovieController;
 	@Inject
 	private RoomUserService roomUserService;
+	@Autowired
+	private PaymentSupportController paymentSupportController;
 	
 	public void admin_update_set(){
 		CustomerDTO customerDTO=new CustomerDTO();		
@@ -325,8 +327,8 @@ public class AdminController {
 	}
 	//펀딩구매목록
 	@RequestMapping(value = "admin/admin_Request_hi_5", method = RequestMethod.GET)
-	public void adminRequest_hi_5() {
-		
+	public void adminRequest_hi_5(ListInfo listInfo, Model model) {
+		paymentSupportController.paymentSupportList(listInfo, model);
 	}
 	
 	//상영방목록
