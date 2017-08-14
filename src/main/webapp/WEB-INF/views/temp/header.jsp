@@ -20,7 +20,11 @@
             style="position: absolute; width: 100px; top: 48px; left: 470px; background-color: white; border: 0.1px solid #e5e5e5;">
             <li><a href="${pageContext.request.contextPath}/board/required/requiredList">요청게시판</a></li>
             <li><a href="${pageContext.request.contextPath}/board/review/reviewList">리뷰게시판</a></li>
-          
+          	<c:if test="${!empty member}">
+          	<c:if test="${member.grade ne normal}">
+          	<li><a href="${pageContext.request.contextPath}/board/rent/rentList">감독렌트게시판</a></li>
+         	</c:if>
+         	</c:if>
          </ul>
       </div>
       </li>
