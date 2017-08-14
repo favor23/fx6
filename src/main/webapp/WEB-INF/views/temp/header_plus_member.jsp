@@ -12,6 +12,16 @@ width: 25%;
 }
 #dd_menu {
 border: 1px solid black;
+left:-59px;
+width: 83px;
+}
+#dd_menu li{
+text-align:center;
+width: 100%;
+}
+
+li:hover {
+	cursor:pointer;
 }
 </style>
 <div class="header_plus" >
@@ -28,7 +38,7 @@ border: 1px solid black;
 		<li id="${pageContext.request.contextPath}/member/myMovieList?curPage=1" dropzone="f" class="header_plus_li">
 				구매한 영화
 		</li>
-		<li id="${pageContext.request.contextPath}/member/myMovieReq" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/member/movie_req?id=${member.id}" dropzone="f" class="header_plus_li">
 				영화 요청 목록
 		</li>	
 		<li id="${pageContext.request.contextPath}/member/findPw" dropzone="b" class="header_plus_li">
@@ -50,10 +60,10 @@ border: 1px solid black;
   		<button id="drowdown_id" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">영화인
   		<span class="caret"></span></button>
   		<ul class="dropdown-menu" id="dd_menu" style="position: none;">
-		<li id="${pageContext.request.contextPath}/board/cart/cartList" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/cart/cartList" dropzone="f" class="sheader_plus_li">
 				장바구니
 		</li>
-		<li id="${pageContext.request.contextPath}/board/order_rent/orderList" dropzone="f" class="header_plus_li">
+		<li id="${pageContext.request.contextPath}/board/order_rent/orderList" dropzone="f" class="sheader_plus_li">
 				장비 요청 목록
 		</li>  		 
   		</ul>

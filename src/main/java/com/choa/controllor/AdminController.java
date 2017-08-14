@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.admin.AdminDTO;
 import com.choa.admin.AdminServiceImpl;
+import com.choa.admin.work.WorkDTO;
+import com.choa.admin.work.WorkService;
 import com.choa.banList.BanlistDTO;
 import com.choa.campaign.CampaignDTO;
 import com.choa.chatting.ChattingDTO;
@@ -65,6 +67,8 @@ public class AdminController {
 	private RoomUserService roomUserService;
 	@Autowired
 	private PaymentSupportController paymentSupportController;
+	@Autowired
+	private WorkService workService;
 	
 	
 	
@@ -147,23 +151,14 @@ public class AdminController {
 	
 	@RequestMapping(value="admin/worker")
 	public String test(String id,Model model)throws Exception{
-		List<String> list = adminService.workers();
+		WorkDTO workDTO = workService.listone();
+		String [] ar=workDTO.getPersons().split("/");
 		String message="not";
-		boolean chk=false;
-		for(int i=0;i<list.size();i++){
-			String [] ar = list.get(i).split("/");
-			for(int j=0;j<ar.length;j++){
-				if(ar[j].equals(id)){
-					chk=true;
-					break;
-				}else {
-					chk=false;
-				}	
+		for(int i=0;i<ar.length;i++){
+			if(ar[i].equals(id)||id.equals("admin")){
+				message="work";
+				break;
 			}
-			
-		}
-		if(chk){
-			message="work";
 		}
 		model.addAttribute("message", message);
 		return "/commons/ajaxResult";

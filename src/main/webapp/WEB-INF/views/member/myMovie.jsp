@@ -55,15 +55,20 @@ width: 250px;
 
 .mb2 {
 width: 300px;
-height: 350px;
+height: 430px;
 display: inline-block;
 float: left;
+}
+
+.mb2 img {
+	width: 300px;
+
 }
 
 .mb3 {
 width: 500px;
 display: inline-block;
-height: 350px;
+height: 430px;
 overflow: auto;
 padding: 10px;
 }
@@ -113,6 +118,7 @@ padding: 10px;
 <div id="main_session_default" class="member_css">
 <p class="mv_title">구매한 영화 내역</p>
 <div id="mag">
+<c:if test="${list ne '[]'}">
 	<c:forEach items="${list}" var="t">			
 		<div class="mb1">
 		<span class="m1 me">${t.movie_title }</span>
@@ -126,6 +132,10 @@ padding: 10px;
 		<div class="mb4 tbl"><strong>감독 : </strong>${t.director}</div>		
 		<div class="mb5 tbl"><strong>출연진 : </strong>${t.actor}</div>	
 	</c:forEach>
+	</c:if>
+	<c:if test="${list eq '[]'}">
+		<h2 style="text-align: center;margin-top: 15px;">구매한 영화가 없습니다.</h2>
+	</c:if>
 </div>
 </div>
 <c:import url="../temp/footer.jsp" />

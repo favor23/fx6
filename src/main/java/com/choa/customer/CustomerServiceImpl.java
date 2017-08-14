@@ -12,6 +12,7 @@ import com.choa.member.MemberDTO;
 import com.choa.member.MemberService;
 import com.choa.movie.MovieDTO;
 import com.choa.pr.PrDTO;
+import com.choa.required.RequiredDTO;
 import com.choa.taste.TasteDTO;
 import com.choa.util.ListInfo;
 
@@ -22,6 +23,11 @@ public class CustomerServiceImpl implements MemberService{
 	@Autowired
 	private CustomerDAO customerDAO;
 
+	public List<RequiredDTO> movie_req(String id)throws Exception{
+		return customerDAO.movie_req(id);
+	}
+	
+	
 	public void admin_update_set(CustomerDTO customerDTO){
 		customerDAO.admin_update_set(customerDTO);		
 	}
