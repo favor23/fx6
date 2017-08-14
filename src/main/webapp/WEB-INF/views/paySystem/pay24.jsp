@@ -451,7 +451,7 @@ a{
 				<tr>
 					<td>주문상품</td>
 					<c:forEach items="${sessionScope.list}" var="dto">
-					<td>${dto.movie_title}</td>
+					<td>${dto.movie_title}</td><tr><td>가격</td><td>${totalpay}</td><tr>
 					<input type="hidden" name="id" value="${member.id}">
 					<input type="hidden" name="type" value="movie">
 					<input type="hidden" name="movie_num" value="${dto.movie_num}">

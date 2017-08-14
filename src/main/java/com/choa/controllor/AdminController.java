@@ -66,6 +66,22 @@ public class AdminController {
 	@Autowired
 	private PaymentSupportController paymentSupportController;
 	
+	
+	
+	
+	@RequestMapping(value="/admin/admin_mod_go")
+	public String admin_mod_go(AdminDTO adminDTO,HttpServletRequest request,Model model) throws Exception{
+		adminDTO.setPw(hash.hashtest(adminDTO));
+		int result=adminService.admin_mod(adminDTO);
+		if(result>0){
+			request.getSession().setAttribute("member", adminDTO);
+			adminPage(request, model);
+			return "/admin/adminPage";
+		}else{
+			return "/admin/admin_mod";
+		}
+	}
+	
 	public void admin_update_set(){
 		CustomerDTO customerDTO=new CustomerDTO();		
 		List<RoomUserDTO> list=new ArrayList<RoomUserDTO>();

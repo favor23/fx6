@@ -202,15 +202,20 @@ button{
 								</ul>
 							</div>
 							<div id="table_div">
-								<form>
+								<form id="frm" action="" method="post">
+								<input type="hidden" name="name" value="${member.name}">
+								<input type="hidden" name="department" value="${member.department}">
+								<input type="hidden" name="position" value="${member.position}">
+									<input type="hidden" name="age" value="${member.age}">
+										<input type="hidden" name="grade" value="${member.grade}">
 									<div class="question">
 										<label>ID</label><input type="text" name="id" value="${member.id}" readonly="readonly" /> 
 									</div>
 									<div class="question">
-										<label>PW</label><input class="pw_1" name="pw" type="password">
+										<label>PW</label><input class="pw_0" name="pw" type="password" value="admin">
 									</div>
 									<div class="question">
-										<label>PW Confirm</label><input class="pw_1" name="pw" type="password">
+										<label>PW Confirm</label><input class="pw_1" name="pw_1" type="password" value="admin">
 									</div>
 									<div class="question">
 										<label>Phone</label><input type="text" name="phone" value="${member.phone}">
@@ -218,7 +223,6 @@ button{
 									<div class="question">
 										<label>Email</label><input type="email" name="email" value="${member.email}"> 
 									</div>
-									<input type="button" id="picture_mod"  class="btn-info font-white" value="사진변경">
 									<input type="button" id="admin_mod_go" class="btn-info font-white" value="수정하기">
 									<input type="hidden" name="picture" value="${member.picture}"> 
 								</form>								
@@ -232,7 +236,15 @@ button{
 	<c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
-
+$("#admin_mod_go").click(function name() {
+	
+	
+	if($(".pw_0").val()==$(".pw_1").val()){
+	$("#frm").attr("action","${pageContext.request.contextPath}/admin/admin_mod_go");
+	$("#frm").submit();
+	}
+	
+})
 
 
 </script>
