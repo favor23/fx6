@@ -36,7 +36,7 @@
 										<p>장르 : ${dto.genre}</p>
 										<p>러닝타임 : ${dto.running_time}분</p>
 										<hr>
-										<p>${dto.synopsis}</p>
+										<p><div style="height:100px; width:330px; overflow:hidden;  text-overflow:ellipsis; color: white;">${dto.synopsis}</div></p>
 									</div>
 								</div>
 							</nav>

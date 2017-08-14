@@ -327,8 +327,12 @@ font-weight: bold;
 			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
 			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기" /> <br />
 			<div id="banTextBox">
+<<<<<<< HEAD
 				<p class="w_p">경고<span class="wtis1"></span>회가 부여되어</p>
 				<p class="w_p">채팅이<span class="wtis2"></span>간 금지됩니다.</p>
+=======
+				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>			
+>>>>>>> 22184a3e2950636bed588f0d7c4d307357fe4d22
 			</div>
 		</div>
 	</div>

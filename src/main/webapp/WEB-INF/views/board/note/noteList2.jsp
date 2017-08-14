@@ -89,6 +89,17 @@
 		color: white;
 		float: right;
 	}
+	
+	
+	.check_send{
+	
+		border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	
+	}
 
 
 
@@ -163,16 +174,16 @@ function checkAll(){
 		<table class="table">
 			<tr>
 				<th><input type="checkbox" name="checkAll"></th>
-				<th>보낸사람</th>
+				<th>받은사람</th>
 				<th>내용</th>
 				<th>수신일자</th>
 			</tr>
 			<form method="get" id="del_frm" action="noteDelete2">
 			<c:forEach items="${list}" var="dto">
-				<c:if test="${dto.addressee eq member.id }">
+				<c:if test="${dto.sender eq member.id }">
 			<tr>
 				<td><input type="checkbox" value="${dto.num}" name="checkOne"></td>
-				<td>${dto.sender}</td>
+				<td>${dto.addressee}</td>
 				<td><div class="contentsView" id="${dto.num}" data-toggle="modal" data-target="#viewModal">${dto.contents}</div></td>
 				<td>${dto.reg_date}</td>
 			</tr>
@@ -185,7 +196,7 @@ function checkAll(){
 	<div class=" button_lab">
 	
 
-			 <c:if test="${listInfo.curBlock>1}">
+			 <%-- <c:if test="${listInfo.curBlock>1}">
 				<a href="noteList?curPage=${listInfo.startNum-1}">[이전]</a>
 			</c:if>
 			<c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}" var="i">
@@ -193,11 +204,14 @@ function checkAll(){
 			</c:forEach>
 			<c:if test="${listInfo.curBlock < listInfo.totalBlock}">
 				<a href="noteList?curPage=${listInfo.lastNum+1}">[다음]</a>
-			</c:if>
+			</c:if> --%>
 	
 	<button type="button" value="삭제" id="delete_sel" class="del_btn">삭제</button>
 	<c:if test="${member.grade eq 'admin'}">
 		<button type="button" data-toggle="modal" data-target="#sendmessage" class="send_btn">쪽지 보내기</button>
+	</c:if>
+	<c:if test="${member.grade eq 'admin'}">
+	<button type="button" class="check_send">받은 쪽지함</button>
 	</c:if>
 	</div>	
 		
@@ -218,10 +232,10 @@ function checkAll(){
 				      <div class="modal-content" style="color:black; background-color: white;"><!-- 여기가 모달 창 조정 부분 -->
 				        <div class="modal-header" style="border-bottom: #503396 solid 2px; background-color: #ddd;">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">수신쪽지</h4>
+				          <h4 class="modal-title">발신쪽지</h4>
 				        </div>
 				        <div class="modal-body2">
-				          <p>수신쪽지</p>
+				          <p>발신쪽지</p>
 				        </div>
 				        <div class="modal-footer">
 				        	
@@ -271,6 +285,14 @@ function checkAll(){
 			
 	</article>
 	<script type="text/javascript">
+	
+	
+	$(".check_send").click(function() {
+		location.href="noteList";
+		
+	});
+	
+	
 	
 	$("#message").click(function () {			
 		$("#frm").submit();

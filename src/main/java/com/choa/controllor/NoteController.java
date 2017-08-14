@@ -43,6 +43,26 @@ public class NoteController {
 	}
 	
 	
+	
+	@RequestMapping(value="noteList2", method=RequestMethod.GET)
+	public String noteList2(Model model, ListInfo listInfo){
+		
+		List<NoteDTO> ar = null;
+		
+		try {
+			ar = noteService.noteList(listInfo);
+			model.addAttribute("list", ar);
+			model.addAttribute("listInfo", listInfo);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "board/note/noteList2";
+	}
+	
+	
 	//writeForm
 	
 	@RequestMapping(value="noteWrite", method=RequestMethod.GET)

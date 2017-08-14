@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <table class="table" width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
-							<td colspan="3">프로젝트 참여인원<input type="text" id="persons_mod" name="persons" value="${str_plus}">
-							<input type="text" id="persons" name="persons" value="${str_plus}"></td>
+							<td colspan="3"><label>프로젝트 참여인원</label><input type="hidden" id="persons_mod" name="persons" value="${str_plus}">
+							<input type="hidden" id="persons" name="persons" value="${str_plus}"></td>
 							
 						</tr>
 						<c:forEach items="${admin_list}" var="dto">

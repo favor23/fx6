@@ -8,7 +8,7 @@
       <li id="bar_logo" class="${pageContext.request.contextPath}/index"><img
          id="bar_logo" class="${pageContext.request.contextPath}/index"
          style="cursor: pointer;"
-         src="<c:url value="/img/index/영화를 찍으시조.PNG"/>"></li>
+         src="<c:url value="/img/index/로고2.jpg"/>"></li>
       <li id="${pageContext.request.contextPath}/board/movie/movieList"
          class="header_li">영화</li>
       <li id="${pageContext.request.contextPath}/board/cinema/cinema_list" class="header_li">상영관</li>
@@ -20,7 +20,7 @@
             style="position: absolute; width: 100px; top: 48px; left: 470px; background-color: white; border: 0.1px solid #e5e5e5;">
             <li><a href="${pageContext.request.contextPath}/board/required/requiredList">요청게시판</a></li>
             <li><a href="${pageContext.request.contextPath}/board/review/reviewList">리뷰게시판</a></li>
-            <li><a href="#">매칭게시판</a></li>
+          
          </ul>
       </div>
       </li>
@@ -97,7 +97,7 @@ if(r_m!=""&&r_m=="admin"){
 	});
 	
 	
-}
+} 
 
 function remote(){
 	$.get("${pageContext.request.contextPath}/temp/remote",function(data){

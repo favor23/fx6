@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/footer.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />">
@@ -14,87 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		var count = 0;
-		var curPage = 0;
-		
-		//스크롤 이벤트 발생 시
-		$(document).scroll(function() {
-			var scrollHeight = $(window).scrollTop() + $(window).height();
-			var documentHeight = $(document).height();
-			
-			if (documentHeight <= scrollHeight + 1) {
-				if(count<'${totalCount}'||count!='${totalCount}') {
-					curPage++;
-					
-					getList(curPage);
-					
-					count = count + 10;
-				}
-			}
-		});
-		
-		$(document).on("click", ".pic-caption", function() {
-			location.href = "matchingDetail?matching_num=" + $(this).attr("accesskey");
-		});
-		
-		$(document).on("click", "#mod", function() {
-			$("body").attr("style", "background-color: #595959;");
-			$("#modli").html('<a href="#" id="mod_cancel" onclick="return false;">수정취소</a>');
-			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
-			
-			$(document).on("click", ".pic-caption", function() {
-				location.href = "matchingWriteForm?path=Update&matching_num=" + $(this).attr("accesskey");
-			});
-		});
-		
-		$(document).on("click" ,"#mod_cancel", function() {
-			$("body").removeAttr("style");
-			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
-			
-			$(document).on("click", ".pic-caption", function() {
-				location.href = "matchingDetail?matching_num=" + $(this).attr("accesskey");
-			});
-		});
-		
-		$(document).on("click", "#del", function() {
-			$("body").attr("style", "background-color: #595959;");
-			$("#delli").html('<a href="#" id="del_cancel" onclick="return false;">삭제취소</a>');
-			$("#modli").html('<a href="#" id="mod" onclick="return false;">수정</a>');
-			
-			$(document).on("click", ".pic-caption", function() {
-				if(confirm('정말 삭제하시겠습니까?')) {
-					location.href = "matchingDelete?matching_num=" + $(this).attr("accesskey");					
-				} else {
-					location.href = "matchingList";
-				}
-			});
-		});
-		
-		$(document).on("click", "#del_cancel", function() {
-			$("body").removeAttr("style");
-			$("#delli").html('<a href="#" id="del" onclick="return false;">삭제</a>');
-			
-			$(document).on("click", ".pic-caption", function() {
-				location.href = "matchingDetail?matching_num=" + $(this).attr("accesskey");
-			});
-		});
-	});
-   
-   function getList(curPage) {
-      $.ajax({
-         url:"getMatchingList",
-         type:"GET",
-         data:{
-            curPage:curPage
-         },
-         success:function(data) {
-            if(data!="") {
-               $(".art").append(data.trim());
-            }
-         }
-      });
-   }
+	
 </script>
 <style type="text/css">
 	@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
@@ -480,11 +401,171 @@
 	
 		width: 80%;
 		height: 600px;
-		background-color: yellow;
+		/* background-color: yellow; */
 		margin: 0 auto;
 		margin-top: 30px;
 	
 	}
+	
+	
+	
+	
+	
+	@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+	
+	body{
+	
+	font-family: 'Noto Sans KR';
+	}
+	
+	#tap {
+	width: 100%;
+	height: 50px;
+	}
+	#main_session_default {
+	height: 400px;
+	width: 1000px;
+	margin: 0 auto;
+	}	
+
+	.note_main{
+	
+	width : 800px;
+	height: auto;
+	margin: 0 auto;
+	padding: 0 0 100px 0;
+	/* background-color: yellow;	 */
+	}
+	
+	.contentsView{
+		
+		width : 400px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+	    white-space: nowrap;
+
+	}
+	
+	.table{
+		
+		border-top: 2px solid #503396;
+		border-bottom: 2px solid #e1e1e1;
+		font-family: 'NanumGothic', '나눔고딕', '맑은 고딕', 'Malgun Gothic', '돋움', dotum, 'Apple SD Gothic Neo', sans-serif;
+		font-size: 12px;
+	
+	}
+	
+	th{
+		
+		background-color: #f2f2f2;
+		color: #666;
+		font-size: 13px;
+		font-weight: 700;
+	
+	}
+	
+	.button_lab{
+		
+		width: 100%;
+		height: 60px;
+		/* background-color: yellow; */
+	}
+	
+	
+	.send_btn{
+		
+		border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	
+	}
+	
+	
+	.del_btn{
+	
+		border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	}
+	
+	
+	.check_send{
+	
+	border: 1px solid #351F66 !important;
+		background-color: #503396 !important;
+		color: white;
+		float: right;
+		margin-right: 10px;
+	
+	
+	}
+
+
+
+
+
+
+
+			.pagination {
+			    display: inline-block;
+			    color: #503396;
+			    float: left;
+			   
+			}
+			
+			.pagination a {
+			    color: #503396;
+			    float: left;
+			    padding: 8px 16px;
+			    text-decoration: none;
+			    transition: background-color .3s;
+			    border: 1px solid #ddd;
+			    margin: 0 4px;
+			}
+			
+			.pagination a.active {
+			    background-color: #503396;
+			    color: white;
+			    border: 1px solid #351F66;
+			}
+			
+			.pagination a:hover:not(.active) {background-color: #ccc;}
+
+
+
+
+		#wri_B{
+		
+			width: 70px;
+			height: 50px;
+			border: 1px solid #351F66 !important;
+			background-color: #503396 ;
+			color: white;
+		
+		}
+
+		#wri_B:HOVER {
+	
+		background: white;
+		color: #503396;
+			
+	}
+	
+	
+	.story_Bt{
+	
+		width: 40px;
+		height: 20px;
+		background-color: #503396;
+		color: white;
+		border: 1px solid #351F66 !important;S
+	}
+	
+	
 	
 	
 </style>
@@ -523,14 +604,18 @@
 	  			<div class="sub2_con">
 	  				
 	  				<ul class="sub2_ul">
-	  					<li id="delli">
-	  						<a href="#" id="del" onclick="return false;">삭제</a>
+	  					<!-- <li id="delli">
+	  						<button id="del_B">
+	  							
+	  						</button>
 	  					</li>
 	  					<li id="modli">
-	  						<a href="#" id="mod" onclick="return false;">수정</a>
-	  					</li>
+	  						<button id="mod_B"></button>
+	  					</li> -->
 	  					<li>
-	  						<a href="matchingWriteForm?path=Write">추가</a>
+	  						<c:if test="${member.id ne null}"></c:if>
+	  						<button id="wri_B" > 글작성</button>
+	  						<!-- <a href="matchingWriteForm?path=Write">추가</a> -->
 	  					</li>
 	  				</ul>
 	  				
@@ -546,12 +631,90 @@
 		
 		
 		
+		<table class="table">
+			<tr>
+				<th>작가</th>
+				<th>제목</th>
+				<th>장르</th>
+				<th>형식</th>
+				<th>작성일</th>
+				<th>스토리</th>
+			</tr>
+			
+			<c:forEach items="${list}" var="dto">
+			
+			<tr >
+				<td>${dto.writer}</td>
+				<td><a href="matchingDetail?matching_num=${dto.matching_num}">${dto.title}</a></td>
+				<td>${dto.genre}</td>
+				<td>${dto.form}</td>
+				<td>${dto.reg_date}</td>
+				<td><button  class="btn btn-info btn-lg story_Bt" data-toggle="modal" data-target="#${dto.matching_num}" value="스토리"> </button></td>
+			</tr>
+			
+			
+			
+			
+			<div id="${dto.matching_num}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="color:black; background-color: white;">
+      <div class="modal-header" style="border-bottom: #503396 solid 2px; background-color: #ddd;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">STORY</h4>
+      </div>
+      <div class="modal-body">
+        <p>${dto.story}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+			
+			
+			
+			
+			
+				
+			</c:forEach>
+				
+		</table>
 		
 		
 		
-	  <article class="art">
-	  
-	  </article>
+		<div style="width: 10%; height: 60px; margin: 0 auto;">
+		<ul class="pagination pagination-sm" style="margin-top: -1px; mar">
+            
+                  <li>
+                  <c:if test="${listInfo.curBlock>1}">
+                     <a href="matchingList?curPage=${listInfo.startNum-1}&search=${listInfo.search}&find=${listInfo.find}">이전</a>
+                  </c:if>
+                  </li>
+                  
+                  <li>
+                  <c:forEach begin="${listInfo.startNum}" end="${listInfo.lastNum}"
+                     var="i">   
+                     <a href="matchingList?curPage=${i}&search=${listInfo.search}&find=${listInfo.find}" class="active">${i}</a>
+                  </c:forEach>
+                  </li>
+                  
+                  <li>
+                  <c:if test="${listInfo.curBlock < listInfo.totalBlock}">
+                     <a href="matchingList?curPage=${listInfo.lastNum+1}&search=${listInfo.search}&find=${listInfo.find}">다음]</a>
+                  </c:if>
+                  </li>
+            
+            </ul>
+		</div>
+		
+		
+		
+		
+	
 		
 		
 		
@@ -563,6 +726,25 @@
 	  
 	</section>
 	
+	<script type="text/javascript">
+	
+		$("#wri_B").click(function() {
+			
+			location.href="matchingWriteForm?path=Write";
+		});
+	
+		
+		
+		$(document).ready(function(){
+		    $("#story_Bt").click(function(){
+		        $("p").toggle();
+		        
+		       
+		    });
+		});
+		
+	
+	</script>
 	<c:import url="../../temp/footer.jsp"/>
 </body>
 </html>

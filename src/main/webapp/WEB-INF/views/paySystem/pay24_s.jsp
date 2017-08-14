@@ -687,7 +687,7 @@ $("#btn_pay2").click(function () {
 
 function campaignDone(support_price, campaign_num, benefit_num) {
 	$.ajax({
-		url: "../crowd_funding/campaign/campaignDone/" + support_price + "/" + campaign_num + "/" + benefit_num,
+		url: "${pageContext.request.contextPath}/crowd_funding/campaign/campaignDone/" + support_price + "/" + campaign_num + "/" + benefit_num,
 		type: "GET",
 		success: function(data) {
 			
@@ -697,7 +697,7 @@ function campaignDone(support_price, campaign_num, benefit_num) {
 
 function supporterWrite(id, name, campaign_num, support_price, benefit_num, email, benefit_title) {
 	$.ajax({
-		url: "../supporter/supporterWrite/" + id + "/" + name + "/" + campaign_num + "/" + support_price + "/" + benefit_num + "/" + email + "/" + benefit_title,
+		url: "${pageContext.request.contextPath}/supporter/supporterWrite/" + id + "/" + name + "/" + campaign_num + "/" + support_price + "/" + benefit_num + "/" + email + "/" + benefit_title,
 		type: "GET",
 		success: function(data) {
 			

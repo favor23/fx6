@@ -23,23 +23,23 @@
 						data-screen-name="dia_official" data-user-id="3259624118"
 						data-feedback-token="" data-impression-id="">
 						<c:if test="${s_dto.department eq '회계부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
+						<a class="ProfileCard-bg js-nav" 
 							tabindex="-1" aria-hidden="true"
 							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장1.jpg);">
 						</a>
 						</c:if>
 						<c:if test="${s_dto.department eq '인사부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
+						<a class="ProfileCard-bg js-nav" 
 							tabindex="-1" aria-hidden="true"
 							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/김과장2.jpg);">
 						</a></c:if>
 						<c:if test="${s_dto.department eq '후원부'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
+						<a class="ProfileCard-bg js-nav" 
 							tabindex="-1" aria-hidden="true"
 							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/프로듀사.jpg);">
 						</a></c:if>
 						<c:if test="${s_dto.department eq '매니저'}">
-						<a class="ProfileCard-bg js-nav" href="/dia_official"
+						<a class="ProfileCard-bg js-nav" 
 							tabindex="-1" aria-hidden="true"
 							style="background-color: #3B94D9; background-image: url(${pageContext.request.contextPath}/img/admin/sun_sun.jpg);">
 						</a>
@@ -47,7 +47,7 @@
 
 						<div class="ProfileCard-content">
 							<a class="ProfileCard-avatarLink js-nav js-tooltip"
-								href="/dia_official" tabindex="-1" aria-hidden="true"> <img
+								 tabindex="-1" aria-hidden="true"> <img
 								class="ProfileCard-avatarImage js-action-profile-avatar"
 								src="<c:url value="${s_dto.picture}"/>"
 								alt="">

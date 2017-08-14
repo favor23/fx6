@@ -24,8 +24,15 @@ public class CustomerDAO implements MemberDAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="CustomerMapper.";
+	private static final String NAMESPACE="CustomerMapper.";
 	
+	public void admin_update_set(CustomerDTO customerDTO){
+		sqlSession.update(NAMESPACE + "admin_update_set",customerDTO);		
+	}
+	
+	public CustomerDTO adminselect_c(MemberDTO memberDTO){
+		return sqlSession.selectOne(NAMESPACE + "adminselect_c",memberDTO);		
+	}
 	
 	//유저 탈퇴
 	public int dropUser(DropUserDTO dropUserDTO)throws Exception{

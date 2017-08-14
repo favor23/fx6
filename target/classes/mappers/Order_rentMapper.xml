@@ -24,5 +24,9 @@
   	<select id="count" resultType="java.lang.Integer" parameterType="com.choa.util.ListInfo">
   		select nvl(count(num),0) from order_rent
   	</select>
+  	
+  	<update id="approved" parameterType="Order_rentDTO">
+  			update order_rent set permission='approved' where num=#{num}
+  		</update>
   
   </mapper>

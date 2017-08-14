@@ -263,6 +263,12 @@ public class MovieController {
 			temp += g + "/";
 		}
 		
+		char c = temp.charAt(temp.length()-1);
+		
+		if(c=='/') {
+			temp.substring(0, temp.length()-1);
+		}
+		
 		movieDTO.setGenre(temp);
 		
 		try {

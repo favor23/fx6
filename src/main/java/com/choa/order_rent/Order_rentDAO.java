@@ -15,6 +15,9 @@ public class Order_rentDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE ="Order_rentMapper.";
 	
+	public int order_rentapproved(Order_rentDTO order_rentDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"approved", order_rentDTO);
+	}
 	
 	public int order_rentInsert(Order_rentDTO order_rentDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"insert", order_rentDTO);

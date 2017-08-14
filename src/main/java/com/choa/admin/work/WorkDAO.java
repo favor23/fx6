@@ -42,4 +42,9 @@ public class WorkDAO {
 	public WorkDTO listone(WorkDTO workDTO){
 		return sqlSession.selectOne(NAMESPACE+"selectOne",workDTO);
 	}
+	
+	//매니저 근무자
+	public WorkDTO listone(){
+		return sqlSession.selectOne(NAMESPACE+"work_m");
+	}
 }

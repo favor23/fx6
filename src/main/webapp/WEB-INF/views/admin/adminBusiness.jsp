@@ -34,6 +34,7 @@
 }
 
 </style>
+
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/admin_m/themes/default/easyui.css" />"
 	rel='stylesheet' />
@@ -48,6 +49,8 @@
 	padding: 0px 0px 0px 0px;"
 }
 </style>
+<link href="<c:url value="/css/input.css" />" type="text/css" rel="stylesheet">
+<link href="<c:url value="/css/input2.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap_api_crash_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -60,13 +63,13 @@
 <div id="main_session_default">
 <c:import url="./admin_one.jsp" />
 	<div id="Manager_table">	
-	<h2>${member.department}</h2>
-	<p>부서내 사원들에게 업무 확인가능</p>	
+	<h2>${member.department} 사원</h2>
+	<p>사원 업무확인과 퍼센트 수정가능</p>	
 	<div style="margin: 20px 0;">
 		<!-- <a href="javascript:void(0)" class="easyui-linkbutton"onclick="edit()">수정</a>  -->
 		<!-- <a href="javascript:void(0)"class="easyui-linkbutton" onclick="append()">추가</a> -->
 		<!-- <button type="button" class="btn btn-info btn-lg btn_insert" data-toggle="modal" data-target="#myModal_ins">업무추가</button> -->
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">업무수정</button>
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal_mod" onclick="edit()">퍼센트수정</button>
 		<button type="button" class="btn btn-info btn-lg view_re" data-toggle="modal" data-target="#myModal_view" onclick="view()">업무정보</button>
 		<button type="button" class="btn btn-info btn-lg" onclick="start()">새로고침</button>
 		<!-- <button type="button" class="btn btn-info btn-lg" onclick="removeIt()">업무삭제</button> -->
@@ -105,25 +108,34 @@
 	<div class="modal-dialog" style="width: 950px">
 
 		<!-- Modal content-->
-		<div class="modal-content">
+		<div class="modal-content" style="width:330px;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
-				<h4 class="modal-title well">${member.department}업무 수정</h4>
+				<h4 class="modal-title well"><label>${member.department}업무 수정</label></h4>
 			</div>
 			<div class="modal-body">
 				<input	type="hidden" id="id_mod" value="">
 				<input type="hidden" id="iconcls_mod" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name_mod" value=""> <br> 
-					시작날짜<input 	type="date" id="begin_mod" value=""> <br>~<br> 
-						끝 날짜<input	type="date" id="end_mod" value="">						
-				퍼센트<input type="number" id="progress_mod"	value="">
-				</div>
-				<!-- div2 div3 ajax로 가져오기 -->
-				<div class="modal_mod_tt">	
-				<button id="list_list">인원추가하기</button>			
-				</div>
-								
+				 <div class="mat-div">
+    <label for="name_mod" class="mat-label">프로젝트명</label>
+    <input type="text" class="mat-input" readonly="readonly" id="name_mod">
+  </div>
+  <div class="mat-div">
+    <label for="begin_mod" class="mat-label">시작날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="begin_mod">
+  </div>
+  <div class="mat-div">
+    <label for="end_mod" class="mat-label">끝 날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="end_mod">
+  </div>
+  <div class="mat-div">
+    <label for="progress_mod" class="mat-label">퍼센트</label>
+    <input type="number" class="mat-input" id="progress_mod">
+  </div>
+  <input type="hidden" id="persons_mod" name="persons" value="${str_plus}">
+				
+				</div>								
 				<button href="javascript:void(0)" class="easyui-linkbutton"
 					onclick="dbupdatesave()" data-dismiss="modal">수정</button>
 			</div>
@@ -142,17 +154,28 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" onclick="start()">&times;</button>
-				<h4 class="modal-title well">${member.department}업무 수정</h4>
+				<h4 class="modal-title well"><label>${member.department}업무 수정</label></h4>
 			</div>
 			<div class="modal-body">
 				<input	type="hidden" id="id_view" value="">
 				<input type="hidden" id="iconcls_view" value="icon-ok">
 				<div class="modal_d1 well">
-					프로젝트명<input type="text" id="name_view" value="" readonly="readonly"> <br> 
-					시작날짜<input 	type="date" id="begin_view" value="" readonly="readonly"> <br>~<br> 
-						끝 날짜<input	type="date" id="end_view" value="" readonly="readonly">						
-				퍼센트<input type="number" id="progress_view"	value="" readonly="readonly">
-				</div>
+								 <div class="mat-div">
+    <label for="name_view" class="mat-label">프로젝트명</label>
+    <input type="text" class="mat-input" readonly="readonly" id="name_view">
+  </div>
+  <div class="mat-div">
+    <label for="begin_view" class="mat-label">시작날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="begin_view">
+  </div>
+  <div class="mat-div">
+    <label for="end_view" class="mat-label">끝 날짜</label>
+    <input type="date" class="mat-input" readonly="readonly" id="end_view">
+  </div>
+  <div class="mat-div">
+    <label for="progress_view" class="mat-label">퍼센트</label>
+    <input type="number" class="mat-input" readonly="readonly" id="progress_view">
+  </div></div>
 				<!-- div2 div3 ajax로 가져오기 -->
 				<div class="modal_view well" style="overflow: auto">
 					<button class="btn_view">참여인원 보기</button>											
@@ -351,7 +374,7 @@
 		persons2=row.persons;
 		jbAry=persons2.split("/");		
 		modal4_mod(jbAry,persons2);
-		save();		
+		save();	
 	}
 	function view() {
 		if (editingId != undefined) {
@@ -476,6 +499,15 @@
 		del="del";
 		persons2="";
 	}
+	$(".mat-input").focus(function(){
+		  $(this).parent().addClass("is-active is-completed");
+		});
+
+		$(".mat-input").focusout(function(){
+		  if($(this).val() === "")
+		    $(this).parent().removeClass("is-completed");
+		  $(this).parent().removeClass("is-active");
+		})
 
 </script>
 </html>

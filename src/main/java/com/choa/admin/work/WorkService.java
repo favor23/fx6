@@ -42,4 +42,8 @@ public class WorkService {
 		return workDAO.listone(workDTO);
 		
 	}
+	//근무자
+	public WorkDTO listone(){
+		return workDAO.listone();
+	}
 }

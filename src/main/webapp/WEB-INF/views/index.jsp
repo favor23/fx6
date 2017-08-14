@@ -25,7 +25,7 @@
 			</ol>
 
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
+			<div class="carousel-inner" style="max-height:650px; ">
 				<div class="item active">
 					<img src="<c:url value="/img/index/경찰.jpg"/>">
 					<div class="carousel-caption main_setting" >

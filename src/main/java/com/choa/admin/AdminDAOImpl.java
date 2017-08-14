@@ -30,7 +30,14 @@ public class AdminDAOImpl implements MemberDAO{
 		List<String> list = sqlSession.selectList(NAMESPACE+"workers");
 		return list;
 	}
-	
+
+public int admin_mod(MemberDTO memberDTO){
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("dto", memberDTO);
+	sqlSession.insert(NAMESPACE+"admin_mod", map);
+	int result=(Integer)map.get("result");
+	return result;
+}
 	
 	public int totalCount(String id)throws Exception{
 		int totalCount=0;

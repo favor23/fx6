@@ -4,6 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="AdminMapper"> 
+ <update id="admin_mod" statementType="CALLABLE" parameterType="java.util.Map">
+ 	{ call admin_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+ 	 
+ </update>
+ <update id="update" statementType="CALLABLE" parameterType="java.util.Map">
+ 	{ call member_update(#{dto.id, mode=IN},#{dto.pw, mode=IN},#{dto.name, mode=IN},#{dto.phone, mode=IN},#{dto.email, mode=IN},#{dto.address, mode=IN},#{dto.taste, mode=IN},#{result, mode=OUT, javaType=int, jdbcType=INTEGER}) }
+ 	</update>
 
 <select id="workers" resultType="java.lang.String">
 select persons from works where begin <![CDATA[ <= ]]> sysdate and end<![CDATA[ >= ]]>sysdate

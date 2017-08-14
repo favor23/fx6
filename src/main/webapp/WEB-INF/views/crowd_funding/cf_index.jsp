@@ -429,7 +429,11 @@
 		    <div class="carousel-inner">
 		
 		      <div class="item active">
-		        <img src="<c:url value="/img/movie-img/test5.jpg" />" alt="Los Angeles" style="width:100%;">
+		        <img src="<c:url value="/img/campaign/1501760658771_test1.jpg" />" alt="Los Angeles" style="width:100%;">
+		        <div class="carousel-caption">
+		        	<h3>새로운 캠페인</h3>
+		        	<p style="font-family: 'Jeju Gothic', sans-serif;">주목해야 할 신선한 아이디어들</p>
+		        </div>
 		      </div>
 		      
 		      <c:forEach items="${newList}" var="newList">

@@ -16,9 +16,9 @@ public class MatchingService {
 	
 	public List<MatchingDTO> matchingList(ListInfo listInfo) throws Exception{
 		
-		int totalCount = matchingDAO.matchingCount();
+		int result = matchingDAO.matchingCount();
 		
-		listInfo.makePage(totalCount);
+		listInfo.makePage(result);
 		listInfo.setRow();
 		
 		return matchingDAO.matchingList(listInfo);
