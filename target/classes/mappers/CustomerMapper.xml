@@ -6,7 +6,12 @@
  <mapper namespace="CustomerMapper"> 
  <resultMap type="com.choa.customer.CustomerDTO" id="CustomerDTO"></resultMap>
  <resultMap type="com.choa.movie.MovieDTO" id="MovieDTO"></resultMap>
-
+ 
+ 
+	<select id="movie_req" parameterType="java.lang.String" resultType="com.choa.required.RequiredDTO">
+		select * from required where writer=#{id}
+	</select>
+	
 	
 	<insert id="dropuser_group" parameterType="com.choa.dropuser.DropUserDTO">
 		insert into dropuser_group values(drop_seq.nextval,#{id},#{reason},#{etc_reason},sysdate)
@@ -86,8 +91,8 @@
 		insert into banlist values(#{targetId},#{reason},'nothing',#{senderId},#{roomNum},'x',ban_num.nextval,'없음',0,sysdate)
 	</insert>
 	
-	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO" parameterType="com.choa.customer.CustomerDTO">
-		select M.*, C.* from customer C,member M where id=#{id}
+	<select id="adminselect_c" resultType="com.choa.customer.CustomerDTO" parameterType="com.choa.member.MemberDTO">
+		select M.*, C.phone,C.email,C.address,C.sung,C.ticket,C.playview,C.review,C.birth,C.taste,C.ban,C.banlog from member M,customer C where M.id=#{id} and M.id=C.id
 	</select>
 	<update id="admin_update_set" parameterType="com.choa.customer.CustomerDTO">
 		update customer set ticket=#{ticket} where id=#{id}

@@ -19,7 +19,7 @@
 #title {
 	margin-left: 15%;
 	margin-top: 50px;
-	width: 300px;
+	width: 350px;
 	font-weight: bold;
 	font-size: large;
 	border-bottom: 2px solid green;
@@ -138,7 +138,23 @@ width: 250px;
 	width: 1000px;
 	margin: 0 auto;
 }
+#reqtable {
+	width: 800px;
+	margin:0 auto;
 
+}
+
+.te {
+	font-weight: bold;
+	text-align: center;
+}
+
+#reqtable td{
+text-align: center;
+	height: 35px;
+	padding: 10px;
+
+}
 
 </style>
 <c:import url="../temp/bootStrap_black.jsp" />
@@ -151,16 +167,33 @@ width: 250px;
 <c:import url="../temp/header_plus_member.jsp" />
 <div id="main_session_default">
 <p id="title">${member.id } 님의 영화 요청 목록입니다.</p>
-<c:forEach items="${list }" var="list">
-	<c:if test="${list.writer eq member.id}">
-		${list.num }
-	</c:if>
-</c:forEach>
+<c:if test="${list ne '[]'}">
+	<table id="reqtable" class="table table-hover">
+		<tr>
+			<td class="te">번호</td><td class="te">제목</td><td class="te">작성일자</td>
+		</tr>	
+	<c:forEach items="${list }" var="list">
+		<tr>
+			<td>${list.num}</td><td id="${list.num }" class="click_t">${list.title }</td><td>${list.reg_date}</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="${list.num }" style="display: none;">${list.contents }</td>
+		</tr>
+	</c:forEach>
+	</table>
+</c:if>
+<c:if test="${list eq '[]'}">
+<h2 style="text-align: center;margin-top: 15px;">아직 요청한 영화가 없습니다.</h2>
+</c:if>
 </div>
 
 <c:import url="../temp/footer.jsp" />
 </body>
 <script type="text/javascript">
+$(".click_t").click(function(){
+	var num = $(this).attr("id");
+	$("."+num).toggle();
+});
 
 </script>
 </html>

@@ -1,6 +1,8 @@
 package com.choa.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,12 @@ public class AdminServiceImpl implements MemberService{
 	@Autowired
 	private AdminDAOImpl adminDAO;
 
+	
+	
+	public int admin_mod(MemberDTO memberDTO){		
+		return adminDAO.admin_mod(memberDTO);	
+	}
+	
 	public List<String> workers()throws Exception{
 	   return adminDAO.workers();
 	}

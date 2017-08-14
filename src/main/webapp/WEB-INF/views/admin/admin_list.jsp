@@ -3,28 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 		<c:if test="${department eq '인사부'}">
-			<div id="action" accesskey="인사부" class="select_department">인사부</div>
-			<div accesskey="회계부" class="select_department">회계부</div>
-			<div accesskey="후원부" class="select_department">후원부</div>
-			<div accesskey="매니저" class="select_department">매니저</div>
+			<div id="action" accesskey="인사부" class="select_department"style="width: 25%;">인사부</div>
+			<div accesskey="회계부" class="select_department"style="width: 25%;">회계부</div>
+			<div accesskey="후원부" class="select_department"style="width: 25%;">후원부</div>
+			<div accesskey="매니저" class="select_department"style="width: 25%;">매니저</div>
 			</c:if>
 			<c:if test="${department eq '회계부'}">
-			<div accesskey="인사부" class="select_department">인사부</div>
-			<div id="action" accesskey="회계부" class="select_department">회계부</div>
-			<div accesskey="후원부" class="select_department">후원부</div>
-			<div accesskey="매니저" class="select_department">매니저</div>
+			<div accesskey="인사부" class="select_department"style="width: 25%;">인사부</div>
+			<div id="action" accesskey="회계부" class="select_department"style="width: 25%;">회계부</div>
+			<div accesskey="후원부" class="select_department"style="width: 25%;">후원부</div>
+			<div accesskey="매니저" class="select_department"style="width: 25%;">매니저</div>
 			</c:if>
 			<c:if test="${department eq '후원부'}">
-			<div accesskey="인사부" class="select_department">인사부</div>
-			<div accesskey="회계부" class="select_department">회계부</div>
-			<div id="action" accesskey="후원부" class="select_department">후원부</div>
-			<div accesskey="매니저" class="select_department">매니저</div>
+			<div accesskey="인사부" class="select_department"style="width: 25%;">인사부</div>
+			<div accesskey="회계부" class="select_department"style="width: 25%;">회계부</div>
+			<div id="action" accesskey="후원부" class="select_department"style="width: 25%;">후원부</div>
+			<div accesskey="매니저" class="select_department"style="width: 25%;">매니저</div>
 			</c:if>
 			<c:if test="${department eq '매니저'}">
-			<div accesskey="인사부" class="select_department">인사부</div>
-			<div accesskey="회계부" class="select_department">회계부</div>
-			<div accesskey="후원부" class="select_department">후원부</div>
-			<div id="action" accesskey="매니저" class="select_department">매니저</div>
+			<div accesskey="인사부" class="select_department"style="width: 25%;">인사부</div>
+			<div accesskey="회계부" class="select_department"style="width: 25%;">회계부</div>
+			<div accesskey="후원부" class="select_department"style="width: 25%;">후원부</div>
+			<div id="action" accesskey="매니저" class="select_department"style="width: 25%;">매니저</div>
 			</c:if>
 			<table class="table">
 				<tr><td>부장<div>

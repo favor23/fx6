@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.choa.admin.AdminDTO;
 import com.choa.admin.AdminServiceImpl;
+import com.choa.admin.work.WorkDTO;
+import com.choa.admin.work.WorkService;
 import com.choa.banList.BanlistDTO;
 import com.choa.campaign.CampaignDTO;
 import com.choa.chatting.ChattingDTO;
@@ -63,6 +65,26 @@ public class AdminController {
 	private PaymentMovieController paymentMovieController;
 	@Inject
 	private RoomUserService roomUserService;
+	@Autowired
+	private PaymentSupportController paymentSupportController;
+	@Autowired
+	private WorkService workService;
+	
+	
+	
+	
+	@RequestMapping(value="/admin/admin_mod_go")
+	public String admin_mod_go(AdminDTO adminDTO,HttpServletRequest request,Model model) throws Exception{
+		adminDTO.setPw(hash.hashtest(adminDTO));
+		int result=adminService.admin_mod(adminDTO);
+		if(result>0){
+			request.getSession().setAttribute("member", adminDTO);
+			adminPage(request, model);
+			return "/admin/adminPage";
+		}else{
+			return "/admin/admin_mod";
+		}
+	}
 	
 	public void admin_update_set(){
 		CustomerDTO customerDTO=new CustomerDTO();		
@@ -91,18 +113,21 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="admin/refund_go")
-	public String refund_go(MemberDTO memberDTO, PaymentMovieDTO paymentMovieDTO,HttpServletRequest request,Model model, ListInfo listInfo) throws Exception{
+	public String refund_go(MemberDTO memberDTO, Integer num,HttpServletRequest request,Model model, ListInfo listInfo) throws Exception{
 		CustomerDTO customerDTO=customerService.adminselect_c(memberDTO);
+		System.out.println(customerDTO.getId());
 		String []str=customerDTO.getTicket().split("/");
 		String ticket="";
 		for(int i=0;i<str.length;i++){
-			if(str[i].equals(paymentMovieDTO.getMovie_num())){
+			if(str[i].equals(num)){
 				
 			}
 			else{
 				ticket+=str[i]+"/";
 			}
 		}
+		PaymentMovieDTO paymentMovieDTO=new PaymentMovieDTO();
+		paymentMovieDTO.setNum(num);
 		customerDTO.setTicket(ticket);
 		customerService.update(customerDTO);
 		int result=payMovieService.refund_set(paymentMovieDTO);
@@ -126,23 +151,14 @@ public class AdminController {
 	
 	@RequestMapping(value="admin/worker")
 	public String test(String id,Model model)throws Exception{
-		List<String> list = adminService.workers();
+		WorkDTO workDTO = workService.listone();
+		String [] ar=workDTO.getPersons().split("/");
 		String message="not";
-		boolean chk=false;
-		for(int i=0;i<list.size();i++){
-			String [] ar = list.get(i).split("/");
-			for(int j=0;j<ar.length;j++){
-				if(ar[j].equals(id)){
-					chk=true;
-					break;
-				}else {
-					chk=false;
-				}	
+		for(int i=0;i<ar.length;i++){
+			if(ar[i].equals(id)||id.equals("admin")){
+				message="work";
+				break;
 			}
-			
-		}
-		if(chk){
-			message="work";
 		}
 		model.addAttribute("message", message);
 		return "/commons/ajaxResult";
@@ -319,6 +335,11 @@ public class AdminController {
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
 		paymentMovieController.paymentMovieList(listInfo, model);
 		
+	}
+	//펀딩구매목록
+	@RequestMapping(value = "admin/admin_Request_hi_5", method = RequestMethod.GET)
+	public void adminRequest_hi_5(ListInfo listInfo, Model model) {
+		paymentSupportController.paymentSupportList(listInfo, model);
 	}
 	
 	//상영방목록

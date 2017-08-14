@@ -31,6 +31,7 @@
 	font-weight: 900;
 }
 </style>
+<link href="<c:url value="/css/table_1.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -46,6 +47,7 @@
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_2?curPage=1" class="select_department">물품 대여요청 목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=1" class="select_department">티켓구매 목록</div>
+			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_5?curPage=1" class="select_department">펀딩상품구매 목록</div>
 			<div  id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
 			
 <table class="table">

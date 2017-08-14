@@ -1,5 +1,6 @@
 package com.choa.customer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import com.choa.member.MemberDAO;
 import com.choa.member.MemberDTO;
 import com.choa.movie.MovieDTO;
 import com.choa.pr.PrDTO;
+import com.choa.required.RequiredDTO;
 import com.choa.util.ListInfo;
 
 @Repository
@@ -25,6 +27,18 @@ public class CustomerDAO implements MemberDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE="CustomerMapper.";
+	
+	public List<RequiredDTO> movie_req(String id)throws Exception{
+		List<RequiredDTO> list = new ArrayList<RequiredDTO>();
+		try{
+			list = sqlSession.selectList(NAMESPACE+"movie_req", id);
+		}catch (Exception e) {
+			list=null;
+		}
+		System.out.println("이거뭔ㄴ데"+list);
+		return list;
+	}
+	
 	
 	public void admin_update_set(CustomerDTO customerDTO){
 		sqlSession.update(NAMESPACE + "admin_update_set",customerDTO);		

@@ -197,12 +197,7 @@ body{
 	height: 13%;
 }
 
-#banTextBox {
-	width: 100%;
-	height: 100%;
-	display: none;
-	background-color: black;
-}
+
 
 #frm {
 	width: 100%;
@@ -238,6 +233,22 @@ img{
 #hidden_box {
 	display: none;
 }
+#banTextBox {
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: black;
+	margin-top: -21px;
+}
+
+#banTextBox .w_p {
+color:white;
+font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	margin-top: 15px;
+}
+
 </style>
 </head>
 <body>
@@ -292,8 +303,8 @@ img{
 			<input type="text" name="contents" id="message${movie_num}" class="message" wrap="hard" placeholder="메세지 보내기" onkeydown="showKeyCode(event)" value="님이 접속하셨습니다.">
 			<input type="button" id="btnSend${movie_num}" class="btn" value="보내기"/> <br />
 			<div id="banTextBox">
-				<span>*경고 1회가 부여되어 채팅이 5분간 금지됩니다.*</span>
-			
+				<p class="w_p">경고<span class="wtis1"></span>회가 부여되어</p>
+				<p class="w_p">채팅이<span class="wtis2"></span>간 금지됩니다.</p>
 			</div>
 		</div>
 	</div>
@@ -561,7 +572,9 @@ img{
 		
 		
 		//sinhojeong====================================================
+		setting();
 		setInterval("setting()",5000);
+		var val;
 		
 		$(".chatting").on("click","strong",function(){ //채팅창의 닉네임 눌렀을때.
 		var rn = '${movie_num}';
@@ -618,12 +631,16 @@ img{
 					//3600000ms = 1시간
 					var tset;//000생략
 					if (data * 1 == 1) {
-						tset = 3000;
+						tset = 30000;
+						$(".wtis2").html("30초");
 					} else if (data * 1 == 2) {
-						tset = 5000;
-					} else if (data * 1 == 3) {
-						tset = 10000;
+						tset = 300000;
+						$(".wtis2").html("5분");
+					} else if (data * 1 >= 3) {
+						tset = 3000000;
+						$(".wtis2").html("50분");
 					}
+					$(".wtis1").html(data);
 					setTimeout("resetting()", tset);
 				}
 			}

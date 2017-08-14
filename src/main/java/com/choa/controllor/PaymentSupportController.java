@@ -1,5 +1,7 @@
 package com.choa.controllor;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.choa.paySystem.Bank;
 import com.choa.payment.PaymentDTO;
+import com.choa.payment.movie.PaymentMovieDTO;
 import com.choa.payment.support.PaymentSupportDTO;
 import com.choa.payment.support.PaymentSupportServiceImpl;
+import com.choa.util.ListInfo;
 
 @Controller
 public class PaymentSupportController {
@@ -18,6 +22,13 @@ public class PaymentSupportController {
 	@Inject
 	private PaymentSupportServiceImpl paymentSupportServiceImpl;	
 
+	public void paymentSupportList(ListInfo listInfo, Model model){		
+		List<PaymentSupportDTO> list=paymentSupportServiceImpl.psList(listInfo);
+		model.addAttribute("list", list);
+		model.addAttribute("listInfo", listInfo);
+	}
+	
+	
 	@RequestMapping(value="support_bank", method=RequestMethod.POST)
 	public String bank(PaymentSupportDTO paymentSupportDTO,String cardNum1, String cardNum2, String cardNum3, String cardNum4, Model model) throws Exception{		
 		 String str = cardNum1 + cardNum2 + cardNum3 + cardNum4;

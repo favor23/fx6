@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.choa.admin.AdminDAOImpl;
 import com.choa.admin.AdminDTO;
 import com.choa.admin.AdminServiceImpl;
 import com.choa.banList.BanlistDTO;
+import com.choa.customer.CustomerDAO;
 import com.choa.customer.CustomerDTO;
 import com.choa.customer.CustomerServiceImpl;
 import com.choa.dropuser.DropUserDTO;
@@ -71,6 +73,15 @@ public class MemberController {
 	@Autowired
 	private AdminController adminController;
 
+	@RequestMapping(value="/member/movie_req")
+	public String movie_req(String id,Model model)throws Exception{
+		List<RequiredDTO> list = new ArrayList<RequiredDTO>();
+		list = customerService.movie_req(id);
+		model.addAttribute("list", list);	
+		return "/member/myMovieReq";
+	}
+	
+	
 	@RequestMapping(value="/member/myMovieList")
 	public String myMovieList(int curPage,Model model, HttpSession session, ListInfo listInfo)throws Exception{
 		cinemaController.cinema_my(curPage, model, session, listInfo);
@@ -138,7 +149,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/member/myGenre",method=RequestMethod.POST)
-	public void graph1(int num,Model model)throws Exception{
+	public String graph1(int num,Model model)throws Exception{
 		MovieDTO movieDTO = null;
 
 		try {
@@ -152,6 +163,8 @@ public class MemberController {
 		MovieRcdDTO movieRcdDTO = new MovieRcdDTO();
 		movieRcdDTO = movieService.rcd(num);
 		model.addAttribute("rcd", movieRcdDTO);
+		
+		return "/member/myGenreView";
 	}
 
 
