@@ -86,8 +86,7 @@
 </header>
 <!-- header end -->
 <script>
-var r_m = '${member.grade}';
-if(r_m!=""&&r_m=="admin"){
+
 	var id='${member.id}';
 	$.get("${pageContext.request.contextPath}/admin/worker?id="+id,function(chk){
 		chk=chk.trim();
@@ -97,7 +96,6 @@ if(r_m!=""&&r_m=="admin"){
 	});
 	
 	
-} 
 
 function remote(){
 	$.get("${pageContext.request.contextPath}/temp/remote",function(data){
