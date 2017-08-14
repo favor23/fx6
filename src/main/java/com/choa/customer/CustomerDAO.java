@@ -87,10 +87,7 @@ public class CustomerDAO implements MemberDAO{
 	public PrDTO view_pr(CustomerDTO customerDTO)throws Exception{
 		
 		 PrDTO prDTO = sqlSession.selectOne(NAMESPACE+"view_pr", customerDTO);
-<<<<<<< HEAD
-		 
-=======
->>>>>>> 618c450592b7f4f74f79f2c94fb755efc8cb9be9
+
 		 return prDTO;
 	}
 	
