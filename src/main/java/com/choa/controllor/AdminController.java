@@ -91,18 +91,21 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="admin/refund_go")
-	public String refund_go(MemberDTO memberDTO, PaymentMovieDTO paymentMovieDTO,HttpServletRequest request,Model model, ListInfo listInfo) throws Exception{
+	public String refund_go(MemberDTO memberDTO, Integer num,HttpServletRequest request,Model model, ListInfo listInfo) throws Exception{
 		CustomerDTO customerDTO=customerService.adminselect_c(memberDTO);
+		System.out.println(customerDTO.getId());
 		String []str=customerDTO.getTicket().split("/");
 		String ticket="";
 		for(int i=0;i<str.length;i++){
-			if(str[i].equals(paymentMovieDTO.getMovie_num())){
+			if(str[i].equals(num)){
 				
 			}
 			else{
 				ticket+=str[i]+"/";
 			}
 		}
+		PaymentMovieDTO paymentMovieDTO=new PaymentMovieDTO();
+		paymentMovieDTO.setNum(num);
 		customerDTO.setTicket(ticket);
 		customerService.update(customerDTO);
 		int result=payMovieService.refund_set(paymentMovieDTO);
@@ -318,6 +321,11 @@ public class AdminController {
 	@RequestMapping(value = "admin/admin_Request_hi_3", method = RequestMethod.GET)
 	public void adminRequest_hi_3(Model model,ListInfo listInfo) {
 		paymentMovieController.paymentMovieList(listInfo, model);
+		
+	}
+	//펀딩구매목록
+	@RequestMapping(value = "admin/admin_Request_hi_5", method = RequestMethod.GET)
+	public void adminRequest_hi_5() {
 		
 	}
 	

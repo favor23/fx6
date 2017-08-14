@@ -31,12 +31,14 @@
 	font-weight: 900;
 }
 </style>
+<link href="<c:url value="/css/table_1.css" />" type="text/css" rel="stylesheet">
 <link href="<c:url value="/css/admin_one.css" />" type="text/css" rel="stylesheet">
 <c:import url="../temp/bootStrap_black.jsp" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영화를 찍으시조</title>
 </head>
 <body>
+
 <c:import url="../temp/header.jsp" />
 <div id="tap"></div>
 <c:import url="../temp/header_plus_admin.jsp" />
@@ -46,11 +48,12 @@
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_1?curPage=1" class="select_department">펀딩목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_2?curPage=1" class="select_department">물품 대여요청 목록</div>
 			<div id="action" accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_3?curPage=1" class="select_department">티켓구매 목록</div>
+			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_5?curPage=1" class="select_department">펀딩상품구매 목록</div>
 			<div accesskey="${pageContext.request.contextPath}/admin/admin_Request_hi_4?curPage=1" class="select_department">상영방 목록</div>
 			
 <table class="table">
 			<tr><td>주문번호</td><td>티켓번호</td><td>금액</td>
-			<td>구매날짜</td><td>카드번호</td><td>환불요청</td></tr>	
+			<td>구매날짜</td><td>카드번호</td></tr>	
 			<c:forEach items="${list}" var="list">
 			<tr>
 			<td>${list.num}</td>
@@ -58,20 +61,7 @@
 			<td>${list.money}</td>
 			<td>${list.reg_date}</td>
 			<td>${list.card_num}</td>
-			<c:if test="${list.refund eq '0'}">
-			<td></td>	
-			</c:if>	
-			<c:if test="${list.refund eq '1'}">
-			<td><input id="${list.num}" type="button" class="btn-danger refund_go" value="환불요청"></td>	
-			</c:if>	
-			<c:if test="${list.refund eq '2'}">
-			<td><input  type="button" class="" value="환불완료"></td>
-			</c:if>		
-			<c:if test="${list.refund eq '3'}">
-			<td><input  type="button" class="" value="환불불가"></td>
-			</c:if>	
-			</tr>
-			
+			</tr>			
 			</c:forEach>	
 </table>
 			<div class="bottom" style="width: 100%; height: 30px; overflow: hidden;">
@@ -115,9 +105,5 @@ $(".select_department").mouseleave(function() {
 $(".select_department").click(function() {	
 	location.href=$(this).attr("accesskey");
 });
-$(".refund_go").click(function() {
-	if(confirm("승인하시겠습니까?"))
-	{location.href="${pageContext.request.contextPath}/admin/refund_go?num="+$(this).attr("id");}
-})
 </script>
 </html>

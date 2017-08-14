@@ -30,7 +30,7 @@
 										<ul class="nav navbar-nav">
 											<li class="active"><a>설명</a></li>
 											<li><a>${dto.genre} ${dto.restricted} 세 ${dto.running_time} 분</a></li>	
-											<li><a>${dto.synopsis}</a></li>											
+											<li><div style="height:100px; width:330px; overflow:hidden;  text-overflow:ellipsis; color: white;">${dto.synopsis}</div></li>											
 										</ul>
 									</div>
 								</nav>

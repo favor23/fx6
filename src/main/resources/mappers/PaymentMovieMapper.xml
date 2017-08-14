@@ -20,7 +20,7 @@
   		<select id="paymentList" resultType="com.choa.payment.movie.PaymentMovieDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum r, c.* from 
-		(select P.*, PM.movie_num from payment P,payment_movie PM  where P.NUM=PM.NUM_P order by num asc) c) 
+		(select P.*, PM.movie_num from payment P,payment_movie PM  where P.NUM=PM.NUM_P order by num desc) c) 
 		where r between #{startRow} and #{lastRow}
 	</select>
  </mapper> 
