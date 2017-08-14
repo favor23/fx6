@@ -19,7 +19,7 @@
 #title {
 	margin-left: 15%;
 	margin-top: 50px;
-	width: 300px;
+	width: 350px;
 	font-weight: bold;
 	font-size: large;
 	border-bottom: 2px solid green;

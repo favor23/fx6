@@ -136,7 +136,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/member/myGenre",method=RequestMethod.POST)
-	public void graph1(int num,Model model)throws Exception{
+	public String graph1(int num,Model model)throws Exception{
 		MovieDTO movieDTO = null;
 
 		try {
@@ -150,6 +150,8 @@ public class MemberController {
 		MovieRcdDTO movieRcdDTO = new MovieRcdDTO();
 		movieRcdDTO = movieService.rcd(num);
 		model.addAttribute("rcd", movieRcdDTO);
+		
+		return "/member/myGenreView";
 	}
 
 

@@ -348,13 +348,13 @@ $(".ticket_li").click(function() {
 	   	second="0"+second;
 	   }
 	   today = year+""+month+""+date+""+hour+""+minute+""+second+""; // 오늘날짜 완성
-		   if(today >= ${roomDTO.startTime} && today < ${roomDTO.lastTime}){
+		   if(today >= '${roomDTO.startTime}' && today < '${roomDTO.lastTime}'){
 			   $(".time").css("background-color", "#CC3D3D");
 			   $(".time").html("<span class=\"time_span\">상영중입니다.<span>");
-		   }else if(today < ${roomDTO.startTime}){
+		   }else if(today < '${roomDTO.startTime}'){
 			   $(".time").css("background-color", "#9FC93C");
 			   $(".time").html("<span class=\"time_span\">곧 영화가 시작됩니다.</span>");
-		   }else if(today > ${roomDTO.lastTime}){
+		   }else if(today > '${roomDTO.lastTime}'){
 			   $(".time").css("background-color", "#9FC93C");
 			   $(".time").html("<span class=\"time_span\">곧 영화가 시작됩니다.</span>");
 		   }

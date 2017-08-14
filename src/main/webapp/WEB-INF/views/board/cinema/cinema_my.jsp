@@ -26,8 +26,6 @@ body{
 }
 
 #main_session_default {
-	min-height: 900px;
-	max-height: 2770px;
 	height: auto;
 	width: 100%;	
 	padding-bottom: 100px;
@@ -43,7 +41,8 @@ body{
 	height: 250px;
 	margin: 0 auto;
 	margin-bottom: 30px;
-	background-color: gray;
+	background-color: #363636;
+	border-radius: 8px;
 }
 
 .list_poster{
@@ -65,6 +64,7 @@ body{
 	height: 100%;
 	float: left;
 	display: inline-block;
+	color: white;
 }
 
 #btn_div{
@@ -75,9 +75,11 @@ body{
 }
 
 #btn_div > button{
-	width: 100%;
-	height: 33%;
+	width: 99%;
+	height: 27%;
 	display: inline-block;
+	margin-top: 11px;
+	margin-left: 3px;
 }
 
 ul > li {
@@ -97,7 +99,7 @@ ul{
 .info_1 li{
 	margin-left: 40px;
 	font-size: large;
-	color: black;
+	color: #EDEDED;
 }
 
 #release{
@@ -109,9 +111,10 @@ ul{
 }
 
 .info_1 span{
-	color: black;
+	color: #EDEDED;
 	font-size: large;
 	margin: 0 auto;
+	margin-left: 13px;
 }
 
 .time {
@@ -123,6 +126,7 @@ ul{
 	color: white;
 	padding-bottom: 0;
 	margin-top: 12px;
+	border-radius: 12px;
 }
 
 #pageing {
