@@ -8,9 +8,9 @@
 			<div class="container">
 					<div style="margin-top: 25px;" class="top_text">게시판 > 요청게시판</div>
 					<div class="view_btn">
+					<button class="view_bt bt_re" >Reply</button>
 					<c:if test="${member.id eq view.writer}">
 					<button class="view_bt bt_del">Delete</button>
-					<button class="view_bt bt_re" >Reply</button>
 					<button  class="view_bt bt_up">Update</button>
 					</c:if>
 					</div>

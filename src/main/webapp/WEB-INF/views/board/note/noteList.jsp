@@ -32,6 +32,7 @@
 	
 	width : 800px;
 	height: auto;
+	min-height: 583px;
 	margin: 0 auto;
 	padding: 0 0 100px 0;
 	/* background-color: yellow;	 */

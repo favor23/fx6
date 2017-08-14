@@ -87,7 +87,6 @@ public class CustomerDAO implements MemberDAO{
 	public PrDTO view_pr(CustomerDTO customerDTO)throws Exception{
 		
 		 PrDTO prDTO = sqlSession.selectOne(NAMESPACE+"view_pr", customerDTO);
-		 System.out.println("DAO : "+prDTO.getActivity());
 		 return prDTO;
 	}
 	
