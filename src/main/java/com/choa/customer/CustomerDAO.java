@@ -87,11 +87,23 @@ public class CustomerDAO implements MemberDAO{
 	public PrDTO view_pr(CustomerDTO customerDTO)throws Exception{
 		
 		 PrDTO prDTO = sqlSession.selectOne(NAMESPACE+"view_pr", customerDTO);
+<<<<<<< HEAD
+		 
+=======
+>>>>>>> 618c450592b7f4f74f79f2c94fb755efc8cb9be9
 		 return prDTO;
 	}
 	
 	public int write_pr(PrDTO prDTO)throws Exception{
-		return sqlSession.update(NAMESPACE+"write_pr",prDTO);
+		String id =prDTO.getId();
+		int num =sqlSession.selectOne(NAMESPACE+"findId",id);
+		if(num>0){
+			num = sqlSession.update(NAMESPACE+"write_pr2",prDTO);
+		}else {
+			num = sqlSession.insert(NAMESPACE+"write_pr",prDTO);
+		}
+		
+		return num;
 		
 	}
 	

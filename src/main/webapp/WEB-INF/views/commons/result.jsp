@@ -9,7 +9,7 @@
 <script type="text/javascript">
  
 	alert('${message}');
-	location.href='${path}';
+	location.href='${pageContext.request.contextPath}/${path}';
 </script>
 
 <body>

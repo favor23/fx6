@@ -77,11 +77,17 @@
 	select nvl(count(movie_num), 0) from movie where genre like #{taste}
 	</select>
 	
-	
-	
-	<update id="write_pr" parameterType="com.choa.pr.PrDTO">
+	<update id="write_pr2" parameterType="com.choa.pr.PrDTO">
 	update mypr set award=#{award},education=#{education},activity=#{activity},introduce=#{introduce} where id=#{id}
 	</update>
+	
+	<select id="findId" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(nvl(id,0)) from mypr where id=#{id}
+	</select>
+	
+	<insert id="write_pr" parameterType="com.choa.pr.PrDTO">
+	insert into mypr values(#{id},#{award},#{education},#{activity},#{introduce})
+	</insert>
 	
 	<select id="view_pr" resultType="com.choa.pr.PrDTO" parameterType="com.choa.customer.CustomerDTO">
 	select * from mypr where id=#{id}
